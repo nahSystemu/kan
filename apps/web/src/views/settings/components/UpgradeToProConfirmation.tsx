@@ -76,9 +76,14 @@ export function UpgradeToProConfirmation({
             </div>
             <div className="flex items-center space-x-3">
               <HiCheckBadge className="h-5 w-5 flex-shrink-0 text-light-1000 dark:text-dark-950" />
-              <span className="text-sm text-neutral-900 dark:text-dark-1000">
-                {t`Board analytics (coming soon)`}
-              </span>
+              <div className="flex items-center space-x-2">
+                <span className="text-xs text-neutral-900 dark:text-dark-1000">
+                  {t`Board analytics`}
+                </span>
+                <span className="inline-flex items-center rounded-full bg-gray-500/10 px-2 py-0.5 text-[10px] font-medium text-gray-600 ring-1 ring-inset ring-gray-500/20 dark:text-gray-400 sm:text-[10px]">
+                  {t`Coming soon`}
+                </span>
+              </div>
             </div>
             <div className="flex items-center space-x-3">
               <HiCheckBadge className="h-5 w-5 flex-shrink-0 text-light-1000 dark:text-dark-950" />
@@ -90,7 +95,12 @@ export function UpgradeToProConfirmation({
         </div>
       </div>
       <div className="mt-5 flex justify-end space-x-2 sm:mt-6">
-        <Button onClick={() => closeModal()} variant="secondary">
+        <Button
+          onClick={() => {
+            closeModal();
+          }}
+          variant="secondary"
+        >
           {t`Cancel`}
         </Button>
         <Button
