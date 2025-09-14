@@ -22,23 +22,23 @@ export default function AccountSettings() {
 
   return (
     <>
-      <PageHead title="Settings | Account" />
+      <PageHead title={t`Settings | Account`} />
 
       <div className="mb-8 border-t border-light-300 dark:border-dark-300">
-        <h2 className="mb-4 mt-8 text-[14px] text-neutral-900 dark:text-dark-1000">
+        <h2 className="mb-4 mt-8 text-[14px] font-bold text-neutral-900 dark:text-dark-1000">
           {t`Profile picture`}
         </h2>
         <Avatar userId={data?.id} userImage={data?.image} />
 
         <div className="mb-4">
-          <h2 className="mb-4 mt-8 text-[14px] text-neutral-900 dark:text-dark-1000">
+          <h2 className="mb-4 mt-8 text-[14px] font-bold text-neutral-900 dark:text-dark-1000">
             {t`Display name`}
           </h2>
           <UpdateDisplayNameForm displayName={data?.name ?? ""} />
         </div>
 
         <div className="mb-8 border-t border-light-300 dark:border-dark-300">
-          <h2 className="mb-4 mt-8 text-[14px] text-neutral-900 dark:text-dark-1000">
+          <h2 className="mb-4 mt-8 text-[14px] font-bold text-neutral-900 dark:text-dark-1000">
             {t`Language`}
           </h2>
           <p className="mb-8 text-sm text-neutral-500 dark:text-dark-900">
@@ -48,7 +48,7 @@ export default function AccountSettings() {
         </div>
 
         <div className="mb-8 border-t border-light-300 dark:border-dark-300">
-          <h2 className="mb-4 mt-8 text-[14px] text-neutral-900 dark:text-dark-1000">
+          <h2 className="mb-4 mt-8 text-[14px] font-bold text-neutral-900 dark:text-dark-1000">
             {t`Delete account`}
           </h2>
           <p className="mb-8 text-sm text-neutral-500 dark:text-dark-900">
@@ -66,7 +66,7 @@ export default function AccountSettings() {
 
         {isCredentialsEnabled && (
           <div className="mb-8 border-t border-light-300 dark:border-dark-300">
-            <h2 className="mb-4 mt-8 text-[14px] text-neutral-900 dark:text-dark-1000">
+            <h2 className="mb-4 mt-8 text-[14px] font-bold text-neutral-900 dark:text-dark-1000">
               {t`Change Password`}
             </h2>
             <p className="mb-8 text-sm text-neutral-500 dark:text-dark-900">

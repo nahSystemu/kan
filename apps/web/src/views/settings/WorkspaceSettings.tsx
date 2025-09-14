@@ -51,10 +51,10 @@ export default function WorkspaceSettings() {
 
   return (
     <>
-      <PageHead title={`Settings | ${workspace.name ?? "Workspace"}`} />
+      <PageHead title={t`Settings | Workspace`} />
 
       <div className="mb-8 border-t border-light-300 dark:border-dark-300">
-        <h2 className="mb-4 mt-8 text-[14px] text-neutral-900 dark:text-dark-1000">
+        <h2 className="mb-4 mt-8 text-[14px] font-bold text-neutral-900 dark:text-dark-1000">
           {t`Workspace name`}
         </h2>
         <UpdateWorkspaceNameForm
@@ -62,7 +62,7 @@ export default function WorkspaceSettings() {
           workspaceName={workspace.name}
         />
 
-        <h2 className="mb-4 mt-8 text-[14px] text-neutral-900 dark:text-dark-1000">
+        <h2 className="mb-4 mt-8 text-[14px] font-bold text-neutral-900 dark:text-dark-1000">
           {t`Workspace URL`}
         </h2>
         <UpdateWorkspaceUrlForm
@@ -71,7 +71,7 @@ export default function WorkspaceSettings() {
           workspacePlan={workspace.plan ?? "free"}
         />
 
-        <h2 className="mb-4 mt-8 text-[14px] text-neutral-900 dark:text-dark-1000">
+        <h2 className="mb-4 mt-8 text-[14px] font-bold text-neutral-900 dark:text-dark-1000">
           {t`Workspace description`}
         </h2>
         <UpdateWorkspaceDescriptionForm
@@ -92,7 +92,7 @@ export default function WorkspaceSettings() {
           )}
 
         <div className="border-t border-light-300 dark:border-dark-300">
-          <h2 className="mb-4 mt-8 text-[14px] text-neutral-900 dark:text-dark-1000">
+          <h2 className="mb-4 mt-8 text-[14px] font-bold text-neutral-900 dark:text-dark-1000">
             {t`Delete workspace`}
           </h2>
           <p className="mb-8 text-sm text-neutral-500 dark:text-dark-900">

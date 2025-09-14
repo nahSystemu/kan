@@ -1532,6 +1532,26 @@ msgstr "Senior"
 msgid "Settings"
 msgstr "Einstellungen"
 
+#: src/views/settings/AccountSettings.tsx:25
+msgid "Settings | Account"
+msgstr "Einstellungen | Konto"
+
+#: src/views/settings/ApiSettings.tsx:18
+msgid "Settings | API"
+msgstr "Einstellungen | API"
+
+#: src/views/settings/BillingSettings.tsx:35
+msgid "Settings | Billing"
+msgstr "Einstellungen | Abrechnung"
+
+#: src/views/settings/IntegrationsSettings.tsx:69
+msgid "Settings | Integrations"
+msgstr "Einstellungen | Integrationen"
+
+#: src/views/settings/WorkspaceSettings.tsx:54
+msgid "Settings | Workspace"
+msgstr "Einstellungen | Arbeitsbereich"
+
 #: src/views/home/components/Header.tsx:100
 #: src/views/home/components/Header.tsx:138
 msgid "Sign in"

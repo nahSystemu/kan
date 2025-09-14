@@ -1638,6 +1638,26 @@ msgstr "Settings"
 #~ msgid "Settings | {0}"
 #~ msgstr "Settings | {0}"
 
+#: src/views/settings/AccountSettings.tsx:25
+msgid "Settings | Account"
+msgstr "Settings | Account"
+
+#: src/views/settings/ApiSettings.tsx:18
+msgid "Settings | API"
+msgstr "Settings | API"
+
+#: src/views/settings/BillingSettings.tsx:35
+msgid "Settings | Billing"
+msgstr "Settings | Billing"
+
+#: src/views/settings/IntegrationsSettings.tsx:69
+msgid "Settings | Integrations"
+msgstr "Settings | Integrations"
+
+#: src/views/settings/WorkspaceSettings.tsx:54
+msgid "Settings | Workspace"
+msgstr "Settings | Workspace"
+
 #: src/views/home/components/Header.tsx:100
 #: src/views/home/components/Header.tsx:138
 msgid "Sign in"

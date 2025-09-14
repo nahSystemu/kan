@@ -347,6 +347,11 @@ checksums:
     Send%20feedback/singular: 9631cc08d49da04475b30a0d320ce97c
     Senior/singular: 3fff865dc00435f82896fc302ea45630
     Settings/singular: 8df6777277469c1fd88cc18dde2f1cc3
+    Settings%20%7C%20Account/singular: 050e18406849ec057edac877c297c3e1
+    Settings%20%7C%20API/singular: 85101e4b802a09ad9e3f01ff116f0894
+    Settings%20%7C%20Billing/singular: e44cba741d5414035a0b499c5766c203
+    Settings%20%7C%20Integrations/singular: d04992e28016452f6d3d7dcc0b592415
+    Settings%20%7C%20Workspace/singular: 5d0bacf7ff696da940f232df45edfd39
     Sign%20in/singular: cb8757c7450e17de1e226e82fb0fa4a2
     Sign%20up%20%7C%20kan.bn/singular: f3de2a110c90358e6eac07d0b2f663a6
     Sign%20up%20disabled/singular: 9581b1f75b404ac0ecb7e603e0d4189c
