@@ -105,7 +105,7 @@ export default function ApiKeyList() {
           )}
         >
           <div className="flex w-full items-center justify-center px-3">
-            <div className={twMerge("relative")}>
+            <div className="relative z-50">
               <Dropdown
                 items={[
                   {
@@ -126,11 +126,16 @@ export default function ApiKeyList() {
       </tr>
     );
   };
+
+  if (!isLoading && (!data?.data || data.data.length === 0)) {
+    return null;
+  }
+
   return (
     <div className="mt-8 flow-root">
-      <div className="overflow-x-auto">
-        <div className="inline-block min-w-full py-2 align-middle">
-          <div className="h-full shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+      <div className="overflow-x-auto overflow-y-visible">
+        <div className="inline-block min-w-full py-2 pb-12 align-middle">
+          <div className="relative h-full shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
             <table className="min-w-[600px] divide-y divide-light-600 dark:divide-dark-600">
               <thead className="rounded-t-lg bg-light-300 dark:bg-dark-200">
                 <tr>
