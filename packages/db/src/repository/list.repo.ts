@@ -71,6 +71,20 @@ export const create = async (
         FROM ordered o
         WHERE l.id = o.id;
       `);
+
+      // Last resort: verify fix; if duplicates persist (e.g., due to race conditions), rollback
+      const postFixDupes = await tx
+        .select({ index: lists.index, count: countExpr })
+        .from(lists)
+        .where(and(eq(lists.boardId, result.boardId), isNull(lists.deletedAt)))
+        .groupBy(lists.index)
+        .having(gt(countExpr, 1));
+
+      if (postFixDupes.length > 0) {
+        throw new Error(
+          `Invariant violation: duplicate indices remain after compaction in board ${result.boardId}`,
+        );
+      }
     }
 
     return result;
@@ -161,6 +175,20 @@ export const bulkCreate = async (
           FROM ordered o
           WHERE l.id = o.id;
         `);
+
+        // Last resort: verify fix; if duplicates persist (e.g., due to race conditions), rollback
+        const postFixDupes = await tx
+          .select({ index: lists.index, count: countExpr })
+          .from(lists)
+          .where(and(eq(lists.boardId, boardId), isNull(lists.deletedAt)))
+          .groupBy(lists.index)
+          .having(gt(countExpr, 1));
+
+        if (postFixDupes.length > 0) {
+          throw new Error(
+            `Invariant violation: duplicate indices remain after compaction in board ${boardId}`,
+          );
+        }
       }
     }
 
@@ -266,9 +294,32 @@ export const reorder = async (
       .having(gt(countExpr, 1));
 
     if (duplicateIndices.length > 0) {
-      throw new Error(
-        `Duplicate indices found after reordering in board ${list.boardId}`,
-      );
+      // Attempt to auto-heal by compacting indices to sequential values (0..n-1) while preserving order
+      await tx.execute(sql`
+        WITH ordered AS (
+          SELECT id, ROW_NUMBER() OVER (ORDER BY "index", id) - 1 AS new_index
+          FROM "list"
+          WHERE "boardId" = ${list.boardId} AND "deletedAt" IS NULL
+        )
+        UPDATE "list" l
+        SET "index" = o.new_index
+        FROM ordered o
+        WHERE l.id = o.id;
+      `);
+
+      // Last resort verification: if duplicates persist, rollback
+      const postFixDupes = await tx
+        .select({ index: lists.index, count: countExpr })
+        .from(lists)
+        .where(and(eq(lists.boardId, list.boardId), isNull(lists.deletedAt)))
+        .groupBy(lists.index)
+        .having(gt(countExpr, 1));
+
+      if (postFixDupes.length > 0) {
+        throw new Error(
+          `Invariant violation: duplicate indices remain after compaction in board ${list.boardId}`,
+        );
+      }
     }
 
     const updatedList = await tx.query.lists.findFirst({
