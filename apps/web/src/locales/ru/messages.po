@@ -108,7 +108,7 @@ msgstr "Добавить участника"
 #: src/views/page/components/TagSelector.tsx:231
 #: src/views/page/components/TagSelector.tsx:266
 msgid "Add tag"
-msgstr ""
+msgstr "Добавить тэг"
 
 #: src/views/card/components/ActivityList.tsx:69
 msgid "added a checklist"
@@ -241,7 +241,7 @@ msgstr "назначено <0>{0}</0> к карточке"
 
 #: src/views/page/index.tsx:436
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: src/views/boards/components/TemplateBoards.tsx:46
 msgid "Awaiting Customer"
@@ -484,11 +484,11 @@ msgstr "Управляйте тем, кто может просматриват�
 #: src/views/page/index.tsx:360
 #: src/views/page/index.tsx:361
 msgid "Copy public link"
-msgstr ""
+msgstr "Скопировать публичную ссылку"
 
 #: src/views/page/components/TagSelector.tsx:356
 msgid "Create"
-msgstr ""
+msgstr "Создать"
 
 #: src/components/LabelForm.tsx:213
 #: src/views/board/components/NewCardForm.tsx:458
@@ -539,15 +539,15 @@ msgstr "Создать новый список"
 
 #: src/views/pages/components/PagesList.tsx:102
 msgid "Create new page"
-msgstr ""
+msgstr "Создать новую страницу"
 
 #: src/views/page/components/TagSelector.tsx:218
 msgid "Create new tag"
-msgstr ""
+msgstr "Создать новый тэг"
 
 #: src/views/pages/components/NewPageForm.tsx:95
 msgid "Create page"
-msgstr ""
+msgstr "Создать страницу"
 
 #: src/components/NewWorkspaceForm.tsx:384
 #: src/components/WorkspaceMenu.tsx:116
@@ -719,11 +719,11 @@ msgstr "Редактировать метку"
 
 #: src/views/page/components/UpdatePageSlugForm.tsx:100
 msgid "Edit page URL"
-msgstr ""
+msgstr "Редактировать ссылку страницы"
 
 #: src/views/page/components/TagSelector.tsx:368
 msgid "Edit Tag"
-msgstr ""
+msgstr "Редактировать тэг"
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:161
 #: src/views/page/components/UpdatePageSlugForm.tsx:190
@@ -930,7 +930,7 @@ msgstr "Начните с создания нового списка"
 
 #: src/views/pages/components/PagesList.tsx:97
 msgid "Get started by creating a new page"
-msgstr ""
+msgstr "Начните с созданием новой странице"
 
 #: src/views/home/components/Cta.tsx:54
 msgid "Get started for free today"
@@ -954,7 +954,7 @@ msgstr "GitHub"
 
 #: src/views/public/page/index.tsx:144
 msgid "Go home"
-msgstr ""
+msgstr "Домой"
 
 #: src/views/home/components/Header.tsx:96
 #: src/views/home/components/Header.tsx:133
@@ -963,7 +963,7 @@ msgstr "Перейти в приложение"
 
 #: src/views/page/index.tsx:405
 msgid "Hide info"
-msgstr ""
+msgstr "Спрятать информацию"
 
 #: src/views/boards/components/TemplateBoards.tsx:17
 msgid "High Priority"
@@ -1114,7 +1114,7 @@ msgstr "Язык"
 
 #: src/views/page/index.tsx:493
 msgid "Last updated"
-msgstr ""
+msgstr "Последние обновление"
 
 #: src/components/NewWorkspaceForm.tsx:332
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:67
@@ -1268,7 +1268,7 @@ msgstr "Новый список"
 
 #: src/views/pages/components/NewPageForm.tsx:71
 msgid "New page"
-msgstr ""
+msgstr "Новая страница"
 
 #: src/views/settings/components/ChangePasswordConfirmation.tsx:23
 msgid "New password is required"
@@ -1280,7 +1280,7 @@ msgstr "Новый пароль должен отличаться от теку�
 
 #: src/views/page/components/TagSelector.tsx:277
 msgid "New Tag"
-msgstr ""
+msgstr "Новый тэг"
 
 #: src/views/boards/components/TemplateBoards.tsx:43
 msgid "New Ticket"
@@ -1316,7 +1316,7 @@ msgstr "Нет списков"
 
 #: src/views/pages/components/PagesList.tsx:94
 msgid "No pages"
-msgstr ""
+msgstr "Нет страниц"
 
 #: src/views/boards/components/TemplateBoards.tsx:65
 msgid "Offer"
@@ -1349,38 +1349,38 @@ msgstr "Владейте своими данными"
 #: src/views/public/page/index.tsx:103
 #: src/views/public/page/index.tsx:133
 msgid "Page not found"
-msgstr ""
+msgstr "Страница не найдена"
 
 #: src/views/pages/components/NewPageForm.tsx:18
 msgid "Page title cannot exceed 200 characters"
-msgstr ""
+msgstr "Название страницы не может быть больше 200 символов"
 
 #: src/views/pages/components/NewPageForm.tsx:17
 msgid "Page title is required"
-msgstr ""
+msgstr "Название странице необходимо"
 
 #: src/views/page/components/UpdatePageSlugForm.tsx:31
 msgid "Page URL can only contain letters, numbers, and hyphens"
-msgstr ""
+msgstr "URL страницы может содержать только буквы, цифры и дефисы"
 
 #: src/views/page/components/UpdatePageSlugForm.tsx:29
 msgid "Page URL cannot exceed 60 characters"
-msgstr ""
+msgstr "URL страницы не может превышать 60 символов"
 
 #: src/views/page/index.tsx:352
 #: src/views/public/page/index.tsx:73
 msgid "Page URL copied to clipboard"
-msgstr ""
+msgstr "URL страницы скопирован в буфер обмена"
 
 #: src/views/page/components/UpdatePageSlugForm.tsx:28
 msgid "Page URL must be at least 3 characters long"
-msgstr ""
+msgstr "URL страницы должен содержать не менее 3 символов"
 
 #: src/components/SideNavigation.tsx:77
 #: src/views/pages/index.tsx:23
 #: src/views/pages/index.tsx:26
 msgid "Pages"
-msgstr ""
+msgstr "Страницы"
 
 #: src/views/boards/components/TemplateBoards.tsx:69
 msgid "Part-time"
@@ -1688,7 +1688,7 @@ msgstr "Настройки | Рабочая область"
 
 #: src/views/page/index.tsx:405
 msgid "Show info"
-msgstr ""
+msgstr "Показать информацию"
 
 #: src/views/home/components/Header.tsx:100
 #: src/views/home/components/Header.tsx:138
@@ -1756,11 +1756,11 @@ msgstr "Система"
 #: src/views/page/components/TagSelector.tsx:280
 #: src/views/page/components/TagSelector.tsx:371
 msgid "Tag name"
-msgstr ""
+msgstr "Название тэга"
 
 #: src/views/page/index.tsx:458
 msgid "Tags"
-msgstr ""
+msgstr "Тэги"
 
 #: src/views/members/components/InviteMemberForm.tsx:182
 #: src/views/members/index.tsx:207
@@ -1829,12 +1829,12 @@ msgstr "Этот URL доски уже занят."
 
 #: src/views/public/page/index.tsx:136
 msgid "This page is private or does not exist"
-msgstr ""
+msgstr "Эта страница приватная или не существует"
 
 #: src/views/page/components/UpdatePageSlugForm.tsx:175
 #: src/views/page/components/UpdatePageSlugForm.tsx:178
 msgid "This page URL has already been taken"
-msgstr ""
+msgstr "Этот URL страницы уже занят"
 
 #: src/views/settings/components/DeleteWorkspaceConfirmation.tsx:70
 msgid "This will result in the permanent deletion of all data associated with this workspace."
@@ -1858,7 +1858,7 @@ msgstr "Это имя пользователя рабочего простран
 
 #: src/views/pages/components/NewPageForm.tsx:85
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #: src/views/boards/components/TemplateBoards.tsx:16
 #: src/views/boards/components/TemplateBoards.tsx:22
@@ -1899,7 +1899,7 @@ msgstr "Не удалось добавить комментарий."
 
 #: src/views/page/components/TagSelector.tsx:123
 msgid "Unable to add tag"
-msgstr ""
+msgstr "Не удалось добавить тэг"
 
 #: src/views/board/components/NewCardForm.tsx:171
 msgid "Unable to create card"
@@ -1915,7 +1915,7 @@ msgstr "Не удалось создать список."
 
 #: src/views/page/components/TagSelector.tsx:61
 msgid "Unable to create tag"
-msgstr ""
+msgstr "Не удалось создать тэг"
 
 #: src/components/NewWorkspaceForm.tsx:154
 msgid "Unable to create workspace"
@@ -1939,11 +1939,11 @@ msgstr "Не удалось удалить комментарий"
 
 #: src/views/page/index.tsx:138
 msgid "Unable to delete page"
-msgstr ""
+msgstr "Не удалось удалить страницу"
 
 #: src/views/page/components/TagSelector.tsx:89
 msgid "Unable to delete tag"
-msgstr ""
+msgstr "Не удалось удалить тэг"
 
 #: src/views/members/components/DeleteMemberConfirmation.tsx:27
 msgid "Unable to remove member"
@@ -1951,7 +1951,7 @@ msgstr "Не удалось удалить участника"
 
 #: src/views/page/components/TagSelector.tsx:135
 msgid "Unable to remove tag"
-msgstr ""
+msgstr "Не удалось удалить тэг"
 
 #: src/components/FeedbackModal.tsx:40
 msgid "Unable to send feedback"
@@ -1997,15 +1997,15 @@ msgstr "Не удалось обновить участников"
 
 #: src/views/page/index.tsx:116
 msgid "Unable to update page"
-msgstr ""
+msgstr "Не удалось обновить страницу"
 
 #: src/views/page/components/UpdatePageSlugForm.tsx:55
 msgid "Unable to update page URL"
-msgstr ""
+msgstr "Не удалось обновить URL страницы"
 
 #: src/views/page/components/TagSelector.tsx:104
 msgid "Unable to update tag"
-msgstr ""
+msgstr "Не удалось обновить тэг"
 
 #. placeholder {0}: truncate(memberName)
 #: src/views/card/components/ActivityList.tsx:121
@@ -2019,11 +2019,11 @@ msgstr "удалил(а) себя из карточки"
 #: src/views/page/index.tsx:498
 #: src/views/page/index.tsx:500
 msgid "Unknown"
-msgstr ""
+msgstr "Неизвестно"
 
 #: src/views/page/index.tsx:450
 msgid "Unknown author"
-msgstr ""
+msgstr "Неизвестный автор"
 
 #: src/views/home/components/Pricing.tsx:41
 msgid "Unlimited activity log"
