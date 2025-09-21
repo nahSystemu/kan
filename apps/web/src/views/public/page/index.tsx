@@ -1,22 +1,28 @@
 import { useRouter } from "next/router";
 import { t } from "@lingui/core/macro";
 
+import Avatar from "../../../components/Avatar";
 import Editor from "../../../components/Editor";
 import { PageHead } from "../../../components/PageHead";
 import PatternedBackground from "../../../components/PatternedBackground";
 import Popup from "../../../components/Popup";
 import { usePopup } from "../../../providers/popup";
 import { api } from "../../../utils/api";
+import { getAvatarUrl } from "../../../utils/helpers";
 
-export default function PublicPageView() {
+export default function PublicPageView({
+  pagePublicIdOverride,
+}: {
+  pagePublicIdOverride?: string;
+}) {
   const router = useRouter();
   const { showPopup } = usePopup();
 
-  const pageId = Array.isArray(router.query.pageId)
+  const routePageId = Array.isArray(router.query.pageId)
     ? router.query.pageId[0]
     : router.query.pageId;
+  const pageId = pagePublicIdOverride ?? routePageId;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   const { data: page, isLoading } = api.page.byId.useQuery(
     { pagePublicId: pageId ?? "" },
     { enabled: router.isReady && !!pageId, retry: false },
@@ -86,7 +92,6 @@ export default function PublicPageView() {
 
   return (
     <>
-      {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
       <PageHead title={`${page?.title ?? "Page"}`} />
 
       <div className="relative flex h-screen flex-col bg-light-100 px-4 pt-4 dark:bg-dark-50">
@@ -104,7 +109,6 @@ export default function PublicPageView() {
               </h1>
             ) : (
               <h1 className="font-bold leading-[2.3rem] tracking-tight text-neutral-900 focus:ring-0 focus-visible:outline-none dark:text-dark-1000 sm:text-[1.2rem]">
-                {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
                 {page?.title}
               </h1>
             )}
@@ -146,12 +150,87 @@ export default function PublicPageView() {
               </div>
             ) : (
               <div className="mx-auto w-full max-w-[800px]">
+                {/* Meta information: Author, Tags, Last updated */}
+                <div className="mb-4 rounded-md border border-light-300 bg-light-50 p-4 shadow-sm dark:border-dark-300 dark:bg-dark-50">
+                  <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    <li className="flex items-center text-sm">
+                      <span className="mr-2 text-light-800 dark:text-dark-800">{t`Author:`}</span>
+                      {page?.createdBy ? (
+                        <span className="inline-flex items-center">
+                          <Avatar
+                            imageUrl={
+                              page.createdBy.image
+                                ? getAvatarUrl(page.createdBy.image)
+                                : undefined
+                            }
+                            name={
+                              page.createdBy.name ?? page.createdBy.email ?? ""
+                            }
+                            email={page.createdBy.email ?? ""}
+                            size="xs"
+                          />
+                          <span className="ml-2 text-light-1000 dark:text-dark-1000">
+                            {page.createdBy.name ??
+                              page.createdBy.email ??
+                              t`Unknown`}
+                          </span>
+                        </span>
+                      ) : (
+                        <span className="text-light-900 dark:text-dark-900">{t`Unknown`}</span>
+                      )}
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <span className="mr-2 text-light-800 dark:text-dark-800">{t`Tags:`}</span>
+                      <span className="flex flex-wrap gap-1">
+                        {(page?.pageLabelJoins && page.pageLabelJoins.length > 0
+                          ? page.pageLabelJoins.map((j) => j.label)
+                          : (page?.tags ?? [])
+                        ).map((tag) => (
+                          <span
+                            key={tag.publicId}
+                            className="inline-flex items-center rounded-full border border-light-300 bg-light-50 px-2 py-[2px] text-xs text-light-950 dark:border-dark-300 dark:bg-dark-50 dark:text-dark-900"
+                          >
+                            <span
+                              className="mr-1 inline-block h-2 w-2 rounded-full"
+                              style={{
+                                backgroundColor: tag.colourCode ?? "#64748b",
+                              }}
+                            />
+                            {tag.name}
+                          </span>
+                        ))}
+                        {(!page?.pageLabelJoins ||
+                          page.pageLabelJoins.length === 0) &&
+                          (!page?.tags || page.tags.length === 0) && (
+                            <span className="text-light-900 dark:text-dark-900">{t`None`}</span>
+                          )}
+                      </span>
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <span className="mr-2 text-light-800 dark:text-dark-800">{t`Last updated:`}</span>
+                      <span className="text-light-1000 dark:text-dark-1000">
+                        {(() => {
+                          const d = (page?.updatedAt ?? page?.createdAt) as
+                            | string
+                            | Date
+                            | undefined;
+                          if (!d) return t`Unknown`;
+                          try {
+                            return new Date(d).toLocaleString();
+                          } catch {
+                            return String(d);
+                          }
+                        })()}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
                 <div className="rounded-md border border-light-300 bg-light-50 p-4 shadow-sm dark:border-dark-300 dark:bg-dark-50">
-                  {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */}
                   <Editor
                     content={page?.description ?? ""}
                     readOnly
-                    workspaceMembers={page?.workspace?.members ?? []}
+                    workspaceMembers={[]}
                   />
                 </div>
               </div>

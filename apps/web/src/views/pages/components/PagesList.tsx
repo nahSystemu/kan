@@ -18,6 +18,7 @@ export function PagesList() {
           useQuery: (input: { workspacePublicId: string }) => {
             data?: {
               publicId: string;
+              slug?: string | null;
               title: string;
               createdAt: string;
               visibility?: "public" | "private";
@@ -25,6 +26,13 @@ export function PagesList() {
                 publicId: string;
                 name: string;
                 colourCode?: string | null;
+              }[];
+              pageLabelJoins?: {
+                label: {
+                  publicId: string;
+                  name: string;
+                  colourCode?: string | null;
+                };
               }[];
             }[];
             isLoading: boolean;
@@ -165,7 +173,7 @@ export function PagesList() {
             </div>
           </div>
           <a
-            href={`/pages/${p.publicId}`}
+            href={p.slug ? `/pages/${p.slug}` : `/pages/${p.publicId}`}
             className="absolute inset-0 z-10"
             aria-label={p.title}
           />

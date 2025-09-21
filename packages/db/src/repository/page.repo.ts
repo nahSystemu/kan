@@ -96,6 +96,9 @@ export const getAllByWorkspaceId = (db: dbClient, workspaceId: number) => {
       title: true,
       createdAt: true,
       visibility: true,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore slug exists on pages; type cache may be stale before build
+      slug: true,
     },
     with: {
       tags: {

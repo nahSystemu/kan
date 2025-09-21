@@ -6,7 +6,9 @@ import type {
 import type { Instance as TippyInstance } from "tippy.js";
 import { Button } from "@headlessui/react";
 import { t } from "@lingui/core/macro";
+import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import Link from "@tiptap/extension-link";
+import Mention from "@tiptap/extension-mention";
 import Placeholder from "@tiptap/extension-placeholder";
 import {
   BubbleMenu,
@@ -17,6 +19,7 @@ import {
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Suggestion from "@tiptap/suggestion";
+import { common, createLowlight } from "lowlight";
 import {
   forwardRef,
   useEffect,
@@ -39,9 +42,13 @@ import {
 } from "react-icons/hi2";
 import { twMerge } from "tailwind-merge";
 import tippy from "tippy.js";
-import Mention from "@tiptap/extension-mention";
-import Avatar from "./Avatar";
+
 import { getAvatarUrl } from "~/utils/helpers";
+import Avatar from "./Avatar";
+
+const lowlight = createLowlight(common);
+
+// Code block highlighting via CodeBlockLowlight will be integrated later
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
@@ -77,7 +84,7 @@ export interface RenderSuggestionsProps {
   command: (item: SlashCommandItem) => void;
 }
 
-export type WorkspaceMember = {
+export interface WorkspaceMember {
   publicId: string;
   user: {
     id: string;
@@ -85,7 +92,7 @@ export type WorkspaceMember = {
     image: string | null;
   } | null;
   email: string;
-};
+}
 
 const CommandsList = forwardRef<
   { onKeyDown: (props: SuggestionKeyDownProps) => boolean },
@@ -200,7 +207,11 @@ const RenderSuggestions = () => {
   };
 };
 
-type MentionItem = { id: string; label: string; image: string | null };
+interface MentionItem {
+  id: string;
+  label: string;
+  image: string | null;
+}
 
 const MentionList = forwardRef<
   { onKeyDown: (props: SuggestionKeyDownProps) => boolean },
@@ -238,30 +249,32 @@ const MentionList = forwardRef<
   return (
     <div className="w-56 rounded-md border-[1px] border-light-200 bg-light-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:border-dark-500 dark:bg-dark-200">
       <div className="max-h-[350px] overflow-y-auto p-1 scrollbar-thin scrollbar-thumb-light-200 dark:scrollbar-thumb-dark-300">
-        {items.length > 0 ? items.map((item, index) => (
-          <button
-            key={item.id}
-            onClick={() => command(item)}
-            className={twMerge(
-              "group flex w-full items-center rounded-[5px] p-2 hover:bg-light-200 dark:hover:bg-dark-300",
-              index === selectedIndex && "bg-light-200 dark:bg-dark-300",
-            )}
-          >
-            <Avatar
-              size="xs"
-              name={item.label}
-              imageUrl={
-                item.image ? getAvatarUrl(item.image) : undefined
-              }
-              email={item.label}
-            />
-            <span className="ml-3 text-[12px] font-medium text-dark-900 dark:text-dark-1000">
-              {item.label}
-            </span>
-          </button>
-        )) : (
+        {items.length > 0 ? (
+          items.map((item, index) => (
+            <button
+              key={item.id}
+              onClick={() => command(item)}
+              className={twMerge(
+                "group flex w-full items-center rounded-[5px] p-2 hover:bg-light-200 dark:hover:bg-dark-300",
+                index === selectedIndex && "bg-light-200 dark:bg-dark-300",
+              )}
+            >
+              <Avatar
+                size="xs"
+                name={item.label}
+                imageUrl={item.image ? getAvatarUrl(item.image) : undefined}
+                email={item.label}
+              />
+              <span className="ml-3 text-[12px] font-medium text-dark-900 dark:text-dark-1000">
+                {item.label}
+              </span>
+            </button>
+          ))
+        ) : (
           <div className="flex items-center justify-start p-2">
-            <span className="text-dark-900 text-[12px] dark:text-dark-1000">No results</span>
+            <span className="text-[12px] text-dark-900 dark:text-dark-1000">
+              No results
+            </span>
           </div>
         )}
       </div>
@@ -435,7 +448,7 @@ export default function Editor({
   const editor = useEditor(
     {
       extensions: [
-        StarterKit,
+        StarterKit.configure({ codeBlock: false }),
         Placeholder.configure({
           placeholder: readOnly
             ? ""
@@ -451,6 +464,7 @@ export default function Editor({
           validate: (href) => /^https?:\/\//.test(href),
           autolink: true,
         }),
+        CodeBlockLowlight.configure({ lowlight }),
         SlashCommands.configure({
           commandItems: CommandItems,
           suggestion: {
@@ -462,35 +476,37 @@ export default function Editor({
         }),
         Mention.configure({
           HTMLAttributes: {
-            class: 'mention',
+            class: "mention",
           },
           suggestion: {
             char: "@",
             items: ({ query }: { query: string }) => {
-              const all: MentionItem[] = workspaceMembers.map((member: WorkspaceMember) => ({
-                id: member.publicId,
-                label: member?.user?.name ?? member.email,
-                image: member?.user?.image ?? null,
-              }));
+              const all: MentionItem[] = workspaceMembers.map(
+                (member: WorkspaceMember) => ({
+                  id: member.publicId,
+                  label: member?.user?.name ?? member.email,
+                  image: member?.user?.image ?? null,
+                }),
+              );
               const q = query.toLowerCase();
               return all.filter((u) => u.label.toLowerCase().includes(q));
             },
             command: ({ editor, range, props }: any) => {
-               const mentionHTML = `<span data-type="mention" data-id="${props.id}" data-label="${props.label}">@${props.label}</span>&nbsp;`;
-               
-               editor
-               .chain()
-               .focus()
-               .deleteRange(range)
-               .insertContent(mentionHTML)
-               .focus()
-               .run();
-              },
-              render: renderMentionSuggestions,
+              const mentionHTML = `<span data-type="mention" data-id="${props.id}" data-label="${props.label}">@${props.label}</span>&nbsp;`;
+
+              editor
+                .chain()
+                .focus()
+                .deleteRange(range)
+                .insertContent(mentionHTML)
+                .focus()
+                .run();
             },
-            renderText({ options, node }) {
-              return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`;
-            },
+            render: renderMentionSuggestions,
+          },
+          renderText({ options, node }) {
+            return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`;
+          },
         }),
       ],
       content,
@@ -539,6 +555,23 @@ export default function Editor({
         }
         .tiptap p {
           margin: 0 0 1rem 0 !important;
+        }
+        .tiptap pre,
+        .tiptap code,
+        .tiptap pre code {
+          font-family:
+            ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+            "Liberation Mono", "Courier New", monospace !important;
+          font-variant-ligatures: none;
+        }
+        .tiptap pre {
+          padding: 0.75rem 1rem;
+          border-radius: 0.5rem;
+          overflow: auto;
+          background: #111111;
+        }
+        .tiptap code {
+          font-size: 0.875rem;
         }
         .tiptap .mention {
           background-color: rgba(59, 130, 246, 0.1);

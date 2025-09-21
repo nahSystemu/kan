@@ -1,4 +1,5 @@
 import "~/styles/globals.css";
+import "highlight.js/styles/atom-one-dark.css";
 import "~/utils/i18n";
 
 import type { NextPage, Viewport } from "next";
