@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Button } from "@headlessui/react";
 import { t } from "@lingui/core/macro";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import {
   TbLayoutSidebarLeftCollapse,
@@ -10,15 +11,18 @@ import {
 import { twMerge } from "tailwind-merge";
 
 import boardsIconDark from "~/assets/boards-dark.json";
+import documentsIconDark from "~/assets/boards-dark.json";
 import boardsIconLight from "~/assets/boards-light.json";
+import documentsIconLight from "~/assets/boards-light.json";
 import membersIconDark from "~/assets/members-dark.json";
 import membersIconLight from "~/assets/members-light.json";
+import pagesIconDark from "~/assets/pages-dark.json";
+import pagesIconLight from "~/assets/pages-light.json";
 import settingsIconDark from "~/assets/settings-dark.json";
 import settingsIconLight from "~/assets/settings-light.json";
 import ReactiveButton from "~/components/ReactiveButton";
 import UserMenu from "~/components/UserMenu";
 import WorkspaceMenu from "~/components/WorkspaceMenu";
-import { useTheme } from "next-themes";
 
 interface SideNavigationProps {
   user: UserType;
@@ -68,6 +72,11 @@ export default function SideNavigation({
       name: t`Boards`,
       href: "/boards",
       icon: isDarkMode ? boardsIconDark : boardsIconLight,
+    },
+    {
+      name: t`Pages`,
+      href: "/pages",
+      icon: isDarkMode ? pagesIconDark : pagesIconLight,
     },
     {
       name: t`Members`,

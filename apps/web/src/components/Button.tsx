@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 
 import LoadingSpinner from "./LoadingSpinner";
@@ -47,7 +46,7 @@ const Button = ({
     <span className="relative flex items-center justify-center">
       {isLoading && (
         <span className="absolute">
-          <LoadingSpinner size={size} />
+          <LoadingSpinner size={size === "xs" ? "sm" : size} />
         </span>
       )}
       <div
@@ -65,7 +64,7 @@ const Button = ({
 
   if (href) {
     return (
-      <Link
+      <a
         href={href}
         className={classes}
         target={openInNewTab ? "_blank" : undefined}
@@ -73,7 +72,7 @@ const Button = ({
         {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {content}
-      </Link>
+      </a>
     );
   }
 
