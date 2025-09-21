@@ -87,7 +87,7 @@ msgstr "Aggiungi un elemento..."
 msgid "Add checklist"
 msgstr "Aggiungi checklist"
 
-#: src/components/Editor.tsx:442
+#: src/components/Editor.tsx:455
 msgid "Add description... (type '/' to open commands or '@' to mention)"
 msgstr "Aggiungi descrizione... (digita '/' per aprire i comandi o '@' per menzionare)"
 
@@ -239,8 +239,12 @@ msgstr "Sei sicuro di voler eliminare il tuo account?"
 msgid "assigned <0>{0}</0> to the card"
 msgstr "ha assegnato <0>{0}</0> alla scheda"
 
-#: src/views/page/index.tsx:436
+#: src/views/page/index.tsx:427
 msgid "Author"
+msgstr ""
+
+#: src/views/public/page/index.tsx:178
+msgid "Author:"
 msgstr ""
 
 #: src/views/boards/components/TemplateBoards.tsx:46
@@ -481,8 +485,8 @@ msgstr "Continua con {0}"
 msgid "Control who can view and edit your boards."
 msgstr "Controlla chi può visualizzare e modificare le tue bacheche."
 
-#: src/views/page/index.tsx:360
-#: src/views/page/index.tsx:361
+#: src/views/page/index.tsx:352
+#: src/views/page/index.tsx:353
 msgid "Copy public link"
 msgstr ""
 
@@ -537,7 +541,7 @@ msgstr "Crea nuova etichetta"
 msgid "Create new list"
 msgstr "Crea nuova lista"
 
-#: src/views/pages/components/PagesList.tsx:102
+#: src/views/pages/components/PagesList.tsx:110
 msgid "Create new page"
 msgstr ""
 
@@ -597,7 +601,7 @@ msgstr "Scuro"
 #: src/views/card/components/DeleteChecklistConfirmation.tsx:66
 #: src/views/card/components/DeleteCommentConfirmation.tsx:82
 #: src/views/page/components/TagSelector.tsx:454
-#: src/views/page/index.tsx:369
+#: src/views/page/index.tsx:361
 msgid "Delete"
 msgstr "Elimina"
 
@@ -928,7 +932,7 @@ msgstr "Inizia creando una nuova bacheca"
 msgid "Get started by creating a new list"
 msgstr "Inizia creando una nuova lista"
 
-#: src/views/pages/components/PagesList.tsx:97
+#: src/views/pages/components/PagesList.tsx:105
 msgid "Get started by creating a new page"
 msgstr ""
 
@@ -952,7 +956,8 @@ msgstr "Primi passi"
 msgid "GitHub"
 msgstr "GitHub"
 
-#: src/views/public/page/index.tsx:144
+#: src/pages/pages/[...pageSlug]/index.tsx:49
+#: src/views/public/page/index.tsx:169
 msgid "Go home"
 msgstr ""
 
@@ -961,7 +966,7 @@ msgstr ""
 msgid "Go to app"
 msgstr "Vai all'app"
 
-#: src/views/page/index.tsx:405
+#: src/views/page/index.tsx:396
 msgid "Hide info"
 msgstr ""
 
@@ -1112,8 +1117,12 @@ msgstr "Etichette & Filtri"
 msgid "Language"
 msgstr "Lingua"
 
-#: src/views/page/index.tsx:493
+#: src/views/page/index.tsx:484
 msgid "Last updated"
+msgstr ""
+
+#: src/views/public/page/index.tsx:223
+msgid "Last updated:"
 msgstr ""
 
 #: src/components/NewWorkspaceForm.tsx:332
@@ -1145,9 +1154,9 @@ msgstr "Licenza"
 msgid "Light"
 msgstr "Chiaro"
 
-#: src/views/page/index.tsx:351
+#: src/views/page/index.tsx:343
 #: src/views/public/board/index.tsx:62
-#: src/views/public/page/index.tsx:71
+#: src/views/public/page/index.tsx:98
 msgid "Link copied"
 msgstr "Link copiato"
 
@@ -1314,8 +1323,12 @@ msgstr "Nessuna carta di credito richiesta"
 msgid "No lists"
 msgstr "Nessuna lista"
 
-#: src/views/pages/components/PagesList.tsx:94
+#: src/views/pages/components/PagesList.tsx:102
 msgid "No pages"
+msgstr ""
+
+#: src/views/public/page/index.tsx:218
+msgid "None"
 msgstr ""
 
 #: src/views/boards/components/TemplateBoards.tsx:65
@@ -1346,8 +1359,9 @@ msgstr "Organizza e trova le schede rapidamente con potenti strumenti di filtrag
 msgid "Own your data"
 msgstr "Possiedi i tuoi dati"
 
-#: src/views/public/page/index.tsx:103
-#: src/views/public/page/index.tsx:133
+#: src/pages/pages/[...pageSlug]/index.tsx:39
+#: src/views/public/page/index.tsx:129
+#: src/views/public/page/index.tsx:158
 msgid "Page not found"
 msgstr ""
 
@@ -1367,8 +1381,8 @@ msgstr ""
 msgid "Page URL cannot exceed 60 characters"
 msgstr ""
 
-#: src/views/page/index.tsx:352
-#: src/views/public/page/index.tsx:73
+#: src/views/page/index.tsx:344
+#: src/views/public/page/index.tsx:100
 msgid "Page URL copied to clipboard"
 msgstr ""
 
@@ -1476,8 +1490,8 @@ msgstr "Seleziona un file da caricare."
 #: src/views/page/components/TagSelector.tsx:124
 #: src/views/page/components/TagSelector.tsx:136
 #: src/views/page/components/UpdatePageSlugForm.tsx:56
-#: src/views/page/index.tsx:117
-#: src/views/page/index.tsx:139
+#: src/views/page/index.tsx:114
+#: src/views/page/index.tsx:134
 #: src/views/settings/components/Avatar.tsx:78
 #: src/views/settings/components/Avatar.tsx:219
 #: src/views/settings/components/DeleteAccountConfirmation.tsx:40
@@ -1506,7 +1520,7 @@ msgid "Privacy policy"
 msgstr "Informativa sulla privacy"
 
 #: src/views/board/components/VisibilityButton.tsx:73
-#: src/views/page/index.tsx:256
+#: src/views/page/index.tsx:250
 msgid "Private"
 msgstr "Privato"
 
@@ -1527,7 +1541,7 @@ msgid "Profile picture"
 msgstr "Immagine del profilo"
 
 #: src/views/board/components/VisibilityButton.tsx:68
-#: src/views/page/index.tsx:230
+#: src/views/page/index.tsx:224
 msgid "Public"
 msgstr "Pubblico"
 
@@ -1686,7 +1700,7 @@ msgstr "Impostazioni | Integrazioni"
 msgid "Settings | Workspace"
 msgstr "Impostazioni | Area di lavoro"
 
-#: src/views/page/index.tsx:405
+#: src/views/page/index.tsx:396
 msgid "Show info"
 msgstr ""
 
@@ -1758,8 +1772,12 @@ msgstr "Sistema"
 msgid "Tag name"
 msgstr ""
 
-#: src/views/page/index.tsx:458
+#: src/views/page/index.tsx:449
 msgid "Tags"
+msgstr ""
+
+#: src/views/public/page/index.tsx:196
+msgid "Tags:"
 msgstr ""
 
 #: src/views/members/components/InviteMemberForm.tsx:182
@@ -1827,7 +1845,8 @@ msgstr "Questa bacheca è privata o non esiste"
 msgid "This board URL has already been taken"
 msgstr "Questo URL della bacheca è già stato utilizzato"
 
-#: src/views/public/page/index.tsx:136
+#: src/pages/pages/[...pageSlug]/index.tsx:42
+#: src/views/public/page/index.tsx:161
 msgid "This page is private or does not exist"
 msgstr ""
 
@@ -1937,7 +1956,7 @@ msgstr "Impossibile eliminare l'elemento della checklist"
 msgid "Unable to delete comment"
 msgstr "Impossibile eliminare il commento"
 
-#: src/views/page/index.tsx:138
+#: src/views/page/index.tsx:133
 msgid "Unable to delete page"
 msgstr ""
 
@@ -1995,7 +2014,7 @@ msgstr "Impossibile aggiornare la lista"
 msgid "Unable to update members"
 msgstr "Impossibile aggiornare i membri"
 
-#: src/views/page/index.tsx:116
+#: src/views/page/index.tsx:113
 msgid "Unable to update page"
 msgstr ""
 
@@ -2016,12 +2035,15 @@ msgstr "ha rimosso l'assegnazione di <0>{0}</0> dalla scheda"
 msgid "unassigned themselves from the card"
 msgstr "si è rimosso dall'assegnazione della scheda"
 
-#: src/views/page/index.tsx:498
-#: src/views/page/index.tsx:500
+#: src/views/page/index.tsx:489
+#: src/views/page/index.tsx:491
+#: src/views/public/page/index.tsx:45
+#: src/views/public/page/index.tsx:192
+#: src/views/public/page/index.tsx:230
 msgid "Unknown"
 msgstr ""
 
-#: src/views/page/index.tsx:450
+#: src/views/page/index.tsx:441
 msgid "Unknown author"
 msgstr ""
 
@@ -2150,7 +2172,7 @@ msgid "View docs"
 msgstr "Visualizza documenti"
 
 #: src/views/public/board/index.tsx:125
-#: src/views/public/page/index.tsx:118
+#: src/views/public/page/index.tsx:143
 msgid "View only"
 msgstr "Solo visualizzazione"
 
@@ -2163,7 +2185,7 @@ msgid "View workspace"
 msgstr "Visualizza spazio di lavoro"
 
 #: src/views/board/components/VisibilityButton.tsx:91
-#: src/views/page/index.tsx:337
+#: src/views/page/index.tsx:329
 msgid "Visibility"
 msgstr "Visibilità"
 

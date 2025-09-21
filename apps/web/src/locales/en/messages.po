@@ -99,7 +99,7 @@ msgstr "Add an item..."
 msgid "Add checklist"
 msgstr "Add checklist"
 
-#: src/components/Editor.tsx:442
+#: src/components/Editor.tsx:455
 msgid "Add description... (type '/' to open commands or '@' to mention)"
 msgstr "Add description... (type '/' to open commands or '@' to mention)"
 
@@ -271,9 +271,13 @@ msgstr "assigned <0>{0}</0> to the card"
 #~ msgid "assigned <0>{memberName}</0> to the card"
 #~ msgstr "assigned <0>{memberName}</0> to the card"
 
-#: src/views/page/index.tsx:436
+#: src/views/page/index.tsx:427
 msgid "Author"
 msgstr "Author"
+
+#: src/views/public/page/index.tsx:178
+msgid "Author:"
+msgstr "Author:"
 
 #: src/views/boards/components/TemplateBoards.tsx:46
 msgid "Awaiting Customer"
@@ -538,8 +542,8 @@ msgstr "Continue with {0}"
 msgid "Control who can view and edit your boards."
 msgstr "Control who can view and edit your boards."
 
-#: src/views/page/index.tsx:360
-#: src/views/page/index.tsx:361
+#: src/views/page/index.tsx:352
+#: src/views/page/index.tsx:353
 msgid "Copy public link"
 msgstr "Copy public link"
 
@@ -598,7 +602,7 @@ msgstr "Create new label"
 msgid "Create new list"
 msgstr "Create new list"
 
-#: src/views/pages/components/PagesList.tsx:102
+#: src/views/pages/components/PagesList.tsx:110
 msgid "Create new page"
 msgstr "Create new page"
 
@@ -670,7 +674,7 @@ msgstr "Dark"
 #: src/views/card/components/DeleteChecklistConfirmation.tsx:66
 #: src/views/card/components/DeleteCommentConfirmation.tsx:82
 #: src/views/page/components/TagSelector.tsx:454
-#: src/views/page/index.tsx:369
+#: src/views/page/index.tsx:361
 msgid "Delete"
 msgstr "Delete"
 
@@ -1001,7 +1005,7 @@ msgstr "Get started by creating a new board"
 msgid "Get started by creating a new list"
 msgstr "Get started by creating a new list"
 
-#: src/views/pages/components/PagesList.tsx:97
+#: src/views/pages/components/PagesList.tsx:105
 msgid "Get started by creating a new page"
 msgstr "Get started by creating a new page"
 
@@ -1025,7 +1029,8 @@ msgstr "Getting started"
 msgid "GitHub"
 msgstr "GitHub"
 
-#: src/views/public/page/index.tsx:144
+#: src/pages/pages/[...pageSlug]/index.tsx:49
+#: src/views/public/page/index.tsx:169
 msgid "Go home"
 msgstr "Go home"
 
@@ -1034,7 +1039,7 @@ msgstr "Go home"
 msgid "Go to app"
 msgstr "Go to app"
 
-#: src/views/page/index.tsx:405
+#: src/views/page/index.tsx:396
 msgid "Hide info"
 msgstr "Hide info"
 
@@ -1189,9 +1194,13 @@ msgstr "Labels & Filters"
 msgid "Language"
 msgstr "Language"
 
-#: src/views/page/index.tsx:493
+#: src/views/page/index.tsx:484
 msgid "Last updated"
 msgstr "Last updated"
+
+#: src/views/public/page/index.tsx:223
+msgid "Last updated:"
+msgstr "Last updated:"
 
 #: src/components/NewWorkspaceForm.tsx:332
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:67
@@ -1222,9 +1231,9 @@ msgstr "License"
 msgid "Light"
 msgstr "Light"
 
-#: src/views/page/index.tsx:351
+#: src/views/page/index.tsx:343
 #: src/views/public/board/index.tsx:62
-#: src/views/public/page/index.tsx:71
+#: src/views/public/page/index.tsx:98
 msgid "Link copied"
 msgstr "Link copied"
 
@@ -1403,9 +1412,13 @@ msgstr "No credit card required"
 msgid "No lists"
 msgstr "No lists"
 
-#: src/views/pages/components/PagesList.tsx:94
+#: src/views/pages/components/PagesList.tsx:102
 msgid "No pages"
 msgstr "No pages"
+
+#: src/views/public/page/index.tsx:218
+msgid "None"
+msgstr "None"
 
 #: src/views/boards/components/TemplateBoards.tsx:65
 msgid "Offer"
@@ -1435,8 +1448,9 @@ msgstr "Organize and find cards quickly with powerful filtering tools."
 msgid "Own your data"
 msgstr "Own your data"
 
-#: src/views/public/page/index.tsx:103
-#: src/views/public/page/index.tsx:133
+#: src/pages/pages/[...pageSlug]/index.tsx:39
+#: src/views/public/page/index.tsx:129
+#: src/views/public/page/index.tsx:158
 msgid "Page not found"
 msgstr "Page not found"
 
@@ -1456,8 +1470,8 @@ msgstr "Page URL can only contain letters, numbers, and hyphens"
 msgid "Page URL cannot exceed 60 characters"
 msgstr "Page URL cannot exceed 60 characters"
 
-#: src/views/page/index.tsx:352
-#: src/views/public/page/index.tsx:73
+#: src/views/page/index.tsx:344
+#: src/views/public/page/index.tsx:100
 msgid "Page URL copied to clipboard"
 msgstr "Page URL copied to clipboard"
 
@@ -1565,8 +1579,8 @@ msgstr "Please select a file to upload."
 #: src/views/page/components/TagSelector.tsx:124
 #: src/views/page/components/TagSelector.tsx:136
 #: src/views/page/components/UpdatePageSlugForm.tsx:56
-#: src/views/page/index.tsx:117
-#: src/views/page/index.tsx:139
+#: src/views/page/index.tsx:114
+#: src/views/page/index.tsx:134
 #: src/views/settings/components/Avatar.tsx:78
 #: src/views/settings/components/Avatar.tsx:219
 #: src/views/settings/components/DeleteAccountConfirmation.tsx:40
@@ -1595,7 +1609,7 @@ msgid "Privacy policy"
 msgstr "Privacy policy"
 
 #: src/views/board/components/VisibilityButton.tsx:73
-#: src/views/page/index.tsx:256
+#: src/views/page/index.tsx:250
 msgid "Private"
 msgstr "Private"
 
@@ -1616,7 +1630,7 @@ msgid "Profile picture"
 msgstr "Profile picture"
 
 #: src/views/board/components/VisibilityButton.tsx:68
-#: src/views/page/index.tsx:230
+#: src/views/page/index.tsx:224
 msgid "Public"
 msgstr "Public"
 
@@ -1791,7 +1805,7 @@ msgstr "Settings | Integrations"
 msgid "Settings | Workspace"
 msgstr "Settings | Workspace"
 
-#: src/views/page/index.tsx:405
+#: src/views/page/index.tsx:396
 msgid "Show info"
 msgstr "Show info"
 
@@ -1863,9 +1877,13 @@ msgstr "System"
 msgid "Tag name"
 msgstr "Tag name"
 
-#: src/views/page/index.tsx:458
+#: src/views/page/index.tsx:449
 msgid "Tags"
 msgstr "Tags"
+
+#: src/views/public/page/index.tsx:196
+msgid "Tags:"
+msgstr "Tags:"
 
 #: src/views/members/components/InviteMemberForm.tsx:182
 #: src/views/members/index.tsx:207
@@ -1932,7 +1950,8 @@ msgstr "This board is private or does not exist"
 msgid "This board URL has already been taken"
 msgstr "This board URL has already been taken"
 
-#: src/views/public/page/index.tsx:136
+#: src/pages/pages/[...pageSlug]/index.tsx:42
+#: src/views/public/page/index.tsx:161
 msgid "This page is private or does not exist"
 msgstr "This page is private or does not exist"
 
@@ -2046,7 +2065,7 @@ msgstr "Unable to delete checklist item"
 msgid "Unable to delete comment"
 msgstr "Unable to delete comment"
 
-#: src/views/page/index.tsx:138
+#: src/views/page/index.tsx:133
 msgid "Unable to delete page"
 msgstr "Unable to delete page"
 
@@ -2104,7 +2123,7 @@ msgstr "Unable to update list"
 msgid "Unable to update members"
 msgstr "Unable to update members"
 
-#: src/views/page/index.tsx:116
+#: src/views/page/index.tsx:113
 msgid "Unable to update page"
 msgstr "Unable to update page"
 
@@ -2129,12 +2148,15 @@ msgstr "unassigned <0>{0}</0> from the card"
 msgid "unassigned themselves from the card"
 msgstr "unassigned themselves from the card"
 
-#: src/views/page/index.tsx:498
-#: src/views/page/index.tsx:500
+#: src/views/page/index.tsx:489
+#: src/views/page/index.tsx:491
+#: src/views/public/page/index.tsx:45
+#: src/views/public/page/index.tsx:192
+#: src/views/public/page/index.tsx:230
 msgid "Unknown"
 msgstr "Unknown"
 
-#: src/views/page/index.tsx:450
+#: src/views/page/index.tsx:441
 msgid "Unknown author"
 msgstr "Unknown author"
 
@@ -2267,7 +2289,7 @@ msgid "View docs"
 msgstr "View docs"
 
 #: src/views/public/board/index.tsx:125
-#: src/views/public/page/index.tsx:118
+#: src/views/public/page/index.tsx:143
 msgid "View only"
 msgstr "View only"
 
@@ -2280,7 +2302,7 @@ msgid "View workspace"
 msgstr "View workspace"
 
 #: src/views/board/components/VisibilityButton.tsx:91
-#: src/views/page/index.tsx:337
+#: src/views/page/index.tsx:329
 msgid "Visibility"
 msgstr "Visibility"
 
