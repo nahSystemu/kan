@@ -10,23 +10,44 @@ import { usePopup } from "../../../providers/popup";
 import { api } from "../../../utils/api";
 import { getAvatarUrl } from "../../../utils/helpers";
 
-export default function PublicPageView({
-  pagePublicIdOverride,
-}: {
-  pagePublicIdOverride?: string;
-}) {
+export default function PublicPageView() {
   const router = useRouter();
   const { showPopup } = usePopup();
 
-  const routePageId = Array.isArray(router.query.pageId)
-    ? router.query.pageId[0]
-    : router.query.pageId;
-  const pageId = pagePublicIdOverride ?? routePageId;
+  // Slug comes from /p/[...pageSlug] (or legacy param name 'pageId')
+  const routeSlugOrId = Array.isArray(router.query.pageSlug)
+    ? router.query.pageSlug[0]
+    : (router.query.pageSlug ??
+      (Array.isArray(router.query.pageId)
+        ? router.query.pageId[0]
+        : router.query.pageId));
+  const pageSlug = typeof routeSlugOrId === "string" ? routeSlugOrId : "";
 
-  const { data: page, isLoading } = api.page.byId.useQuery(
-    { pagePublicId: pageId ?? "" },
-    { enabled: router.isReady && !!pageId, retry: false },
+  const {
+    data: page,
+    isLoading,
+    isError,
+  } = api.page.bySlug.useQuery(
+    { pageSlug },
+    { enabled: router.isReady && !!pageSlug, retry: false },
   );
+
+  const visibility = (page as { visibility?: string } | undefined)?.visibility;
+  const isNonPublic = !!page && visibility !== "public";
+
+  const createdBy = (page?.createdBy ?? undefined) as
+    | {
+        name?: string | null;
+        email?: string | null;
+        image?: string | null;
+      }
+    | undefined;
+  const displayName = createdBy?.name ?? createdBy?.email ?? t`Unknown`;
+  const avatarName = createdBy?.name ?? createdBy?.email ?? "";
+  const avatarEmail = createdBy?.email ?? "";
+  const avatarUrl = createdBy?.image
+    ? getAvatarUrl(createdBy.image)
+    : undefined;
 
   const LinkIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -65,13 +86,13 @@ export default function PublicPageView({
   );
 
   const CopyLink = () => {
-    if (!pageId) return null;
+    if (!pageSlug) return null;
     return (
       <button
         onClick={async () => {
           try {
             await navigator.clipboard.writeText(
-              `${window.location.origin}/p/${pageId}`,
+              `${window.location.origin}/p/${pageSlug}`,
             );
             showPopup({
               header: t`Link copied`,
@@ -103,7 +124,7 @@ export default function PublicPageView({
               <div className="flex space-x-2">
                 <div className="h-[2.3rem] w-[150px] animate-pulse rounded-[5px] bg-light-200 dark:bg-dark-100" />
               </div>
-            ) : !page && !!pageId ? (
+            ) : isError || (!page && !!pageSlug) || isNonPublic ? (
               <h1 className="font-bold leading-[2.3rem] tracking-tight text-neutral-900 dark:text-dark-1000 sm:text-[1.2rem]">
                 {t`Page not found`}
               </h1>
@@ -129,7 +150,7 @@ export default function PublicPageView({
           <div className="scrollbar-w-none scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-h-[8px] relative h-full w-full overflow-y-auto overscroll-contain p-6 scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300">
             {isLoading || !router.isReady ? (
               <div className="mx-auto h-[500px] w-full max-w-[800px] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
-            ) : !page && !!pageId ? (
+            ) : isError || (!page && !!pageSlug) || isNonPublic ? (
               <div className="z-10 flex h-full w-full flex-col items-center justify-center space-y-8 pb-[150px]">
                 <div className="flex flex-col items-center">
                   <LockClosedIcon className="h-10 w-10 text-light-800 dark:text-dark-800" />
@@ -155,24 +176,16 @@ export default function PublicPageView({
                   <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <li className="flex items-center text-sm">
                       <span className="mr-2 text-light-800 dark:text-dark-800">{t`Author:`}</span>
-                      {page?.createdBy ? (
+                      {createdBy ? (
                         <span className="inline-flex items-center">
                           <Avatar
-                            imageUrl={
-                              page.createdBy.image
-                                ? getAvatarUrl(page.createdBy.image)
-                                : undefined
-                            }
-                            name={
-                              page.createdBy.name ?? page.createdBy.email ?? ""
-                            }
-                            email={page.createdBy.email ?? ""}
+                            imageUrl={avatarUrl}
+                            name={avatarName}
+                            email={avatarEmail}
                             size="xs"
                           />
                           <span className="ml-2 text-light-1000 dark:text-dark-1000">
-                            {page.createdBy.name ??
-                              page.createdBy.email ??
-                              t`Unknown`}
+                            {displayName}
                           </span>
                         </span>
                       ) : (

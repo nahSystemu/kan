@@ -82,7 +82,6 @@ export default function PageView({
   }
 
   // Load by ID if it looks like a publicId; otherwise load by slug
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const pageByIdQuery = api.page.byId.useQuery(
     { pagePublicId: pid },
     {
@@ -91,7 +90,6 @@ export default function PageView({
       refetchOnWindowFocus: false,
     },
   ) as unknown as { data?: unknown; isLoading: boolean };
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const pageBySlugQuery = api.page.bySlug.useQuery(
     { pageSlug: pid },
     {
@@ -109,7 +107,6 @@ export default function PageView({
     : pageBySlugQuery.isLoading;
   const hasPage = !!page;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const updatePage = api.page.update.useMutation({
     onError: () => {
       showPopup({
@@ -121,11 +118,9 @@ export default function PageView({
   });
 
   const utils = api.useUtils();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const deletePage = api.page.delete.useMutation({
     onSuccess: async () => {
       try {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
         await utils.page.byId.invalidate({ pagePublicId: pid });
       } catch {
         /* noop */
@@ -181,7 +176,6 @@ export default function PageView({
   }, [page, setValue]);
 
   const onSubmit = (values: FormValues) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     updatePage.mutate({
       pagePublicId: resolvedPublicId,
       title: values.title,
@@ -274,7 +268,6 @@ export default function PageView({
                       },
                     ]}
                     handleSelect={(_group, item) => {
-                      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
                       updatePage.mutate(
                         {
                           pagePublicId: resolvedPublicId,
@@ -282,7 +275,6 @@ export default function PageView({
                         },
                         {
                           onSuccess: async () => {
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
                             await utils.page.byId.invalidate({
                               pagePublicId: resolvedPublicId,
                             });
@@ -344,7 +336,7 @@ export default function PageView({
                     onClick={async () => {
                       try {
                         const shareUrl = p.slug
-                          ? `${window.location.origin}/pages/${p.slug}`
+                          ? `${window.location.origin}/p/${p.slug}`
                           : `${window.location.origin}/p/${resolvedPublicId || pid}`;
                         await navigator.clipboard.writeText(shareUrl);
                         showPopup({
@@ -368,7 +360,6 @@ export default function PageView({
                     {
                       label: t`Delete`,
                       action: () => {
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
                         deletePage.mutate({ pagePublicId: resolvedPublicId });
                       },
                     },
