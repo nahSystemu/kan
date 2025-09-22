@@ -567,7 +567,12 @@ export default function Editor({
         .tiptap pre {
           padding: 0.75rem 1rem;
           border-radius: 0.5rem;
-          overflow: auto;
+          /* Wrap long lines in code blocks and avoid horizontal scroll */
+          white-space: pre-wrap;
+          overflow-x: hidden;
+          overflow-y: auto;
+          word-break: break-word;
+          overflow-wrap: anywhere;
           background: #111111;
         }
         .tiptap code {
@@ -585,7 +590,7 @@ export default function Editor({
       {!readOnly && editor && <EditorBubbleMenu editor={editor} />}
       <EditorContent
         editor={editor}
-        className="prose dark:prose-invert prose-sm max-w-none overflow-y-auto [&_blockquote]:!text-xs [&_h1]:!text-lg [&_h2]:!text-base [&_h3]:!text-sm [&_ol]:!text-xs [&_p.is-empty::before]:text-light-900 [&_p.is-empty::before]:dark:text-dark-800 [&_p]:!text-sm [&_p]:text-light-950 [&_p]:dark:text-dark-950 [&_ul]:!text-xs"
+        className="tiptap prose dark:prose-invert prose-sm max-w-none overflow-y-auto [&_blockquote]:!text-xs [&_h1]:!text-lg [&_h2]:!text-base [&_h3]:!text-sm [&_ol]:!text-xs [&_p.is-empty::before]:text-light-900 [&_p.is-empty::before]:dark:text-dark-800 [&_p]:!text-sm [&_p]:text-light-950 [&_p]:dark:text-dark-950 [&_pre]:!overflow-x-hidden [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_ul]:!text-xs"
       />
     </div>
   );
