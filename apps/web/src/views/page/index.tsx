@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import Avatar from "~/components/Avatar";
 import Button from "~/components/Button";
 import CheckboxDropdown from "~/components/CheckboxDropdown";
+import AuthorSelector from "./components/AuthorSelector";
 import Dropdown from "~/components/Dropdown";
 import Editor from "~/components/Editor";
 import Modal from "~/components/modal";
@@ -62,6 +63,13 @@ export default function PageView({
       email: string | null;
       image: string | null;
     } | null;
+    authors?: {
+      member?: {
+        publicId: string;
+        email: string;
+        user?: { id: string; name: string | null; image: string | null } | null;
+      } | null;
+    }[];
     tags?: {
       publicId: string;
       name: string;
@@ -106,6 +114,9 @@ export default function PageView({
     ? pageByIdQuery.isLoading
     : pageBySlugQuery.isLoading;
   const hasPage = !!page;
+  const resolvedPublicId = page?.publicId ?? pagePublicIdOverride ?? (isPotentialPublicId ? pid : undefined);
+  const isPublic = (page?.visibility ?? "private") === "public";
+  const [showMeta, setShowMeta] = useState(true);
 
   const updatePage = api.page.update.useMutation({
     onError: () => {
@@ -118,15 +129,11 @@ export default function PageView({
   });
 
   const utils = api.useUtils();
+  // Delete page mutation
   const deletePage = api.page.delete.useMutation({
-    onSuccess: async () => {
-      try {
-        await utils.page.byId.invalidate({ pagePublicId: pid });
-      } catch {
-        /* noop */
-      }
-      // Navigate back to pages list
-      void router.push("/pages");
+    onSuccess: () => {
+      // After deletion, navigate back to pages list
+      void router.push(`/pages`);
     },
     onError: () => {
       showPopup({
@@ -136,11 +143,6 @@ export default function PageView({
       });
     },
   });
-  const p: PageData = (page ?? {}) as unknown as PageData;
-  const isPublic = p.visibility === "public";
-  const resolvedPublicId = isPotentialPublicId ? pid : (p.publicId ?? "");
-  const [showMeta, setShowMeta] = useState(false);
-
   // Inline link icon (to avoid repo-wide react-icons JSX typing issues)
   const LinkIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -177,7 +179,7 @@ export default function PageView({
 
   const onSubmit = (values: FormValues) => {
     updatePage.mutate({
-      pagePublicId: resolvedPublicId,
+      pagePublicId: (resolvedPublicId ?? pid),
       title: values.title,
       description: values.description,
     });
@@ -188,7 +190,7 @@ export default function PageView({
   return (
     <>
       <div className="p-auto mx-auto flex h-full w-full flex-col">
-        <PageHead title={`${p.title ?? "Page"}`} />
+  <PageHead title={`${page?.title ?? "Page"}`} />
         <div className="p-6 md:p-8">
           <div className="mb-8 flex w-full items-center justify-between md:mt-6">
             {isLoading && (
@@ -213,9 +215,9 @@ export default function PageView({
                 <div className="flex items-center gap-2">
                   <UpdatePageSlugButton
                     handleOnClick={() => openModal("UPDATE_PAGE_SLUG")}
-                    pageSlug={p.slug ?? ""}
+                    pageSlug={page.slug ?? ""}
                     isLoading={!page}
-                    href={p.slug ? `/pages/${p.slug}` : `/pages/${pid}`}
+                    href={page.slug ? `/pages/${page.slug}` : `/pages/${pid}`}
                   />
                   <CheckboxDropdown
                     items={[
@@ -270,13 +272,13 @@ export default function PageView({
                     handleSelect={(_group, item) => {
                       updatePage.mutate(
                         {
-                          pagePublicId: resolvedPublicId,
+                          pagePublicId: (resolvedPublicId ?? pid),
                           visibility: item.key as "public" | "private",
                         },
                         {
                           onSuccess: async () => {
                             await utils.page.byId.invalidate({
-                              pagePublicId: resolvedPublicId,
+                              pagePublicId: (resolvedPublicId ?? pid),
                             });
                           },
                         } as unknown as undefined,
@@ -335,9 +337,9 @@ export default function PageView({
                     type="button"
                     onClick={async () => {
                       try {
-                        const shareUrl = p.slug
-                          ? `${window.location.origin}/p/${p.slug}`
-                          : `${window.location.origin}/p/${resolvedPublicId || pid}`;
+                        const shareUrl = page.slug
+                          ? `${window.location.origin}/p/${page.slug}`
+                          : `${window.location.origin}/p/${resolvedPublicId ?? pid}`;
                         await navigator.clipboard.writeText(shareUrl);
                         showPopup({
                           header: t`Link copied`,
@@ -360,7 +362,7 @@ export default function PageView({
                     {
                       label: t`Delete`,
                       action: () => {
-                        deletePage.mutate({ pagePublicId: resolvedPublicId });
+                        deletePage.mutate({ pagePublicId: (resolvedPublicId ?? pid) });
                       },
                     },
                   ]}
@@ -389,7 +391,7 @@ export default function PageView({
                   <div className="h-px flex-1 bg-light-600 dark:bg-dark-600" />
                   <button
                     type="button"
-                    onClick={() => setShowMeta((v) => !v)}
+                    onClick={() => setShowMeta((v: boolean) => !v)}
                     aria-expanded={showMeta}
                     aria-controls="page-meta"
                     className="rounded-full p-1 text-light-900 hover:bg-light-200 hover:text-neutral-900 dark:text-dark-900 dark:hover:bg-dark-200 dark:hover:text-dark-1000"
@@ -424,22 +426,43 @@ export default function PageView({
                   {/* Author row */}
                   <li className="flex items-center gap-2">
                     <span className="text-xs tracking-wide text-light-800 dark:text-dark-800">
-                      {t`Author`}:
+                      {t`Authors`}:
                     </span>
-                    <div className="flex items-center gap-2">
-                      <Avatar
-                        size="xs"
-                        name={p.createdBy?.name ?? "User"}
-                        email={p.createdBy?.email ?? ""}
-                        imageUrl={
-                          p.createdBy?.image
-                            ? getAvatarUrl(p.createdBy.image)
-                            : undefined
-                        }
-                      />
-                      <span className="font-medium">
-                        {p.createdBy?.name ?? t`Unknown author`}
-                      </span>
+                    <div className="min-w-0 flex-1">
+                      {(() => {
+                        const currentAuthors = (page.authors ?? [])
+                          .map((a) => a.member?.publicId)
+                          .filter(Boolean) as string[];
+                        const wm: WorkspaceMember[] = page.workspace?.members ?? [];
+                        const items = wm.map((m: WorkspaceMember) => {
+                          const preferredName = m.user?.name ?? null;
+                          const value = (preferredName ?? m.email) || "";
+                          const imageUrl = m.user?.image
+                            ? getAvatarUrl(m.user.image)
+                            : undefined;
+                          return {
+                            key: m.publicId,
+                            value,
+                            selected: currentAuthors.includes(m.publicId),
+                            leftIcon: (
+                              <Avatar
+                                size="xs"
+                                name={value}
+                                imageUrl={imageUrl}
+                                email={m.email}
+                              />
+                            ),
+                            imageUrl,
+                          };
+                        });
+                        return (
+                          <AuthorSelector
+                            pagePublicId={(resolvedPublicId ?? pid)}
+                            members={items}
+                            isLoading={false}
+                          />
+                        );
+                      })()}
                     </div>
                   </li>
                   {/* Tags row */}
@@ -450,15 +473,12 @@ export default function PageView({
                       </span>
                       <div className="min-w-0 flex-1">
                         <TagSelector
-                          pagePublicId={resolvedPublicId}
-                          workspacePublicId={
-                            (p.workspace as unknown as { publicId?: string })
-                              .publicId ?? ""
-                          }
+                          pagePublicId={(resolvedPublicId ?? pid)}
+                          workspacePublicId={(page.workspace as unknown as { publicId?: string }).publicId ?? ""}
                           labels={
                             (
                               (
-                                p as unknown as {
+                                page as unknown as {
                                   pageLabelJoins?: {
                                     label: {
                                       publicId: string;
@@ -485,7 +505,7 @@ export default function PageView({
                     </span>{" "}
                     <span className="font-medium">
                       {(() => {
-                        const d = p.updatedAt ?? p.createdAt;
+                        const d = page.updatedAt ?? page.createdAt;
                         if (!d) return t`Unknown`;
                         const date = new Date(d);
                         if (Number.isNaN(date.getTime())) return t`Unknown`;
@@ -496,16 +516,13 @@ export default function PageView({
                 </ul>
               </div>
               <div className="mx-auto mb-10 flex w-full max-w-4xl flex-col justify-between">
-                <form
-                  onSubmit={handleSubmit(onSubmit)}
-                  className="w-full space-y-6"
-                >
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-6">
                   <div className="mt-2">
                     <Editor
-                      content={String(p.description ?? "")}
+                      content={String(page.description ?? "")}
                       onChange={(e) => setValue("description", e)}
                       onBlur={() => handleSubmit(onSubmit)()}
-                      workspaceMembers={p.workspace?.members ?? []}
+                      workspaceMembers={page.workspace?.members ?? []}
                     />
                   </div>
                 </form>
@@ -519,8 +536,8 @@ export default function PageView({
         isVisible={isOpen && modalContentType === "UPDATE_PAGE_SLUG"}
       >
         <UpdatePageSlugForm
-          pagePublicId={resolvedPublicId || pid}
-          pageSlug={p.slug ?? ""}
+          pagePublicId={(resolvedPublicId ?? pid)}
+          pageSlug={page?.slug ?? ""}
         />
       </Modal>
     </>

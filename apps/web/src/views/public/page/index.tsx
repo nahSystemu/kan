@@ -6,6 +6,7 @@ import Editor from "../../../components/Editor";
 import { PageHead } from "../../../components/PageHead";
 import PatternedBackground from "../../../components/PatternedBackground";
 import Popup from "../../../components/Popup";
+import ThemeToggle from "../../../components/ThemeToggle";
 import { usePopup } from "../../../providers/popup";
 import { api } from "../../../utils/api";
 import { getAvatarUrl } from "../../../utils/helpers";
@@ -34,20 +35,35 @@ export default function PublicPageView() {
 
   const visibility = (page as { visibility?: string } | undefined)?.visibility;
   const isNonPublic = !!page && visibility !== "public";
-
-  const createdBy = (page?.createdBy ?? undefined) as
-    | {
-        name?: string | null;
-        email?: string | null;
-        image?: string | null;
-      }
-    | undefined;
-  const displayName = createdBy?.name ?? createdBy?.email ?? t`Unknown`;
-  const avatarName = createdBy?.name ?? createdBy?.email ?? "";
-  const avatarEmail = createdBy?.email ?? "";
-  const avatarUrl = createdBy?.image
-    ? getAvatarUrl(createdBy.image)
-    : undefined;
+  // Derive authors list strictly from relation; no legacy createdBy fallback
+  const authors = (() => {
+    const rel = (
+      page as unknown as
+        | {
+            authors?: {
+              member?: {
+                user?: {
+                  name?: string | null;
+                  email?: string | null;
+                  image?: string | null;
+                } | null;
+              } | null;
+            }[];
+          }
+        | undefined
+    )?.authors;
+    const users = Array.isArray(rel)
+      ? rel
+          .map((a) => a.member?.user ?? null)
+          .filter(Boolean)
+          .map((u) => ({
+            name: (u as { name?: string | null }).name ?? null,
+            email: (u as { email?: string | null }).email ?? null,
+            image: (u as { image?: string | null }).image ?? null,
+          }))
+      : [];
+    return users;
+  })();
 
   const LinkIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -142,7 +158,6 @@ export default function PublicPageView() {
                   </span>
                   {t`View only`}
                 </div>
-                <CopyLink />
               </div>
             )}
           </div>
@@ -171,74 +186,7 @@ export default function PublicPageView() {
               </div>
             ) : (
               <div className="mx-auto w-full max-w-4xl">
-                {/* Meta information: Author, Tags, Last updated */}
-                <div className="mb-4 rounded-md border border-light-300 bg-light-50 p-4 shadow-sm dark:border-dark-300 dark:bg-dark-50">
-                  <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                    <li className="flex items-center text-sm">
-                      <span className="mr-2 text-light-800 dark:text-dark-800">{t`Author:`}</span>
-                      {createdBy ? (
-                        <span className="inline-flex items-center">
-                          <Avatar
-                            imageUrl={avatarUrl}
-                            name={avatarName}
-                            email={avatarEmail}
-                            size="xs"
-                          />
-                          <span className="ml-2 text-light-1000 dark:text-dark-1000">
-                            {displayName}
-                          </span>
-                        </span>
-                      ) : (
-                        <span className="text-light-900 dark:text-dark-900">{t`Unknown`}</span>
-                      )}
-                    </li>
-                    <li className="flex items-center text-sm">
-                      <span className="mr-2 text-light-800 dark:text-dark-800">{t`Tags:`}</span>
-                      <span className="flex flex-wrap gap-1">
-                        {(page?.pageLabelJoins && page.pageLabelJoins.length > 0
-                          ? page.pageLabelJoins.map((j) => j.label)
-                          : (page?.tags ?? [])
-                        ).map((tag) => (
-                          <span
-                            key={tag.publicId}
-                            className="inline-flex items-center rounded-full border border-light-300 bg-light-50 px-2 py-[2px] text-xs text-light-950 dark:border-dark-300 dark:bg-dark-50 dark:text-dark-900"
-                          >
-                            <span
-                              className="mr-1 inline-block h-2 w-2 rounded-full"
-                              style={{
-                                backgroundColor: tag.colourCode ?? "#64748b",
-                              }}
-                            />
-                            {tag.name}
-                          </span>
-                        ))}
-                        {(!page?.pageLabelJoins ||
-                          page.pageLabelJoins.length === 0) &&
-                          (!page?.tags || page.tags.length === 0) && (
-                            <span className="text-light-900 dark:text-dark-900">{t`None`}</span>
-                          )}
-                      </span>
-                    </li>
-                    <li className="flex items-center text-sm">
-                      <span className="mr-2 text-light-800 dark:text-dark-800">{t`Last updated:`}</span>
-                      <span className="text-light-1000 dark:text-dark-1000">
-                        {(() => {
-                          const d = (page?.updatedAt ?? page?.createdAt) as
-                            | string
-                            | Date
-                            | undefined;
-                          if (!d) return t`Unknown`;
-                          try {
-                            return new Date(d).toLocaleString();
-                          } catch {
-                            return String(d);
-                          }
-                        })()}
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-
+                {/* Page description/content */}
                 <div className="rounded-md border border-light-300 bg-light-50 p-4 shadow-sm dark:border-dark-300 dark:bg-dark-50">
                   <Editor
                     content={page?.description ?? ""}
@@ -249,6 +197,104 @@ export default function PublicPageView() {
               </div>
             )}
           </div>
+        </div>
+        {/* Footer with theme toggle and copy link */}
+        <div className="flex h-[54px] items-center justify-center">
+          <div className="absolute left-[1rem] flex items-center gap-1">
+            <ThemeToggle />
+            <CopyLink />
+          </div>
+          {/* Meta information in footer center */}
+          {page && !isError && !isNonPublic && (
+            <div className="flex max-w-[85%] items-center gap-4 text-xs">
+              {/* Author */}
+              <div className="flex items-center">
+                <span className="mr-2 text-light-800 dark:text-dark-800">{t`Authors:`}</span>
+                {authors.length > 0 ? (
+                  <span className="inline-flex items-center gap-2">
+                    <span className="isolate -space-x-1 overflow-hidden">
+                      {authors.slice(0, 3).map((u, idx) => (
+                        <Avatar
+                          key={(u.email ?? u.name ?? "") + String(idx)}
+                          imageUrl={u.image ? getAvatarUrl(u.image) : undefined}
+                          name={u.name ?? u.email ?? ""}
+                          email={u.email ?? ""}
+                          size="xs"
+                        />
+                      ))}
+                    </span>
+                    <span className="text-light-1000 dark:text-dark-1000">
+                      {authors
+                        .slice(0, 2)
+                        .map((u) => u.name ?? u.email ?? t`Unknown`)
+                        .join(", ")}
+                      {authors.length > 2 ? ` +${authors.length - 2}` : ""}
+                    </span>
+                  </span>
+                ) : (
+                  <span className="text-light-900 dark:text-dark-900">N/A</span>
+                )}
+              </div>
+              {/* Tags */}
+              <div className="hidden items-center sm:flex">
+                <span className="mr-2 text-light-800 dark:text-dark-800">{t`Tags:`}</span>
+                <span className="flex items-center gap-1">
+                  {(() => {
+                    const allTags =
+                      page.pageLabelJoins.length > 0
+                        ? page.pageLabelJoins.map((j) => j.label)
+                        : page.tags;
+                    const shown = allTags.slice(0, 3);
+                    const more = Math.max(0, allTags.length - shown.length);
+                    return (
+                      <>
+                        {shown.map((tag) => (
+                          <span
+                            key={tag.publicId}
+                            className="inline-flex items-center rounded-full border border-light-300 bg-light-50 px-2 py-[2px] text-[10px] text-light-950 dark:border-dark-300 dark:bg-dark-50 dark:text-dark-900"
+                          >
+                            <span
+                              className="mr-1 inline-block h-2 w-2 rounded-full"
+                              style={{
+                                backgroundColor: tag.colourCode ?? "#64748b",
+                              }}
+                            />
+                            {tag.name}
+                          </span>
+                        ))}
+                        {allTags.length === 0 && (
+                          <span className="text-light-900 dark:text-dark-900">{t`None`}</span>
+                        )}
+                        {more > 0 && (
+                          <span className="text-light-800 dark:text-dark-800">
+                            +{more}
+                          </span>
+                        )}
+                      </>
+                    );
+                  })()}
+                </span>
+              </div>
+              {/* Last updated */}
+              <div className="flex items-center">
+                <span className="mr-2 text-light-800 dark:text-dark-800">{t`Last updated:`}</span>
+                <span className="text-light-1000 dark:text-dark-1000">
+                  {(() => {
+                    const d = (page.updatedAt ?? page.createdAt) as
+                      | string
+                      | Date
+                      | undefined;
+                    if (!d) return t`Unknown`;
+                    try {
+                      return new Date(d).toLocaleString();
+                    } catch {
+                      return String(d);
+                    }
+                  })()}
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <Popup />

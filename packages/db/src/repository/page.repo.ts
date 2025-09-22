@@ -5,6 +5,7 @@ import {
   pageLabels,
   pages,
   pagesToLabels,
+  pagesToWorkspaceMembers,
   pageTags,
   workspaceMembers,
 } from "@kan/db/schema";
@@ -140,6 +141,18 @@ export const getByPublicIdWithWorkspaceMembers = (
       createdBy: {
         columns: { id: true, name: true, email: true, image: true },
       },
+      authors: {
+        with: {
+          member: {
+            columns: { publicId: true, email: true },
+            with: {
+              user: {
+                columns: { id: true, name: true, email: true, image: true },
+              },
+            },
+          },
+        },
+      },
       workspace: {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore slug exists on workspace; type cache may be stale before build
@@ -190,6 +203,18 @@ export const getBySlugWithWorkspaceMembers = (db: dbClient, slug: string) => {
     with: {
       createdBy: {
         columns: { id: true, name: true, email: true, image: true },
+      },
+      authors: {
+        with: {
+          member: {
+            columns: { publicId: true, email: true },
+            with: {
+              user: {
+                columns: { id: true, name: true, email: true, image: true },
+              },
+            },
+          },
+        },
       },
       workspace: {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -256,6 +281,46 @@ export const isPageSlugAvailable = async (
     where: and(...conditions),
   });
   return !existing;
+};
+
+// Authors
+export const getPageAuthorRelationship = (
+  db: dbClient,
+  args: { pageId: number; memberId: number },
+) => {
+  return db.query.pagesToWorkspaceMembers.findFirst({
+    where: and(
+      eq(pagesToWorkspaceMembers.pageId, args.pageId),
+      eq(pagesToWorkspaceMembers.workspaceMemberId, args.memberId),
+    ),
+  });
+};
+
+export const createPageAuthorRelationship = async (
+  db: dbClient,
+  input: { pageId: number; memberId: number },
+) => {
+  const [result] = await db
+    .insert(pagesToWorkspaceMembers)
+    .values({ pageId: input.pageId, workspaceMemberId: input.memberId })
+    .returning();
+  return { success: !!result };
+};
+
+export const hardDeletePageAuthorRelationship = async (
+  db: dbClient,
+  input: { pageId: number; memberId: number },
+) => {
+  const [result] = await db
+    .delete(pagesToWorkspaceMembers)
+    .where(
+      and(
+        eq(pagesToWorkspaceMembers.pageId, input.pageId),
+        eq(pagesToWorkspaceMembers.workspaceMemberId, input.memberId),
+      ),
+    )
+    .returning();
+  return { success: !!result };
 };
 
 export const getWorkspaceAndPageIdByPageSlug = async (

@@ -14,7 +14,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 import { users } from "./users";
-import { workspaces } from "./workspaces";
+import { workspaceMembers, workspaces } from "./workspaces";
 
 export const pageVisibilityStatuses = ["private", "public"] as const;
 export type PageVisibilityStatus = (typeof pageVisibilityStatuses)[number];
@@ -75,6 +75,7 @@ export const pagesRelations = relations(pages, ({ one, many }) => ({
   }),
   tags: many(pageTags),
   pageLabelJoins: many(pagesToLabels),
+  authors: many(pagesToWorkspaceMembers),
 }));
 
 export const pageTags = pgTable("page_tag", {
@@ -178,3 +179,33 @@ export const pagesToLabelsRelations = relations(pagesToLabels, ({ one }) => ({
     relationName: "pagesToLabelsLabel",
   }),
 }));
+
+// Authors: Many-to-many between pages and workspace members
+export const pagesToWorkspaceMembers = pgTable(
+  "_page_workspace_members",
+  {
+    pageId: bigint("pageId", { mode: "number" })
+      .notNull()
+      .references(() => pages.id, { onDelete: "cascade" }),
+    workspaceMemberId: bigint("workspaceMemberId", { mode: "number" })
+      .notNull()
+      .references(() => workspaceMembers.id, { onDelete: "cascade" }),
+  },
+  (t) => [primaryKey({ columns: [t.pageId, t.workspaceMemberId] })],
+).enableRLS();
+
+export const pagesToWorkspaceMembersRelations = relations(
+  pagesToWorkspaceMembers,
+  ({ one }) => ({
+    page: one(pages, {
+      fields: [pagesToWorkspaceMembers.pageId],
+      references: [pages.id],
+      relationName: "pagesToWorkspaceMembersPage",
+    }),
+    member: one(workspaceMembers, {
+      fields: [pagesToWorkspaceMembers.workspaceMemberId],
+      references: [workspaceMembers.id],
+      relationName: "pagesToWorkspaceMembersMember",
+    }),
+  }),
+);

@@ -276,6 +276,93 @@ export const pageRouter = createTRPCRouter({
         });
       return updated;
     }),
+  addOrRemoveAuthor: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Add or remove an author from a page",
+        method: "PUT",
+        path: "/pages/{pagePublicId}/authors/{workspaceMemberPublicId}",
+        description: "Toggles an author (workspace member) on a page",
+        tags: ["Pages"],
+        protect: true,
+      },
+    })
+    .input(
+      z.object({
+        pagePublicId: z.string().min(12),
+        workspaceMemberPublicId: z.string().min(12),
+      }),
+    )
+    .output(z.object({ newAuthor: z.boolean() }))
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+      if (!userId)
+        throw new TRPCError({
+          message: "User not authenticated",
+          code: "UNAUTHORIZED",
+        });
+
+      const pageRef = await pageRepo.getWorkspaceAndPageIdByPagePublicId(
+        ctx.db,
+        input.pagePublicId,
+      );
+      if (!pageRef)
+        throw new TRPCError({
+          message: `Page with public ID ${input.pagePublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      await assertUserInWorkspace(ctx.db, userId, pageRef.workspaceId);
+
+      const member = await workspaceRepo.getMemberByPublicId(
+        ctx.db,
+        input.workspaceMemberPublicId,
+      );
+      if (!member)
+        throw new TRPCError({
+          message: `Member with public ID ${input.workspaceMemberPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      const relArgs = { pageId: pageRef.id, memberId: member.id };
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore -- Using new repository method; types may lag until db package is built
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
+      const existing = await pageRepo.getPageAuthorRelationship(
+        ctx.db,
+        relArgs,
+      );
+      if (existing) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore -- Using new repository method; types may lag until db package is built
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
+        const removed = await pageRepo.hardDeletePageAuthorRelationship(
+          ctx.db,
+          relArgs,
+        );
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if (!removed.success)
+          throw new TRPCError({
+            message: "Failed to remove author",
+            code: "INTERNAL_SERVER_ERROR",
+          });
+        return { newAuthor: false };
+      }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore -- Using new repository method; types may lag until db package is built
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
+      const created = await pageRepo.createPageAuthorRelationship(
+        ctx.db,
+        relArgs,
+      );
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (!created.success)
+        throw new TRPCError({
+          message: "Failed to add author",
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      return { newAuthor: true };
+    }),
   checkSlugAvailability: protectedProcedure
     .meta({
       openapi: {
