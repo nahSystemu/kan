@@ -95,6 +95,10 @@ msgstr "Add a comment..."
 msgid "Add an item..."
 msgstr "Add an item..."
 
+#: src/views/page/components/AuthorSelector.tsx:86
+msgid "Add author"
+msgstr "Add author"
+
 #: src/views/card/components/Dropdown.tsx:18
 msgid "Add checklist"
 msgstr "Add checklist"
@@ -272,12 +276,20 @@ msgstr "assigned <0>{0}</0> to the card"
 #~ msgstr "assigned <0>{memberName}</0> to the card"
 
 #: src/views/page/index.tsx:427
-msgid "Author"
-msgstr "Author"
+#~ msgid "Author"
+#~ msgstr "Author"
 
 #: src/views/public/page/index.tsx:178
-msgid "Author:"
-msgstr "Author:"
+#~ msgid "Author:"
+#~ msgstr "Author:"
+
+#: src/views/page/index.tsx:434
+msgid "Authors"
+msgstr "Authors"
+
+#: src/views/public/page/index.tsx:212
+msgid "Authors:"
+msgstr "Authors:"
 
 #: src/views/boards/components/TemplateBoards.tsx:46
 msgid "Awaiting Customer"
@@ -542,8 +554,8 @@ msgstr "Continue with {0}"
 msgid "Control who can view and edit your boards."
 msgstr "Control who can view and edit your boards."
 
-#: src/views/page/index.tsx:352
-#: src/views/page/index.tsx:353
+#: src/views/page/index.tsx:357
+#: src/views/page/index.tsx:358
 msgid "Copy public link"
 msgstr "Copy public link"
 
@@ -674,7 +686,7 @@ msgstr "Dark"
 #: src/views/card/components/DeleteChecklistConfirmation.tsx:66
 #: src/views/card/components/DeleteCommentConfirmation.tsx:82
 #: src/views/page/components/TagSelector.tsx:454
-#: src/views/page/index.tsx:361
+#: src/views/page/index.tsx:366
 msgid "Delete"
 msgstr "Delete"
 
@@ -794,7 +806,7 @@ msgstr "Edit comment"
 msgid "Edit label"
 msgstr "Edit label"
 
-#: src/views/page/components/UpdatePageSlugForm.tsx:100
+#: src/views/page/components/UpdatePageSlugForm.tsx:102
 msgid "Edit page URL"
 msgstr "Edit page URL"
 
@@ -803,7 +815,7 @@ msgid "Edit Tag"
 msgstr "Edit Tag"
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:161
-#: src/views/page/components/UpdatePageSlugForm.tsx:190
+#: src/views/page/components/UpdatePageSlugForm.tsx:192
 msgid "Edit workspace URL"
 msgstr "Edit workspace URL"
 
@@ -1030,7 +1042,7 @@ msgid "GitHub"
 msgstr "GitHub"
 
 #: src/pages/pages/[...pageSlug]/index.tsx:49
-#: src/views/public/page/index.tsx:169
+#: src/views/public/page/index.tsx:184
 msgid "Go home"
 msgstr "Go home"
 
@@ -1039,7 +1051,7 @@ msgstr "Go home"
 msgid "Go to app"
 msgstr "Go to app"
 
-#: src/views/page/index.tsx:396
+#: src/views/page/index.tsx:403
 msgid "Hide info"
 msgstr "Hide info"
 
@@ -1154,6 +1166,10 @@ msgstr "Invite"
 msgid "Invite another"
 msgstr "Invite another"
 
+#: src/views/page/components/AuthorSelector.tsx:67
+msgid "Invite author"
+msgstr "Invite author"
+
 #: src/views/card/components/MemberSelector.tsx:111
 #: src/views/members/components/InviteMemberForm.tsx:233
 msgid "Invite member"
@@ -1194,11 +1210,11 @@ msgstr "Labels & Filters"
 msgid "Language"
 msgstr "Language"
 
-#: src/views/page/index.tsx:484
+#: src/views/page/index.tsx:513
 msgid "Last updated"
 msgstr "Last updated"
 
-#: src/views/public/page/index.tsx:223
+#: src/views/public/page/index.tsx:280
 msgid "Last updated:"
 msgstr "Last updated:"
 
@@ -1231,9 +1247,9 @@ msgstr "License"
 msgid "Light"
 msgstr "Light"
 
-#: src/views/page/index.tsx:343
+#: src/views/page/index.tsx:348
 #: src/views/public/board/index.tsx:62
-#: src/views/public/page/index.tsx:98
+#: src/views/public/page/index.tsx:114
 msgid "Link copied"
 msgstr "Link copied"
 
@@ -1327,7 +1343,7 @@ msgid "Need help?"
 msgstr "Need help?"
 
 #: src/views/boards/index.tsx:53
-#: src/views/pages/index.tsx:49
+#: src/views/pages/index.tsx:51
 msgid "New"
 msgstr "New"
 
@@ -1416,7 +1432,7 @@ msgstr "No lists"
 msgid "No pages"
 msgstr "No pages"
 
-#: src/views/public/page/index.tsx:218
+#: src/views/public/page/index.tsx:266
 msgid "None"
 msgstr "None"
 
@@ -1449,8 +1465,8 @@ msgid "Own your data"
 msgstr "Own your data"
 
 #: src/pages/pages/[...pageSlug]/index.tsx:39
-#: src/views/public/page/index.tsx:129
-#: src/views/public/page/index.tsx:158
+#: src/views/public/page/index.tsx:145
+#: src/views/public/page/index.tsx:173
 msgid "Page not found"
 msgstr "Page not found"
 
@@ -1470,8 +1486,8 @@ msgstr "Page URL can only contain letters, numbers, and hyphens"
 msgid "Page URL cannot exceed 60 characters"
 msgstr "Page URL cannot exceed 60 characters"
 
-#: src/views/page/index.tsx:344
-#: src/views/public/page/index.tsx:100
+#: src/views/page/index.tsx:349
+#: src/views/public/page/index.tsx:116
 msgid "Page URL copied to clipboard"
 msgstr "Page URL copied to clipboard"
 
@@ -1480,8 +1496,8 @@ msgid "Page URL must be at least 3 characters long"
 msgstr "Page URL must be at least 3 characters long"
 
 #: src/components/SideNavigation.tsx:77
-#: src/views/pages/index.tsx:23
-#: src/views/pages/index.tsx:26
+#: src/views/pages/index.tsx:25
+#: src/views/pages/index.tsx:28
 msgid "Pages"
 msgstr "Pages"
 
@@ -1573,14 +1589,15 @@ msgstr "Please select a file to upload."
 #: src/views/members/components/DeleteMemberConfirmation.tsx:28
 #: src/views/members/components/InviteMemberForm.tsx:78
 #: src/views/members/components/InviteMemberForm.tsx:131
+#: src/views/page/components/AuthorSelector.tsx:42
 #: src/views/page/components/TagSelector.tsx:62
 #: src/views/page/components/TagSelector.tsx:90
 #: src/views/page/components/TagSelector.tsx:105
 #: src/views/page/components/TagSelector.tsx:124
 #: src/views/page/components/TagSelector.tsx:136
-#: src/views/page/components/UpdatePageSlugForm.tsx:56
-#: src/views/page/index.tsx:114
-#: src/views/page/index.tsx:134
+#: src/views/page/components/UpdatePageSlugForm.tsx:61
+#: src/views/page/index.tsx:128
+#: src/views/page/index.tsx:144
 #: src/views/settings/components/Avatar.tsx:78
 #: src/views/settings/components/Avatar.tsx:219
 #: src/views/settings/components/DeleteAccountConfirmation.tsx:40
@@ -1609,7 +1626,7 @@ msgid "Privacy policy"
 msgstr "Privacy policy"
 
 #: src/views/board/components/VisibilityButton.tsx:73
-#: src/views/page/index.tsx:250
+#: src/views/page/index.tsx:255
 msgid "Private"
 msgstr "Private"
 
@@ -1630,7 +1647,7 @@ msgid "Profile picture"
 msgstr "Profile picture"
 
 #: src/views/board/components/VisibilityButton.tsx:68
-#: src/views/page/index.tsx:224
+#: src/views/page/index.tsx:229
 msgid "Public"
 msgstr "Public"
 
@@ -1805,7 +1822,7 @@ msgstr "Settings | Integrations"
 msgid "Settings | Workspace"
 msgstr "Settings | Workspace"
 
-#: src/views/page/index.tsx:396
+#: src/views/page/index.tsx:403
 msgid "Show info"
 msgstr "Show info"
 
@@ -1877,11 +1894,11 @@ msgstr "System"
 msgid "Tag name"
 msgstr "Tag name"
 
-#: src/views/page/index.tsx:449
+#: src/views/page/index.tsx:478
 msgid "Tags"
 msgstr "Tags"
 
-#: src/views/public/page/index.tsx:196
+#: src/views/public/page/index.tsx:240
 msgid "Tags:"
 msgstr "Tags:"
 
@@ -1951,12 +1968,13 @@ msgid "This board URL has already been taken"
 msgstr "This board URL has already been taken"
 
 #: src/pages/pages/[...pageSlug]/index.tsx:42
-#: src/views/public/page/index.tsx:161
+#: src/views/public/page/index.tsx:176
 msgid "This page is private or does not exist"
 msgstr "This page is private or does not exist"
 
-#: src/views/page/components/UpdatePageSlugForm.tsx:175
-#: src/views/page/components/UpdatePageSlugForm.tsx:178
+#: src/views/page/components/UpdatePageSlugForm.tsx:59
+#: src/views/page/components/UpdatePageSlugForm.tsx:177
+#: src/views/page/components/UpdatePageSlugForm.tsx:180
 msgid "This page URL has already been taken"
 msgstr "This page URL has already been taken"
 
@@ -2065,7 +2083,7 @@ msgstr "Unable to delete checklist item"
 msgid "Unable to delete comment"
 msgstr "Unable to delete comment"
 
-#: src/views/page/index.tsx:133
+#: src/views/page/index.tsx:143
 msgid "Unable to delete page"
 msgstr "Unable to delete page"
 
@@ -2084,6 +2102,10 @@ msgstr "Unable to remove tag"
 #: src/components/FeedbackModal.tsx:40
 msgid "Unable to send feedback"
 msgstr "Unable to send feedback"
+
+#: src/views/page/components/AuthorSelector.tsx:41
+msgid "Unable to update authors"
+msgstr "Unable to update authors"
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:71
 msgid "Unable to update board URL"
@@ -2123,11 +2145,11 @@ msgstr "Unable to update list"
 msgid "Unable to update members"
 msgstr "Unable to update members"
 
-#: src/views/page/index.tsx:113
+#: src/views/page/index.tsx:127
 msgid "Unable to update page"
 msgstr "Unable to update page"
 
-#: src/views/page/components/UpdatePageSlugForm.tsx:55
+#: src/views/page/components/UpdatePageSlugForm.tsx:57
 msgid "Unable to update page URL"
 msgstr "Unable to update page URL"
 
@@ -2148,17 +2170,16 @@ msgstr "unassigned <0>{0}</0> from the card"
 msgid "unassigned themselves from the card"
 msgstr "unassigned themselves from the card"
 
-#: src/views/page/index.tsx:489
-#: src/views/page/index.tsx:491
-#: src/views/public/page/index.tsx:45
-#: src/views/public/page/index.tsx:192
-#: src/views/public/page/index.tsx:230
+#: src/views/page/index.tsx:518
+#: src/views/page/index.tsx:520
+#: src/views/public/page/index.tsx:229
+#: src/views/public/page/index.tsx:287
 msgid "Unknown"
 msgstr "Unknown"
 
 #: src/views/page/index.tsx:441
-msgid "Unknown author"
-msgstr "Unknown author"
+#~ msgid "Unknown author"
+#~ msgstr "Unknown author"
 
 #: src/views/home/components/Pricing.tsx:41
 msgid "Unlimited activity log"
@@ -2190,7 +2211,7 @@ msgid "Unlimited members"
 msgstr "Unlimited members"
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:174
-#: src/views/page/components/UpdatePageSlugForm.tsx:212
+#: src/views/page/components/UpdatePageSlugForm.tsx:214
 #: src/views/settings/components/UpdateDisplayNameForm.tsx:80
 #: src/views/settings/components/UpdateWorkspaceDescriptionForm.tsx:91
 #: src/views/settings/components/UpdateWorkspaceNameForm.tsx:83
@@ -2289,7 +2310,7 @@ msgid "View docs"
 msgstr "View docs"
 
 #: src/views/public/board/index.tsx:125
-#: src/views/public/page/index.tsx:143
+#: src/views/public/page/index.tsx:159
 msgid "View only"
 msgstr "View only"
 
@@ -2302,7 +2323,7 @@ msgid "View workspace"
 msgstr "View workspace"
 
 #: src/views/board/components/VisibilityButton.tsx:91
-#: src/views/page/index.tsx:329
+#: src/views/page/index.tsx:334
 msgid "Visibility"
 msgstr "Visibility"
 

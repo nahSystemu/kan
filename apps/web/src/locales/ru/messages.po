@@ -83,6 +83,10 @@ msgstr "Добавить комментарий..."
 msgid "Add an item..."
 msgstr "Добавить элемент..."
 
+#: src/views/page/components/AuthorSelector.tsx:86
+msgid "Add author"
+msgstr "Добавить автора"
+
 #: src/views/card/components/Dropdown.tsx:18
 msgid "Add checklist"
 msgstr "Добавить чек-лист"
@@ -240,12 +244,20 @@ msgid "assigned <0>{0}</0> to the card"
 msgstr "назначено <0>{0}</0> к карточке"
 
 #: src/views/page/index.tsx:427
-msgid "Author"
-msgstr "Автор"
+#~ msgid "Author"
+#~ msgstr "Автор"
 
 #: src/views/public/page/index.tsx:178
-msgid "Author:"
-msgstr "Автор:"
+#~ msgid "Author:"
+#~ msgstr "Автор:"
+
+#: src/views/page/index.tsx:434
+msgid "Authors"
+msgstr "Авторы"
+
+#: src/views/public/page/index.tsx:212
+msgid "Authors:"
+msgstr "Авторы:"
 
 #: src/views/boards/components/TemplateBoards.tsx:46
 msgid "Awaiting Customer"
@@ -485,8 +497,8 @@ msgstr "Продолжить с {0}"
 msgid "Control who can view and edit your boards."
 msgstr "Управляйте тем, кто может просматривать и редактировать ваши доски."
 
-#: src/views/page/index.tsx:352
-#: src/views/page/index.tsx:353
+#: src/views/page/index.tsx:357
+#: src/views/page/index.tsx:358
 msgid "Copy public link"
 msgstr "Скопировать публичную ссылку"
 
@@ -601,7 +613,7 @@ msgstr "Тёмный"
 #: src/views/card/components/DeleteChecklistConfirmation.tsx:66
 #: src/views/card/components/DeleteCommentConfirmation.tsx:82
 #: src/views/page/components/TagSelector.tsx:454
-#: src/views/page/index.tsx:361
+#: src/views/page/index.tsx:366
 msgid "Delete"
 msgstr "Удалить"
 
@@ -721,7 +733,7 @@ msgstr "Редактировать комментарий"
 msgid "Edit label"
 msgstr "Редактировать метку"
 
-#: src/views/page/components/UpdatePageSlugForm.tsx:100
+#: src/views/page/components/UpdatePageSlugForm.tsx:102
 msgid "Edit page URL"
 msgstr "Редактировать ссылку страницы"
 
@@ -730,7 +742,7 @@ msgid "Edit Tag"
 msgstr "Редактировать тэг"
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:161
-#: src/views/page/components/UpdatePageSlugForm.tsx:190
+#: src/views/page/components/UpdatePageSlugForm.tsx:192
 msgid "Edit workspace URL"
 msgstr "Редактировать URL рабочей области"
 
@@ -957,7 +969,7 @@ msgid "GitHub"
 msgstr "GitHub"
 
 #: src/pages/pages/[...pageSlug]/index.tsx:49
-#: src/views/public/page/index.tsx:169
+#: src/views/public/page/index.tsx:184
 msgid "Go home"
 msgstr "Домой"
 
@@ -966,7 +978,7 @@ msgstr "Домой"
 msgid "Go to app"
 msgstr "Перейти в приложение"
 
-#: src/views/page/index.tsx:396
+#: src/views/page/index.tsx:403
 msgid "Hide info"
 msgstr "Спрятать информацию"
 
@@ -1077,6 +1089,10 @@ msgstr "Пригласить"
 msgid "Invite another"
 msgstr "Пригласить ещё одного"
 
+#: src/views/page/components/AuthorSelector.tsx:67
+msgid "Invite author"
+msgstr "Пригласить автора"
+
 #: src/views/card/components/MemberSelector.tsx:111
 #: src/views/members/components/InviteMemberForm.tsx:233
 msgid "Invite member"
@@ -1117,11 +1133,11 @@ msgstr "Метки и фильтры"
 msgid "Language"
 msgstr "Язык"
 
-#: src/views/page/index.tsx:484
+#: src/views/page/index.tsx:513
 msgid "Last updated"
 msgstr "Последние обновление"
 
-#: src/views/public/page/index.tsx:223
+#: src/views/public/page/index.tsx:280
 msgid "Last updated:"
 msgstr "Последние обновление:"
 
@@ -1154,9 +1170,9 @@ msgstr "Лицензия"
 msgid "Light"
 msgstr "Светлый"
 
-#: src/views/page/index.tsx:343
+#: src/views/page/index.tsx:348
 #: src/views/public/board/index.tsx:62
-#: src/views/public/page/index.tsx:98
+#: src/views/public/page/index.tsx:114
 msgid "Link copied"
 msgstr "Ссылка скопирована"
 
@@ -1242,7 +1258,7 @@ msgid "Need help?"
 msgstr "Нужна помощь?"
 
 #: src/views/boards/index.tsx:53
-#: src/views/pages/index.tsx:49
+#: src/views/pages/index.tsx:51
 msgid "New"
 msgstr "Новый"
 
@@ -1327,7 +1343,7 @@ msgstr "Нет списков"
 msgid "No pages"
 msgstr "Нет страниц"
 
-#: src/views/public/page/index.tsx:218
+#: src/views/public/page/index.tsx:266
 msgid "None"
 msgstr "Нету"
 
@@ -1360,8 +1376,8 @@ msgid "Own your data"
 msgstr "Владейте своими данными"
 
 #: src/pages/pages/[...pageSlug]/index.tsx:39
-#: src/views/public/page/index.tsx:129
-#: src/views/public/page/index.tsx:158
+#: src/views/public/page/index.tsx:145
+#: src/views/public/page/index.tsx:173
 msgid "Page not found"
 msgstr "Страница не найдена"
 
@@ -1381,8 +1397,8 @@ msgstr "URL страницы может содержать только букв
 msgid "Page URL cannot exceed 60 characters"
 msgstr "URL страницы не может превышать 60 символов"
 
-#: src/views/page/index.tsx:344
-#: src/views/public/page/index.tsx:100
+#: src/views/page/index.tsx:349
+#: src/views/public/page/index.tsx:116
 msgid "Page URL copied to clipboard"
 msgstr "URL страницы скопирован в буфер обмена"
 
@@ -1391,8 +1407,8 @@ msgid "Page URL must be at least 3 characters long"
 msgstr "URL страницы должен содержать не менее 3 символов"
 
 #: src/components/SideNavigation.tsx:77
-#: src/views/pages/index.tsx:23
-#: src/views/pages/index.tsx:26
+#: src/views/pages/index.tsx:25
+#: src/views/pages/index.tsx:28
 msgid "Pages"
 msgstr "Страницы"
 
@@ -1484,14 +1500,15 @@ msgstr "Пожалуйста, выберите файл для загрузки.
 #: src/views/members/components/DeleteMemberConfirmation.tsx:28
 #: src/views/members/components/InviteMemberForm.tsx:78
 #: src/views/members/components/InviteMemberForm.tsx:131
+#: src/views/page/components/AuthorSelector.tsx:42
 #: src/views/page/components/TagSelector.tsx:62
 #: src/views/page/components/TagSelector.tsx:90
 #: src/views/page/components/TagSelector.tsx:105
 #: src/views/page/components/TagSelector.tsx:124
 #: src/views/page/components/TagSelector.tsx:136
-#: src/views/page/components/UpdatePageSlugForm.tsx:56
-#: src/views/page/index.tsx:114
-#: src/views/page/index.tsx:134
+#: src/views/page/components/UpdatePageSlugForm.tsx:61
+#: src/views/page/index.tsx:128
+#: src/views/page/index.tsx:144
 #: src/views/settings/components/Avatar.tsx:78
 #: src/views/settings/components/Avatar.tsx:219
 #: src/views/settings/components/DeleteAccountConfirmation.tsx:40
@@ -1520,7 +1537,7 @@ msgid "Privacy policy"
 msgstr "Политика конфиденциальности"
 
 #: src/views/board/components/VisibilityButton.tsx:73
-#: src/views/page/index.tsx:250
+#: src/views/page/index.tsx:255
 msgid "Private"
 msgstr "Личное"
 
@@ -1541,7 +1558,7 @@ msgid "Profile picture"
 msgstr "Фотография профиля"
 
 #: src/views/board/components/VisibilityButton.tsx:68
-#: src/views/page/index.tsx:224
+#: src/views/page/index.tsx:229
 msgid "Public"
 msgstr "Публичное"
 
@@ -1700,7 +1717,7 @@ msgstr "Настройки | Интеграции"
 msgid "Settings | Workspace"
 msgstr "Настройки | Рабочая область"
 
-#: src/views/page/index.tsx:396
+#: src/views/page/index.tsx:403
 msgid "Show info"
 msgstr "Показать информацию"
 
@@ -1772,11 +1789,11 @@ msgstr "Система"
 msgid "Tag name"
 msgstr "Название тэга"
 
-#: src/views/page/index.tsx:449
+#: src/views/page/index.tsx:478
 msgid "Tags"
 msgstr "Тэги"
 
-#: src/views/public/page/index.tsx:196
+#: src/views/public/page/index.tsx:240
 msgid "Tags:"
 msgstr "Тэги:"
 
@@ -1846,12 +1863,13 @@ msgid "This board URL has already been taken"
 msgstr "Этот URL доски уже занят."
 
 #: src/pages/pages/[...pageSlug]/index.tsx:42
-#: src/views/public/page/index.tsx:161
+#: src/views/public/page/index.tsx:176
 msgid "This page is private or does not exist"
 msgstr "Эта страница приватная или не существует"
 
-#: src/views/page/components/UpdatePageSlugForm.tsx:175
-#: src/views/page/components/UpdatePageSlugForm.tsx:178
+#: src/views/page/components/UpdatePageSlugForm.tsx:59
+#: src/views/page/components/UpdatePageSlugForm.tsx:177
+#: src/views/page/components/UpdatePageSlugForm.tsx:180
 msgid "This page URL has already been taken"
 msgstr "Этот URL страницы уже занят"
 
@@ -1956,7 +1974,7 @@ msgstr "Не удалось удалить элемент контрольног
 msgid "Unable to delete comment"
 msgstr "Не удалось удалить комментарий"
 
-#: src/views/page/index.tsx:133
+#: src/views/page/index.tsx:143
 msgid "Unable to delete page"
 msgstr "Не удалось удалить страницу"
 
@@ -1975,6 +1993,10 @@ msgstr "Не удалось удалить тэг"
 #: src/components/FeedbackModal.tsx:40
 msgid "Unable to send feedback"
 msgstr "Не удалось отправить отзыв"
+
+#: src/views/page/components/AuthorSelector.tsx:41
+msgid "Unable to update authors"
+msgstr "Не получилось обновить авторов"
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:71
 msgid "Unable to update board URL"
@@ -2014,11 +2036,11 @@ msgstr "Не удалось обновить список"
 msgid "Unable to update members"
 msgstr "Не удалось обновить участников"
 
-#: src/views/page/index.tsx:113
+#: src/views/page/index.tsx:127
 msgid "Unable to update page"
 msgstr "Не удалось обновить страницу"
 
-#: src/views/page/components/UpdatePageSlugForm.tsx:55
+#: src/views/page/components/UpdatePageSlugForm.tsx:57
 msgid "Unable to update page URL"
 msgstr "Не удалось обновить URL страницы"
 
@@ -2035,17 +2057,16 @@ msgstr "удалил(а) <0>{0}</0> из карточки"
 msgid "unassigned themselves from the card"
 msgstr "удалил(а) себя из карточки"
 
-#: src/views/page/index.tsx:489
-#: src/views/page/index.tsx:491
-#: src/views/public/page/index.tsx:45
-#: src/views/public/page/index.tsx:192
-#: src/views/public/page/index.tsx:230
+#: src/views/page/index.tsx:518
+#: src/views/page/index.tsx:520
+#: src/views/public/page/index.tsx:229
+#: src/views/public/page/index.tsx:287
 msgid "Unknown"
 msgstr "Неизвестно"
 
 #: src/views/page/index.tsx:441
-msgid "Unknown author"
-msgstr "Неизвестный автор"
+#~ msgid "Unknown author"
+#~ msgstr "Неизвестный автор"
 
 #: src/views/home/components/Pricing.tsx:41
 msgid "Unlimited activity log"
@@ -2077,7 +2098,7 @@ msgid "Unlimited members"
 msgstr "Неограниченное количество участников"
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:174
-#: src/views/page/components/UpdatePageSlugForm.tsx:212
+#: src/views/page/components/UpdatePageSlugForm.tsx:214
 #: src/views/settings/components/UpdateDisplayNameForm.tsx:80
 #: src/views/settings/components/UpdateWorkspaceDescriptionForm.tsx:91
 #: src/views/settings/components/UpdateWorkspaceNameForm.tsx:83
@@ -2172,7 +2193,7 @@ msgid "View docs"
 msgstr "Просмотреть документацию"
 
 #: src/views/public/board/index.tsx:125
-#: src/views/public/page/index.tsx:143
+#: src/views/public/page/index.tsx:159
 msgid "View only"
 msgstr "Только просмотр"
 
@@ -2185,7 +2206,7 @@ msgid "View workspace"
 msgstr "Просмотреть рабочее пространство"
 
 #: src/views/board/components/VisibilityButton.tsx:91
-#: src/views/page/index.tsx:329
+#: src/views/page/index.tsx:334
 msgid "Visibility"
 msgstr "Видимость"
 

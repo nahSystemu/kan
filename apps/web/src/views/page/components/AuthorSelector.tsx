@@ -1,4 +1,5 @@
 import { t } from "@lingui/core/macro";
+
 import Avatar from "~/components/Avatar";
 import CheckboxDropdown from "~/components/CheckboxDropdown";
 import { usePopup } from "~/providers/popup";
@@ -16,12 +17,20 @@ interface AuthorSelectorProps {
   isLoading?: boolean;
 }
 
-export default function AuthorSelector({ pagePublicId, members, isLoading }: AuthorSelectorProps) {
+export default function AuthorSelector({
+  pagePublicId,
+  members,
+  isLoading,
+}: AuthorSelectorProps) {
   const utils = api.useUtils();
   const { showPopup } = usePopup();
 
   // Temporary cast while types propagate across packages
-  const addOrRemoveAuthor = ((api.page as unknown as { addOrRemoveAuthor: { useMutation: typeof api.page.update.useMutation } }).addOrRemoveAuthor).useMutation({
+  const addOrRemoveAuthor = (
+    api.page as unknown as {
+      addOrRemoveAuthor: { useMutation: typeof api.page.update.useMutation };
+    }
+  ).addOrRemoveAuthor.useMutation({
     onMutate: async (_update) => {
       await utils.page.byId.cancel();
       const prevById = utils.page.byId.getData({ pagePublicId });
@@ -64,7 +73,13 @@ export default function AuthorSelector({ pagePublicId, members, isLoading }: Aut
         ) : selectedAuthors.length ? (
           <div className="isolate flex justify-end -space-x-1 overflow-hidden">
             {selectedAuthors.map(({ value, imageUrl }) => (
-              <Avatar key={value} size="sm" name={value} imageUrl={imageUrl} email={value} />
+              <Avatar
+                key={value}
+                size="sm"
+                name={value}
+                imageUrl={imageUrl}
+                email={value}
+              />
             ))}
           </div>
         ) : (

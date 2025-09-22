@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import Avatar from "~/components/Avatar";
 import Button from "~/components/Button";
 import CheckboxDropdown from "~/components/CheckboxDropdown";
-import AuthorSelector from "./components/AuthorSelector";
 import Dropdown from "~/components/Dropdown";
 import Editor from "~/components/Editor";
 import Modal from "~/components/modal";
@@ -16,6 +15,7 @@ import { useModal } from "~/providers/modal";
 import { usePopup } from "~/providers/popup";
 import { api } from "~/utils/api";
 import { getAvatarUrl } from "~/utils/helpers";
+import AuthorSelector from "./components/AuthorSelector";
 import TagSelector from "./components/TagSelector";
 import UpdatePageSlugButton from "./components/UpdatePageSlugButton";
 import { UpdatePageSlugForm } from "./components/UpdatePageSlugForm";
@@ -114,7 +114,10 @@ export default function PageView({
     ? pageByIdQuery.isLoading
     : pageBySlugQuery.isLoading;
   const hasPage = !!page;
-  const resolvedPublicId = page?.publicId ?? pagePublicIdOverride ?? (isPotentialPublicId ? pid : undefined);
+  const resolvedPublicId =
+    page?.publicId ??
+    pagePublicIdOverride ??
+    (isPotentialPublicId ? pid : undefined);
   const isPublic = (page?.visibility ?? "private") === "public";
   const [showMeta, setShowMeta] = useState(true);
 
@@ -179,7 +182,7 @@ export default function PageView({
 
   const onSubmit = (values: FormValues) => {
     updatePage.mutate({
-      pagePublicId: (resolvedPublicId ?? pid),
+      pagePublicId: resolvedPublicId ?? pid,
       title: values.title,
       description: values.description,
     });
@@ -190,7 +193,7 @@ export default function PageView({
   return (
     <>
       <div className="p-auto mx-auto flex h-full w-full flex-col">
-  <PageHead title={`${page?.title ?? "Page"}`} />
+        <PageHead title={`${page?.title ?? "Page"}`} />
         <div className="p-6 md:p-8">
           <div className="mb-8 flex w-full items-center justify-between md:mt-6">
             {isLoading && (
@@ -272,13 +275,13 @@ export default function PageView({
                     handleSelect={(_group, item) => {
                       updatePage.mutate(
                         {
-                          pagePublicId: (resolvedPublicId ?? pid),
+                          pagePublicId: resolvedPublicId ?? pid,
                           visibility: item.key as "public" | "private",
                         },
                         {
                           onSuccess: async () => {
                             await utils.page.byId.invalidate({
-                              pagePublicId: (resolvedPublicId ?? pid),
+                              pagePublicId: resolvedPublicId ?? pid,
                             });
                           },
                         } as unknown as undefined,
@@ -362,7 +365,9 @@ export default function PageView({
                     {
                       label: t`Delete`,
                       action: () => {
-                        deletePage.mutate({ pagePublicId: (resolvedPublicId ?? pid) });
+                        deletePage.mutate({
+                          pagePublicId: resolvedPublicId ?? pid,
+                        });
                       },
                     },
                   ]}
@@ -433,7 +438,8 @@ export default function PageView({
                         const currentAuthors = (page.authors ?? [])
                           .map((a) => a.member?.publicId)
                           .filter(Boolean) as string[];
-                        const wm: WorkspaceMember[] = page.workspace?.members ?? [];
+                        const wm: WorkspaceMember[] =
+                          page.workspace?.members ?? [];
                         const items = wm.map((m: WorkspaceMember) => {
                           const preferredName = m.user?.name ?? null;
                           const value = (preferredName ?? m.email) || "";
@@ -457,7 +463,7 @@ export default function PageView({
                         });
                         return (
                           <AuthorSelector
-                            pagePublicId={(resolvedPublicId ?? pid)}
+                            pagePublicId={resolvedPublicId ?? pid}
                             members={items}
                             isLoading={false}
                           />
@@ -473,8 +479,11 @@ export default function PageView({
                       </span>
                       <div className="min-w-0 flex-1">
                         <TagSelector
-                          pagePublicId={(resolvedPublicId ?? pid)}
-                          workspacePublicId={(page.workspace as unknown as { publicId?: string }).publicId ?? ""}
+                          pagePublicId={resolvedPublicId ?? pid}
+                          workspacePublicId={
+                            (page.workspace as unknown as { publicId?: string })
+                              .publicId ?? ""
+                          }
                           labels={
                             (
                               (
@@ -516,7 +525,10 @@ export default function PageView({
                 </ul>
               </div>
               <div className="mx-auto mb-10 flex w-full max-w-4xl flex-col justify-between">
-                <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-6">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="w-full space-y-6"
+                >
                   <div className="mt-2">
                     <Editor
                       content={String(page.description ?? "")}
@@ -536,7 +548,7 @@ export default function PageView({
         isVisible={isOpen && modalContentType === "UPDATE_PAGE_SLUG"}
       >
         <UpdatePageSlugForm
-          pagePublicId={(resolvedPublicId ?? pid)}
+          pagePublicId={resolvedPublicId ?? pid}
           pageSlug={page?.slug ?? ""}
         />
       </Modal>
