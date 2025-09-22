@@ -48,23 +48,26 @@ export function UpdatePageSlugForm({
   const slug = watch("slug");
   const [debouncedSlug] = useDebounce(slug, 500);
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   const updatePageSlug = api.page.update.useMutation({
-    onError: () => {
+    onError: (error: unknown) => {
+      // Try to detect a slug conflict from tRPC error shape
+      const err = error as { data?: { code?: string } } & { message?: string };
+      const isConflict = err.data?.code === "CONFLICT";
       showPopup({
         header: t`Unable to update page URL`,
-        message: t`Please try again later, or contact customer support.`,
+        message: isConflict
+          ? t`This page URL has already been taken`
+          : (err.message ??
+            t`Please try again later, or contact customer support.`),
         icon: "error",
       });
     },
-    onSettled: async () => {
+    onSuccess: async () => {
       closeModal();
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       await utils.page.byId.invalidate({ pagePublicId });
     },
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   const checkPageSlugAvailability = api.page.checkSlugAvailability.useQuery(
     { pageSlug: debouncedSlug, pagePublicId },
     {
@@ -88,7 +91,6 @@ export function UpdatePageSlugForm({
     if (!isPageSlugAvailable) return;
     if (isPageSlugAvailable.isReserved) return;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     updatePageSlug.mutate({ pagePublicId, slug: data.slug });
   };
 

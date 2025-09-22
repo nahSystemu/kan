@@ -116,7 +116,6 @@ export const pageRouter = createTRPCRouter({
       >(),
     )
     .query(async ({ ctx, input }) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const pageRef = await pageRepo.getWorkspaceAndPageIdByPageSlug(
         ctx.db,
         input.pageSlug,
@@ -124,7 +123,6 @@ export const pageRouter = createTRPCRouter({
       if (!pageRef)
         throw new TRPCError({ message: "Page not found", code: "NOT_FOUND" });
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const page = await pageRepo.getBySlugWithWorkspaceMembers(
         ctx.db,
         input.pageSlug,
@@ -245,7 +243,21 @@ export const pageRouter = createTRPCRouter({
 
       await assertUserInWorkspace(ctx.db, userId, pageRef.workspaceId);
 
-      // If updating slug, optionally validate collisions here (skipped to avoid type drift during build)
+      // If updating slug, enforce uniqueness (same rule as checkSlugAvailability)
+      if (input.slug) {
+        const normalizedSlug = input.slug.toLowerCase();
+        const isAvailable = await pageRepo.isPageSlugAvailable(
+          ctx.db,
+          normalizedSlug,
+          pageRef.id,
+        );
+        if (!isAvailable) {
+          throw new TRPCError({
+            message: "This page URL has already been taken",
+            code: "CONFLICT",
+          });
+        }
+      }
 
       const updated = await pageRepo.update(
         ctx.db,
@@ -254,7 +266,7 @@ export const pageRouter = createTRPCRouter({
           title: input.title,
           description: input.description,
           visibility: input.visibility,
-          slug: input.slug,
+          slug: input.slug ? input.slug.toLowerCase() : undefined,
         },
       );
       if (!updated)
@@ -310,11 +322,9 @@ export const pageRouter = createTRPCRouter({
 
       await assertUserInWorkspace(ctx.db, userId, pageRef.workspaceId);
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const isAvailable = await pageRepo.isPageSlugAvailable(
         ctx.db,
-        input.pageSlug,
-        pageRef.workspaceId,
+        input.pageSlug.toLowerCase(),
         pageRef.id,
       );
       return { isReserved: !isAvailable };
@@ -403,7 +413,6 @@ export const pageRouter = createTRPCRouter({
       if (!pageRef)
         throw new TRPCError({ message: "Page not found", code: "NOT_FOUND" });
       await assertUserInWorkspace(ctx.db, userId, pageRef.workspaceId);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const tag = await pageRepo.createTag(ctx.db, {
         pageId: pageRef.id,
         name: input.name,
@@ -453,7 +462,6 @@ export const pageRouter = createTRPCRouter({
           message: "User not authenticated",
           code: "UNAUTHORIZED",
         });
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const ref = await pageRepo.getWorkspaceAndPageIdByTagPublicId(
         ctx.db,
         input.tagPublicId,
@@ -465,7 +473,6 @@ export const pageRouter = createTRPCRouter({
         userId,
         (ref as { workspaceId: number }).workspaceId,
       );
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const updated = await pageRepo.updateTag(
         ctx.db,
         { tagPublicId: input.tagPublicId },
@@ -502,7 +509,6 @@ export const pageRouter = createTRPCRouter({
           message: "User not authenticated",
           code: "UNAUTHORIZED",
         });
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const ref = await pageRepo.getWorkspaceAndPageIdByTagPublicId(
         ctx.db,
         input.tagPublicId,
@@ -514,7 +520,6 @@ export const pageRouter = createTRPCRouter({
         userId,
         (ref as { workspaceId: number }).workspaceId,
       );
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const deleted = await pageRepo.softDeleteTag(ctx.db, {
         tagId: (ref as { tagId: number }).tagId,
         deletedAt: new Date(),
@@ -556,7 +561,6 @@ export const pageRouter = createTRPCRouter({
           code: "NOT_FOUND",
         });
       await assertUserInWorkspace(ctx.db, userId, ws.id);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       const labels = (await pageRepo.listWorkspacePageLabels(
         ctx.db,
         ws.id,
@@ -595,7 +599,6 @@ export const pageRouter = createTRPCRouter({
           code: "NOT_FOUND",
         });
       await assertUserInWorkspace(ctx.db, userId, ws.id);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       return (await pageRepo.createWorkspacePageLabel(ctx.db, {
         workspaceId: ws.id,
         name: input.name,
@@ -626,7 +629,6 @@ export const pageRouter = createTRPCRouter({
           code: "UNAUTHORIZED",
         });
       // no workspace check here without join; rely on RLS or later enhancement
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const updated = await pageRepo.updateWorkspacePageLabel(
         ctx.db,
         { labelPublicId: input.labelPublicId },
@@ -653,7 +655,6 @@ export const pageRouter = createTRPCRouter({
           message: "User not authenticated",
           code: "UNAUTHORIZED",
         });
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const deleted = await pageRepo.softDeleteWorkspacePageLabel(ctx.db, {
         labelPublicId: input.labelPublicId,
         deletedAt: new Date(),
@@ -688,7 +689,6 @@ export const pageRouter = createTRPCRouter({
       if (!ref)
         throw new TRPCError({ message: "Page not found", code: "NOT_FOUND" });
       await assertUserInWorkspace(ctx.db, userId, ref.workspaceId);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       const labelRef = (await pageRepo.getLabelWorkspaceIdByPublicId(
         ctx.db,
         input.labelPublicId,
@@ -700,7 +700,6 @@ export const pageRouter = createTRPCRouter({
           message: "Label not in workspace",
           code: "FORBIDDEN",
         });
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       await pageRepo.attachLabelToPage(ctx.db, {
         pageId: ref.id,
         labelId: labelRef.id,
@@ -729,14 +728,12 @@ export const pageRouter = createTRPCRouter({
       if (!ref)
         throw new TRPCError({ message: "Page not found", code: "NOT_FOUND" });
       await assertUserInWorkspace(ctx.db, userId, ref.workspaceId);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       const labelRef = (await pageRepo.getLabelWorkspaceIdByPublicId(
         ctx.db,
         input.labelPublicId,
       )) as { id: number; workspaceId: number } | null;
       if (!labelRef) return { success: true };
       if (labelRef.workspaceId !== ref.workspaceId) return { success: true };
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       await pageRepo.detachLabelFromPage(ctx.db, {
         pageId: ref.id,
         labelId: labelRef.id,

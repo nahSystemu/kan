@@ -222,7 +222,7 @@ export const getBySlugWithWorkspaceMembers = (db: dbClient, slug: string) => {
     },
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore slug exists on pages; type cache may be stale before build
-    where: and(eq(pages.slug, slug), isNull(pages.deletedAt)),
+    where: and(eq(pages.slug, slug.toLowerCase()), isNull(pages.deletedAt)),
   });
 };
 
@@ -241,14 +241,12 @@ export const getWorkspaceAndPageIdByPagePublicId = async (
 export const isPageSlugAvailable = async (
   db: dbClient,
   slug: string,
-  workspaceId: number,
   excludePageId?: number,
 ) => {
   const conditions = [
-    eq(pages.workspaceId, workspaceId),
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore slug exists on pages; type cache may be stale before build
-    eq(pages.slug, slug),
+    eq(pages.slug, slug.toLowerCase()),
     isNull(pages.deletedAt),
   ];
   if (excludePageId) conditions.push(ne(pages.id, excludePageId));
@@ -270,7 +268,7 @@ export const getWorkspaceAndPageIdByPageSlug = async (
     columns: { id: true, workspaceId: true },
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore slug exists on pages; type cache may be stale before build
-    where: and(eq(pages.slug, slug), isNull(pages.deletedAt)),
+    where: and(eq(pages.slug, slug.toLowerCase()), isNull(pages.deletedAt)),
   });
   return result ? { id: result.id, workspaceId: result.workspaceId } : null;
 };

@@ -1,8 +1,9 @@
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import {
   bigint,
   bigserial,
   index,
+  uniqueIndex,
   pgEnum,
   pgTable,
   primaryKey,
@@ -47,8 +48,12 @@ export const pages = pgTable(
   },
   (table) => [
     index("page_visibility_idx").on(table.visibility),
-    // Ensure slug uniqueness per workspace (allows multiple NULLs by Postgres semantics)
+    // Keep a composite index to support workspace+slug lookups if needed (non-unique)
     index("page_workspace_slug_idx").on(table.workspaceId, table.slug),
+    // Global uniqueness for slugs on non-deleted rows (case-insensitive ensured by API lower-casing)
+    uniqueIndex("unique_page_slug_global")
+      .on(table.slug)
+      .where(sql`${table.deletedAt} IS NULL`),
   ],
 ).enableRLS();
 
