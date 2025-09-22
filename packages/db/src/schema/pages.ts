@@ -3,7 +3,6 @@ import {
   bigint,
   bigserial,
   index,
-  uniqueIndex,
   pgEnum,
   pgTable,
   primaryKey,
