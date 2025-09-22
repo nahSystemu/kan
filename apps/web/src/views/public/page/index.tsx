@@ -147,7 +147,7 @@ export default function PublicPageView() {
             )}
           </div>
 
-          <div className="scrollbar-w-none scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-h-[8px] relative h-full w-full overflow-y-auto overscroll-contain p-6 scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300">
+          <div className="scrollbar-w-none scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-h-[8px] relative h-[95%] w-full overflow-y-auto overscroll-contain p-6 scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300">
             {isLoading || !router.isReady ? (
               <div className="mx-auto h-[500px] w-full max-w-[800px] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
             ) : isError || (!page && !!pageSlug) || isNonPublic ? (
@@ -170,7 +170,7 @@ export default function PublicPageView() {
                 </a>
               </div>
             ) : (
-              <div className="mx-auto w-full max-w-[800px]">
+              <div className="mx-auto w-full max-w-4xl">
                 {/* Meta information: Author, Tags, Last updated */}
                 <div className="mb-4 rounded-md border border-light-300 bg-light-50 p-4 shadow-sm dark:border-dark-300 dark:bg-dark-50">
                   <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
