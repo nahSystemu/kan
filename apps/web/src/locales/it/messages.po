@@ -36,12 +36,12 @@ msgstr "{0} etichette"
 msgid "{boardCount, plural, one {Import board (1)} other {Import boards ({boardCount})}}"
 msgstr "{boardCount, plural, one {Importa bacheca (1)} other {Importa bacheche ({boardCount})}}"
 
-#: src/views/members/components/InviteMemberForm.tsx:146
-#: src/views/members/components/InviteMemberForm.tsx:158
+#: src/views/members/components/InviteMemberForm.tsx:148
+#: src/views/members/components/InviteMemberForm.tsx:160
 msgid "$10/month"
 msgstr "$10/mese"
 
-#: src/views/members/components/InviteMemberForm.tsx:158
+#: src/views/members/components/InviteMemberForm.tsx:160
 msgid "$8/month"
 msgstr "$8/mese"
 
@@ -101,7 +101,7 @@ msgid "Add label"
 msgstr "Aggiungi etichetta"
 
 #: src/views/card/components/MemberSelector.tsx:130
-#: src/views/members/components/InviteMemberForm.tsx:238
+#: src/views/members/components/InviteMemberForm.tsx:240
 msgid "Add member"
 msgstr "Aggiungi membro"
 
@@ -136,7 +136,7 @@ msgstr "ha aggiunto l'elemento <0>{0}</0> alla checklist"
 msgid "added label <0>{0}</0>"
 msgstr "ha aggiunto l'etichetta <0>{0}</0>"
 
-#: src/views/members/components/InviteMemberForm.tsx:306
+#: src/views/members/components/InviteMemberForm.tsx:310
 msgid "Adding a new member will cost an additional {price} ({billingType}) per seat."
 msgstr "L'aggiunta di un nuovo membro costerà un supplemento di {price} ({billingType}) per posto."
 
@@ -164,7 +164,7 @@ msgstr "Si è verificato un errore durante la disconnessione del tuo account Tre
 msgid "An unexpected error occurred. Please try again later."
 msgstr "Si è verificato un errore imprevisto. Riprova più tardi."
 
-#: src/views/members/components/InviteMemberForm.tsx:290
+#: src/views/members/components/InviteMemberForm.tsx:294
 msgid "Anyone with this link can join your workspace"
 msgstr "Chiunque abbia questo link può unirsi al tuo spazio di lavoro"
 
@@ -250,11 +250,11 @@ msgstr "Backlog"
 msgid "Basic Kanban"
 msgstr "Kanban base"
 
-#: src/views/members/components/InviteMemberForm.tsx:159
+#: src/views/members/components/InviteMemberForm.tsx:161
 msgid "billed annually"
 msgstr "fatturato annualmente"
 
-#: src/views/members/components/InviteMemberForm.tsx:159
+#: src/views/members/components/InviteMemberForm.tsx:161
 msgid "billed monthly"
 msgstr "fatturato mensilmente"
 
@@ -463,12 +463,12 @@ msgstr "Contattaci"
 msgid "Content Creation"
 msgstr "Creazione contenuti"
 
-#: src/components/AuthForm.tsx:370
+#: src/components/AuthForm.tsx:417
 msgid "Continue with "
 msgstr "Continua con "
 
 #. placeholder {0}: key === "oidc" ? oidcProviderName : provider.name
-#: src/components/AuthForm.tsx:301
+#: src/components/AuthForm.tsx:348
 msgid "Continue with {0}"
 msgstr "Continua con {0}"
 
@@ -497,6 +497,10 @@ msgstr "Crea carta"
 #: src/views/card/components/NewChecklistForm.tsx:134
 msgid "Create checklist"
 msgstr "Crea checklist"
+
+#: src/views/members/components/InviteMemberForm.tsx:334
+msgid "Create invite link"
+msgstr "Crea link di invito"
 
 #: src/components/LabelForm.tsx:238
 msgid "Create label"
@@ -564,6 +568,10 @@ msgstr "Assistenza clienti"
 #: src/components/UserMenu.tsx:153
 msgid "Dark"
 msgstr "Scuro"
+
+#: src/views/members/components/InviteMemberForm.tsx:333
+msgid "Deactivate invite link"
+msgstr "Disattiva link di invito"
 
 #: src/components/DeleteLabelConfirmation.tsx:51
 #: src/components/LabelForm.tsx:228
@@ -697,11 +705,11 @@ msgstr "Modifica URL dell'area di lavoro"
 msgid "Editing"
 msgstr "Modifica"
 
-#: src/components/AuthForm.tsx:372
+#: src/components/AuthForm.tsx:418
 msgid "email"
 msgstr "email"
 
-#: src/views/members/components/InviteMemberForm.tsx:252
+#: src/views/members/components/InviteMemberForm.tsx:255
 msgid "Email"
 msgstr "Email"
 
@@ -717,11 +725,11 @@ msgstr "Inserisci la tua password attuale"
 msgid "Enter your current password and choose a new secure password."
 msgstr "Inserisci la tua password attuale e scegli una nuova password sicura."
 
-#: src/components/AuthForm.tsx:337
+#: src/components/AuthForm.tsx:384
 msgid "Enter your email address"
 msgstr "Inserisci il tuo indirizzo email"
 
-#: src/components/AuthForm.tsx:325
+#: src/components/AuthForm.tsx:372
 msgid "Enter your name"
 msgstr "Inserisci il tuo nome"
 
@@ -729,11 +737,11 @@ msgstr "Inserisci il tuo nome"
 msgid "Enter your new password"
 msgstr "Inserisci la tua nuova password"
 
-#: src/components/AuthForm.tsx:350
+#: src/components/AuthForm.tsx:397
 msgid "Enter your password"
 msgstr "Inserisci la tua password"
 
-#: src/views/members/components/InviteMemberForm.tsx:196
+#: src/views/members/components/InviteMemberForm.tsx:198
 msgid "Error"
 msgstr "Errore"
 
@@ -741,11 +749,11 @@ msgstr "Errore"
 msgid "Error Changing Password"
 msgstr "Errore durante il cambio della password"
 
-#: src/views/members/components/InviteMemberForm.tsx:117
+#: src/views/members/components/InviteMemberForm.tsx:119
 msgid "Error creating invite link"
 msgstr "Errore durante la creazione del link di invito"
 
-#: src/views/members/components/InviteMemberForm.tsx:132
+#: src/views/members/components/InviteMemberForm.tsx:134
 msgid "Error deactivating invite link"
 msgstr "Errore durante la disattivazione del link di invito"
 
@@ -765,8 +773,8 @@ msgstr "Errore durante l'eliminazione dell'area di lavoro"
 msgid "Error disconnecting Trello"
 msgstr "Errore durante la disconnessione da Trello"
 
-#: src/views/members/components/InviteMemberForm.tsx:95
-#: src/views/members/components/InviteMemberForm.tsx:101
+#: src/views/members/components/InviteMemberForm.tsx:97
+#: src/views/members/components/InviteMemberForm.tsx:103
 msgid "Error inviting member"
 msgstr "Errore durante l'invito del membro"
 
@@ -790,7 +798,7 @@ msgstr "Errore durante l'aggiornamento del nome dell'area di lavoro"
 msgid "Error updating workspace URL"
 msgstr "Errore durante l'aggiornamento dell'URL dell'area di lavoro"
 
-#: src/views/members/components/InviteMemberForm.tsx:221
+#: src/views/members/components/InviteMemberForm.tsx:223
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:41
 msgid "Error upgrading subscription"
 msgstr "Errore nell'aggiornamento dell'abbonamento"
@@ -820,12 +828,12 @@ msgstr "Esecuzione"
 msgid "Failed to accept invitation. Please try again later, or contact customer support."
 msgstr "Impossibile accettare l'invito. Riprova più tardi o contatta l'assistenza clienti."
 
-#: src/views/members/components/InviteMemberForm.tsx:197
+#: src/views/members/components/InviteMemberForm.tsx:199
 msgid "Failed to copy invite link"
 msgstr "Impossibile copiare il link di invito"
 
 #. placeholder {0}: provider.at(0)?.toUpperCase() + provider.slice(1)
-#: src/components/AuthForm.tsx:273
+#: src/components/AuthForm.tsx:288
 msgid "Failed to login with {0}. Please try again."
 msgstr "Accesso con {0} fallito. Riprova."
 
@@ -873,8 +881,8 @@ msgstr "Per la sostenibilità a lungo termine, riconosciamo che tutti i buoni pr
 msgid "Free"
 msgstr "Gratuito"
 
-#: src/views/members/components/InviteMemberForm.tsx:312
-#: src/views/members/index.tsx:208
+#: src/views/members/components/InviteMemberForm.tsx:316
+#: src/views/members/index.tsx:209
 msgid "Free Plan"
 msgstr "Piano gratuito"
 
@@ -1035,7 +1043,7 @@ msgstr "Integrazioni"
 msgid "Interviewing"
 msgstr "Colloquio"
 
-#: src/views/members/components/InviteMemberForm.tsx:49
+#: src/views/members/components/InviteMemberForm.tsx:51
 msgid "Invalid email address"
 msgstr "Indirizzo email non valido"
 
@@ -1043,24 +1051,24 @@ msgstr "Indirizzo email non valido"
 msgid "Invalid invitation"
 msgstr "Invito non valido"
 
-#: src/views/members/index.tsx:221
+#: src/views/members/index.tsx:222
 msgid "Invite"
 msgstr "Invita"
 
-#: src/views/members/components/InviteMemberForm.tsx:190
+#: src/views/members/components/InviteMemberForm.tsx:192
 msgid "Invite link copied"
 msgstr "Link di invito copiato"
 
-#: src/views/members/components/InviteMemberForm.tsx:191
+#: src/views/members/components/InviteMemberForm.tsx:193
 msgid "Invite link copied to clipboard"
 msgstr "Link di invito copiato negli appunti"
 
 #: src/views/card/components/MemberSelector.tsx:111
-#: src/views/members/components/InviteMemberForm.tsx:350
+#: src/views/members/components/InviteMemberForm.tsx:353
 msgid "Invite member"
 msgstr "Invita membro"
 
-#: src/views/members/components/InviteMemberForm.tsx:315
+#: src/views/members/components/InviteMemberForm.tsx:319
 msgid "Inviting members requires a Team Plan. You'll be redirected to upgrade your workspace."
 msgstr "L'invito di membri richiede un Piano Team. Sarai reindirizzato per aggiornare il tuo spazio di lavoro."
 
@@ -1109,7 +1117,7 @@ msgstr "Lingua"
 msgid "Launch offer"
 msgstr "Offerta di lancio"
 
-#: src/views/members/index.tsx:191
+#: src/views/members/index.tsx:192
 msgid "Launch offer: Get unlimited members with Pro"
 msgstr "Offerta di lancio: ottieni membri illimitati con Pro"
 
@@ -1161,7 +1169,7 @@ msgstr "A lungo termine"
 msgid "Low Priority"
 msgstr "Bassa priorità"
 
-#: src/components/AuthForm.tsx:373
+#: src/components/AuthForm.tsx:418
 msgid "magic link"
 msgstr "link magico"
 
@@ -1182,12 +1190,12 @@ msgstr "Media priorità"
 #: src/views/board/components/Filters.tsx:93
 #: src/views/board/components/NewCardForm.tsx:357
 #: src/views/card/index.tsx:125
-#: src/views/members/index.tsx:178
+#: src/views/members/index.tsx:179
 msgid "Members"
 msgstr "Membri"
 
 #. placeholder {0}: workspace.name ?? "Workspace"
-#: src/views/members/index.tsx:173
+#: src/views/members/index.tsx:174
 msgid "Members | {0}"
 msgstr "Membri | {0}"
 
@@ -1195,7 +1203,7 @@ msgstr "Membri | {0}"
 msgid "Monthly"
 msgstr "Mensile"
 
-#: src/views/members/components/InviteMemberForm.tsx:147
+#: src/views/members/components/InviteMemberForm.tsx:149
 msgid "monthly billing"
 msgstr "fatturazione mensile"
 
@@ -1307,7 +1315,7 @@ msgstr "Una volta eliminato il tuo account, non si può tornare indietro. Questa
 msgid "Once you delete your workspace, there is no going back. This action cannot be undone."
 msgstr "Una volta eliminata l'area di lavoro, non si può tornare indietro. Questa azione non può essere annullata."
 
-#: src/components/AuthForm.tsx:315
+#: src/components/AuthForm.tsx:362
 msgid "or"
 msgstr "o"
 
@@ -1327,6 +1335,14 @@ msgstr "Part-time"
 msgid "Password Changed"
 msgstr "Password modificata"
 
+#: src/components/AuthForm.tsx:255
+msgid "Password is required to login."
+msgstr "La password è necessaria per accedere."
+
+#: src/components/AuthForm.tsx:254
+msgid "Password is required to sign up."
+msgstr "La password è necessaria per registrarsi."
+
 #: src/views/settings/components/ChangePasswordConfirmation.tsx:22
 msgid "Password must be at least 8 characters"
 msgstr "La password deve contenere almeno 8 caratteri"
@@ -1335,7 +1351,7 @@ msgstr "La password deve contenere almeno 8 caratteri"
 msgid "Passwords do not match"
 msgstr "Le password non corrispondono"
 
-#: src/views/members/index.tsx:134
+#: src/views/members/index.tsx:135
 msgid "Paused"
 msgstr "In pausa"
 
@@ -1343,7 +1359,7 @@ msgstr "In pausa"
 msgid "Payment frequency"
 msgstr "Frequenza di pagamento"
 
-#: src/views/members/index.tsx:134
+#: src/views/members/index.tsx:135
 msgid "Pending"
 msgstr "In attesa"
 
@@ -1364,15 +1380,15 @@ msgstr "Pianificazione"
 msgid "Please confirm your new password"
 msgstr "Conferma la tua nuova password"
 
-#: src/components/AuthForm.tsx:341
+#: src/components/AuthForm.tsx:388
 msgid "Please enter a valid email address"
 msgstr "Inserisci un indirizzo email valido"
 
-#: src/components/AuthForm.tsx:329
+#: src/components/AuthForm.tsx:376
 msgid "Please enter a valid name"
 msgstr "Inserisci un nome valido"
 
-#: src/components/AuthForm.tsx:354
+#: src/components/AuthForm.tsx:401
 msgid "Please enter a valid password"
 msgstr "Inserisci una password valida"
 
@@ -1405,8 +1421,8 @@ msgstr "Seleziona un file da caricare."
 #: src/views/card/components/NewCommentForm.tsx:31
 #: src/views/card/index.tsx:173
 #: src/views/members/components/DeleteMemberConfirmation.tsx:28
-#: src/views/members/components/InviteMemberForm.tsx:102
-#: src/views/members/components/InviteMemberForm.tsx:222
+#: src/views/members/components/InviteMemberForm.tsx:104
+#: src/views/members/components/InviteMemberForm.tsx:224
 #: src/views/settings/components/Avatar.tsx:78
 #: src/views/settings/components/Avatar.tsx:219
 #: src/views/settings/components/DeleteAccountConfirmation.tsx:40
@@ -1419,8 +1435,8 @@ msgstr "Seleziona un file da caricare."
 msgid "Please try again later, or contact customer support."
 msgstr "Riprova più tardi o contatta l'assistenza clienti."
 
-#: src/views/members/components/InviteMemberForm.tsx:118
-#: src/views/members/components/InviteMemberForm.tsx:133
+#: src/views/members/components/InviteMemberForm.tsx:120
+#: src/views/members/components/InviteMemberForm.tsx:135
 msgid "Please try again later."
 msgstr "Riprova più tardi."
 
@@ -1443,11 +1459,11 @@ msgstr "Informativa sulla privacy"
 msgid "Private"
 msgstr "Privato"
 
-#: src/views/members/index.tsx:205
+#: src/views/members/index.tsx:206
 msgid "Pro Plan"
 msgstr "Piano Pro"
 
-#: src/views/members/components/InviteMemberForm.tsx:301
+#: src/views/members/components/InviteMemberForm.tsx:305
 msgid "Pro Plan ∞"
 msgstr "Piano Pro ∞"
 
@@ -1491,7 +1507,7 @@ msgstr "Remoto"
 msgid "Remove"
 msgstr "Rimuovi"
 
-#: src/views/members/index.tsx:148
+#: src/views/members/index.tsx:149
 msgid "Remove member"
 msgstr "Rimuovi membro"
 
@@ -1543,7 +1559,7 @@ msgstr "Revisione"
 msgid "Roadmap"
 msgstr "Roadmap"
 
-#: src/views/members/index.tsx:243
+#: src/views/members/index.tsx:244
 msgid "Role"
 msgstr "Ruolo"
 
@@ -1617,10 +1633,6 @@ msgstr "Impostazioni | Integrazioni"
 msgid "Settings | Workspace"
 msgstr "Impostazioni | Area di lavoro"
 
-#: src/views/members/components/InviteMemberForm.tsx:327
-msgid "Share invite link"
-msgstr "Condividi link di invito"
-
 #: src/views/home/components/Header.tsx:100
 #: src/views/home/components/Header.tsx:138
 msgid "Sign in"
@@ -1647,7 +1659,7 @@ msgstr "Registrazione disabilitata"
 msgid "Sign up is currently disabled. Please try again later."
 msgstr "La registrazione è attualmente disabilitata. Riprova più tardi."
 
-#: src/components/AuthForm.tsx:370
+#: src/components/AuthForm.tsx:417
 msgid "Sign up with "
 msgstr "Registrati con "
 
@@ -1671,8 +1683,8 @@ msgstr "Sviluppo software"
 msgid "Star on Github"
 msgstr "Metti una stella su Github"
 
-#: src/components/AuthForm.tsx:207
-#: src/components/AuthForm.tsx:224
+#: src/components/AuthForm.tsx:212
+#: src/components/AuthForm.tsx:229
 msgid "Success"
 msgstr "Operazione riuscita"
 
@@ -1692,8 +1704,8 @@ msgstr "Sostieni lo sviluppo del progetto"
 msgid "System"
 msgstr "Sistema"
 
-#: src/views/members/components/InviteMemberForm.tsx:301
-#: src/views/members/index.tsx:207
+#: src/views/members/components/InviteMemberForm.tsx:305
+#: src/views/members/index.tsx:208
 msgid "Team Plan"
 msgstr "Piano Team"
 
@@ -1976,7 +1988,7 @@ msgstr "Passa a Pro"
 msgid "Upgrade to Pro ($29/month)"
 msgstr "Passa a Pro ($29/mese)"
 
-#: src/views/members/components/InviteMemberForm.tsx:341
+#: src/views/members/components/InviteMemberForm.tsx:345
 msgid "Upgrade to Team Plan"
 msgstr "Passa al Piano Team"
 
@@ -2004,11 +2016,11 @@ msgstr "L'URL deve contenere almeno 3 caratteri"
 msgid "Use template"
 msgstr "Usa template"
 
-#: src/views/members/index.tsx:237
+#: src/views/members/index.tsx:238
 msgid "User"
 msgstr "Utente"
 
-#: src/views/members/components/InviteMemberForm.tsx:96
+#: src/views/members/components/InviteMemberForm.tsx:98
 msgid "User is already a member of this workspace"
 msgstr "L'utente è già membro di questo spazio di lavoro"
 
@@ -2167,15 +2179,15 @@ msgstr "Puoi invitare i membri del team cliccando sul pulsante \"Invita\" nell'a
 msgid "You can self-host by following the instructions in our <0>repo</0>."
 msgstr "Puoi effettuare il self-hosting seguendo le istruzioni nel nostro <0>repo</0>."
 
-#: src/components/AuthForm.tsx:225
+#: src/components/AuthForm.tsx:230
 msgid "You have been logged in successfully."
 msgstr "Hai effettuato l'accesso con successo."
 
-#: src/components/AuthForm.tsx:208
+#: src/components/AuthForm.tsx:213
 msgid "You have been signed up successfully."
 msgstr "Ti sei registrato con successo."
 
-#: src/views/members/components/InviteMemberForm.tsx:305
+#: src/views/members/components/InviteMemberForm.tsx:309
 msgid "You have unlimited seats with your Pro Plan. There is no additional charge for new members!"
 msgstr "Hai posti illimitati con il tuo Piano Pro. Non ci sono costi aggiuntivi per i nuovi membri!"
 

@@ -147,6 +147,7 @@ pnpm dev
 | `SMTP_USER`                               | SMTP username/email                                      | No                       | `resend`                                                    |
 | `SMTP_PASSWORD`                           | SMTP password/token                                      | No                       | `re_xxxx`                                                   |
 | `SMTP_SECURE`                             | Use secure SMTP connection (defaults to true if not set) | For Email                | `true`                                                      |
+| `NEXT_PUBLIC_DISABLE_EMAIL`               | To disable all email features                            | For Email                | `true`                                                      |
 | `NEXT_PUBLIC_BASE_URL`                    | Base URL of your installation                            | Yes                      | `http://localhost:3000`                                     |
 | `BETTER_AUTH_SECRET`                      | Auth encryption secret                                   | Yes                      | Random 32+ char string                                      |
 | `BETTER_AUTH_TRUSTED_ORIGINS`             | Allowed callback origins                                 | No                       | `http://localhost:3000,http://localhost:3001`               |

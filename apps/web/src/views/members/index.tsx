@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { t } from "@lingui/core/macro";
 import { env } from "next-runtime-env";
+import { useEffect, useState } from "react";
 import {
   HiBolt,
   HiEllipsisHorizontal,
