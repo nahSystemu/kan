@@ -424,6 +424,30 @@ export const memberRouter = createTRPCRouter({
         }
       }
 
+      // Check subscription for cloud environment
+      if (process.env.NEXT_PUBLIC_KAN_ENV === "cloud") {
+        const subscriptions = await subscriptionRepo.getByReferenceId(
+          ctx.db,
+          workspace.publicId,
+        );
+
+        const activeTeamSubscription = getSubscriptionByPlan(
+          subscriptions,
+          "team",
+        );
+        const activeProSubscription = getSubscriptionByPlan(
+          subscriptions,
+          "pro",
+        );
+
+        if (!activeTeamSubscription && !activeProSubscription) {
+          throw new TRPCError({
+            message: `Invite links require a Team or Pro subscription`,
+            code: "FORBIDDEN",
+          });
+        }
+      }
+
       // Deactivate any existing active invite links
       await inviteLinkRepo.deactivateAllActiveForWorkspace(ctx.db, {
         workspaceId: workspace.id,
