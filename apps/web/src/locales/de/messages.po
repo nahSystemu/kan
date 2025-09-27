@@ -23,7 +23,7 @@ msgstr ", oder besuche unsere"
 
 #. placeholder {0}: card?.title ?? "Card"
 #. placeholder {1}: board?.name ?? "Board"
-#: src/views/card/index.tsx:214
+#: src/views/card/index.tsx:304
 msgid "{0} | {1}"
 msgstr "{0} | {1}"
 
@@ -61,7 +61,7 @@ msgstr "Konto"
 msgid "Account deleted"
 msgstr "Konto gelöscht"
 
-#: src/views/card/index.tsx:289
+#: src/views/card/index.tsx:374
 #: src/views/public/board/CardModal.tsx:143
 msgid "Activity"
 msgstr "Aktivität"
@@ -83,15 +83,19 @@ msgstr "Kommentar hinzufügen..."
 msgid "Add an item..."
 msgstr "Element hinzufügen..."
 
+#: src/views/page/components/AuthorSelector.tsx:86
+msgid "Add author"
+msgstr ""
+
 #: src/views/card/components/Dropdown.tsx:18
 msgid "Add checklist"
 msgstr "Checkliste hinzufügen"
 
-#: src/components/Editor.tsx:442
+#: src/components/Editor.tsx:455
 msgid "Add description... (type '/' to open commands or '@' to mention)"
 msgstr "Beschreibung hinzufügen... (tippe '/' um Befehle zu öffnen oder '@' um jemanden zu erwähnen)"
 
-#: src/views/card/components/ChecklistItemRow.tsx:172
+#: src/views/card/components/ChecklistItemRow.tsx:169
 msgid "Add details..."
 msgstr "Details hinzufügen..."
 
@@ -104,6 +108,11 @@ msgstr "Label hinzufügen"
 #: src/views/members/components/InviteMemberForm.tsx:240
 msgid "Add member"
 msgstr "Mitglied hinzufügen"
+
+#: src/views/page/components/TagSelector.tsx:231
+#: src/views/page/components/TagSelector.tsx:266
+msgid "Add tag"
+msgstr ""
 
 #: src/views/card/components/ActivityList.tsx:69
 msgid "added a checklist"
@@ -213,7 +222,7 @@ msgstr "Bist du sicher, dass du {entityLabel} entfernen möchtest?"
 msgid "Are you sure you want to delete the workspace {0}?"
 msgstr "Bist du sicher, dass du den Workspace {0} löschen möchtest?"
 
-#: src/views/card/components/DeleteCardConfirmation.tsx:75
+#: src/views/card/components/DeleteCardConfirmation.tsx:77
 msgid "Are you sure you want to delete this card?"
 msgstr "Bist du sicher, dass du diese Karte löschen möchtest?"
 
@@ -237,6 +246,11 @@ msgstr "Bist du sicher, dass du dein Konto löschen möchtest?"
 #: src/views/card/components/ActivityList.tsx:110
 msgid "assigned <0>{0}</0> to the card"
 msgstr "hat <0>{0}</0> der Karte zugewiesen"
+
+#: src/views/page/index.tsx:434
+#: src/views/public/page/index.tsx:213
+msgid "Authors"
+msgstr ""
 
 #: src/views/boards/components/TemplateBoards.tsx:46
 msgid "Awaiting Customer"
@@ -272,7 +286,7 @@ msgstr "Abrechnungsportal"
 msgid "Blog Post"
 msgstr "Blogbeitrag"
 
-#: src/views/board/index.tsx:331
+#: src/views/board/index.tsx:335
 msgid "Board"
 msgstr "Board"
 
@@ -289,7 +303,7 @@ msgstr "Der Name des Boards darf 100 Zeichen nicht überschreiten"
 msgid "Board name is required"
 msgstr "Boardname ist erforderlich"
 
-#: src/views/board/index.tsx:357
+#: src/views/board/index.tsx:361
 #: src/views/public/board/index.tsx:148
 msgid "Board not found"
 msgstr "Board nicht gefunden"
@@ -318,7 +332,7 @@ msgstr "Board-Sichtbarkeit"
 msgid "Board visibility updated"
 msgstr "Board-Sichtbarkeit aktualisiert"
 
-#: src/components/SideNavigation.tsx:68
+#: src/components/SideNavigation.tsx:72
 #: src/views/boards/index.tsx:32
 msgid "Boards"
 msgstr "Boards"
@@ -342,7 +356,7 @@ msgstr "Fehlerbericht"
 
 #: src/components/DeleteLabelConfirmation.tsx:49
 #: src/views/card/components/Comment.tsx:158
-#: src/views/card/components/DeleteCardConfirmation.tsx:86
+#: src/views/card/components/DeleteCardConfirmation.tsx:88
 #: src/views/card/components/DeleteChecklistConfirmation.tsx:63
 #: src/views/card/components/DeleteCommentConfirmation.tsx:76
 #: src/views/members/components/DeleteMemberConfirmation.tsx:55
@@ -355,8 +369,8 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #: src/views/card/index.tsx:260
-msgid "Card not found"
-msgstr "Karte nicht gefunden"
+#~ msgid "Card not found"
+#~ msgstr "Karte nicht gefunden"
 
 #: src/views/board/components/NewCardForm.tsx:307
 msgid "Card title"
@@ -476,6 +490,15 @@ msgstr "Fortfahren mit {0}"
 msgid "Control who can view and edit your boards."
 msgstr "Kontrolliere, wer deine Boards ansehen und bearbeiten kann."
 
+#: src/views/page/index.tsx:357
+#: src/views/page/index.tsx:358
+msgid "Copy public link"
+msgstr ""
+
+#: src/views/page/components/TagSelector.tsx:356
+msgid "Create"
+msgstr ""
+
 #: src/components/LabelForm.tsx:213
 #: src/views/board/components/NewCardForm.tsx:458
 #: src/views/board/components/NewListForm.tsx:140
@@ -523,9 +546,21 @@ msgstr "Neuen Schlüssel erstellen"
 msgid "Create new label"
 msgstr "Neues Label erstellen"
 
-#: src/views/board/index.tsx:425
+#: src/views/board/index.tsx:429
 msgid "Create new list"
 msgstr "Neue Liste erstellen"
+
+#: src/views/pages/components/PagesList.tsx:110
+msgid "Create new page"
+msgstr ""
+
+#: src/views/page/components/TagSelector.tsx:218
+msgid "Create new tag"
+msgstr ""
+
+#: src/views/pages/components/NewPageForm.tsx:95
+msgid "Create page"
+msgstr ""
 
 #: src/components/NewWorkspaceForm.tsx:384
 #: src/components/WorkspaceMenu.tsx:116
@@ -575,9 +610,11 @@ msgstr "Einladungslink deaktivieren"
 
 #: src/components/DeleteLabelConfirmation.tsx:51
 #: src/components/LabelForm.tsx:228
-#: src/views/card/components/DeleteCardConfirmation.tsx:92
+#: src/views/card/components/DeleteCardConfirmation.tsx:94
 #: src/views/card/components/DeleteChecklistConfirmation.tsx:66
 #: src/views/card/components/DeleteCommentConfirmation.tsx:82
+#: src/views/page/components/TagSelector.tsx:454
+#: src/views/page/index.tsx:366
 msgid "Delete"
 msgstr "Löschen"
 
@@ -697,7 +734,16 @@ msgstr "Kommentar bearbeiten"
 msgid "Edit label"
 msgstr "Label bearbeiten"
 
+#: src/views/page/components/UpdatePageSlugForm.tsx:102
+msgid "Edit page URL"
+msgstr ""
+
+#: src/views/page/components/TagSelector.tsx:368
+msgid "Edit Tag"
+msgstr ""
+
 #: src/views/board/components/UpdateBoardSlugForm.tsx:161
+#: src/views/page/components/UpdatePageSlugForm.tsx:192
 msgid "Edit workspace URL"
 msgstr "Workspace-URL bearbeiten"
 
@@ -878,6 +924,7 @@ msgid "For long-term sustainability, we recognise all good open source projects 
 msgstr "Für langfristige Nachhaltigkeit erkennen wir an, dass alle guten Open-Source-Projekte eine Einnahmequelle benötigen. Unsere stammt aus dem kostenpflichtigen Cloud-Angebot für Workspaces mit mehreren Benutzern (kostenlos während der Beta-Phase) und für benutzerdefinierte Workspace-Slugs. Es besteht keine Verpflichtung, dieses Angebot zu nutzen, und Sie können die Software kostenlos auf Ihrer eigenen Infrastruktur selbst hosten."
 
 #: src/views/home/components/Pricing.tsx:32
+#: src/views/home/components/Pricing.tsx:32
 msgid "Free"
 msgstr "Kostenlos"
 
@@ -914,9 +961,13 @@ msgstr "Loslegen"
 msgid "Get started by creating a new board"
 msgstr "Beginne, indem du ein neues Board erstellst"
 
-#: src/views/board/index.tsx:417
+#: src/views/board/index.tsx:421
 msgid "Get started by creating a new list"
 msgstr "Beginne mit dem Erstellen einer neuen Liste"
+
+#: src/views/pages/components/PagesList.tsx:105
+msgid "Get started by creating a new page"
+msgstr ""
 
 #: src/views/home/components/Cta.tsx:54
 msgid "Get started for free today"
@@ -938,6 +989,11 @@ msgstr "Erste Schritte"
 msgid "GitHub"
 msgstr "GitHub"
 
+#: src/pages/pages/[...pageSlug]/index.tsx:49
+#: src/views/public/page/index.tsx:184
+msgid "Go home"
+msgstr ""
+
 #: src/views/invite/index.tsx:113
 msgid "Go Home"
 msgstr "Zur Startseite"
@@ -947,6 +1003,10 @@ msgstr "Zur Startseite"
 #: src/views/invite/index.tsx:144
 msgid "Go to app"
 msgstr "Zur App"
+
+#: src/views/page/index.tsx:403
+msgid "Hide info"
+msgstr ""
 
 #: src/views/boards/components/TemplateBoards.tsx:17
 msgid "High Priority"
@@ -1055,6 +1115,10 @@ msgstr "Ungültige Einladung"
 msgid "Invite"
 msgstr "Einladen"
 
+#: src/views/page/components/AuthorSelector.tsx:67
+msgid "Invite author"
+msgstr ""
+
 #: src/views/members/components/InviteMemberForm.tsx:192
 msgid "Invite link copied"
 msgstr "Einladungslink kopiert"
@@ -1100,7 +1164,7 @@ msgstr "Beachten Sie, dass diese Aktion nicht rückgängig gemacht werden kann."
 
 #: src/views/board/components/Filters.tsx:101
 #: src/views/board/components/NewCardForm.tsx:398
-#: src/views/card/index.tsx:117
+#: src/views/card/index.tsx:153
 msgid "Labels"
 msgstr "Labels"
 
@@ -1111,6 +1175,15 @@ msgstr "Labels & Filter"
 #: src/views/settings/AccountSettings.tsx:42
 msgid "Language"
 msgstr "Sprache"
+
+#: src/views/page/index.tsx:513
+#: src/views/public/page/index.tsx:285
+msgid "Last updated"
+msgstr ""
+
+#: src/views/public/page/index.tsx:284
+#~ msgid "Last updated:"
+#~ msgstr ""
 
 #: src/components/NewWorkspaceForm.tsx:332
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:67
@@ -1141,11 +1214,13 @@ msgstr "Lizenz"
 msgid "Light"
 msgstr "Hell"
 
+#: src/views/page/index.tsx:348
 #: src/views/public/board/index.tsx:62
+#: src/views/public/page/index.tsx:114
 msgid "Link copied"
 msgstr "Link kopiert"
 
-#: src/views/card/index.tsx:109
+#: src/views/card/index.tsx:145
 msgid "List"
 msgstr "Liste"
 
@@ -1186,10 +1261,10 @@ msgstr "hat Checklistenelement <0>{0}</0> als unvollständig markiert"
 msgid "Medium Priority"
 msgstr "Mittlere Priorität"
 
-#: src/components/SideNavigation.tsx:73
+#: src/components/SideNavigation.tsx:82
 #: src/views/board/components/Filters.tsx:93
 #: src/views/board/components/NewCardForm.tsx:357
-#: src/views/card/index.tsx:125
+#: src/views/card/index.tsx:161
 #: src/views/members/index.tsx:179
 msgid "Members"
 msgstr "Mitglieder"
@@ -1227,6 +1302,7 @@ msgid "Need help?"
 msgstr "Brauchst du Hilfe?"
 
 #: src/views/boards/index.tsx:53
+#: src/views/pages/index.tsx:51
 msgid "New"
 msgstr "Neu"
 
@@ -1255,9 +1331,13 @@ msgid "New label"
 msgstr "Neues Label"
 
 #: src/views/board/components/NewListForm.tsx:112
-#: src/views/board/index.tsx:394
+#: src/views/board/index.tsx:398
 msgid "New list"
 msgstr "Neue Liste"
+
+#: src/views/pages/components/NewPageForm.tsx:71
+msgid "New page"
+msgstr ""
 
 #: src/views/settings/components/ChangePasswordConfirmation.tsx:23
 msgid "New password is required"
@@ -1266,6 +1346,10 @@ msgstr "Neues Passwort ist erforderlich"
 #: src/views/settings/components/ChangePasswordConfirmation.tsx:31
 msgid "New password must be different from current password"
 msgstr "Neues Passwort muss sich vom aktuellen Passwort unterscheiden"
+
+#: src/views/page/components/TagSelector.tsx:277
+msgid "New Tag"
+msgstr ""
 
 #: src/views/boards/components/TemplateBoards.tsx:43
 msgid "New Ticket"
@@ -1295,9 +1379,17 @@ msgstr "Keine Boards gefunden"
 msgid "No credit card required"
 msgstr "Keine Kreditkarte erforderlich"
 
-#: src/views/board/index.tsx:414
+#: src/views/board/index.tsx:418
 msgid "No lists"
 msgstr "Keine Listen"
+
+#: src/views/pages/components/PagesList.tsx:102
+msgid "No pages"
+msgstr ""
+
+#: src/views/public/page/index.tsx:270
+msgid "None"
+msgstr ""
 
 #: src/views/boards/components/TemplateBoards.tsx:65
 msgid "Offer"
@@ -1326,6 +1418,43 @@ msgstr "Organisiere und finde Karten schnell mit leistungsstarken Filterwerkzeug
 #: src/views/home/components/Pricing.tsx:73
 msgid "Own your data"
 msgstr "Besitze deine Daten"
+
+#: src/pages/pages/[...pageSlug]/index.tsx:39
+#: src/views/public/page/index.tsx:145
+#: src/views/public/page/index.tsx:173
+msgid "Page not found"
+msgstr ""
+
+#: src/views/pages/components/NewPageForm.tsx:18
+msgid "Page title cannot exceed 200 characters"
+msgstr ""
+
+#: src/views/pages/components/NewPageForm.tsx:17
+msgid "Page title is required"
+msgstr ""
+
+#: src/views/page/components/UpdatePageSlugForm.tsx:31
+msgid "Page URL can only contain letters, numbers, and hyphens"
+msgstr ""
+
+#: src/views/page/components/UpdatePageSlugForm.tsx:29
+msgid "Page URL cannot exceed 60 characters"
+msgstr ""
+
+#: src/views/page/index.tsx:349
+#: src/views/public/page/index.tsx:116
+msgid "Page URL copied to clipboard"
+msgstr ""
+
+#: src/views/page/components/UpdatePageSlugForm.tsx:28
+msgid "Page URL must be at least 3 characters long"
+msgstr ""
+
+#: src/components/SideNavigation.tsx:77
+#: src/views/pages/index.tsx:25
+#: src/views/pages/index.tsx:28
+msgid "Pages"
+msgstr ""
 
 #: src/views/boards/components/TemplateBoards.tsx:69
 msgid "Part-time"
@@ -1403,14 +1532,14 @@ msgstr "Bitte wähle eine Datei zum Hochladen aus."
 #: src/views/board/components/NewListForm.tsx:78
 #: src/views/board/components/UpdateBoardSlugForm.tsx:72
 #: src/views/board/components/VisibilityButton.tsx:53
-#: src/views/board/index.tsx:134
-#: src/views/board/index.tsx:190
+#: src/views/board/index.tsx:138
+#: src/views/board/index.tsx:194
 #: src/views/boards/components/ImportBoardsForm.tsx:205
-#: src/views/card/components/ChecklistItemRow.tsx:60
-#: src/views/card/components/ChecklistItemRow.tsx:88
+#: src/views/card/components/ChecklistItemRow.tsx:59
+#: src/views/card/components/ChecklistItemRow.tsx:87
 #: src/views/card/components/ChecklistNameInput.tsx:46
 #: src/views/card/components/Comment.tsx:64
-#: src/views/card/components/DeleteCardConfirmation.tsx:52
+#: src/views/card/components/DeleteCardConfirmation.tsx:54
 #: src/views/card/components/DeleteChecklistConfirmation.tsx:37
 #: src/views/card/components/DeleteCommentConfirmation.tsx:45
 #: src/views/card/components/LabelSelector.tsx:72
@@ -1419,10 +1548,19 @@ msgstr "Bitte wähle eine Datei zum Hochladen aus."
 #: src/views/card/components/NewChecklistForm.tsx:70
 #: src/views/card/components/NewChecklistItemForm.tsx:89
 #: src/views/card/components/NewCommentForm.tsx:31
-#: src/views/card/index.tsx:173
+#: src/views/card/index.tsx:263
 #: src/views/members/components/DeleteMemberConfirmation.tsx:28
 #: src/views/members/components/InviteMemberForm.tsx:104
 #: src/views/members/components/InviteMemberForm.tsx:224
+#: src/views/page/components/AuthorSelector.tsx:42
+#: src/views/page/components/TagSelector.tsx:62
+#: src/views/page/components/TagSelector.tsx:90
+#: src/views/page/components/TagSelector.tsx:105
+#: src/views/page/components/TagSelector.tsx:124
+#: src/views/page/components/TagSelector.tsx:136
+#: src/views/page/components/UpdatePageSlugForm.tsx:61
+#: src/views/page/index.tsx:128
+#: src/views/page/index.tsx:144
 #: src/views/settings/components/Avatar.tsx:78
 #: src/views/settings/components/Avatar.tsx:219
 #: src/views/settings/components/DeleteAccountConfirmation.tsx:40
@@ -1456,6 +1594,7 @@ msgid "Privacy policy"
 msgstr "Datenschutzrichtlinie"
 
 #: src/views/board/components/VisibilityButton.tsx:73
+#: src/views/page/index.tsx:255
 msgid "Private"
 msgstr "Privat"
 
@@ -1476,6 +1615,7 @@ msgid "Profile picture"
 msgstr "Profilbild"
 
 #: src/views/board/components/VisibilityButton.tsx:68
+#: src/views/page/index.tsx:229
 msgid "Public"
 msgstr "Öffentlich"
 
@@ -1568,6 +1708,7 @@ msgid "Run on your own infrastructure"
 msgstr "Auf eigener Infrastruktur betreiben"
 
 #: src/views/card/components/Comment.tsx:165
+#: src/views/page/components/TagSelector.tsx:468
 #: src/views/settings/components/Avatar.tsx:309
 msgid "Save"
 msgstr "Speichern"
@@ -1609,7 +1750,7 @@ msgid "Senior"
 msgstr "Senior"
 
 #: src/components/SettingsLayout.tsx:82
-#: src/components/SideNavigation.tsx:78
+#: src/components/SideNavigation.tsx:87
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -1632,6 +1773,10 @@ msgstr "Einstellungen | Integrationen"
 #: src/views/settings/WorkspaceSettings.tsx:54
 msgid "Settings | Workspace"
 msgstr "Einstellungen | Arbeitsbereich"
+
+#: src/views/page/index.tsx:403
+msgid "Show info"
+msgstr ""
 
 #: src/views/home/components/Header.tsx:100
 #: src/views/home/components/Header.tsx:138
@@ -1704,6 +1849,16 @@ msgstr "Unterstütze die Entwicklung des Projekts"
 msgid "System"
 msgstr "System"
 
+#: src/views/page/components/TagSelector.tsx:280
+#: src/views/page/components/TagSelector.tsx:371
+msgid "Tag name"
+msgstr ""
+
+#: src/views/page/index.tsx:478
+#: src/views/public/page/index.tsx:243
+msgid "Tags"
+msgstr ""
+
 #: src/views/members/components/InviteMemberForm.tsx:305
 #: src/views/members/index.tsx:208
 msgid "Team Plan"
@@ -1751,7 +1906,7 @@ msgid "They won't be able to access this workspace."
 msgstr "Sie werden keinen Zugriff mehr auf diesen Workspace haben."
 
 #: src/components/DeleteLabelConfirmation.tsx:44
-#: src/views/card/components/DeleteCardConfirmation.tsx:78
+#: src/views/card/components/DeleteCardConfirmation.tsx:80
 #: src/views/card/components/DeleteChecklistConfirmation.tsx:58
 #: src/views/card/components/DeleteCommentConfirmation.tsx:68
 msgid "This action can't be undone."
@@ -1773,6 +1928,17 @@ msgstr "Diese Board-URL ist bereits vergeben"
 msgid "This invitation link is invalid or has expired."
 msgstr "Dieser Einladungslink ist ungültig oder abgelaufen."
 
+#: src/pages/pages/[...pageSlug]/index.tsx:42
+#: src/views/public/page/index.tsx:176
+msgid "This page is private or does not exist"
+msgstr ""
+
+#: src/views/page/components/UpdatePageSlugForm.tsx:59
+#: src/views/page/components/UpdatePageSlugForm.tsx:177
+#: src/views/page/components/UpdatePageSlugForm.tsx:180
+msgid "This page URL has already been taken"
+msgstr ""
+
 #: src/views/settings/components/DeleteWorkspaceConfirmation.tsx:70
 msgid "This will result in the permanent deletion of all data associated with this workspace."
 msgstr "Dies führt zur permanenten Löschung aller mit diesem Workspace verbundenen Daten."
@@ -1792,6 +1958,10 @@ msgstr "Diese Workspace-URL ist reserviert"
 #: src/views/settings/components/UpdateWorkspaceUrlForm.tsx:123
 msgid "This workspace username has already been taken"
 msgstr "Dieser Workspace-Benutzername ist bereits vergeben"
+
+#: src/views/pages/components/NewPageForm.tsx:85
+msgid "Title"
+msgstr ""
 
 #: src/views/boards/components/TemplateBoards.tsx:16
 #: src/views/boards/components/TemplateBoards.tsx:22
@@ -1830,6 +2000,10 @@ msgstr "Checklistenelement kann nicht hinzugefügt werden"
 msgid "Unable to add comment"
 msgstr "Kommentar konnte nicht hinzugefügt werden"
 
+#: src/views/page/components/TagSelector.tsx:123
+msgid "Unable to add tag"
+msgstr ""
+
 #: src/views/board/components/NewCardForm.tsx:171
 msgid "Unable to create card"
 msgstr "Karte konnte nicht erstellt werden"
@@ -1842,11 +2016,15 @@ msgstr "Checkliste kann nicht erstellt werden"
 msgid "Unable to create list"
 msgstr "Liste konnte nicht erstellt werden"
 
+#: src/views/page/components/TagSelector.tsx:61
+msgid "Unable to create tag"
+msgstr ""
+
 #: src/components/NewWorkspaceForm.tsx:154
 msgid "Unable to create workspace"
 msgstr "Workspace konnte nicht erstellt werden"
 
-#: src/views/card/components/DeleteCardConfirmation.tsx:51
+#: src/views/card/components/DeleteCardConfirmation.tsx:53
 msgid "Unable to delete card"
 msgstr "Karte konnte nicht gelöscht werden"
 
@@ -1854,7 +2032,7 @@ msgstr "Karte konnte nicht gelöscht werden"
 msgid "Unable to delete checklist"
 msgstr "Checkliste kann nicht gelöscht werden"
 
-#: src/views/card/components/ChecklistItemRow.tsx:87
+#: src/views/card/components/ChecklistItemRow.tsx:86
 msgid "Unable to delete checklist item"
 msgstr "Checklistenelement kann nicht gelöscht werden"
 
@@ -1862,13 +2040,29 @@ msgstr "Checklistenelement kann nicht gelöscht werden"
 msgid "Unable to delete comment"
 msgstr "Kommentar konnte nicht gelöscht werden"
 
+#: src/views/page/index.tsx:143
+msgid "Unable to delete page"
+msgstr ""
+
+#: src/views/page/components/TagSelector.tsx:89
+msgid "Unable to delete tag"
+msgstr ""
+
 #: src/views/members/components/DeleteMemberConfirmation.tsx:27
 msgid "Unable to remove member"
 msgstr "Mitglied konnte nicht entfernt werden"
 
+#: src/views/page/components/TagSelector.tsx:135
+msgid "Unable to remove tag"
+msgstr ""
+
 #: src/components/FeedbackModal.tsx:40
 msgid "Unable to send feedback"
 msgstr "Feedback konnte nicht gesendet werden"
+
+#: src/views/page/components/AuthorSelector.tsx:41
+msgid "Unable to update authors"
+msgstr ""
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:71
 msgid "Unable to update board URL"
@@ -1878,8 +2072,8 @@ msgstr "Board-URL kann nicht aktualisiert werden"
 msgid "Unable to update board visibility"
 msgstr "Board-Sichtbarkeit konnte nicht aktualisiert werden"
 
-#: src/views/board/index.tsx:189
-#: src/views/card/index.tsx:172
+#: src/views/board/index.tsx:193
+#: src/views/card/index.tsx:262
 msgid "Unable to update card"
 msgstr "Karte konnte nicht aktualisiert werden"
 
@@ -1887,7 +2081,7 @@ msgstr "Karte konnte nicht aktualisiert werden"
 msgid "Unable to update checklist"
 msgstr "Checkliste kann nicht aktualisiert werden"
 
-#: src/views/card/components/ChecklistItemRow.tsx:59
+#: src/views/card/components/ChecklistItemRow.tsx:58
 msgid "Unable to update checklist item"
 msgstr "Checklistenelement kann nicht aktualisiert werden"
 
@@ -1899,7 +2093,7 @@ msgstr "Kommentar konnte nicht aktualisiert werden"
 msgid "Unable to update labels"
 msgstr "Labels konnten nicht aktualisiert werden"
 
-#: src/views/board/index.tsx:133
+#: src/views/board/index.tsx:137
 #: src/views/card/components/ListSelector.tsx:51
 msgid "Unable to update list"
 msgstr "Liste konnte nicht aktualisiert werden"
@@ -1907,6 +2101,18 @@ msgstr "Liste konnte nicht aktualisiert werden"
 #: src/views/card/components/MemberSelector.tsx:78
 msgid "Unable to update members"
 msgstr "Mitglieder konnten nicht aktualisiert werden"
+
+#: src/views/page/index.tsx:127
+msgid "Unable to update page"
+msgstr ""
+
+#: src/views/page/components/UpdatePageSlugForm.tsx:57
+msgid "Unable to update page URL"
+msgstr ""
+
+#: src/views/page/components/TagSelector.tsx:104
+msgid "Unable to update tag"
+msgstr ""
 
 #. placeholder {0}: truncate(memberName)
 #: src/views/card/components/ActivityList.tsx:121
@@ -1916,6 +2122,13 @@ msgstr "hat <0>{0}</0> von der Karte entfernt"
 #: src/views/card/components/ActivityList.tsx:118
 msgid "unassigned themselves from the card"
 msgstr "hat sich selbst von der Karte entfernt"
+
+#: src/views/page/index.tsx:518
+#: src/views/page/index.tsx:520
+#: src/views/public/page/index.tsx:231
+#: src/views/public/page/index.tsx:293
+msgid "Unknown"
+msgstr ""
 
 #: src/views/home/components/Pricing.tsx:41
 msgid "Unlimited activity log"
@@ -1947,6 +2160,7 @@ msgid "Unlimited members"
 msgstr "Unbegrenzte Mitglieder"
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:174
+#: src/views/page/components/UpdatePageSlugForm.tsx:214
 #: src/views/settings/components/UpdateDisplayNameForm.tsx:80
 #: src/views/settings/components/UpdateWorkspaceDescriptionForm.tsx:91
 #: src/views/settings/components/UpdateWorkspaceNameForm.tsx:83
@@ -2041,6 +2255,7 @@ msgid "View docs"
 msgstr "Dokumentation ansehen"
 
 #: src/views/public/board/index.tsx:125
+#: src/views/public/page/index.tsx:159
 msgid "View only"
 msgstr "Nur ansehen"
 
@@ -2053,6 +2268,7 @@ msgid "View workspace"
 msgstr "Workspace anzeigen"
 
 #: src/views/board/components/VisibilityButton.tsx:91
+#: src/views/page/index.tsx:334
 msgid "Visibility"
 msgstr "Sichtbarkeit"
 
@@ -2085,7 +2301,7 @@ msgid "Why make an open source Trello?"
 msgstr "Warum ein open source Trello entwickeln?"
 
 #: src/components/SettingsLayout.tsx:39
-#: src/views/board/index.tsx:331
+#: src/views/board/index.tsx:335
 msgid "Workspace"
 msgstr "Arbeitsbereich"
 

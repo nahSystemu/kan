@@ -209,7 +209,9 @@ export default function PublicPageView() {
             <div className="flex max-w-[85%] items-center gap-4 text-xs">
               {/* Author */}
               <div className="flex items-center">
-                <span className="mr-2 text-light-800 dark:text-dark-800">{t`Authors:`}</span>
+                <span className="mr-2 text-light-800 dark:text-dark-800">
+                  {t`Authors`}:
+                </span>
                 {authors.length > 0 ? (
                   <span className="inline-flex items-center gap-2">
                     <span className="isolate -space-x-1 overflow-hidden">
@@ -237,7 +239,9 @@ export default function PublicPageView() {
               </div>
               {/* Tags */}
               <div className="hidden items-center sm:flex">
-                <span className="mr-2 text-light-800 dark:text-dark-800">{t`Tags:`}</span>
+                <span className="mr-2 text-light-800 dark:text-dark-800">
+                  {t`Tags`}:
+                </span>
                 <span className="flex items-center gap-1">
                   {(() => {
                     const allTags =
@@ -277,7 +281,9 @@ export default function PublicPageView() {
               </div>
               {/* Last updated */}
               <div className="flex items-center">
-                <span className="mr-2 text-light-800 dark:text-dark-800">{t`Last updated:`}</span>
+                <span className="mr-2 text-light-800 dark:text-dark-800">
+                  {t`Last updated`}:
+                </span>
                 <span className="text-light-1000 dark:text-dark-1000">
                   {(() => {
                     const d = (page.updatedAt ?? page.createdAt) as
