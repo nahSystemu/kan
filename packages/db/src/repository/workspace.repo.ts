@@ -1,7 +1,13 @@
-import { and, eq, inArray, isNull } from "drizzle-orm";
+import { and, desc, eq, ilike, inArray, isNull, or, sql } from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
-import { boards, workspaceMembers, workspaces } from "@kan/db/schema";
+import {
+  boards,
+  cards,
+  lists,
+  workspaceMembers,
+  workspaces,
+} from "@kan/db/schema";
 import { generateUID } from "@kan/shared/utils";
 
 export const create = async (
@@ -273,4 +279,85 @@ export const isUserInWorkspace = async (
   });
 
   return result?.id !== undefined;
+};
+
+export const searchBoardsAndCards = async (
+  db: dbClient,
+  workspaceId: number,
+  query: string,
+  limit = 20,
+) => {
+  const searchQuery = `%${query}%`;
+
+  // Search for boards
+  const boardResults = await db
+    .select({
+      publicId: boards.publicId,
+      title: boards.name,
+      description: boards.description,
+      slug: boards.slug,
+      updatedAt: boards.updatedAt,
+      createdAt: boards.createdAt,
+    })
+    .from(boards)
+    .where(
+      and(
+        eq(boards.workspaceId, workspaceId),
+        // Combine exact and fuzzy matching
+        or(
+          ilike(boards.name, `%${query}%`), // Exact substring match
+          sql`similarity(${boards.name}, ${query}) > 0.2`, // Fuzzy match
+        ),
+        isNull(boards.deletedAt),
+      ),
+    )
+    .orderBy(
+      sql`CASE WHEN ${boards.name} ILIKE ${`%${query}%`} THEN 1 ELSE 0 END DESC`,
+      sql`similarity(${boards.name}, ${query}) DESC`,
+      desc(boards.updatedAt),
+    )
+    .limit(Math.ceil(limit * 0.4));
+
+  // Search for cards
+  const cardResults = await db
+    .select({
+      publicId: cards.publicId,
+      title: cards.title,
+      description: cards.description,
+      boardPublicId: boards.publicId,
+      boardName: boards.name,
+      listName: lists.name,
+      updatedAt: cards.updatedAt,
+      createdAt: cards.createdAt,
+    })
+    .from(cards)
+    .innerJoin(lists, eq(cards.listId, lists.id))
+    .innerJoin(boards, eq(lists.boardId, boards.id))
+    .where(
+      and(
+        eq(boards.workspaceId, workspaceId),
+        or(
+          ilike(cards.title, searchQuery),
+          sql`similarity(${cards.title}, ${query}) > 0.2`,
+        ),
+        isNull(cards.deletedAt),
+        isNull(lists.deletedAt),
+        isNull(boards.deletedAt),
+      ),
+    )
+    .orderBy(
+      sql`CASE WHEN ${cards.title} ILIKE ${searchQuery} THEN 1 ELSE 0 END DESC`,
+      sql`similarity(${cards.title}, ${query}) DESC`,
+      desc(cards.updatedAt),
+    )
+    .limit(Math.floor(limit * 0.6));
+
+  // Combine results
+  const allResults = [
+    ...boardResults.map((board) => ({ ...board, type: "board" as const })),
+    ...cardResults.map((card) => ({ ...card, type: "card" as const })),
+  ];
+
+  // Ensure we don't exceed the total limit
+  return allResults.slice(0, limit);
 };
