@@ -1,96 +1,80 @@
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "@lingui/core/macro";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { HiXMark } from "react-icons/hi2";
 import { z } from "zod";
 
-import type { Template } from "./TemplateBoards";
 import Button from "~/components/Button";
 import Input from "~/components/Input";
-import Toggle from "~/components/Toggle";
 import { useModal } from "~/providers/modal";
 import { usePopup } from "~/providers/popup";
-import { useWorkspace } from "~/providers/workspace";
 import { api } from "~/utils/api";
-import TemplateBoards from "./TemplateBoards";
 
 const schema = z.object({
   name: z
     .string()
-    .min(1, { message: t`Board name is required` })
-    .max(100, { message: t`Board name cannot exceed 100 characters` }),
+    .min(1, { message: t`Template name is required` })
+    .max(100, { message: t`Template name cannot exceed 100 characters` }),
   workspacePublicId: z.string(),
-  template: z.custom<Template | null>(),
+  sourceBoardPublicId: z.string(),
 });
 
 interface NewBoardInputWithTemplate {
   name: string;
   workspacePublicId: string;
-  template: Template | null;
+  sourceBoardPublicId: string;
 }
 
-export function NewBoardForm({ isTemplate }: { isTemplate?: boolean }) {
-  const utils = api.useUtils();
-  const { closeModal } = useModal();
+export function NewTemplateForm({
+  sourceBoardPublicId,
+  workspacePublicId,
+  sourceBoardName,
+}: {
+  sourceBoardPublicId: string;
+  workspacePublicId: string;
+  sourceBoardName: string;
+}) {
   const router = useRouter();
+  const { closeModal } = useModal();
   const { showPopup } = usePopup();
-  const { workspace } = useWorkspace();
-  const [showTemplates, setShowTemplates] = useState(false);
-  const { data: templates } = api.board.all.useQuery(
-    { workspacePublicId: workspace.publicId ?? "", type: "template" },
-    { enabled: !!workspace.publicId },
-  );
-
-  const formattedTemplates = templates?.map((template) => ({
-    id: template.publicId,
-    sourceBoardPublicId: template.publicId,
-    name: template.name,
-    lists: template.lists.map((list) => list.name),
-    labels: template.labels.map((label) => label.name),
-  }));
 
   const {
     register,
     handleSubmit,
-    watch,
-    setValue,
     formState: { errors },
   } = useForm<NewBoardInputWithTemplate>({
     resolver: zodResolver(schema),
     defaultValues: {
-      name: "",
-      workspacePublicId: workspace.publicId || "",
-      template: null,
+      name: sourceBoardName,
+      workspacePublicId,
+      sourceBoardPublicId,
     },
   });
 
-  const currentTemplate = watch("template");
-
-  const refetchBoards = () => utils.board.all.refetch();
-
   const createBoard = api.board.create.useMutation({
-    onSuccess: async (board) => {
-      if (!board) {
+    onSuccess: (newTemplate) => {
+      if (!newTemplate) {
         showPopup({
-          header: t`Error`,
-          message: t`Failed to create board`,
+          header: t`Unable to create template`,
+          message: t`Please try again later, or contact customer support.`,
           icon: "error",
         });
       } else {
-        router.push(
-          `${isTemplate ? "/templates" : "/boards"}/${board.publicId}`,
-        );
+        router.push(`/templates/${newTemplate.publicId}`);
+        showPopup({
+          header: t`Template created`,
+          message: t`Template created successfully`,
+          icon: "success",
+        });
       }
       closeModal();
-
-      await refetchBoards();
     },
     onError: () => {
       showPopup({
-        header: t`Error`,
-        message: t`Failed to create board`,
+        header: t`Unable to create template`,
+        message: t`Please try again later, or contact customer support.`,
         icon: "error",
       });
     },
@@ -100,10 +84,10 @@ export function NewBoardForm({ isTemplate }: { isTemplate?: boolean }) {
     createBoard.mutate({
       name: data.name,
       workspacePublicId: data.workspacePublicId,
-      sourceBoardPublicId: data.template?.sourceBoardPublicId ?? undefined,
-      lists: data.template?.lists ?? [],
-      labels: data.template?.labels ?? [],
-      type: isTemplate ? "template" : "regular",
+      sourceBoardPublicId: data.sourceBoardPublicId,
+      lists: [],
+      labels: [],
+      type: "template",
     });
   };
 
@@ -117,7 +101,7 @@ export function NewBoardForm({ isTemplate }: { isTemplate?: boolean }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="px-5 pt-5">
         <div className="text-neutral-9000 flex w-full items-center justify-between pb-4 dark:text-dark-1000">
-          <h2 className="text-sm font-bold">{t`New ${isTemplate ? "template" : "board"}`}</h2>
+          <h2 className="text-sm font-bold">{t`New template`}</h2>
           <button
             type="button"
             className="hover:bg-li ght-300 rounded p-1 focus:outline-none dark:hover:bg-dark-300"
@@ -142,28 +126,10 @@ export function NewBoardForm({ isTemplate }: { isTemplate?: boolean }) {
           }}
         />
       </div>
-      <TemplateBoards
-        currentBoard={currentTemplate}
-        setCurrentBoard={(t) => setValue("template", t)}
-        showTemplates={showTemplates}
-        customTemplates={formattedTemplates ?? []}
-      />
       <div className="mt-12 flex items-center justify-end border-t border-light-600 px-5 pb-5 pt-5 dark:border-dark-600">
-        {!isTemplate && (
-          <Toggle
-            label={t`Use template`}
-            isChecked={showTemplates}
-            onChange={() => {
-              setShowTemplates(!showTemplates);
-              if (!showTemplates && !currentTemplate) {
-                setValue("template", (templates?.[0] as any) ?? null);
-              }
-            }}
-          />
-        )}
         <div>
           <Button type="submit" isLoading={createBoard.isPending}>
-            {t`Create ${isTemplate ? "template" : "board"}`}
+            {t`Create template`}
           </Button>
         </div>
       </div>

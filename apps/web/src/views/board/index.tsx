@@ -7,7 +7,11 @@ import { keepPreviousData } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
-import { HiOutlinePlusSmall, HiOutlineSquare3Stack3D } from "react-icons/hi2";
+import {
+  HiOutlinePlusSmall,
+  HiOutlineRectangleStack,
+  HiOutlineSquare3Stack3D,
+} from "react-icons/hi2";
 
 import type { UpdateBoardInput } from "@kan/api/types";
 
@@ -32,14 +36,15 @@ import Filters from "./components/Filters";
 import List from "./components/List";
 import { NewCardForm } from "./components/NewCardForm";
 import { NewListForm } from "./components/NewListForm";
+import { NewTemplateForm } from "./components/NewTemplateForm";
 import UpdateBoardSlugButton from "./components/UpdateBoardSlugButton";
 import { UpdateBoardSlugForm } from "./components/UpdateBoardSlugForm";
 import VisibilityButton from "./components/VisibilityButton";
 
 type PublicListId = string;
 
-export default function BoardPage() {
-  const params = useParams() as { boardId: string[] } | null;
+export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
+  const params = useParams() as { boardId: string | string[] } | null;
   const router = useRouter();
   const utils = api.useUtils();
   const { showPopup } = usePopup();
@@ -49,7 +54,11 @@ export default function BoardPage() {
     useState<PublicListId>("");
   const [isInitialLoading, setIsInitialLoading] = useState(true);
 
-  const boardId = params?.boardId.length ? params.boardId[0] : null;
+  const boardId = params?.boardId
+    ? Array.isArray(params.boardId)
+      ? params.boardId[0]
+      : params.boardId
+    : null;
 
   const updateBoard = api.board.update.useMutation();
 
@@ -67,10 +76,16 @@ export default function BoardPage() {
     });
   };
 
-  const queryParams = {
+  const queryParams: {
+    boardPublicId: string;
+    members: string[];
+    labels: string[];
+    type: "regular" | "template";
+  } = {
     boardPublicId: boardId ?? "",
     members: formatToArray(router.query.members),
     labels: formatToArray(router.query.labels),
+    type: isTemplate ? "template" : "regular",
   };
 
   const {
@@ -208,7 +223,7 @@ export default function BoardPage() {
   };
 
   const onDragEnd = ({
-    source,
+    source: _source,
     destination,
     draggableId,
     type,
@@ -241,7 +256,10 @@ export default function BoardPage() {
           modalSize="sm"
           isVisible={isOpen && modalContentType === "DELETE_BOARD"}
         >
-          <DeleteBoardConfirmation boardPublicId={boardId ?? ""} />
+          <DeleteBoardConfirmation
+            isTemplate={!!isTemplate}
+            boardPublicId={boardId ?? ""}
+          />
         </Modal>
 
         <Modal
@@ -259,6 +277,7 @@ export default function BoardPage() {
           isVisible={isOpen && modalContentType === "NEW_CARD"}
         >
           <NewCardForm
+            isTemplate={!!isTemplate}
             boardPublicId={boardId ?? ""}
             listPublicId={selectedPublicListId}
             queryParams={queryParams}
@@ -321,6 +340,17 @@ export default function BoardPage() {
             queryParams={queryParams}
           />
         </Modal>
+
+        <Modal
+          modalSize="sm"
+          isVisible={isOpen && modalContentType === "CREATE_TEMPLATE"}
+        >
+          <NewTemplateForm
+            workspacePublicId={workspace.publicId ?? ""}
+            sourceBoardPublicId={boardId ?? ""}
+            sourceBoardName={boardData?.name ?? ""}
+          />
+        </Modal>
       </>
     );
   };
@@ -328,7 +358,7 @@ export default function BoardPage() {
   return (
     <>
       <PageHead
-        title={`${boardData?.name ?? t`Board`} | ${workspace.name ?? t`Workspace`}`}
+        title={`${(boardData?.name ?? isTemplate) ? t`Board` : t`Template`} | ${workspace.name}`}
       />
       <div className="relative flex h-full flex-col">
         <PatternedBackground />
@@ -354,31 +384,46 @@ export default function BoardPage() {
           )}
           {!boardData && !isLoading && (
             <p className="order-2 block p-0 py-0 font-bold leading-[2.3rem] tracking-tight text-neutral-900 dark:text-dark-1000 sm:text-[1.2rem] md:order-1">
-              {t`Board not found`}
+              {t`${isTemplate ? "Template" : "Board"} not found`}
             </p>
           )}
-
           <div className="order-1 mb-4 flex items-center justify-end space-x-2 md:order-2 md:mb-0">
-            <UpdateBoardSlugButton
-              handleOnClick={() => openModal("UPDATE_BOARD_SLUG")}
-              isLoading={isLoading}
-              workspaceSlug={workspace.slug ?? ""}
-              boardSlug={boardData?.slug ?? ""}
-            />
-            <VisibilityButton
-              visibility={boardData?.visibility ?? "private"}
-              boardPublicId={boardId ?? ""}
-              boardSlug={boardData?.slug ?? ""}
-              queryParams={queryParams}
-              isLoading={!boardData}
-              isAdmin={workspace.role === "admin"}
-            />
-            <Filters
-              labels={boardData?.labels ?? []}
-              members={boardData?.workspace.members?.filter(member => member.user !== null) ?? []}
-              position="left"
-              isLoading={!boardData}
-            />
+            {isTemplate && (
+              <div className="inline-flex cursor-default items-center justify-center whitespace-nowrap rounded-md border-[1px] border-light-300 bg-light-50 px-3 py-2 text-sm font-semibold text-light-950 shadow-sm dark:border-dark-300 dark:bg-dark-50 dark:text-dark-950">
+                <span className="mr-2">
+                  <HiOutlineRectangleStack />
+                </span>
+                {t`Template`}
+              </div>
+            )}
+            {!isTemplate && (
+              <>
+                <UpdateBoardSlugButton
+                  handleOnClick={() => openModal("UPDATE_BOARD_SLUG")}
+                  isLoading={isLoading}
+                  workspaceSlug={workspace.slug ?? ""}
+                  boardSlug={boardData?.slug ?? ""}
+                />
+                <VisibilityButton
+                  visibility={boardData?.visibility ?? "private"}
+                  boardPublicId={boardId ?? ""}
+                  boardSlug={boardData?.slug ?? ""}
+                  queryParams={queryParams}
+                  isLoading={!boardData}
+                  isAdmin={workspace.role === "admin"}
+                />
+                {boardData && (
+                  <Filters
+                    labels={boardData.labels}
+                    members={boardData.workspace.members.filter(
+                      (member) => member.user !== null,
+                    )}
+                    position="left"
+                    isLoading={!boardData}
+                  />
+                )}
+              </>
+            )}
             <Button
               iconLeft={
                 <HiOutlinePlusSmall
@@ -393,7 +438,12 @@ export default function BoardPage() {
             >
               {t`New list`}
             </Button>
-            <BoardDropdown isLoading={!boardData} />
+            <BoardDropdown
+              isTemplate={!!isTemplate}
+              isLoading={!boardData}
+              boardPublicId={boardId ?? ""}
+              workspacePublicId={workspace.publicId}
+            />
           </div>
         </div>
 
@@ -475,7 +525,11 @@ export default function BoardPage() {
                                               e.preventDefault();
                                           }}
                                           key={card.publicId}
-                                          href={`/cards/${card.publicId}`}
+                                          href={
+                                            isTemplate
+                                              ? `/templates/${boardId}/cards/${card.publicId}`
+                                              : `/cards/${card.publicId}`
+                                          }
                                           className={`mb-2 flex !cursor-pointer flex-col ${
                                             card.publicId.startsWith(
                                               "PLACEHOLDER",

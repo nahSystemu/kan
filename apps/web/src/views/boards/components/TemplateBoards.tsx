@@ -4,6 +4,7 @@ import { HiCheckCircle } from "react-icons/hi2";
 
 export interface Template {
   id: string;
+  sourceBoardPublicId?: string;
   name: string;
   lists: string[];
   labels: string[];
@@ -88,16 +89,18 @@ export default function TemplateBoards({
   currentBoard,
   setCurrentBoard,
   showTemplates,
+  customTemplates,
 }: {
   currentBoard: Template | null;
   setCurrentBoard: (board: Template | null) => void;
   showTemplates: boolean;
+  customTemplates: Template[] | null;
 }) {
   const [showFade, setShowFade] = useState(false);
   const [showTopFade, setShowTopFade] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const templates = getTemplates();
+  const templates = [...(customTemplates ?? []), ...getTemplates()];
 
   const handleScroll = () => {
     if (!scrollRef.current) return;

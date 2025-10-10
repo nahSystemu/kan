@@ -25,7 +25,12 @@ export const boardRouter = createTRPCRouter({
         protect: true,
       },
     })
-    .input(z.object({ workspacePublicId: z.string().min(12) }))
+    .input(
+      z.object({
+        workspacePublicId: z.string().min(12),
+        type: z.enum(["regular", "template"]).optional(),
+      }),
+    )
     .output(
       z.custom<Awaited<ReturnType<typeof boardRepo.getAllByWorkspaceId>>>(),
     )
@@ -51,7 +56,9 @@ export const boardRouter = createTRPCRouter({
 
       await assertUserInWorkspace(ctx.db, userId, workspace.id);
 
-      const result = boardRepo.getAllByWorkspaceId(ctx.db, workspace.id);
+      const result = boardRepo.getAllByWorkspaceId(ctx.db, workspace.id, {
+        type: input.type,
+      });
 
       return result;
     }),
@@ -71,6 +78,7 @@ export const boardRouter = createTRPCRouter({
         boardPublicId: z.string().min(12),
         members: z.array(z.string().min(12)).optional(),
         labels: z.array(z.string().min(12)).optional(),
+        type: z.enum(["regular", "template"]).optional(),
       }),
     )
     .output(z.custom<Awaited<ReturnType<typeof boardRepo.getByPublicId>>>())
@@ -102,6 +110,7 @@ export const boardRouter = createTRPCRouter({
         {
           members: input.members ?? [],
           labels: input.labels ?? [],
+          type: input.type,
         },
       );
 
@@ -177,6 +186,8 @@ export const boardRouter = createTRPCRouter({
         workspacePublicId: z.string().min(12),
         lists: z.array(z.string().min(1)),
         labels: z.array(z.string().min(1)),
+        type: z.enum(["regular", "template"]).optional(),
+        sourceBoardPublicId: z.string().min(12).optional(),
       }),
     )
     .output(z.custom<Awaited<ReturnType<typeof boardRepo.create>>>())
@@ -202,6 +213,79 @@ export const boardRouter = createTRPCRouter({
 
       await assertUserInWorkspace(ctx.db, userId, workspace.id);
 
+      // If sourceBoardPublicId is provided, clone the source board
+      if (input.sourceBoardPublicId) {
+        // First get the source board info (ID and type)
+        const sourceBoardInfo = await boardRepo.getIdByPublicId(
+          ctx.db,
+          input.sourceBoardPublicId,
+        );
+
+        if (!sourceBoardInfo)
+          throw new TRPCError({
+            message: `Source board with public ID ${input.sourceBoardPublicId} not found`,
+            code: "NOT_FOUND",
+          });
+
+        // Get the full board data with the correct type
+        const sourceBoard = await boardRepo.getByPublicId(
+          ctx.db,
+          input.sourceBoardPublicId,
+          {
+            members: [],
+            labels: [],
+            type: sourceBoardInfo.type,
+          },
+        );
+
+        if (!sourceBoard)
+          throw new TRPCError({
+            message: `Source board with public ID ${input.sourceBoardPublicId} not found`,
+            code: "NOT_FOUND",
+          });
+
+        // Verify the source board belongs to the same workspace
+        const sourceWorkspace = await workspaceRepo.getByPublicId(
+          ctx.db,
+          sourceBoard.workspace.publicId,
+        );
+
+        if (!sourceWorkspace || sourceWorkspace.id !== workspace.id)
+          throw new TRPCError({
+            message: `Source board does not belong to this workspace`,
+            code: "FORBIDDEN",
+          });
+
+        let slug = generateSlug(input.name);
+
+        const isSlugUnique = await boardRepo.isSlugUnique(ctx.db, {
+          slug,
+          workspaceId: workspace.id,
+        });
+
+        if (!isSlugUnique || input.type === "template")
+          slug = `${slug}-${generateUID()}`;
+
+        const result = await boardRepo.createFromSnapshot(ctx.db, {
+          source: sourceBoard,
+          workspaceId: workspace.id,
+          createdBy: userId,
+          slug,
+          name: input.name,
+          type: input.type ?? "regular",
+          sourceBoardId: sourceBoardInfo.id,
+        });
+
+        if (!result)
+          throw new TRPCError({
+            message: `Failed to create board from source`,
+            code: "INTERNAL_SERVER_ERROR",
+          });
+
+        return result;
+      }
+
+      // Otherwise, create a new board with provided lists and labels
       let slug = generateSlug(input.name);
 
       const isSlugUnique = await boardRepo.isSlugUnique(ctx.db, {
@@ -209,7 +293,8 @@ export const boardRouter = createTRPCRouter({
         workspaceId: workspace.id,
       });
 
-      if (!isSlugUnique) slug = `${slug}-${generateUID()}`;
+      if (!isSlugUnique || input.type === "template")
+        slug = `${slug}-${generateUID()}`;
 
       const result = await boardRepo.create(ctx.db, {
         publicId: generateUID(),
@@ -217,6 +302,7 @@ export const boardRouter = createTRPCRouter({
         name: input.name,
         createdBy: userId,
         workspaceId: workspace.id,
+        type: input.type,
       });
 
       if (!result)
