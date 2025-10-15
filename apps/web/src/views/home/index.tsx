@@ -2,21 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
-import { IoLogoGithub, IoLogoHackernews } from "react-icons/io";
+import { useTheme } from "next-themes";
+import { IoLogoGithub } from "react-icons/io";
 
 import Button from "~/components/Button";
 import { PageHead } from "~/components/PageHead";
-import { useTheme } from "next-themes";
 import Cta from "./components/Cta";
 import FAQs from "./components/Faqs";
 import Features from "./components/Features";
 import Layout from "./components/Layout";
-import Pricing from "./components/Pricing";
 
 export default function HomeView() {
   const { resolvedTheme } = useTheme();
-
-  const isDarkMode = resolvedTheme === "dark";
 
   return (
     <Layout>
@@ -68,7 +65,7 @@ export default function HomeView() {
               </Trans>
             </p>
 
-            <p className="text-md mt-3 max-w-[450px] text-center text-dark-900 lg:max-w-[600px] lg:text-lg">
+            <p className="text-md mt-3 max-w-[450px] text-center text-light-950 dark:text-dark-900 lg:max-w-[600px] lg:text-lg">
               {t`A powerful, flexible kanban app that helps you organise work, track progress, and deliver results—all in one place.`}
             </p>
 
@@ -82,7 +79,7 @@ export default function HomeView() {
                 {t`Self host with Github`}
               </Button>
             </div>
-            <p className="mt-4 text-center text-sm text-dark-900">
+            <p className="mt-4 text-center text-sm text-light-950 dark:text-dark-900">
               {t`No credit card required`}
             </p>
           </div>
@@ -110,10 +107,6 @@ export default function HomeView() {
         <div className="relative pt-10">
           <div id="features" className="absolute -top-20" />
           <Features theme={resolvedTheme === "dark" ? "dark" : "light"} />
-        </div>
-        <div className="relative pt-10">
-          <div id="pricing" className="absolute -top-20" />
-          <Pricing />
         </div>
         <div className="relative pt-10">
           <div id="faq" className="absolute -top-20" />
