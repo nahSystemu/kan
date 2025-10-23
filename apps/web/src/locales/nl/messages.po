@@ -22,15 +22,15 @@ msgid ", or see our"
 msgstr ", of bekijk onze"
 
 #. placeholder {0}: isTemplate ? "Templates" : "Boards"
-#: src/views/boards/index.tsx:34
+#: src/views/boards/index.tsx:27
 msgid "{0}"
 msgstr "{0}"
 
-#. placeholder {0}: card?.title ?? "Card"
+#. placeholder {0}: card?.title ?? t`Card`
 #. placeholder {0}: isTemplate ? "Templates" : "Boards"
-#. placeholder {1}: board?.name ?? "Board"
-#. placeholder {1}: workspace.name ?? "Workspace"
-#: src/views/boards/index.tsx:29
+#. placeholder {1}: board?.name ?? t`Board`
+#. placeholder {1}: workspace.name ?? t`Workspace`
+#: src/views/boards/index.tsx:22
 #: src/views/card/index.tsx:216
 msgid "{0} | {1}"
 msgstr "{0} | {1}"
@@ -301,6 +301,8 @@ msgid "Blog Post"
 msgstr "Blogbericht"
 
 #: src/views/board/index.tsx:361
+#: src/views/card/index.tsx:216
+#: src/views/public/board/index.tsx:100
 msgid "Board"
 msgstr "Bord"
 
@@ -317,7 +319,7 @@ msgstr "Bordnaam mag niet langer zijn dan 100 tekens"
 msgid "Board name is required"
 msgstr "Bordnaam is verplicht"
 
-#: src/views/public/board/index.tsx:148
+#: src/views/public/board/index.tsx:151
 msgid "Board not found"
 msgstr "Bord niet gevonden"
 
@@ -333,7 +335,7 @@ msgstr "Board URL kan alleen letters, cijfers en koppeltekens bevatten"
 msgid "Board URL cannot exceed 60 characters"
 msgstr "Board URL mag niet langer zijn dan 60 tekens"
 
-#: src/views/public/board/index.tsx:64
+#: src/views/public/board/index.tsx:67
 msgid "Board URL copied to clipboard"
 msgstr "Board URL gekopieerd naar klembord"
 
@@ -380,6 +382,10 @@ msgstr "Bugrapport"
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:104
 msgid "Cancel"
 msgstr "Annuleren"
+
+#: src/views/card/index.tsx:216
+msgid "Card"
+msgstr "Kaart"
 
 #: src/views/card/index.tsx:262
 msgid "Card not found"
@@ -973,14 +979,12 @@ msgid "For long-term sustainability, we recognise all good open source projects 
 msgstr "Voor duurzaamheid op lange termijn erkennen we dat alle goede open source projecten een inkomstenbron nodig hebben. De onze komt van de betaalde cloudoplossing voor werkruimtes met meerdere gebruikers (gratis tijdens de bèta) en voor aangepaste werkruimte-slugs. Je bent niet verplicht om hiervan gebruik te maken en je kunt de software gratis op je eigen infrastructuur hosten."
 
 #: src/views/pricing/components/Pricing.tsx:32
-#: src/views/pricing/components/Pricing.tsx:32
-#: src/views/pricing/components/PricingTiers.tsx:30
 #: src/views/pricing/components/PricingTiers.tsx:30
 msgid "Free"
 msgstr "Gratis"
 
 #: src/views/members/components/InviteMemberForm.tsx:326
-#: src/views/members/index.tsx:209
+#: src/views/members/index.tsx:208
 msgid "Free Plan"
 msgstr "Gratis plan"
 
@@ -1099,7 +1103,7 @@ msgstr "Ideeën"
 msgid "Ideas to improve this page..."
 msgstr "Ideeën om deze pagina te verbeteren..."
 
-#: src/views/boards/index.tsx:46
+#: src/views/boards/index.tsx:39
 msgid "Import"
 msgstr "Importeren"
 
@@ -1167,7 +1171,7 @@ msgstr "Ongeldig e-mailadres"
 msgid "Invalid invitation"
 msgstr "Ongeldige uitnodiging"
 
-#: src/views/members/index.tsx:222
+#: src/views/members/index.tsx:221
 msgid "Invite"
 msgstr "Uitnodigen"
 
@@ -1253,7 +1257,7 @@ msgstr "Taal"
 msgid "Launch offer"
 msgstr "Introductieaanbieding"
 
-#: src/views/members/index.tsx:192
+#: src/views/members/index.tsx:191
 msgid "Launch offer: Get unlimited members with Pro"
 msgstr "Lanceringsaanbieding: krijg onbeperkt aantal leden met Pro"
 
@@ -1278,7 +1282,7 @@ msgstr "Licentie"
 msgid "Light"
 msgstr "Licht"
 
-#: src/views/public/board/index.tsx:62
+#: src/views/public/board/index.tsx:65
 msgid "Link copied"
 msgstr "Link gekopieerd"
 
@@ -1331,12 +1335,12 @@ msgstr "Gemiddelde prioriteit"
 #: src/views/board/components/Filters.tsx:93
 #: src/views/board/components/NewCardForm.tsx:366
 #: src/views/card/index.tsx:126
-#: src/views/members/index.tsx:179
+#: src/views/members/index.tsx:178
 msgid "Members"
 msgstr "Leden"
 
-#. placeholder {0}: workspace.name ?? "Workspace"
-#: src/views/members/index.tsx:174
+#. placeholder {0}: workspace.name ?? t`Workspace`
+#: src/views/members/index.tsx:173
 msgid "Members | {0}"
 msgstr "Leden | {0}"
 
@@ -1369,7 +1373,7 @@ msgstr "Naam"
 msgid "Need help?"
 msgstr "Hulp nodig?"
 
-#: src/views/boards/index.tsx:57
+#: src/views/boards/index.tsx:50
 #: src/views/home/components/Features.tsx:73
 msgid "New"
 msgstr "Nieuw"
@@ -1514,7 +1518,7 @@ msgstr "Wachtwoord moet minimaal 8 tekens bevatten"
 msgid "Passwords do not match"
 msgstr "Wachtwoorden komen niet overeen"
 
-#: src/views/members/index.tsx:135
+#: src/views/members/index.tsx:134
 msgid "Paused"
 msgstr "Gepauzeerd"
 
@@ -1523,7 +1527,7 @@ msgstr "Gepauzeerd"
 msgid "Payment frequency"
 msgstr "Betalingsfrequentie"
 
-#: src/views/members/index.tsx:135
+#: src/views/members/index.tsx:134
 msgid "Pending"
 msgstr "In behandeling"
 
@@ -1639,7 +1643,7 @@ msgstr "Privacybeleid"
 msgid "Private"
 msgstr "Privé"
 
-#: src/views/members/index.tsx:206
+#: src/views/members/index.tsx:205
 msgid "Pro Plan"
 msgstr "Pro Plan"
 
@@ -1687,7 +1691,7 @@ msgstr "Op afstand"
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: src/views/members/index.tsx:149
+#: src/views/members/index.tsx:148
 msgid "Remove member"
 msgstr "Lid verwijderen"
 
@@ -1744,7 +1748,7 @@ msgstr "Beoordeling"
 msgid "Roadmap"
 msgstr "Roadmap"
 
-#: src/views/members/index.tsx:244
+#: src/views/members/index.tsx:243
 msgid "Role"
 msgstr "Rol"
 
@@ -1905,7 +1909,7 @@ msgid "System"
 msgstr "Systeem"
 
 #: src/views/members/components/InviteMemberForm.tsx:315
-#: src/views/members/index.tsx:208
+#: src/views/members/index.tsx:207
 msgid "Team Plan"
 msgstr "Teamplan"
 
@@ -1986,7 +1990,7 @@ msgstr "Deze actie kan niet ongedaan worden gemaakt."
 msgid "This API key will only be shown once. Please save it in a secure location."
 msgstr "Deze API-sleutel wordt slechts één keer getoond. Bewaar deze op een veilige plaats."
 
-#: src/views/public/board/index.tsx:151
+#: src/views/public/board/index.tsx:154
 msgid "This board is private or does not exist"
 msgstr "Dit bord is privé of bestaat niet"
 
@@ -2256,7 +2260,7 @@ msgstr "URL moet minimaal 3 tekens lang zijn"
 msgid "Use template"
 msgstr "Sjabloon gebruiken"
 
-#: src/views/members/index.tsx:238
+#: src/views/members/index.tsx:237
 msgid "User"
 msgstr "Gebruiker"
 
@@ -2281,7 +2285,7 @@ msgstr "Bekijk en beheer je facturering en abonnement."
 msgid "View docs"
 msgstr "Bekijk documentatie"
 
-#: src/views/public/board/index.tsx:125
+#: src/views/public/board/index.tsx:128
 msgid "View only"
 msgstr "Alleen bekijken"
 
@@ -2289,7 +2293,7 @@ msgstr "Alleen bekijken"
 msgid "View our roadmap."
 msgstr "Bekijk onze roadmap."
 
-#: src/views/public/board/index.tsx:154
+#: src/views/public/board/index.tsx:157
 msgid "View workspace"
 msgstr "Werkruimte bekijken"
 
@@ -2330,6 +2334,11 @@ msgid "Why make an open source Trello?"
 msgstr "Waarom een open source Trello maken?"
 
 #: src/components/SettingsLayout.tsx:39
+#: src/views/board/index.tsx:361
+#: src/views/boards/index.tsx:22
+#: src/views/members/index.tsx:173
+#: src/views/public/board/index.tsx:100
+#: src/views/public/boards/index.tsx:66
 msgid "Workspace"
 msgstr "Werkruimte"
 

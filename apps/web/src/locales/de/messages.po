@@ -22,15 +22,15 @@ msgid ", or see our"
 msgstr ", oder besuche unsere"
 
 #. placeholder {0}: isTemplate ? "Templates" : "Boards"
-#: src/views/boards/index.tsx:34
+#: src/views/boards/index.tsx:27
 msgid "{0}"
 msgstr "{0}"
 
-#. placeholder {0}: card?.title ?? "Card"
+#. placeholder {0}: card?.title ?? t`Card`
 #. placeholder {0}: isTemplate ? "Templates" : "Boards"
-#. placeholder {1}: board?.name ?? "Board"
-#. placeholder {1}: workspace.name ?? "Workspace"
-#: src/views/boards/index.tsx:29
+#. placeholder {1}: board?.name ?? t`Board`
+#. placeholder {1}: workspace.name ?? t`Workspace`
+#: src/views/boards/index.tsx:22
 #: src/views/card/index.tsx:216
 msgid "{0} | {1}"
 msgstr "{0} | {1}"
@@ -301,6 +301,8 @@ msgid "Blog Post"
 msgstr "Blogbeitrag"
 
 #: src/views/board/index.tsx:361
+#: src/views/card/index.tsx:216
+#: src/views/public/board/index.tsx:100
 msgid "Board"
 msgstr "Board"
 
@@ -317,7 +319,7 @@ msgstr "Der Name des Boards darf 100 Zeichen nicht überschreiten"
 msgid "Board name is required"
 msgstr "Boardname ist erforderlich"
 
-#: src/views/public/board/index.tsx:148
+#: src/views/public/board/index.tsx:151
 msgid "Board not found"
 msgstr "Board nicht gefunden"
 
@@ -333,7 +335,7 @@ msgstr "Board-URL darf nur Buchstaben, Zahlen und Bindestriche enthalten"
 msgid "Board URL cannot exceed 60 characters"
 msgstr "Board-URL darf 60 Zeichen nicht überschreiten"
 
-#: src/views/public/board/index.tsx:64
+#: src/views/public/board/index.tsx:67
 msgid "Board URL copied to clipboard"
 msgstr "Board-URL in die Zwischenablage kopiert"
 
@@ -380,6 +382,10 @@ msgstr "Fehlerbericht"
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:104
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: src/views/card/index.tsx:216
+msgid "Card"
+msgstr "Karte"
 
 #: src/views/card/index.tsx:262
 msgid "Card not found"
@@ -973,14 +979,12 @@ msgid "For long-term sustainability, we recognise all good open source projects 
 msgstr "Für langfristige Nachhaltigkeit erkennen wir an, dass alle guten Open-Source-Projekte eine Einnahmequelle benötigen. Unsere stammt aus dem kostenpflichtigen Cloud-Angebot für Workspaces mit mehreren Benutzern (kostenlos während der Beta-Phase) und für benutzerdefinierte Workspace-Slugs. Es besteht keine Verpflichtung, dieses Angebot zu nutzen, und Sie können die Software kostenlos auf Ihrer eigenen Infrastruktur selbst hosten."
 
 #: src/views/pricing/components/Pricing.tsx:32
-#: src/views/pricing/components/Pricing.tsx:32
-#: src/views/pricing/components/PricingTiers.tsx:30
 #: src/views/pricing/components/PricingTiers.tsx:30
 msgid "Free"
 msgstr "Kostenlos"
 
 #: src/views/members/components/InviteMemberForm.tsx:326
-#: src/views/members/index.tsx:209
+#: src/views/members/index.tsx:208
 msgid "Free Plan"
 msgstr "Kostenloser Plan"
 
@@ -1099,7 +1103,7 @@ msgstr "Ideen"
 msgid "Ideas to improve this page..."
 msgstr "Ideen zur Verbesserung dieser Seite..."
 
-#: src/views/boards/index.tsx:46
+#: src/views/boards/index.tsx:39
 msgid "Import"
 msgstr "Importieren"
 
@@ -1167,7 +1171,7 @@ msgstr "Ungültige E-Mail-Adresse"
 msgid "Invalid invitation"
 msgstr "Ungültige Einladung"
 
-#: src/views/members/index.tsx:222
+#: src/views/members/index.tsx:221
 msgid "Invite"
 msgstr "Einladen"
 
@@ -1253,7 +1257,7 @@ msgstr "Sprache"
 msgid "Launch offer"
 msgstr "Einführungsangebot"
 
-#: src/views/members/index.tsx:192
+#: src/views/members/index.tsx:191
 msgid "Launch offer: Get unlimited members with Pro"
 msgstr "Einführungsangebot: Erhalten Sie unbegrenzte Mitglieder mit Pro"
 
@@ -1278,7 +1282,7 @@ msgstr "Lizenz"
 msgid "Light"
 msgstr "Hell"
 
-#: src/views/public/board/index.tsx:62
+#: src/views/public/board/index.tsx:65
 msgid "Link copied"
 msgstr "Link kopiert"
 
@@ -1331,12 +1335,12 @@ msgstr "Mittlere Priorität"
 #: src/views/board/components/Filters.tsx:93
 #: src/views/board/components/NewCardForm.tsx:366
 #: src/views/card/index.tsx:126
-#: src/views/members/index.tsx:179
+#: src/views/members/index.tsx:178
 msgid "Members"
 msgstr "Mitglieder"
 
-#. placeholder {0}: workspace.name ?? "Workspace"
-#: src/views/members/index.tsx:174
+#. placeholder {0}: workspace.name ?? t`Workspace`
+#: src/views/members/index.tsx:173
 msgid "Members | {0}"
 msgstr "Mitglieder | {0}"
 
@@ -1369,7 +1373,7 @@ msgstr "Name"
 msgid "Need help?"
 msgstr "Brauchst du Hilfe?"
 
-#: src/views/boards/index.tsx:57
+#: src/views/boards/index.tsx:50
 #: src/views/home/components/Features.tsx:73
 msgid "New"
 msgstr "Neu"
@@ -1514,7 +1518,7 @@ msgstr "Passwort muss mindestens 8 Zeichen lang sein"
 msgid "Passwords do not match"
 msgstr "Passwörter stimmen nicht überein"
 
-#: src/views/members/index.tsx:135
+#: src/views/members/index.tsx:134
 msgid "Paused"
 msgstr "Pausiert"
 
@@ -1523,7 +1527,7 @@ msgstr "Pausiert"
 msgid "Payment frequency"
 msgstr "Zahlungshäufigkeit"
 
-#: src/views/members/index.tsx:135
+#: src/views/members/index.tsx:134
 msgid "Pending"
 msgstr "Ausstehend"
 
@@ -1639,7 +1643,7 @@ msgstr "Datenschutzrichtlinie"
 msgid "Private"
 msgstr "Privat"
 
-#: src/views/members/index.tsx:206
+#: src/views/members/index.tsx:205
 msgid "Pro Plan"
 msgstr "Pro-Plan"
 
@@ -1687,7 +1691,7 @@ msgstr "Remote"
 msgid "Remove"
 msgstr "Entfernen"
 
-#: src/views/members/index.tsx:149
+#: src/views/members/index.tsx:148
 msgid "Remove member"
 msgstr "Mitglied entfernen"
 
@@ -1744,7 +1748,7 @@ msgstr "Überprüfung"
 msgid "Roadmap"
 msgstr "Roadmap"
 
-#: src/views/members/index.tsx:244
+#: src/views/members/index.tsx:243
 msgid "Role"
 msgstr "Rolle"
 
@@ -1905,7 +1909,7 @@ msgid "System"
 msgstr "System"
 
 #: src/views/members/components/InviteMemberForm.tsx:315
-#: src/views/members/index.tsx:208
+#: src/views/members/index.tsx:207
 msgid "Team Plan"
 msgstr "Team-Plan"
 
@@ -1986,7 +1990,7 @@ msgstr "Diese Aktion kann nicht rückgängig gemacht werden."
 msgid "This API key will only be shown once. Please save it in a secure location."
 msgstr "Dieser API-Schlüssel wird nur einmal angezeigt. Bitte speichern Sie ihn an einem sicheren Ort."
 
-#: src/views/public/board/index.tsx:151
+#: src/views/public/board/index.tsx:154
 msgid "This board is private or does not exist"
 msgstr "Dieses Board ist privat oder existiert nicht"
 
@@ -2256,7 +2260,7 @@ msgstr "URL muss mindestens 3 Zeichen lang sein"
 msgid "Use template"
 msgstr "Vorlage verwenden"
 
-#: src/views/members/index.tsx:238
+#: src/views/members/index.tsx:237
 msgid "User"
 msgstr "Benutzer"
 
@@ -2281,7 +2285,7 @@ msgstr "Verwalte deine Abrechnung und dein Abonnement."
 msgid "View docs"
 msgstr "Dokumentation ansehen"
 
-#: src/views/public/board/index.tsx:125
+#: src/views/public/board/index.tsx:128
 msgid "View only"
 msgstr "Nur ansehen"
 
@@ -2289,7 +2293,7 @@ msgstr "Nur ansehen"
 msgid "View our roadmap."
 msgstr "Sieh dir unsere roadmap an."
 
-#: src/views/public/board/index.tsx:154
+#: src/views/public/board/index.tsx:157
 msgid "View workspace"
 msgstr "Workspace anzeigen"
 
@@ -2330,6 +2334,11 @@ msgid "Why make an open source Trello?"
 msgstr "Warum ein open source Trello entwickeln?"
 
 #: src/components/SettingsLayout.tsx:39
+#: src/views/board/index.tsx:361
+#: src/views/boards/index.tsx:22
+#: src/views/members/index.tsx:173
+#: src/views/public/board/index.tsx:100
+#: src/views/public/boards/index.tsx:66
 msgid "Workspace"
 msgstr "Arbeitsbereich"
 
