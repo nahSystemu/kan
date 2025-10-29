@@ -48,15 +48,14 @@ export default function WorkspaceMenu({
           ) : (
             <div
               className={twMerge(
-                "flex items-center gap-1",
+                "flex items-center justify-start gap-1",
                 isCollapsed && "md:flex-col-reverse md:items-stretch",
               )}
             >
               <Menu.Button
                 className={twMerge(
-                  "mb-1 flex h-[34px] min-w-0 flex-1 items-center rounded-md p-1.5 hover:bg-light-200 dark:hover:bg-dark-200",
-                  isCollapsed &&
-                    "md:mb-1.5 md:h-9 md:w-9 md:flex-none md:justify-center md:p-0",
+                  "mb-1 flex h-[34px] min-w-0 flex-1 items-center justify-start rounded-md p-1.5 hover:bg-light-200 dark:hover:bg-dark-200",
+                  isCollapsed && "md:mb-1.5 md:h-9 md:w-9 md:flex-none md:p-0",
                 )}
                 title={isCollapsed ? workspace.name : undefined}
               >
@@ -67,7 +66,7 @@ export default function WorkspaceMenu({
                 </span>
                 <span
                   className={twMerge(
-                    "ml-2 min-w-0 flex-1 truncate text-sm font-bold text-neutral-900 dark:text-dark-1000",
+                    "ml-2 min-w-0 flex-1 truncate text-left text-sm font-bold text-neutral-900 dark:text-dark-1000",
                     isCollapsed && "md:hidden",
                   )}
                 >
@@ -87,7 +86,7 @@ export default function WorkspaceMenu({
               <Button
                 className={twMerge(
                   "mb-1 h-[34px] w-[34px] flex-shrink-0 rounded-lg bg-light-200 p-2 hover:bg-light-300 focus:outline-none dark:bg-dark-200 dark:hover:bg-dark-300",
-                  isCollapsed && "md:mb-2 md:h-9 md:w-9 md:self-center",
+                  isCollapsed && "md:mb-2 md:h-9 md:w-9",
                 )}
                 onClick={() => setIsOpen(true)}
               >
