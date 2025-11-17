@@ -4,6 +4,7 @@ import { z } from "zod";
 import * as boardRepo from "@kan/db/repository/board.repo";
 import * as cardRepo from "@kan/db/repository/card.repo";
 import * as cardActivityRepo from "@kan/db/repository/cardActivity.repo";
+import * as checklistRepo from "@kan/db/repository/checklist.repo";
 import * as importRepo from "@kan/db/repository/import.repo";
 import * as integrationsRepo from "@kan/db/repository/integration.repo";
 import * as labelRepo from "@kan/db/repository/label.repo";
@@ -22,6 +23,7 @@ export interface TrelloBoard {
   labels: TrelloLabel[];
   lists: TrelloList[];
   cards: TrelloCard[];
+  checklists: TrelloChecklist[];
 }
 
 interface TrelloLabel {
@@ -34,12 +36,34 @@ interface TrelloList {
   name: string;
 }
 
+interface TrelloChecklist {
+  id: string;
+  idCard: string;
+  name: string;
+  checkItems: TrelloCheckItem[];
+}
+
+interface TrelloCheckItem {
+  id: string;
+  name: string;
+  state: "complete" | "incomplete";
+  pos: number;
+}
+
 interface TrelloCard {
   id: string;
   name: string;
   desc: string;
   idList: string;
   labels: TrelloLabel[];
+  idChecklists: string[];
+  checkItemStates: TrelloCheckItemState[];
+}
+
+interface TrelloCheckItemState {
+  idChecklist: string;
+  idCheckItem: string;
+  state: "complete" | "incomplete";
 }
 
 export const importRouter = createTRPCRouter({
@@ -170,7 +194,7 @@ export const importRouter = createTRPCRouter({
 
         for (const boardId of input.boardIds) {
           const response = await fetch(
-            `${urls.trello}/boards/${boardId}?key=${apiKey}&token=${integration.accessToken}&lists=open&cards=open&labels=all`,
+            `${urls.trello}/boards/${boardId}?key=${apiKey}&token=${integration.accessToken}&lists=open&cards=open&labels=all&checklists=all&checkItemStates=all`,
           );
           const data = (await response.json()) as TrelloBoard;
 
@@ -194,6 +218,18 @@ export const importRouter = createTRPCRouter({
                     sourceId: label.id,
                     name: label.name,
                   })),
+                  checklists: data.checklists
+                    .filter((checklist) => checklist.idCard === _card.id)
+                    .map((_checklist) => ({
+                      sourceId: _checklist.id,
+                      name: _checklist.name,
+                      items: _checklist.checkItems.map((_item) => ({
+                        sourceId: _item.id,
+                        title: _item.name,
+                        completed: _item.state === "complete",
+                        index: _item.pos,
+                      })),
+                    })),
                 })),
             })),
           };
@@ -287,6 +323,97 @@ export const importRouter = createTRPCRouter({
 
               if (newCards.length > 0) {
                 await cardActivityRepo.bulkCreate(ctx.db, activities);
+              }
+
+              const checklistsToCreate: {
+                cardId: number;
+                name: string;
+                createdBy: string;
+                index: number;
+                sourceId: string;
+                items: {
+                  sourceId: string;
+                  title: string;
+                  completed: boolean;
+                  index: number;
+                }[];
+              }[] = [];
+
+              for (const card of list.cards) {
+                const _card = createdCards.find(
+                  (c) => c.sourceId === card.sourceId,
+                );
+
+                if (!_card || !card.checklists.length) continue;
+
+                for (
+                  let checklistIndex = 0;
+                  checklistIndex < card.checklists.length;
+                  checklistIndex++
+                ) {
+                  const checklist = card.checklists[checklistIndex];
+                  if (!checklist) continue;
+
+                  checklistsToCreate.push({
+                    cardId: _card.id,
+                    name: checklist.name,
+                    createdBy: userId,
+                    index: checklistIndex,
+                    sourceId: checklist.sourceId,
+                    items: checklist.items.map((item) => ({
+                      sourceId: item.sourceId,
+                      title: item.title,
+                      completed: item.completed,
+                      index: item.index,
+                    })),
+                  });
+                }
+              }
+
+              if (checklistsToCreate.length > 0) {
+                const newChecklists = await checklistRepo.bulkCreate(
+                  ctx.db,
+                  checklistsToCreate.map((checklist) => ({
+                    cardId: checklist.cardId,
+                    name: checklist.name,
+                    createdBy: checklist.createdBy,
+                    index: checklist.index,
+                  })),
+                );
+
+                const itemsToCreate: {
+                  checklistId: number;
+                  title: string;
+                  createdBy: string;
+                  index: number;
+                  completed: boolean;
+                }[] = [];
+
+                for (let i = 0; i < checklistsToCreate.length; i++) {
+                  const checklistData = checklistsToCreate[i];
+                  const newChecklist = newChecklists[i];
+
+                  if (!newChecklist || !checklistData?.items.length) continue;
+
+                  // NOTE: Sorting here to prevent checklist items being out of order
+                  const sortedItems = [...checklistData.items].sort(
+                    (a, b) => a.index - b.index,
+                  );
+
+                  for (const item of sortedItems) {
+                    itemsToCreate.push({
+                      checklistId: newChecklist.id,
+                      title: item.title,
+                      createdBy: userId,
+                      index: item.index,
+                      completed: item.completed,
+                    });
+                  }
+                }
+
+                if (itemsToCreate.length > 0) {
+                  await checklistRepo.bulkCreateItems(ctx.db, itemsToCreate);
+                }
               }
 
               if (createdLabels.length && createdCards.length) {
