@@ -80,11 +80,13 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
     boardPublicId: string;
     members: string[];
     labels: string[];
+    lists: string[];
     type: "regular" | "template";
   } = {
     boardPublicId: boardId ?? "",
     members: formatToArray(router.query.members),
     labels: formatToArray(router.query.labels),
+    lists: formatToArray(router.query.lists),
     type: isTemplate ? "template" : "regular",
   };
 
@@ -418,6 +420,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                     members={boardData.workspace.members.filter(
                       (member) => member.user !== null,
                     )}
+                    lists={boardData.allLists}
                     position="left"
                     isLoading={!boardData}
                   />

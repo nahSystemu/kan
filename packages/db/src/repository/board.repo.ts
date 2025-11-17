@@ -70,6 +70,7 @@ export const getByPublicId = async (
   filters: {
     members: string[];
     labels: string[];
+    lists: string[];
     type: "regular" | "template" | undefined;
   },
 ) => {
@@ -231,6 +232,19 @@ export const getByPublicId = async (
             orderBy: [asc(cards.index)],
           },
         },
+        where: and(
+          isNull(lists.deletedAt),
+          filters.lists.length > 0
+            ? inArray(lists.publicId, filters.lists)
+            : undefined,
+        ),
+        orderBy: [asc(lists.index)],
+      },
+      allLists: {
+        columns: {
+          publicId: true,
+          name: true,
+        },
         where: isNull(lists.deletedAt),
         orderBy: [asc(lists.index)],
       },
@@ -268,6 +282,7 @@ export const getBySlug = async (
   filters: {
     members: string[];
     labels: string[];
+    lists: string[];
   },
 ) => {
   let cardIds: string[] = [];
@@ -378,6 +393,19 @@ export const getBySlug = async (
             ),
             orderBy: [asc(cards.index)],
           },
+        },
+        where: and(
+          isNull(lists.deletedAt),
+          filters.lists.length > 0
+            ? inArray(lists.publicId, filters.lists)
+            : undefined,
+        ),
+        orderBy: [asc(lists.index)],
+      },
+      allLists: {
+        columns: {
+          publicId: true,
+          name: true,
         },
         where: isNull(lists.deletedAt),
         orderBy: [asc(lists.index)],
