@@ -96,10 +96,14 @@ export default function ChecklistItemRow({
 
   // Only resync from props when switching items to avoid clobbering edits
   useEffect(() => {
-    setTitle(item.title);
-    setCompleted(item.completed);
+    if (title !== item.title) {
+      setTitle(item.title);
+    }
+    if (completed !== item.completed) {
+      setCompleted(item.completed);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item.publicId]);
+  }, [item.publicId, item.title, item.completed]);
 
   const sanitizeHtmlToPlainText = (html: string): string =>
     html

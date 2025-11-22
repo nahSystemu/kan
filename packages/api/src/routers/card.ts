@@ -8,8 +8,50 @@ import * as labelRepo from "@kan/db/repository/label.repo";
 import * as listRepo from "@kan/db/repository/list.repo";
 import * as workspaceRepo from "@kan/db/repository/workspace.repo";
 
+import type { BoardEvent, CardEvent } from "../events";
+import {
+  publishBoardEventToWebsocket,
+  publishCardEventToWebsocket,
+} from "../events";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { assertUserInWorkspace } from "../utils/auth";
+
+const emitBoardEvent = async (
+  workspacePublicId: string | null | undefined,
+  event: BoardEvent,
+) => {
+  if (!workspacePublicId) {
+    return;
+  }
+
+  try {
+    await publishBoardEventToWebsocket(workspacePublicId, event);
+  } catch (error) {
+    console.error("failed to publish board event", error);
+  }
+};
+
+const emitCardEvent = async (
+  workspacePublicId: string | null | undefined,
+  event: CardEvent,
+) => {
+  if (!workspacePublicId) {
+    return;
+  }
+
+  try {
+    await publishCardEventToWebsocket(workspacePublicId, event);
+  } catch (error) {
+    console.error("failed to publish card event", error);
+  }
+};
+
+type CardUpdateChangeSet = Partial<{
+  title: string | null | undefined;
+  description: string | null | undefined;
+  listPublicId: string | undefined;
+  index: number | undefined;
+}>;
 
 export const cardRouter = createTRPCRouter({
   create: protectedProcedure
@@ -155,6 +197,14 @@ export const cardRouter = createTRPCRouter({
         await cardActivityRepo.bulkCreate(ctx.db, cardActivitesInsert);
       }
 
+      await emitBoardEvent(list.workspacePublicId, {
+        scope: "board",
+        type: "card.created",
+        boardId: list.boardId,
+        cardPublicId: newCard.publicId,
+        listPublicId: input.listPublicId,
+      });
+
       return newCard;
     }),
   addComment: protectedProcedure
@@ -215,6 +265,15 @@ export const cardRouter = createTRPCRouter({
         commentId: newComment.id,
         toComment: newComment.comment,
         createdBy: userId,
+      });
+
+      await emitCardEvent(card.workspacePublicId, {
+        scope: "card",
+        type: "comment.added",
+        cardId: card.id,
+        cardPublicId: input.cardPublicId,
+        commentPublicId: newComment.publicId,
+        comment: newComment.comment,
       });
 
       return newComment;
@@ -297,6 +356,15 @@ export const cardRouter = createTRPCRouter({
         createdBy: userId,
       });
 
+      await emitCardEvent(card.workspacePublicId, {
+        scope: "card",
+        type: "comment.updated",
+        cardId: card.id,
+        cardPublicId: input.cardPublicId,
+        commentPublicId: existingComment.publicId,
+        comment: updatedComment.comment,
+      });
+
       return updatedComment;
     }),
   deleteComment: protectedProcedure
@@ -366,6 +434,14 @@ export const cardRouter = createTRPCRouter({
         cardId: card.id,
         commentId: existingComment.id,
         createdBy: userId,
+      });
+
+      await emitCardEvent(card.workspacePublicId, {
+        scope: "card",
+        type: "comment.deleted",
+        cardId: card.id,
+        cardPublicId: input.cardPublicId,
+        commentPublicId: existingComment.publicId,
       });
 
       return deletedComment;
@@ -442,6 +518,14 @@ export const cardRouter = createTRPCRouter({
           createdBy: userId,
         });
 
+        await emitCardEvent(card.workspacePublicId, {
+          scope: "card",
+          type: "label.removed",
+          cardId: card.id,
+          cardPublicId: input.cardPublicId,
+          labelPublicId: input.labelPublicId,
+        });
+
         return { newLabel: false };
       }
 
@@ -459,6 +543,14 @@ export const cardRouter = createTRPCRouter({
         cardId: card.id,
         labelId: label.id,
         createdBy: userId,
+      });
+
+      await emitCardEvent(card.workspacePublicId, {
+        scope: "card",
+        type: "label.added",
+        cardId: card.id,
+        cardPublicId: input.cardPublicId,
+        labelPublicId: input.labelPublicId,
       });
 
       return { newLabel: true };
@@ -540,6 +632,14 @@ export const cardRouter = createTRPCRouter({
           createdBy: userId,
         });
 
+        await emitCardEvent(card.workspacePublicId, {
+          scope: "card",
+          type: "member.removed",
+          cardId: card.id,
+          cardPublicId: input.cardPublicId,
+          workspaceMemberPublicId: input.workspaceMemberPublicId,
+        });
+
         return { newMember: false };
       }
 
@@ -557,6 +657,14 @@ export const cardRouter = createTRPCRouter({
         cardId: card.id,
         workspaceMemberId: member.id,
         createdBy: userId,
+      });
+
+      await emitCardEvent(card.workspacePublicId, {
+        scope: "card",
+        type: "member.added",
+        cardId: card.id,
+        cardPublicId: input.cardPublicId,
+        workspaceMemberPublicId: input.workspaceMemberPublicId,
       });
 
       return { newMember: true };
@@ -756,6 +864,56 @@ export const cardRouter = createTRPCRouter({
         await cardActivityRepo.bulkCreate(ctx.db, activities);
       }
 
+      const boardChanges: CardUpdateChangeSet = {};
+      const cardChanges: CardUpdateChangeSet = {};
+
+      if (input.title && existingCard.title !== input.title) {
+        boardChanges.title = input.title;
+        cardChanges.title = input.title;
+      }
+
+      if (
+        input.description !== undefined &&
+        existingCard.description !== input.description
+      ) {
+        boardChanges.description = input.description ?? null;
+        cardChanges.description = input.description ?? null;
+      }
+
+      if (input.index !== undefined) {
+        boardChanges.index = input.index;
+        cardChanges.index = input.index;
+      }
+
+      if (input.listPublicId && existingCard.listId !== newListId) {
+        boardChanges.listPublicId = input.listPublicId;
+        cardChanges.listPublicId = input.listPublicId;
+      }
+
+      const hasBoardChanges = Object.keys(boardChanges).length > 0;
+      const hasCardChanges = Object.keys(cardChanges).length > 0;
+
+      if (hasBoardChanges) {
+        await emitBoardEvent(card.workspacePublicId, {
+          scope: "board",
+          type: "card.updated",
+          boardId: card.boardId,
+          cardPublicId: input.cardPublicId,
+          listPublicId: input.listPublicId ?? card.listPublicId,
+          changes: boardChanges,
+        });
+      }
+
+      if (hasCardChanges) {
+        await emitCardEvent(card.workspacePublicId, {
+          scope: "card",
+          type: "updated",
+          cardId: card.id,
+          cardPublicId: input.cardPublicId,
+          changes: cardChanges,
+        });
+      }
+
       return result;
     }),
   delete: protectedProcedure
@@ -809,6 +967,21 @@ export const cardRouter = createTRPCRouter({
         type: "card.archived",
         cardId: card.id,
         createdBy: userId,
+      });
+
+      await emitBoardEvent(card.workspacePublicId, {
+        scope: "board",
+        type: "card.deleted",
+        boardId: card.boardId,
+        cardPublicId: input.cardPublicId,
+        listPublicId: card.listPublicId,
+      });
+
+      await emitCardEvent(card.workspacePublicId, {
+        scope: "card",
+        type: "deleted",
+        cardId: card.id,
+        cardPublicId: input.cardPublicId,
       });
 
       return { success: true };

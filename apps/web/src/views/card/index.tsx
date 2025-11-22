@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { t } from "@lingui/core/macro";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoChevronForwardSharp } from "react-icons/io5";
 
@@ -18,6 +18,7 @@ import { usePopup } from "~/providers/popup";
 import { useWorkspace } from "~/providers/workspace";
 import { api } from "~/utils/api";
 import { formatMemberDisplayName, getAvatarUrl } from "~/utils/helpers";
+import { env } from "~/env";
 import { DeleteLabelConfirmation } from "../../components/DeleteLabelConfirmation";
 import ActivityList from "./components/ActivityList";
 import Checklists from "./components/Checklists";
@@ -141,7 +142,6 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
   const {
     modalContentType,
     entityId,
-    openModal,
     getModalState,
     clearModalState,
     isOpen,
@@ -156,9 +156,53 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
     ? router.query.cardId[0]
     : router.query.cardId;
 
-  const { data: card, isLoading } = api.card.byId.useQuery({
+  const {
+    data: card,
+    isLoading,
+  } = api.card.byId.useQuery({
     cardPublicId: cardId ?? "",
   });
+
+
+  const lastKnownBoardRef = useRef<string | null>(null);
+  const [hasRedirected, setHasRedirected] = useState(false);
+  const [hasLoadedCard, setHasLoadedCard] = useState(false);
+
+  useEffect(() => {
+    const boardPublicId = card?.list.board.publicId;
+    if (boardPublicId) {
+      lastKnownBoardRef.current = boardPublicId;
+    }
+  }, [card?.list.board.publicId]);
+
+  useEffect(() => {
+    if (card && !hasLoadedCard) {
+      setHasLoadedCard(true);
+    }
+  }, [card, hasLoadedCard]);
+
+  const websocketEnabled = Boolean(env.NEXT_PUBLIC_WEBSOCKET_URL);
+  const workspacePublicId = workspace.publicId;
+  const shouldSubscribe =
+    websocketEnabled && workspacePublicId.length === 12 && Boolean(cardId);
+
+  api.events.card.useSubscription(
+    { workspacePublicId },
+    {
+      enabled: shouldSubscribe,
+      onData(event) {
+        if (event.type !== "deleted") return;
+        if (event.cardPublicId !== cardId) return;
+        if (hasRedirected) return;
+
+        const destination = lastKnownBoardRef.current
+          ? `/boards/${lastKnownBoardRef.current}`
+          : "/boards";
+        setHasRedirected(true);
+        void router.replace(destination);
+      },
+    },
+  );
 
   const refetchCard = async () => {
     if (cardId) await utils.card.byId.refetch({ cardPublicId: cardId });
@@ -181,7 +225,7 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
     },
   });
 
-  const { register, handleSubmit, setValue, watch } = useForm<FormValues>({
+  const { register, handleSubmit, setValue } = useForm<FormValues>({
     values: {
       cardId: cardId ?? "",
       title: card?.title ?? "",
@@ -200,8 +244,13 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
   // Open the new item form after creating a new checklist
   useEffect(() => {
     if (!card) return;
-    const state = getModalState("ADD_CHECKLIST");
-    const createdId: string | undefined = state?.createdChecklistId;
+    const rawState = getModalState("ADD_CHECKLIST") as unknown;
+    const createdId =
+      rawState &&
+      typeof rawState === "object" &&
+      "createdChecklistId" in rawState
+        ? (rawState as { createdChecklistId?: string }).createdChecklistId
+        : undefined;
     if (createdId) {
       setActiveChecklistForm(createdId);
       clearModalState("ADD_CHECKLIST");

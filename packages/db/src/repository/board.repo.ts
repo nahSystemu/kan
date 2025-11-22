@@ -569,6 +569,13 @@ export const getWorkspaceAndBoardIdByBoardPublicId = async (
       id: true,
       workspaceId: true,
     },
+    with: {
+      workspace: {
+        columns: {
+          publicId: true,
+        },
+      },
+    },
     where: eq(boards.publicId, boardPublicId),
   });
 
