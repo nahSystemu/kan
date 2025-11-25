@@ -1,5 +1,6 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { stripe } from "@better-auth/stripe";
+import { ChatOrPushProviderEnum } from "@novu/api/models/components";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { createAuthEndpoint, createAuthMiddleware } from "better-auth/api";
@@ -418,6 +419,17 @@ export const initAuth = (db: dbClient) => {
                   },
                   workflowId: "user-signup",
                 });
+
+                await notificationClient.subscribers.credentials.update(
+                  {
+                    providerId: ChatOrPushProviderEnum.Discord,
+                    credentials: {
+                      webhookUrl: process.env.DISCORD_WEBHOOK_URL!,
+                    },
+                    integrationIdentifier: "discord",
+                  },
+                  user.id,
+                );
               } catch (error) {
                 console.error(
                   "Error adding user to notification client",
