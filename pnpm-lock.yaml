@@ -489,6 +489,9 @@ importers:
       nanoid:
         specifier: ^5.0.9
         version: 5.1.5
+      next-runtime-env:
+        specifier: ^1.7.2
+        version: 1.8.0
     devDependencies:
       '@kan/eslint-config':
         specifier: workspace:*

@@ -37,6 +37,7 @@
   "prettier": "@kan/prettier-config",
   "dependencies": {
     "jose": "^6.1.2",
-    "nanoid": "^5.0.9"
+    "nanoid": "^5.0.9",
+    "next-runtime-env": "^1.7.2"
   }
 }
