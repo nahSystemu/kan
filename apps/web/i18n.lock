@@ -15,6 +15,7 @@ checksums:
     A%20powerful%2C%20flexible%20kanban%20app%20that%20helps%20you%20organise%20work%2C%20track%20progress%2C%20and%20deliver%20results%E2%80%94all%20in%20one%20place./singular: d405b83b0d631cb72f4347c10bcbb643
     Account/singular: 01215c12fb1cdb93bd0c84c1382bef56
     Account%20deleted/singular: a25da96a1579c4491be0a95669ef18a4
+    Actions/singular: c46571856723b03262fd33f511116298
     Activity/singular: 1948763de8e531483a798b68195e297e
     Activity%20log/singular: 3ec6755040306fdc9ce801bcf6ab28e1
     Activity%20logs/singular: 8b1f0bb96a905646ecfad1cfdfa42168
@@ -229,6 +230,7 @@ checksums:
     Free%2C%20forever/singular: ae4f2f81e88a50b5f250ef8e8e77e74b
     Full-time/singular: fe6e201f6676ae354111435cf6c76910
     Fun/singular: 395bdc48e943762b6cde649f4a96771d
+    General/singular: b891e8f15579fc5d97bcaf3637f5ae59
     Get%20started/singular: 5c783951b0100a168bdd2161ff294833
     Get%20Started/singular: 1d5f030c4ec9c869e647ae060518b948
     Get%20started%20by%20creating%20a%20new%20%7B0%7D/singular: 4ca5ef637c08104e9dbb5ff9f49f0680
@@ -240,6 +242,10 @@ checksums:
     GitHub/singular: 6e1cf3c00fa6fbe24afcc78ea3b5f3e4
     Go%20Home/singular: 6251589da1964d55afabdfd64c84c335
     Go%20to%20app/singular: 896d0441384dcd2bfb3b23d61ff1944d
+    Go%20to%20boards/singular: dc1362de207d67fe84fb0caf60262e73
+    Go%20to%20members/singular: 445f4efbc4b1e7509f4fd79ebfbb1476
+    Go%20to%20settings/singular: 24a7f96880650c9b37099d69f4b7e2a9
+    Go%20to%20templates/singular: e4e58e33d637282d141df466d729bc7c
     High%20Priority/singular: 5d231ff8254aabc875f194c4b4f49c97
     Hired/singular: e5a9b1bd409b007141fe3d7890022f9a
     Host%20Kan%20on%20your%20own%20infrastructure.%20Ideal%20for%20organisations%20that%20need%20complete%20control%20over%20their%20data./singular: 8e7ae0783d60ef4624d3caf9bfc3747f
@@ -283,6 +289,7 @@ checksums:
     Kanban%20is%20better%20with%20a%20team.%20Perfect%20for%20small%20and%20growing%20teams%20looking%20to%20collaborate./singular: a77bee43046b260797c8936ad23e9223
     Kanban%20reimagined/singular: 613ccfdd9f54c66cbf68cfa313498766
     Keep%20in%20mind%20that%20this%20action%20is%20irreversible./singular: 79702b2ad3be71cb8b87f1122a60c199
+    Keyboard%20Shortcuts/singular: ef00d7494b69def6841620bd6554d040
     Labels/singular: 6f15627a90002323eac018274b6922d6
     Labels%20%26%20filters/singular: e1ceda0c6cc32fb04cb9423582ad8fe4
     Labels%20%26%20Filters/singular: 8f0bdd6084516f8241cb613178114390
@@ -316,6 +323,7 @@ checksums:
     moved%20the%20card%20from%20%3C0%3E%7B0%7D%3C%2F0%3E%20to%3C1%3E%7B1%7D%3C%2F1%3E/singular: 11edf0427766c26db541d46379dc3c16
     moved%20the%20card%20to%20another%20list/singular: 2e8c41bfafb42fa299ce56e4300205ff
     Name/singular: 9368b5a047572b6051f334af5aa76819
+    Navigation/singular: 0373afd8238db1c49f4be4fa6cdf5cd3
     Need%20help%3F/singular: 04e7322f2d3ffb2d73ff2f64b71637c8
     New/singular: 126d036fae5fb6b629728ecb97e6195b
     New%20%7B0%7D/singular: 67b6a22a65e0956f2091d00e6966652b
@@ -337,12 +345,15 @@ checksums:
     No%20boards%20found/singular: e044088d2c51b6bdf660fafa86ee1e17
     No%20credit%20card%20required/singular: 2090aa4171dc0b60735069f89b592883
     No%20download%20URL%20available%20for%20this%20attachment./singular: e367d39420b2242f9d2fd749c87f446a
+    No%20keyboard%20shortcuts%20registered./singular: 7f1ed5d777cade7d62303e9e591bbf63
     No%20lists/singular: cedf633d99c77ff4356e089f2d98c0a6
     No%20results%20found%20for%20%22%7BdebouncedQuery%7D%22./singular: 5db6294712528cd897b15ae36f4fd834
     Offer/singular: 82b4e0c9a3f5b4bd93590847de7c32a1
     Onboarding/singular: 52b23f9c62ff199d4c09920e7641829e
     Once%20you%20delete%20your%20account%2C%20there%20is%20no%20going%20back.%20This%20action%20cannot%20be%20undone./singular: 9cf7aa6ef30890e5124e266c081bae1c
     Once%20you%20delete%20your%20workspace%2C%20there%20is%20no%20going%20back.%20This%20action%20cannot%20be%20undone./singular: c9ce6a516ed1f361653e8f8db3dd5ffd
+    Open%20command%20menu/singular: cf00563ea1a994e7c36a761d56664acc
+    Open%20keyboard%20shortcuts/singular: 638ae0999fd03d2c611064274859422e
     Open%20source/singular: 81a747dc664de1a3389b495c8f84843b
     Open%20Source%20Friends/singular: ffe3d75e5d03b8469c9dcb019dceb164
     or/singular: 7b133c38bec0d5ee23cc6bcf9a8de50b
@@ -421,6 +432,7 @@ checksums:
     Settings%20%7C%20Billing/singular: e44cba741d5414035a0b499c5766c203
     Settings%20%7C%20Integrations/singular: d04992e28016452f6d3d7dcc0b592415
     Settings%20%7C%20Workspace/singular: 5d0bacf7ff696da940f232df45edfd39
+    Shortcuts/singular: db3330ed3240c398054f3be23c52851f
     Sign%20in/singular: cb8757c7450e17de1e226e82fb0fa4a2
     Sign%20In/singular: ec7b8f314fe9bc6591006707484ede61
     Sign%20Up/singular: 0dd2ae69be4618c1f9e615774a4509ca
