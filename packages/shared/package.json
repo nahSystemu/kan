@@ -36,6 +36,7 @@
   },
   "prettier": "@kan/prettier-config",
   "dependencies": {
+    "jose": "^6.1.2",
     "nanoid": "^5.0.9"
   }
 }
