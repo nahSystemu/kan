@@ -1,4 +1,5 @@
 import { SignJWT } from "jose";
+import { env } from "next-runtime-env";
 
 const encoder = new TextEncoder();
 
@@ -14,7 +15,7 @@ const encoder = new TextEncoder();
 export async function createEmailUnsubscribeLink(
   userId: string,
 ): Promise<string | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = env("NEXT_PUBLIC_BASE_URL");
   const secret = process.env.EMAIL_UNSUBSCRIBE_SECRET;
 
   if (!baseUrl || !secret) {
