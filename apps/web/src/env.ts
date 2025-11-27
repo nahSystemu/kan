@@ -89,7 +89,7 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().optional(),
     NEXT_PUBLIC_USE_STANDALONE_OUTPUT: z.string().optional(),
-    NEXT_PUBLIC_BASE_URL: z.string().url(),
+    NEXT_PUBLIC_BASE_URL: z.string().url().optional(),
     NEXT_PUBLIC_STORAGE_URL: z.string().url().optional(),
     NEXT_PUBLIC_AVATAR_BUCKET_NAME: z.string().optional(),
     NEXT_PUBLIC_ATTACHMENTS_BUCKET_NAME: z.string().optional(),
