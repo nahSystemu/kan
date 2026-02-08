@@ -294,6 +294,8 @@ export const getMemberByPublicId = (db: dbClient, memberPublicId: string) => {
   return db.query.workspaceMembers.findFirst({
     columns: {
       id: true,
+      userId: true,
+      workspaceId: true,
     },
     where: eq(workspaceMembers.publicId, memberPublicId),
   });
@@ -306,6 +308,8 @@ export const getAllMembersByPublicIds = (
   return db.query.workspaceMembers.findMany({
     columns: {
       id: true,
+      userId: true,
+      workspaceId: true,
     },
     where: inArray(workspaceMembers.publicId, memberPublicIds),
   });

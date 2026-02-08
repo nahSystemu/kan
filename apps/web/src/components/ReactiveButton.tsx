@@ -15,6 +15,8 @@ const Button: React.FC<{
   isCollapsed?: boolean;
   onCloseSideNav?: () => void;
   keyboardShortcut: KeyboardShortcut;
+  badgeCount?: number;
+  showIndicator?: boolean;
 }> = ({
   href,
   current,
@@ -23,6 +25,8 @@ const Button: React.FC<{
   isCollapsed = false,
   keyboardShortcut,
   onCloseSideNav,
+  badgeCount,
+  showIndicator,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [index, setIndex] = useState(0);
@@ -39,6 +43,9 @@ const Button: React.FC<{
       onCloseSideNav();
     }
   };
+
+  const showBadge = typeof badgeCount === "number" && badgeCount > 0;
+  const showDot = !showBadge && showIndicator;
 
   return (
     <Link
@@ -62,7 +69,21 @@ const Button: React.FC<{
             : "gap-x-3",
         )}
       >
-        <LottieIcon index={index} json={json} isPlaying={isHovered} />
+        <div className="relative">
+          <LottieIcon index={index} json={json} isPlaying={isHovered} />
+          {(showBadge || showDot) && (
+            <span
+              className={twMerge(
+                "absolute -right-1.5 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#6366f1] text-[9px] font-semibold text-white shadow-sm dark:bg-[#a855f7]",
+                showDot && "h-2.5 w-2.5 text-transparent",
+              )}
+            >
+              {showBadge ? (
+                <span className="leading-none">{badgeCount}</span>
+              ) : null}
+            </span>
+          )}
+        </div>
         <span className={twMerge(isCollapsed && "md:hidden")}>{name}</span>
       </div>
       {!isCollapsed && (

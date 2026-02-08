@@ -176,6 +176,13 @@
       "when": 1769983198190,
       "tag": "20260201215958_AddUserBoardFavouritesTable",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1761372339702,
+      "tag": "20251025060539_smart_zzzax",
+      "breakpoints": true
     }
   ]
 }

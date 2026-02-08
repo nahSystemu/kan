@@ -79,48 +79,56 @@ export const WorkspaceProvider: React.FC<{ children: ReactNode }> = ({
         slug: workspace.slug,
         description: workspace.description,
         plan: workspace.plan,
-        hasLoaded: true,
-      })) as Workspace[];
+      }));
 
       if (workspaces.length) setAvailableWorkspaces(workspaces);
     }
 
     if (storedWorkspaceId !== null) {
-      const newData = data;
-      const selectedWorkspace = newData.find(
+      const selectedWorkspace = data.find(
         ({ workspace }) => workspace.publicId === storedWorkspaceId,
       );
 
-      if (!selectedWorkspace?.workspace) return;
+      if (selectedWorkspace?.workspace) {
+        const selected = {
+          publicId: selectedWorkspace.workspace.publicId,
+          name: selectedWorkspace.workspace.name,
+          slug: selectedWorkspace.workspace.slug,
+          plan: selectedWorkspace.workspace.plan,
+          description: selectedWorkspace.workspace.description,
+          role: selectedWorkspace.role,
+        };
 
-      setWorkspace({
-        publicId: selectedWorkspace.workspace.publicId,
-        name: selectedWorkspace.workspace.name,
-        slug: selectedWorkspace.workspace.slug,
-        plan: selectedWorkspace.workspace.plan,
-        description: selectedWorkspace.workspace.description,
-        role: selectedWorkspace.role,
-      });
+        if (workspacePublicId) {
+          router.push(`/boards`);
+          localStorage.setItem("workspacePublicId", workspacePublicId);
+        }
 
-      if (workspacePublicId) {
-        router.push(`/boards`);
-        localStorage.setItem("workspacePublicId", workspacePublicId);
+        setWorkspace(selected);
+        setHasLoaded(true);
+        return;
       }
-    } else {
-      const primaryWorkspace = data[0]?.workspace;
-      const primaryWorkspaceRole = data[0]?.role;
-
-      if (!primaryWorkspace || !primaryWorkspaceRole) return;
-      localStorage.setItem("workspacePublicId", primaryWorkspace.publicId);
-      setWorkspace({
-        publicId: primaryWorkspace.publicId,
-        name: primaryWorkspace.name,
-        slug: primaryWorkspace.slug,
-        plan: primaryWorkspace.plan,
-        description: primaryWorkspace.description,
-        role: primaryWorkspaceRole,
-      });
     }
+
+    const primaryWorkspace = data[0]?.workspace;
+    const primaryWorkspaceRole = data[0]?.role;
+
+    if (!primaryWorkspace || !primaryWorkspaceRole) {
+      setHasLoaded(true);
+      return;
+    }
+
+    localStorage.setItem("workspacePublicId", primaryWorkspace.publicId);
+
+    setWorkspace({
+      publicId: primaryWorkspace.publicId,
+      name: primaryWorkspace.name,
+      slug: primaryWorkspace.slug,
+      plan: primaryWorkspace.plan,
+      description: primaryWorkspace.description,
+      role: primaryWorkspaceRole,
+    });
+    setHasLoaded(true);
   }, [data, isLoading, workspacePublicId, router]);
 
   return (

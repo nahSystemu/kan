@@ -16,6 +16,8 @@ import type { Subscription } from "@kan/shared/utils";
 import { hasActiveSubscription } from "@kan/shared/utils";
 
 import type { KeyboardShortcut } from "~/providers/keyboard-shortcuts";
+import notificationsIconDark from "~/assets/activity-logs-dark.json";
+import notificationsIconLight from "~/assets/activity-logs-light.json";
 import boardsIconDark from "~/assets/boards-dark.json";
 import boardsIconLight from "~/assets/boards-light.json";
 import membersIconDark from "~/assets/members-dark.json";
@@ -28,6 +30,7 @@ import ButtonComponent from "~/components/Button";
 import ReactiveButton from "~/components/ReactiveButton";
 import UserMenu from "~/components/UserMenu";
 import WorkspaceMenu from "~/components/WorkspaceMenu";
+import { useNotificationBadge } from "~/hooks/useNotificationBadge";
 import { useModal } from "~/providers/modal";
 import { useWorkspace } from "~/providers/workspace";
 import { api } from "~/utils/api";
@@ -87,12 +90,15 @@ export default function SideNavigation({
   const isCloudEnv = env("NEXT_PUBLIC_KAN_ENV") === "cloud";
 
   const isDarkMode = resolvedTheme === "dark";
+  const { unreadCount, hasUnseen } = useNotificationBadge();
 
   const navigation: {
     name: string;
     href: string;
     icon: object;
     keyboardShortcut: KeyboardShortcut;
+    badgeCount?: number;
+    showIndicator?: boolean;
   }[] = [
     {
       name: t`Boards`,
@@ -129,6 +135,20 @@ export default function SideNavigation({
         group: "NAVIGATION",
         description: t`Go to members`,
       },
+    },
+    {
+      name: t`Notifications`,
+      href: "/notifications",
+      icon: isDarkMode ? notificationsIconDark : notificationsIconLight,
+      keyboardShortcut: {
+        type: "SEQUENCE",
+        strokes: [{ key: "G" }, { key: "N" }],
+        action: () => router.push("/notifications"),
+        group: "NAVIGATION",
+        description: t`Go to notifications`,
+      },
+      badgeCount: unreadCount,
+      showIndicator: hasUnseen,
     },
     {
       name: t`Settings`,
@@ -196,6 +216,8 @@ export default function SideNavigation({
                   current={pathname.includes(item.href)}
                   name={item.name}
                   json={item.icon}
+                  badgeCount={item.badgeCount}
+                  showIndicator={item.showIndicator}
                   isCollapsed={isCollapsed}
                   onCloseSideNav={onCloseSideNav}
                   keyboardShortcut={item.keyboardShortcut}

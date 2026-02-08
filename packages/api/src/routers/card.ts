@@ -6,6 +6,7 @@ import * as cardActivityRepo from "@kan/db/repository/cardActivity.repo";
 import * as cardCommentRepo from "@kan/db/repository/cardComment.repo";
 import * as labelRepo from "@kan/db/repository/label.repo";
 import * as listRepo from "@kan/db/repository/list.repo";
+import * as notificationRepo from "@kan/db/repository/notification.repo";
 import * as workspaceRepo from "@kan/db/repository/workspace.repo";
 
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
@@ -151,6 +152,71 @@ export const cardRouter = createTRPCRouter({
         }));
 
         await cardActivityRepo.bulkCreate(ctx.db, cardActivitesInsert);
+
+        const createdCard = newCard as typeof newCard & {
+          publicId: string;
+          title: string;
+        };
+        const listDetails = list as typeof list & {
+          board: {
+            id: number;
+            publicId: string;
+            name: string;
+            slug: string;
+          };
+          workspace: {
+            id: number;
+            publicId: string;
+            name: string;
+            slug: string;
+          };
+        };
+        const enrichedMembers = members as ((typeof members)[number] & {
+          userId: string | null;
+          workspaceId: number;
+        })[];
+        const boardDetails = listDetails.board;
+        const workspaceDetails = listDetails.workspace;
+        const boardPayload = {
+          boardName: boardDetails.name,
+          boardPublicId: boardDetails.publicId,
+          boardSlug: boardDetails.slug,
+        };
+        const workspacePayload = {
+          workspaceName: workspaceDetails.name,
+          workspacePublicId: workspaceDetails.publicId,
+        };
+
+        if (createdCard.publicId) {
+          const assignedByName = ctx.user?.name ?? null;
+          const assignedByEmail = ctx.user?.email ?? null;
+
+          const notificationsPayload = enrichedMembers
+            .filter((member) => member.userId && member.userId !== userId)
+            .map((member) => ({
+              workspaceId: listDetails.workspaceId,
+              workspaceMemberId: member.id,
+              userId: member.userId,
+              createdBy: userId,
+              type: "card.assigned" as const,
+              entityPublicId: createdCard.publicId,
+              payload: {
+                cardTitle: createdCard.title,
+                ...boardPayload,
+                ...workspacePayload,
+                assignedByName,
+                assignedByEmail,
+              },
+              redirectPath: `/cards/${createdCard.publicId}`,
+            }));
+
+          if (notificationsPayload.length) {
+            await notificationRepo.bulkCreateForMembers(
+              ctx.db,
+              notificationsPayload,
+            );
+          }
+        }
       }
 
       return newCard;
@@ -517,6 +583,11 @@ export const cardRouter = createTRPCRouter({
           code: "NOT_FOUND",
         });
 
+      const memberDetails = member as typeof member & {
+        userId: string | null;
+        workspaceId: number;
+      };
+
       const cardMemberIds = { cardId: card.id, memberId: member.id };
 
       const existingMember = await cardRepo.getCardMemberRelationship(
@@ -562,6 +633,59 @@ export const cardRouter = createTRPCRouter({
         workspaceMemberId: member.id,
         createdBy: userId,
       });
+
+      if (memberDetails.userId && memberDetails.userId !== userId) {
+        const cardContext = card as typeof card & {
+          board: {
+            name: string;
+            publicId: string;
+            slug: string;
+          };
+          workspace: {
+            name: string;
+            publicId: string;
+          };
+        };
+
+        const cardDetails = await cardRepo.getByPublicId(
+          ctx.db,
+          input.cardPublicId,
+        );
+
+        if (cardDetails?.publicId) {
+          const assignedByName = ctx.user?.name ?? null;
+          const assignedByEmail = ctx.user?.email ?? null;
+          const { board: boardInfo, workspace: workspaceInfo } = cardContext;
+          const boardPayload = {
+            boardName: boardInfo.name,
+            boardPublicId: boardInfo.publicId,
+            boardSlug: boardInfo.slug,
+          };
+          const workspacePayload = {
+            workspaceName: workspaceInfo.name,
+            workspacePublicId: workspaceInfo.publicId,
+          };
+
+          await notificationRepo.bulkCreateForMembers(ctx.db, [
+            {
+              workspaceId: card.workspaceId,
+              workspaceMemberId: member.id,
+              userId: memberDetails.userId,
+              createdBy: userId,
+              type: "card.assigned",
+              entityPublicId: cardDetails.publicId,
+              payload: {
+                cardTitle: cardDetails.title,
+                ...boardPayload,
+                ...workspacePayload,
+                assignedByName,
+                assignedByEmail,
+              },
+              redirectPath: `/cards/${cardDetails.publicId}`,
+            },
+          ]);
+        }
+      }
 
       return { newMember: true };
     }),

@@ -424,7 +424,21 @@ export const getWorkspaceAndListIdByListPublicId = async (
     with: {
       board: {
         columns: {
+          id: true,
+          publicId: true,
+          name: true,
+          slug: true,
           workspaceId: true,
+        },
+        with: {
+          workspace: {
+            columns: {
+              id: true,
+              publicId: true,
+              name: true,
+              slug: true,
+            },
+          },
         },
       },
     },
@@ -435,6 +449,18 @@ export const getWorkspaceAndListIdByListPublicId = async (
         id: result.id,
         createdBy: result.createdBy,
         workspaceId: result.board.workspaceId,
+        board: {
+          id: result.board.id,
+          publicId: result.board.publicId,
+          name: result.board.name,
+          slug: result.board.slug,
+        },
+        workspace: {
+          id: result.board.workspace.id,
+          publicId: result.board.workspace.publicId,
+          name: result.board.workspace.name,
+          slug: result.board.workspace.slug,
+        },
       }
     : null;
 };
