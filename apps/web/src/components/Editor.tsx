@@ -1,3 +1,4 @@
+import type { Range as TiptapRange } from "@tiptap/core";
 import type { Editor as TiptapEditor } from "@tiptap/react";
 import type {
   SuggestionKeyDownProps,
@@ -7,6 +8,7 @@ import type { Instance as TippyInstance } from "tippy.js";
 import { Button } from "@headlessui/react";
 import { t } from "@lingui/core/macro";
 import Link from "@tiptap/extension-link";
+import Mention from "@tiptap/extension-mention";
 import Placeholder from "@tiptap/extension-placeholder";
 import {
   BubbleMenu,
@@ -39,9 +41,11 @@ import {
 } from "react-icons/hi2";
 import { twMerge } from "tailwind-merge";
 import tippy from "tippy.js";
-import Mention from "@tiptap/extension-mention";
-import Avatar from "./Avatar";
+import { Markdown } from "tiptap-markdown";
+
 import { getAvatarUrl } from "~/utils/helpers";
+import Avatar from "./Avatar";
+import { YouTubeNode } from "./YouTubeEmbed/YouTubeNode";
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
@@ -54,7 +58,7 @@ declare module "@tiptap/core" {
 export interface SlashCommandItem {
   title: string;
   icon?: React.ReactNode;
-  command?: (props: { editor: TiptapEditor; range: Range }) => void;
+  command?: (props: { editor: TiptapEditor; range: TiptapRange }) => void;
   disabled?: boolean;
 }
 
@@ -77,7 +81,7 @@ export interface RenderSuggestionsProps {
   command: (item: SlashCommandItem) => void;
 }
 
-export type WorkspaceMember = {
+export interface WorkspaceMember {
   publicId: string;
   user: {
     id: string;
@@ -85,7 +89,7 @@ export type WorkspaceMember = {
     image: string | null;
   } | null;
   email: string;
-};
+}
 
 const CommandsList = forwardRef<
   { onKeyDown: (props: SuggestionKeyDownProps) => boolean },
@@ -200,7 +204,11 @@ const RenderSuggestions = () => {
   };
 };
 
-type MentionItem = { id: string; label: string; image: string | null };
+interface MentionItem {
+  id: string;
+  label: string;
+  image: string | null;
+}
 
 const MentionList = forwardRef<
   { onKeyDown: (props: SuggestionKeyDownProps) => boolean },
@@ -238,30 +246,32 @@ const MentionList = forwardRef<
   return (
     <div className="w-56 rounded-md border-[1px] border-light-200 bg-light-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:border-dark-500 dark:bg-dark-200">
       <div className="max-h-[350px] overflow-y-auto p-1 scrollbar-thin scrollbar-thumb-light-200 dark:scrollbar-thumb-dark-300">
-        {items.length > 0 ? items.map((item, index) => (
-          <button
-            key={item.id}
-            onClick={() => command(item)}
-            className={twMerge(
-              "group flex w-full items-center rounded-[5px] p-2 hover:bg-light-200 dark:hover:bg-dark-300",
-              index === selectedIndex && "bg-light-200 dark:bg-dark-300",
-            )}
-          >
-            <Avatar
-              size="xs"
-              name={item.label}
-              imageUrl={
-                item.image ? getAvatarUrl(item.image) : undefined
-              }
-              email={item.label}
-            />
-            <span className="ml-3 text-[12px] font-medium text-dark-900 dark:text-dark-1000">
-              {item.label}
-            </span>
-          </button>
-        )) : (
+        {items.length > 0 ? (
+          items.map((item, index) => (
+            <button
+              key={item.id}
+              onClick={() => command(item)}
+              className={twMerge(
+                "group flex w-full items-center rounded-[5px] p-2 hover:bg-light-200 dark:hover:bg-dark-300",
+                index === selectedIndex && "bg-light-200 dark:bg-dark-300",
+              )}
+            >
+              <Avatar
+                size="xs"
+                name={item.label}
+                imageUrl={item.image ? getAvatarUrl(item.image) : undefined}
+                email={item.label}
+              />
+              <span className="ml-3 text-[12px] font-medium text-dark-900 dark:text-dark-1000">
+                {item.label}
+              </span>
+            </button>
+          ))
+        ) : (
           <div className="flex items-center justify-start p-2">
-            <span className="text-dark-900 text-[12px] dark:text-dark-1000">No results</span>
+            <span className="text-[12px] text-dark-900 dark:text-dark-1000">
+              No results
+            </span>
           </div>
         )}
       </div>
@@ -423,12 +433,14 @@ export default function Editor({
   onBlur,
   readOnly = false,
   workspaceMembers,
+  enableYouTubeEmbed = true,
 }: {
   content: string | null;
   onChange?: (value: string) => void;
   onBlur?: () => void;
   readOnly?: boolean;
   workspaceMembers: WorkspaceMember[];
+  enableYouTubeEmbed?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -436,6 +448,7 @@ export default function Editor({
     {
       extensions: [
         StarterKit,
+        Markdown,
         Placeholder.configure({
           placeholder: readOnly
             ? ""
@@ -462,36 +475,46 @@ export default function Editor({
         }),
         Mention.configure({
           HTMLAttributes: {
-            class: 'mention',
+            class: "mention",
           },
           suggestion: {
             char: "@",
             items: ({ query }: { query: string }) => {
-              const all: MentionItem[] = workspaceMembers.map((member: WorkspaceMember) => ({
-                id: member.publicId,
-                label: member?.user?.name ?? member.email,
-                image: member?.user?.image ?? null,
-              }));
+              const all: MentionItem[] = workspaceMembers.map(
+                (member: WorkspaceMember) => ({
+                  id: member.publicId,
+                  label: member?.user?.name ?? member.email,
+                  image: member?.user?.image ?? null,
+                }),
+              );
               const q = query.toLowerCase();
-              return all.filter((u) => u.label.toLowerCase().includes(q));
+              return all.filter(
+                (u) =>
+                  u.label &&
+                  typeof u.label === "string" &&
+                  u.label.toLowerCase().includes(q),
+              );
             },
-            command: ({ editor, range, props }: any) => {
-               const mentionHTML = `<span data-type="mention" data-id="${props.id}" data-label="${props.label}">@${props.label}</span>&nbsp;`;
-               
-               editor
-               .chain()
-               .focus()
-               .deleteRange(range)
-               .insertContent(mentionHTML)
-               .focus()
-               .run();
-              },
-              render: renderMentionSuggestions,
+            command: ({ editor, range, props }) => {
+              const id = props.id ?? "";
+              const label = props.label ?? "";
+              const mentionHTML = `<span data-type="mention" data-id="${id}" data-label="${label}">@${label}</span>&nbsp;`;
+
+              editor
+                .chain()
+                .focus()
+                .deleteRange(range)
+                .insertContent(mentionHTML)
+                .focus()
+                .run();
             },
-            renderText({ options, node }) {
-              return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`;
-            },
+            render: renderMentionSuggestions,
+          },
+          renderText({ options, node }) {
+            return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`;
+          },
         }),
+        ...(enableYouTubeEmbed ? [YouTubeNode] : []),
       ],
       content,
       onUpdate: ({ editor }) => onChange?.(editor.getHTML()),
@@ -547,6 +570,9 @@ export default function Editor({
           color: rgb(59, 130, 246);
           text-decoration: none;
           font-weight: 500;
+        }
+        .tiptap [data-youtube] {
+          margin: 1rem 0;
         }
       `}</style>
       {!readOnly && editor && <EditorBubbleMenu editor={editor} />}

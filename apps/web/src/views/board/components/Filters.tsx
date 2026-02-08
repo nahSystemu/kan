@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import { t } from "@lingui/core/macro";
 import {
   HiMiniXMark,
+  HiOutlineClock,
+  HiOutlineSquare3Stack3D,
   HiOutlineTag,
   HiOutlineUserCircle,
 } from "react-icons/hi2";
@@ -32,15 +34,22 @@ interface Label {
   colourCode: string | null;
 }
 
+interface List {
+  publicId: string;
+  name: string;
+}
+
 const Filters = ({
   position = "right",
   labels,
   members,
+  lists,
   isLoading,
 }: {
   position?: "left" | "right";
   labels: Label[];
   members: Member[];
+  lists: List[];
   isLoading: boolean;
 }) => {
   const router = useRouter();
@@ -52,7 +61,13 @@ const Filters = ({
     try {
       await router.push({
         pathname: router.pathname,
-        query: { ...router.query, members: [], labels: [] },
+        query: {
+          ...router.query,
+          members: [],
+          labels: [],
+          lists: [],
+          dueDate: [],
+        },
       });
     } catch (error) {
       console.error(error);
@@ -85,6 +100,45 @@ const Filters = ({
     leftIcon: <LabelIcon colourCode={label.colourCode} />,
   }));
 
+  const formattedLists = lists.map((list) => ({
+    key: list.publicId,
+    value: list.name,
+    selected: !!router.query.lists?.includes(list.publicId),
+  }));
+
+  const dueDateItems = [
+    {
+      key: "overdue",
+      value: t`Overdue`,
+      selected: !!router.query.dueDate?.includes("overdue"),
+    },
+    {
+      key: "today",
+      value: t`Due today`,
+      selected: !!router.query.dueDate?.includes("today"),
+    },
+    {
+      key: "tomorrow",
+      value: t`Due tomorrow`,
+      selected: !!router.query.dueDate?.includes("tomorrow"),
+    },
+    {
+      key: "next-week",
+      value: t`Due next week`,
+      selected: !!router.query.dueDate?.includes("next-week"),
+    },
+    {
+      key: "next-month",
+      value: t`Due next month`,
+      selected: !!router.query.dueDate?.includes("next-month"),
+    },
+    {
+      key: "no-due-date",
+      value: t`No dates`,
+      selected: !!router.query.dueDate?.includes("no-due-date"),
+    },
+  ];
+
   const groups = [
     ...(formattedMembers.length
       ? [
@@ -101,6 +155,22 @@ const Filters = ({
       label: t`Labels`,
       icon: <HiOutlineTag size={16} />,
       items: formattedLabels,
+    },
+    ...(formattedLists.length
+      ? [
+          {
+            key: "lists",
+            label: t`Lists`,
+            icon: <HiOutlineSquare3Stack3D size={16} />,
+            items: formattedLists,
+          },
+        ]
+      : []),
+    {
+      key: "dueDate",
+      label: t`Due date`,
+      icon: <HiOutlineClock size={16} />,
+      items: dueDateItems,
     },
   ];
 
@@ -131,6 +201,8 @@ const Filters = ({
   const numOfFilters = [
     ...formatToArray(router.query.members),
     ...formatToArray(router.query.labels),
+    ...formatToArray(router.query.lists),
+    ...formatToArray(router.query.dueDate),
   ].length;
 
   return (

@@ -134,6 +134,34 @@
       "when": 1760044396109,
       "tag": "20251009211316_AddBoardSourceIdToCardActivity",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1762807463569,
+      "tag": "20251110204423_AddCardAttachments",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1764621815672,
+      "tag": "20251201204335_AddCardDueDates",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1767045713686,
+      "tag": "20251229220153_UpdateCardTitleFromVarcharToText",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1768858977000,
+      "tag": "20260119164257_AddShowEmailsToMembersToWorkspace",
+      "breakpoints": true
     }
   ]
 }

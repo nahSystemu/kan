@@ -9,6 +9,7 @@ import LabelIcon from "~/components/LabelIcon";
 import { useModal } from "~/providers/modal";
 import { api } from "~/utils/api";
 import ActivityList from "~/views/card/components/ActivityList";
+import { AttachmentThumbnails } from "~/views/card/components/AttachmentThumbnails";
 import Checklists from "~/views/card/components/Checklists";
 
 export function CardModal({
@@ -66,22 +67,23 @@ export function CardModal({
             <div className="flex w-full items-center justify-between">
               <button
                 className="absolute right-[2rem] top-[2rem] rounded p-1 hover:bg-light-300 focus:outline-none dark:hover:bg-dark-300"
-                onClick={async (e) => {
+                onClick={(e) => {
                   e.preventDefault();
                   closeModal();
 
-                  setTimeout(async () => {
-                    try {
-                      await router.replace(
-                        `/${workspaceSlug}/${boardSlug}`,
-                        undefined,
-                        {
-                          shallow: true,
+                  setTimeout(() => {
+                    void router.replace(
+                      {
+                        pathname: router.pathname,
+                        query: {
+                          ...router.query,
+                          workspaceSlug,
+                          boardSlug: [boardSlug],
                         },
-                      );
-                    } catch (error) {
-                      console.error(error);
-                    }
+                      },
+                      undefined,
+                      { shallow: true },
+                    );
                   }, 400);
                 }}
               >
@@ -126,11 +128,24 @@ export function CardModal({
                     <Editor
                       content={data.description}
                       readOnly
-                      workspaceMembers={data?.list.board.workspace.members ?? []}
+                      workspaceMembers={
+                        data?.list.board.workspace.members ?? []
+                      }
                     />
                   </div>
                 </div>
               )}
+              {data?.attachments &&
+                data.attachments.length > 0 &&
+                cardPublicId && (
+                  <div className="mb-10 max-w-2xl">
+                    <AttachmentThumbnails
+                      attachments={data.attachments}
+                      cardPublicId={cardPublicId}
+                      isReadOnly
+                    />
+                  </div>
+                )}
               {data?.checklists && data.checklists.length > 0 && (
                 <Checklists
                   checklists={data.checklists}
@@ -146,7 +161,6 @@ export function CardModal({
                   {cardPublicId && (
                     <ActivityList
                       cardPublicId={cardPublicId}
-                      activities={data?.activities ?? []}
                       isLoading={isLoading}
                       isViewOnly={true}
                     />

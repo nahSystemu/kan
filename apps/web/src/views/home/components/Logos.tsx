@@ -1,15 +1,14 @@
 import type { FC, SVGProps } from "react";
 import { Trans } from "@lingui/react/macro";
 
-import AirbusLogo from "/public/logos/airbus.svg";
-import BitwardenLogo from "/public/logos/bitwarden.svg";
-import CouchbaseLogo from "/public/logos/couchbase.svg";
-import DeloitteLogo from "/public/logos/deloitte.svg";
-import FastCompanyLogo from "/public/logos/fast_company.svg";
-import LegoLogo from "/public/logos/lego.svg";
-import LinkedinLogo from "/public/logos/linkedin.svg";
-import SanaLogo from "/public/logos/sana.svg";
-import WakamLogo from "/public/logos/wakam.svg";
+import AirbusLogo from "~/assets/logos/airbus.svg";
+import CouchbaseLogo from "~/assets/logos/couchbase.svg";
+import DeloitteLogo from "~/assets/logos/deloitte.svg";
+import FastCompanyLogo from "~/assets/logos/fast_company.svg";
+import LegoLogo from "~/assets/logos/lego.svg";
+import LinkedinLogo from "~/assets/logos/linkedin.svg";
+import SanaLogo from "~/assets/logos/sana.svg";
+import WakamLogo from "~/assets/logos/wakam.svg";
 
 type LogoComponent = FC<SVGProps<SVGSVGElement>>;
 
@@ -31,36 +30,31 @@ export default function Logos() {
     },
     {
       id: 3,
-      component: BitwardenLogo as LogoComponent,
-      alt: "Bitwarden Logo",
-    },
-    {
-      id: 4,
       component: CouchbaseLogo as LogoComponent,
       alt: "Couchbase Logo",
     },
     {
-      id: 5,
+      id: 4,
       component: LegoLogo as LogoComponent,
       alt: "Lego Logo",
     },
     {
-      id: 6,
+      id: 5,
       component: AirbusLogo as LogoComponent,
       alt: "Airbus Logo",
     },
     {
-      id: 7,
+      id: 6,
       component: DeloitteLogo as LogoComponent,
       alt: "Deloitte Logo",
     },
     {
-      id: 8,
+      id: 7,
       component: WakamLogo as LogoComponent,
       alt: "Wakam Logo",
     },
     {
-      id: 9,
+      id: 8,
       component: LinkedinLogo as LogoComponent,
       alt: "Linked In Logo",
     },
@@ -82,7 +76,7 @@ export default function Logos() {
         <div className="absolute left-0 top-0 z-10 h-full w-8 bg-gradient-to-r from-white/60 to-transparent dark:from-dark-50" />
         <div className="absolute right-0 top-0 z-10 h-full w-8 bg-gradient-to-l from-white/60 to-transparent dark:from-dark-50" />
 
-        <div className="animate-scroll flex" style={{ width: "max-content" }}>
+        <div className="flex animate-scroll" style={{ width: "max-content" }}>
           <div className="flex flex-shrink-0 items-center space-x-12">
             {logos.map((logo) => {
               const LogoComponent: LogoComponent = logo.component;

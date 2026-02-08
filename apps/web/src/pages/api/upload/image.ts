@@ -6,13 +6,13 @@ import { env as nextRuntimeEnv } from "next-runtime-env";
 import { createNextApiContext } from "@kan/api/trpc";
 
 import { env } from "~/env";
+import { withRateLimit } from "@kan/api/utils/rateLimit";
 
 const allowedContentTypes = ["image/jpeg", "image/png"];
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default withRateLimit(
+  { points: 100, duration: 60 },
+  async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -43,18 +43,22 @@ export default async function handler(
       return res.status(400).json({ error: "Invalid content type" });
     }
 
+    const credentials =
+      env.S3_ACCESS_KEY_ID && env.S3_SECRET_ACCESS_KEY
+        ? {
+            accessKeyId: env.S3_ACCESS_KEY_ID,
+            secretAccessKey: env.S3_SECRET_ACCESS_KEY,
+          }
+        : undefined;
+
     const client = new S3Client({
       region: env.S3_REGION ?? "",
       endpoint: env.S3_ENDPOINT ?? "",
       forcePathStyle: env.S3_FORCE_PATH_STYLE === "true",
-      credentials: {
-        accessKeyId: env.S3_ACCESS_KEY_ID ?? "",
-        secretAccessKey: env.S3_SECRET_ACCESS_KEY ?? "",
-      },
+      credentials,
     });
 
     const signedUrl = await getSignedUrl(
-      // @ts-ignore
       client,
       new PutObjectCommand({
         Bucket: nextRuntimeEnv("NEXT_PUBLIC_AVATAR_BUCKET_NAME") ?? "",
@@ -67,4 +71,5 @@ export default async function handler(
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }
-}
+  },
+);

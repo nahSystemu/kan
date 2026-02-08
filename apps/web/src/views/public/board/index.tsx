@@ -12,6 +12,7 @@ import { PageHead } from "~/components/PageHead";
 import PatternedBackground from "~/components/PatternedBackground";
 import Popup from "~/components/Popup";
 import ThemeToggle from "~/components/ThemeToggle";
+import { useDragToScroll } from "~/hooks/useDragToScroll";
 import { useModal } from "~/providers/modal";
 import { usePopup } from "~/providers/popup";
 import { api } from "~/utils/api";
@@ -29,6 +30,11 @@ export default function PublicBoardView() {
   const { showPopup } = usePopup();
   const [isRouteLoaded, setIsRouteLoaded] = useState(false);
   const { openModal } = useModal();
+  
+  const { ref: scrollRef, onMouseDown } = useDragToScroll({
+    enabled: true,
+    direction: "horizontal",
+  });
 
   const boardSlug = Array.isArray(router.query.boardSlug)
     ? router.query.boardSlug[0]
@@ -38,12 +44,25 @@ export default function PublicBoardView() {
     ? router.query.workspaceSlug[0]
     : router.query.workspaceSlug;
 
+  const dueDateFilters = formatToArray(router.query.dueDate) as (
+    | "overdue"
+    | "today"
+    | "tomorrow"
+    | "next-week"
+    | "next-month"
+    | "no-due-date"
+  )[];
+
   const { data, isLoading } = api.board.bySlug.useQuery(
     {
       boardSlug: boardSlug ?? "",
       workspaceSlug: workspaceSlug ?? "",
       members: formatToArray(router.query.members),
       labels: formatToArray(router.query.labels),
+      lists: formatToArray(router.query.lists),
+      ...(dueDateFilters.length > 0 && {
+        dueDateFilters: dueDateFilters,
+      }),
     },
     {
       enabled: router.isReady && !!boardSlug,
@@ -75,7 +94,8 @@ export default function PublicBoardView() {
     );
   };
 
-  const splitPath = router.asPath.split("/");
+  const pathWithoutQuery = router.asPath.split("?")[0];
+  const splitPath = pathWithoutQuery?.split("/") ?? [];
   const cardPublicId = splitPath.length > 3 ? splitPath[3] : null;
 
   useEffect(() => {
@@ -130,13 +150,18 @@ export default function PublicBoardView() {
                 <Filters
                   labels={data.labels ?? []}
                   members={[]}
+                  lists={data.allLists ?? []}
                   isLoading={isLoading}
                 />
               </div>
             )}
           </div>
 
-          <div className="scrollbar-w-none scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-h-[8px] relative h-full flex-1 overflow-y-hidden overflow-x-scroll overscroll-contain scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300">
+          <div
+            ref={scrollRef}
+            onMouseDown={onMouseDown}
+            className="scrollbar-w-none scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-h-[8px] relative h-full flex-1 overflow-y-hidden overflow-x-scroll overscroll-contain scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300"
+          >
             {isLoading || !router.isReady ? (
               <div className="ml-[2rem] flex">
                 <div className="0 mr-5 h-[500px] w-[18rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
@@ -170,26 +195,37 @@ export default function PublicBoardView() {
                       </span>
                     </div>
                     <div className="scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-w-[8px] z-10 h-full max-h-[calc(100vh-265px)] min-h-[2rem] overflow-y-auto pr-1 scrollbar dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-600">
-                      {list.cards.map((card) => (
-                        <Link
-                          key={card.publicId}
-                          href={`/${data.workspace.slug}/${data.slug}/${card.publicId}`}
-                          className={`mb-2 flex !cursor-pointer flex-col`}
-                          shallow={true}
-                          onClick={() => {
-                            openModal("CARD");
-                          }}
-                        >
-                          <Card
-                            title={card.title}
-                            labels={card.labels}
-                            checklists={card.checklists ?? []}
-                            members={[]}
-                            description={card.description}
-                            comments={card.comments ?? []}
-                          />
-                        </Link>
-                      ))}
+                      {list.cards.map((card) => {
+                        return (
+                          <Link
+                            key={card.publicId}
+                            href={{
+                              pathname: router.pathname,
+                              query: {
+                                ...router.query,
+                                workspaceSlug: data.workspace.slug,
+                                boardSlug: [data.slug, card.publicId],
+                              },
+                            }}
+                            className={`mb-2 flex !cursor-pointer flex-col`}
+                            shallow={true}
+                            onClick={() => {
+                              openModal("CARD");
+                            }}
+                          >
+                            <Card
+                              title={card.title}
+                              labels={card.labels}
+                              checklists={card.checklists ?? []}
+                              members={[]}
+                              description={card.description}
+                              comments={card.comments ?? []}
+                              attachments={card.attachments}
+                              dueDate={card.dueDate ?? null}
+                            />
+                          </Link>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}

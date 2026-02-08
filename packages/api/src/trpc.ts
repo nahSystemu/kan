@@ -4,6 +4,7 @@ import type { IncomingHttpHeaders } from "http";
 import type { NextApiRequest } from "next";
 import type { OpenApiMeta } from "trpc-to-openapi";
 import { initTRPC, TRPCError } from "@trpc/server";
+import { env } from "next-runtime-env";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
@@ -93,6 +94,7 @@ interface CreateContextOptions {
   user: User | null | undefined;
   db: dbClient;
   auth: ReturnType<typeof createAuthWithHeaders>;
+  headers: Headers;
 }
 
 export const createInnerTRPCContext = (opts: CreateContextOptions) => {
@@ -100,6 +102,7 @@ export const createInnerTRPCContext = (opts: CreateContextOptions) => {
     user: opts.user,
     db: opts.db,
     auth: opts.auth,
+    headers: opts.headers,
   };
 };
 
@@ -111,7 +114,7 @@ export const createTRPCContext = async ({ req }: CreateNextContextOptions) => {
 
   const session = await auth.api.getSession();
 
-  return createInnerTRPCContext({ db, user: session?.user, auth });
+  return createInnerTRPCContext({ db, user: session?.user, auth, headers });
 };
 
 export const createNextApiContext = async (req: NextApiRequest) => {
@@ -122,7 +125,7 @@ export const createNextApiContext = async (req: NextApiRequest) => {
 
   const session = await auth.api.getSession();
 
-  return createInnerTRPCContext({ db, user: session?.user, auth });
+  return createInnerTRPCContext({ db, user: session?.user, auth, headers });
 };
 
 export const createRESTContext = async ({ req }: CreateNextContextOptions) => {
@@ -139,7 +142,7 @@ export const createRESTContext = async ({ req }: CreateNextContextOptions) => {
     throw error;
   }
 
-  return createInnerTRPCContext({ db, user: session?.user, auth });
+  return createInnerTRPCContext({ db, user: session?.user, auth, headers });
 };
 
 export const createWSContext = async (opts: CreateWSSContextFnOptions) => {
@@ -196,9 +199,28 @@ const enforceUserIsAuthed = t.middleware(async ({ ctx, next }) => {
   });
 });
 
+const enforceUserIsAdmin = t.middleware(async ({ ctx, next }) => {
+  if (ctx.headers.get("x-admin-api-key") !== env("KAN_ADMIN_API_KEY")) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+
+  return next({
+    ctx,
+  });
+});
+
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed).meta({
   openapi: {
     method: "GET",
     path: "/protected",
   },
 });
+
+export const adminProtectedProcedure = t.procedure
+  .use(enforceUserIsAdmin)
+  .meta({
+    openapi: {
+      method: "GET",
+      path: "/admin/protected",
+    },
+  });

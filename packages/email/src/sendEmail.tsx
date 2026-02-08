@@ -1,7 +1,6 @@
 import { render } from "@react-email/render";
 import nodemailer from "nodemailer";
 
-import { cloudMailerClient } from "./cloudMailerClient";
 import JoinWorkspaceTemplate from "./templates/join-workspace";
 import MagicLinkTemplate from "./templates/magic-link";
 import ResetPasswordTemplate from "./templates/reset-password";
@@ -17,7 +16,17 @@ const emailTemplates: Record<Templates, React.FC> = {
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT),
-  secure: process.env.SMTP_SECURE !== "false",
+  secure:
+    process.env.SMTP_SECURE === undefined
+      ? true
+      : process.env.SMTP_SECURE?.toLowerCase() === "true",
+  tls: {
+    // do not fail on invalid certs
+    rejectUnauthorized:
+      process.env.SMTP_REJECT_UNAUTHORIZED === undefined
+        ? true
+        : process.env.SMTP_REJECT_UNAUTHORIZED?.toLowerCase() === "true",
+  },
   ...(process.env.SMTP_USER &&
     process.env.SMTP_PASSWORD && {
       auth: {
@@ -44,15 +53,6 @@ export const sendEmail = async (
       subject,
       html,
     };
-
-    // if (cloudMailerClient) {
-    //   const response = await cloudMailerClient.emails.send({
-    //     ...options,
-    //     body: html,
-    //   });
-
-    //   return response;
-    // }
 
     const response = await transporter.sendMail(options);
 

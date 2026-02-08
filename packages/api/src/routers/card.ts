@@ -14,7 +14,9 @@ import {
   publishCardEventToWebsocket,
 } from "../events";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import { mergeActivities } from "../utils/activities";
 import { assertUserInWorkspace } from "../utils/auth";
+import { generateDownloadUrl } from "../utils/s3";
 
 const emitBoardEvent = async (
   workspacePublicId: string | null | undefined,
@@ -67,12 +69,13 @@ export const cardRouter = createTRPCRouter({
     })
     .input(
       z.object({
-        title: z.string().min(1),
+        title: z.string().min(1).max(2000),
         description: z.string().max(10000),
         listPublicId: z.string().min(12),
         labelPublicIds: z.array(z.string().min(12)),
         memberPublicIds: z.array(z.string().min(12)),
         position: z.enum(["start", "end"]),
+        dueDate: z.date().nullable().optional(),
       }),
     )
     .output(z.custom<Awaited<ReturnType<typeof cardRepo.create>>>())
@@ -110,6 +113,7 @@ export const cardRouter = createTRPCRouter({
         createdBy: userId,
         listId: list.id,
         position: input.position,
+        dueDate: input.dueDate ?? null,
       });
 
       const newCardId = newCard.id;
@@ -682,7 +686,21 @@ export const cardRouter = createTRPCRouter({
     .input(z.object({ cardPublicId: z.string().min(12) }))
     .output(
       z.custom<
-        Awaited<ReturnType<typeof cardRepo.getWithListAndMembersByPublicId>>
+        Omit<
+          NonNullable<
+            Awaited<ReturnType<typeof cardRepo.getWithListAndMembersByPublicId>>
+          >,
+          "attachments"
+        > & {
+          attachments: {
+            publicId: string;
+            contentType: string;
+            s3Key: string;
+            originalFilename: string | null;
+            size?: number | null;
+            url: string | null;
+          }[];
+        }
       >(),
     )
     .query(async ({ ctx, input }) => {
@@ -720,7 +738,121 @@ export const cardRouter = createTRPCRouter({
           code: "NOT_FOUND",
         });
 
-      return result;
+      // Generate URLs for all attachments
+      const bucket = process.env.NEXT_PUBLIC_ATTACHMENTS_BUCKET_NAME;
+      if (result.attachments && Array.isArray(result.attachments)) {
+        const attachments = result.attachments as {
+          publicId: string;
+          contentType: string;
+          s3Key: string;
+          originalFilename: string | null;
+          size?: number | null;
+        }[];
+
+        const attachmentsWithUrls = await Promise.all(
+          attachments.map(async (attachment) => {
+            const base = {
+              publicId: attachment.publicId,
+              contentType: attachment.contentType,
+              s3Key: attachment.s3Key,
+              originalFilename: attachment.originalFilename,
+              size: attachment.size,
+            };
+            if (!bucket || !attachment.s3Key) {
+              return { ...base, url: null };
+            }
+            try {
+              const url = await generateDownloadUrl(
+                bucket,
+                attachment.s3Key,
+                86400, // 24 hours expiration
+              );
+              return { ...base, url };
+            } catch {
+              // If URL generation fails, return attachment with url: null
+              return { ...base, url: null };
+            }
+          }),
+        );
+        return { ...result, attachments: attachmentsWithUrls };
+      }
+
+      return { ...result, attachments: [] };
+    }),
+  getActivities: publicProcedure
+    .meta({
+      openapi: {
+        summary: "Get paginated card activities",
+        method: "GET",
+        path: "/cards/{cardPublicId}/activities",
+        description:
+          "Retrieves paginated activities for a card with merged frequent changes",
+        tags: ["Cards"],
+      },
+    })
+    .input(
+      z.object({
+        cardPublicId: z.string().min(12),
+        limit: z.number().min(1).max(100).optional().default(10),
+        cursor: z.string().datetime().optional(), // ISO datetime string
+      }),
+    )
+    .output(
+      z.object({
+        activities: z.array(
+          z.custom<
+            NonNullable<
+              Awaited<
+                ReturnType<typeof cardActivityRepo.getPaginatedActivities>
+              >
+            >["activities"][number]
+          >(),
+        ),
+        hasMore: z.boolean(),
+        nextCursor: z.string().datetime().nullable(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
+        ctx.db,
+        input.cardPublicId,
+      );
+
+      if (!card)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      if (card.workspaceVisibility === "private") {
+        const userId = ctx.user?.id;
+
+        if (!userId)
+          throw new TRPCError({
+            message: `User not authenticated`,
+            code: "UNAUTHORIZED",
+          });
+
+        await assertUserInWorkspace(ctx.db, userId, card.workspaceId);
+      }
+
+      const cursor = input.cursor ? new Date(input.cursor) : undefined;
+      const result = await cardActivityRepo.getPaginatedActivities(
+        ctx.db,
+        card.id,
+        {
+          limit: input.limit,
+          cursor,
+        },
+      );
+
+      const mergedActivities = mergeActivities(result.activities);
+
+      return {
+        activities: mergedActivities,
+        hasMore: result.hasMore,
+        nextCursor: result.nextCursor?.toISOString() ?? null,
+      };
     }),
   update: protectedProcedure
     .meta({
@@ -736,10 +868,11 @@ export const cardRouter = createTRPCRouter({
     .input(
       z.object({
         cardPublicId: z.string().min(12),
-        title: z.string().min(1).optional(),
+        title: z.string().min(1).max(2000).optional(),
         description: z.string().optional(),
         index: z.number().optional(),
         listPublicId: z.string().min(12).optional(),
+        dueDate: z.date().nullable().optional(),
       }),
     )
     .output(z.custom<Awaited<ReturnType<typeof cardRepo.update>>>())
@@ -800,15 +933,19 @@ export const cardRouter = createTRPCRouter({
             title: string;
             description: string | null;
             publicId: string;
+            dueDate: Date | null;
           }
         | undefined;
 
-      if (input.title || input.description) {
+      const previousDueDate = existingCard.dueDate;
+
+      if (input.title || input.description || input.dueDate !== undefined) {
         result = await cardRepo.update(
           ctx.db,
           {
             ...(input.title && { title: input.title }),
             ...(input.description && { description: input.description }),
+            ...(input.dueDate !== undefined && { dueDate: input.dueDate }),
           },
           { cardPublicId: input.cardPublicId },
         );
@@ -847,6 +984,32 @@ export const cardRouter = createTRPCRouter({
           createdBy: userId,
           fromDescription: existingCard.description ?? undefined,
           toDescription: input.description,
+        });
+      }
+
+      if (
+        input.dueDate !== undefined &&
+        previousDueDate?.getTime() !== input.dueDate?.getTime()
+      ) {
+        let activityType:
+          | "card.updated.dueDate.added"
+          | "card.updated.dueDate.updated"
+          | "card.updated.dueDate.removed";
+
+        if (!previousDueDate) {
+          activityType = "card.updated.dueDate.added";
+        } else if (!input.dueDate) {
+          activityType = "card.updated.dueDate.removed";
+        } else {
+          activityType = "card.updated.dueDate.updated";
+        }
+
+        activities.push({
+          type: activityType,
+          cardId: result.id,
+          createdBy: userId,
+          fromDueDate: previousDueDate ?? undefined,
+          toDueDate: input.dueDate ?? undefined,
         });
       }
 

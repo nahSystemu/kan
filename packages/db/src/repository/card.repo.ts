@@ -1,8 +1,19 @@
-import { and, asc, desc, eq, gt, inArray, isNull, sql } from "drizzle-orm";
+import {
+  and,
+  asc,
+  count,
+  desc,
+  eq,
+  gt,
+  inArray,
+  isNull,
+  sql,
+} from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
 import {
   cardActivities,
+  cardAttachments,
   cards,
   cardsToLabels,
   cardToWorkspaceMembers,
@@ -14,6 +25,15 @@ import {
 } from "@kan/db/schema";
 import { generateUID } from "@kan/shared/utils";
 
+export const getCount = async (db: dbClient) => {
+  const result = await db
+    .select({ count: count() })
+    .from(cards)
+    .where(isNull(cards.deletedAt));
+
+  return result[0]?.count ?? 0;
+};
+
 export const create = async (
   db: dbClient,
   cardInput: {
@@ -22,6 +42,7 @@ export const create = async (
     createdBy: string;
     listId: number;
     position: "start" | "end";
+    dueDate?: Date | null;
   },
 ) => {
   return db.transaction(async (tx) => {
@@ -70,6 +91,7 @@ export const create = async (
         createdBy: cardInput.createdBy,
         listId: cardInput.listId,
         index: index,
+        dueDate: cardInput.dueDate ?? null,
       })
       .returning({
         id: cards.id,
@@ -166,6 +188,7 @@ export const update = async (
   cardInput: {
     title?: string;
     description?: string;
+    dueDate?: Date | null;
   },
   args: {
     cardPublicId: string;
@@ -176,6 +199,8 @@ export const update = async (
     .set({
       title: cardInput.title,
       description: cardInput.description,
+      dueDate: cardInput.dueDate !== undefined ? cardInput.dueDate : undefined,
+      updatedAt: new Date(),
     })
     .where(and(eq(cards.publicId, args.cardPublicId), isNull(cards.deletedAt)))
     .returning({
@@ -183,6 +208,7 @@ export const update = async (
       publicId: cards.publicId,
       title: cards.title,
       description: cards.description,
+      dueDate: cards.dueDate,
     });
 
   return result;
@@ -217,6 +243,7 @@ export const getByPublicId = (db: dbClient, cardPublicId: string) => {
       title: true,
       description: true,
       listId: true,
+      dueDate: true,
     },
     where: eq(cards.publicId, cardPublicId),
   });
@@ -400,6 +427,7 @@ export const getWithListAndMembersByPublicId = async (
       publicId: true,
       title: true,
       description: true,
+      dueDate: true,
     },
     with: {
       labels: {
@@ -412,6 +440,17 @@ export const getWithListAndMembersByPublicId = async (
             },
           },
         },
+      },
+      attachments: {
+        columns: {
+          publicId: true,
+          contentType: true,
+          s3Key: true,
+          originalFilename: true,
+          size: true,
+        },
+        where: isNull(cardAttachments.deletedAt),
+        orderBy: asc(cardAttachments.createdAt),
       },
       checklists: {
         columns: {
@@ -523,6 +562,8 @@ export const getWithListAndMembersByPublicId = async (
           toTitle: true,
           fromDescription: true,
           toDescription: true,
+          fromDueDate: true,
+          toDueDate: true,
         },
         with: {
           fromList: {
@@ -772,6 +813,7 @@ export const reorder = async (
         publicId: true,
         title: true,
         description: true,
+        dueDate: true,
       },
       where: eq(cards.id, card.id),
     });

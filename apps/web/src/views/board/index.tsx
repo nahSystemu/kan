@@ -23,6 +23,10 @@ import { NewWorkspaceForm } from "~/components/NewWorkspaceForm";
 import { PageHead } from "~/components/PageHead";
 import PatternedBackground from "~/components/PatternedBackground";
 import { StrictModeDroppable as Droppable } from "~/components/StrictModeDroppable";
+import { Tooltip } from "~/components/Tooltip";
+import { EditYouTubeModal } from "~/components/YouTubeEmbed/EditYouTubeModal";
+import { useDragToScroll } from "~/hooks/useDragToScroll";
+import { useKeyboardShortcut } from "~/providers/keyboard-shortcuts";
 import { useModal } from "~/providers/modal";
 import { usePopup } from "~/providers/popup";
 import { useWorkspace } from "~/providers/workspace";
@@ -53,6 +57,20 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
   const [selectedPublicListId, setSelectedPublicListId] =
     useState<PublicListId>("");
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  
+  const { ref: scrollRef, onMouseDown } = useDragToScroll({
+    enabled: true,
+    direction: "horizontal",
+  });
+
+  const { tooltipContent: createListShortcutTooltipContent } =
+    useKeyboardShortcut({
+      type: "PRESS",
+      stroke: { key: "C" },
+      action: () => boardId && openNewListForm(boardId),
+      description: t`Create new list`,
+      group: "ACTIONS",
+    });
 
   const boardId = params?.boardId
     ? Array.isArray(params.boardId)
@@ -76,16 +94,26 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
     });
   };
 
-  const queryParams: {
-    boardPublicId: string;
-    members: string[];
-    labels: string[];
-    type: "regular" | "template";
-  } = {
+  const semanticFilters = formatToArray(router.query.dueDate) as (
+    | "overdue"
+    | "today"
+    | "tomorrow"
+    | "next-week"
+    | "next-month"
+    | "no-due-date"
+  )[];
+
+  const boardType: "regular" | "template" = isTemplate ? "template" : "regular";
+
+  const queryParams = {
     boardPublicId: boardId ?? "",
     members: formatToArray(router.query.members),
     labels: formatToArray(router.query.labels),
-    type: isTemplate ? "template" : "regular",
+    lists: formatToArray(router.query.lists),
+    ...(semanticFilters.length > 0 && {
+      dueDateFilters: semanticFilters,
+    }),
+    type: boardType,
   };
 
   const {
@@ -351,6 +379,13 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
             sourceBoardName={boardData?.name ?? ""}
           />
         </Modal>
+
+        <Modal
+          modalSize="sm"
+          isVisible={isOpen && modalContentType === "EDIT_YOUTUBE"}
+        >
+          <EditYouTubeModal />
+        </Modal>
       </>
     );
   };
@@ -418,26 +453,29 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                     members={boardData.workspace.members.filter(
                       (member) => member.user !== null,
                     )}
+                    lists={boardData.allLists}
                     position="left"
                     isLoading={!boardData}
                   />
                 )}
               </>
             )}
-            <Button
-              iconLeft={
-                <HiOutlinePlusSmall
-                  className="-mr-0.5 h-5 w-5"
-                  aria-hidden="true"
-                />
-              }
-              onClick={() => {
-                if (boardId) openNewListForm(boardId);
-              }}
-              disabled={!boardData}
-            >
-              {t`New list`}
-            </Button>
+            <Tooltip content={createListShortcutTooltipContent}>
+              <Button
+                iconLeft={
+                  <HiOutlinePlusSmall
+                    className="-mr-0.5 h-5 w-5"
+                    aria-hidden="true"
+                  />
+                }
+                onClick={() => {
+                  if (boardId) openNewListForm(boardId);
+                }}
+                disabled={!boardData}
+              >
+                {t`New list`}
+              </Button>
+            </Tooltip>
             <BoardDropdown
               isTemplate={!!isTemplate}
               isLoading={!boardData}
@@ -447,7 +485,11 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
           </div>
         </div>
 
-        <div className="scrollbar-w-none scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-h-[8px] z-0 flex-1 overflow-y-hidden overflow-x-scroll overscroll-contain scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300">
+        <div
+          ref={scrollRef}
+          onMouseDown={onMouseDown}
+          className={`scrollbar-w-none scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-h-[8px] z-0 flex-1 overflow-y-hidden overflow-x-scroll overscroll-contain scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300`}
+        >
           {isLoading ? (
             <div className="ml-[2rem] flex">
               <div className="0 mr-5 h-[500px] w-[18rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
@@ -550,6 +592,8 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                                               card.description ?? null
                                             }
                                             comments={card.comments ?? []}
+                                            attachments={card.attachments}
+                                            dueDate={card.dueDate ?? null}
                                           />
                                         </Link>
                                       )}

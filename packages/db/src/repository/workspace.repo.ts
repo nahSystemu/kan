@@ -1,4 +1,14 @@
-import { and, desc, eq, ilike, inArray, isNull, or, sql } from "drizzle-orm";
+import {
+  and,
+  count,
+  desc,
+  eq,
+  ilike,
+  inArray,
+  isNull,
+  or,
+  sql,
+} from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
 import {
@@ -9,6 +19,15 @@ import {
   workspaces,
 } from "@kan/db/schema";
 import { generateUID } from "@kan/shared/utils";
+
+export const getCount = async (db: dbClient) => {
+  const result = await db
+    .select({ count: count() })
+    .from(workspaces)
+    .where(isNull(workspaces.deletedAt));
+
+  return result[0]?.count ?? 0;
+};
 
 export const create = async (
   db: dbClient,
@@ -63,6 +82,7 @@ export const update = async (
     slug?: string;
     plan?: "free" | "pro" | "enterprise";
     description?: string;
+    showEmailsToMembers?: boolean;
   },
 ) => {
   const [result] = await db
@@ -72,6 +92,7 @@ export const update = async (
       slug: workspaceInput.slug,
       plan: workspaceInput.plan,
       description: workspaceInput.description,
+      showEmailsToMembers: workspaceInput.showEmailsToMembers,
     })
     .where(eq(workspaces.publicId, workspacePublicId))
     .returning({
@@ -81,6 +102,7 @@ export const update = async (
       slug: workspaces.slug,
       description: workspaces.description,
       plan: workspaces.plan,
+      showEmailsToMembers: workspaces.showEmailsToMembers,
     });
 
   return result;
@@ -120,6 +142,7 @@ export const getByPublicIdWithMembers = (
     columns: {
       id: true,
       publicId: true,
+      showEmailsToMembers: true,
     },
     with: {
       members: {

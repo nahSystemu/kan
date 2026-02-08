@@ -15,6 +15,7 @@ import { twMerge } from "tailwind-merge";
 import type { Subscription } from "@kan/shared/utils";
 import { hasActiveSubscription } from "@kan/shared/utils";
 
+import type { KeyboardShortcut } from "~/providers/keyboard-shortcuts";
 import boardsIconDark from "~/assets/boards-dark.json";
 import boardsIconLight from "~/assets/boards-light.json";
 import membersIconDark from "~/assets/members-dark.json";
@@ -38,6 +39,7 @@ interface SideNavigationProps {
 }
 
 interface UserType {
+  displayName?: string | null | undefined;
   email?: string | null | undefined;
   image?: string | null | undefined;
 }
@@ -86,26 +88,59 @@ export default function SideNavigation({
 
   const isDarkMode = resolvedTheme === "dark";
 
-  const navigation = [
+  const navigation: {
+    name: string;
+    href: string;
+    icon: object;
+    keyboardShortcut: KeyboardShortcut;
+  }[] = [
     {
       name: t`Boards`,
       href: "/boards",
       icon: isDarkMode ? boardsIconDark : boardsIconLight,
+      keyboardShortcut: {
+        type: "SEQUENCE",
+        strokes: [{ key: "G" }, { key: "B" }],
+        action: () => router.push("/boards"),
+        group: "NAVIGATION",
+        description: t`Go to boards`,
+      },
     },
     {
       name: t`Templates`,
       href: "/templates",
       icon: isDarkMode ? templatesIconDark : templatesIconLight,
+      keyboardShortcut: {
+        type: "SEQUENCE",
+        strokes: [{ key: "G" }, { key: "T" }],
+        action: () => router.push("/templates"),
+        group: "NAVIGATION",
+        description: t`Go to templates`,
+      },
     },
     {
       name: t`Members`,
       href: "/members",
       icon: isDarkMode ? membersIconDark : membersIconLight,
+      keyboardShortcut: {
+        type: "SEQUENCE",
+        strokes: [{ key: "G" }, { key: "M" }],
+        action: () => router.push("/members"),
+        group: "NAVIGATION",
+        description: t`Go to members`,
+      },
     },
     {
       name: t`Settings`,
       href: "/settings",
       icon: isDarkMode ? settingsIconDark : settingsIconLight,
+      keyboardShortcut: {
+        type: "SEQUENCE",
+        strokes: [{ key: "G" }, { key: "S" }],
+        action: () => router.push("/settings"),
+        group: "NAVIGATION",
+        description: t`Go to settings`,
+      },
     },
   ];
 
@@ -122,10 +157,10 @@ export default function SideNavigation({
         )}
       >
         <div>
-          <div className="hidden h-14 items-center justify-between pb-[18px] pt-1.5 md:flex">
+          <div className="hidden h-[45px] items-center justify-between pb-3 md:flex">
             {!isCollapsed && (
               <Link href="/" className="block">
-                <h1 className="pl-2 text-lg font-bold tracking-tight text-neutral-900 dark:text-dark-1000">
+                <h1 className="pl-2 text-[16px] font-bold tracking-tight text-neutral-900 dark:text-dark-1000">
                   kan.bn
                 </h1>
               </Link>
@@ -163,6 +198,7 @@ export default function SideNavigation({
                   json={item.icon}
                   isCollapsed={isCollapsed}
                   onCloseSideNav={onCloseSideNav}
+                  keyboardShortcut={item.keyboardShortcut}
                 />
               </li>
             ))}
@@ -171,7 +207,8 @@ export default function SideNavigation({
 
         <div className="space-y-2">
           <UserMenu
-            email={user.email ?? ""}
+            displayName={user.displayName ?? undefined}
+            email={user.email ?? "Email not provided?"}
             imageUrl={user.image ?? undefined}
             isLoading={isLoading}
             isCollapsed={isCollapsed}
