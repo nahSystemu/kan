@@ -40,6 +40,16 @@ msgstr "{0}"
 msgid "{0} | {1}"
 msgstr "{0} | {1}"
 
+#. placeholder {0}: boardName ?? "Board"
+#: src/views/board/components/BoardDropdown.tsx:54
+msgid "{0} has been added to your favorites."
+msgstr ""
+
+#. placeholder {0}: boardName ?? "Board"
+#: src/views/board/components/BoardDropdown.tsx:55
+msgid "{0} has been removed from your favorites."
+msgstr ""
+
 #. placeholder {0}: labelPublicIds.length
 #: src/views/board/components/NewCardForm.tsx:453
 msgid "{0} labels"
@@ -49,6 +59,10 @@ msgstr "{0} etykiety"
 #: src/views/board/index.tsx:427
 msgid "{0} not found"
 msgstr "{0} nie znaleziono"
+
+#: src/views/notifications/components/NotificationCard.tsx:38
+msgid "{assignedBy} added you to {cardTitle} in {workspaceName}"
+msgstr ""
 
 #: src/views/boards/components/ImportBoardsForm.tsx:299
 msgid "{boardCount, plural, one {Import board (1)} other {Import boards ({boardCount})}}"
@@ -71,6 +85,10 @@ msgstr "1 użytkownik"
 #: src/views/pricing/components/PricingTiers.tsx:136
 msgid "14 day free trial"
 msgstr "14-dniowy bezpłatny okres próbny"
+
+#: src/views/notifications/components/NotificationCard.tsx:34
+msgid "a card"
+msgstr ""
 
 #: src/views/home/index.tsx:71
 msgid "A powerful, flexible kanban app that helps you organise work, track progress, and deliver results—all in one place."
@@ -136,6 +154,10 @@ msgstr "Dodaj etykietę"
 msgid "Add member"
 msgstr "Dodaj członka"
 
+#: src/views/board/components/BoardDropdown.tsx:93
+msgid "Add to favorites"
+msgstr ""
+
 #. placeholder {0}: mergedLabels.length
 #: src/views/card/components/ActivityList.tsx:78
 msgid "added {0} labels: <0>{labelList}</0>"
@@ -171,6 +193,10 @@ msgstr "dodał(a) element listy kontrolnej <0>{0}</0>"
 #: src/views/card/components/ActivityList.tsx:166
 msgid "added label <0>{0}</0>"
 msgstr "dodał(a) etykietę <0>{0}</0>"
+
+#: src/views/board/components/BoardDropdown.tsx:51
+msgid "Added to favorites"
+msgstr ""
 
 #: src/views/members/components/InviteMemberForm.tsx:327
 msgid "Adding a new member will cost an additional {price} ({billingType}) per seat."
@@ -287,6 +313,10 @@ msgstr "Czy na pewno chcesz usunąć tę etykietę?"
 msgid "Are you sure you want to delete your account?"
 msgstr "Czy na pewno chcesz usunąć swoje konto?"
 
+#: src/views/notifications/components/NotificationsEmptyState.tsx:8
+msgid "Assign or update cards to see new activity appear here."
+msgstr ""
+
 #. placeholder {0}: truncate(memberName)
 #: src/views/card/components/ActivityList.tsx:146
 msgid "assigned <0>{0}</0> to the card"
@@ -386,7 +416,7 @@ msgstr "Widoczność tablicy"
 msgid "Board visibility updated"
 msgstr "Widoczność tablicy została zaktualizowana"
 
-#: src/components/SideNavigation.tsx:98
+#: src/components/SideNavigation.tsx:104
 msgid "Boards"
 msgstr "Tablice"
 
@@ -760,7 +790,7 @@ msgid "Create list"
 msgstr "Utwórz listę"
 
 #. placeholder {0}: isTemplate ? "template" : "board"
-#: src/views/boards/components/BoardsList.tsx:58
+#: src/views/boards/components/BoardsList.tsx:79
 #: src/views/boards/index.tsx:28
 msgid "Create new {0}"
 msgstr "Utwórz nowy {0}"
@@ -775,7 +805,7 @@ msgid "Create new label"
 msgstr "Utwórz nową etykietę"
 
 #: src/views/board/index.tsx:74
-#: src/views/board/index.tsx:537
+#: src/views/board/index.tsx:539
 msgid "Create new list"
 msgstr "Utwórz nową listę"
 
@@ -862,7 +892,7 @@ msgstr "Usuń"
 msgid "Delete account"
 msgstr "Usuń konto"
 
-#: src/views/board/components/BoardDropdown.tsx:55
+#: src/views/board/components/BoardDropdown.tsx:104
 msgid "Delete board"
 msgstr "Usuń tablicę"
 
@@ -878,7 +908,7 @@ msgstr "Usuń komentarz"
 msgid "Delete list"
 msgstr "Usuń listę"
 
-#: src/views/board/components/BoardDropdown.tsx:55
+#: src/views/board/components/BoardDropdown.tsx:104
 msgid "Delete template"
 msgstr "Usuń szablon"
 
@@ -998,7 +1028,7 @@ msgstr "Termin na jutro"
 msgid "Edit"
 msgstr "Edytuj"
 
-#: src/views/board/components/BoardDropdown.tsx:44
+#: src/views/board/components/BoardDropdown.tsx:84
 #: src/views/board/components/UpdateBoardSlugForm.tsx:116
 msgid "Edit board URL"
 msgstr "Edytuj URL tablicy"
@@ -1286,11 +1316,11 @@ msgid "Get Started"
 msgstr "Rozpocznij"
 
 #. placeholder {0}: isTemplate ? "template" : "board"
-#: src/views/boards/components/BoardsList.tsx:44
+#: src/views/boards/components/BoardsList.tsx:65
 msgid "Get started by creating a new {0}"
 msgstr "Rozpocznij, tworząc nowy {0}"
 
-#: src/views/board/index.tsx:522
+#: src/views/board/index.tsx:524
 msgid "Get started by creating a new list"
 msgstr "Rozpocznij, tworząc nową listę"
 
@@ -1324,19 +1354,23 @@ msgstr "Wróć do strony głównej"
 msgid "Go to app"
 msgstr "Przejdź do aplikacji"
 
-#: src/components/SideNavigation.tsx:106
+#: src/components/SideNavigation.tsx:112
 msgid "Go to boards"
 msgstr "Przejdź do tablic"
 
-#: src/components/SideNavigation.tsx:130
+#: src/components/SideNavigation.tsx:136
 msgid "Go to members"
 msgstr "Przejdź do członków"
 
-#: src/components/SideNavigation.tsx:142
+#: src/components/SideNavigation.tsx:148
+msgid "Go to notifications"
+msgstr ""
+
+#: src/components/SideNavigation.tsx:162
 msgid "Go to settings"
 msgstr "Przejdź do ustawień"
 
-#: src/components/SideNavigation.tsx:118
+#: src/components/SideNavigation.tsx:124
 msgid "Go to templates"
 msgstr "Przejdź do szablonów"
 
@@ -1600,6 +1634,10 @@ msgstr "Nazwa listy"
 msgid "Lists"
 msgstr "Listy"
 
+#: src/views/notifications/components/NotificationList.tsx:41
+msgid "Load more"
+msgstr ""
+
 #: src/views/card/components/ActivityList.tsx:533
 msgid "Load more activities"
 msgstr "Załaduj więcej aktywności"
@@ -1636,9 +1674,13 @@ msgstr "Niski priorytet"
 msgid "magic link"
 msgstr "magiczny link"
 
-#: src/views/board/components/BoardDropdown.tsx:34
+#: src/views/board/components/BoardDropdown.tsx:73
 msgid "Make template"
 msgstr "Utwórz szablon"
+
+#: src/views/notifications/components/NotificationsHeader.tsx:35
+msgid "Mark all as read"
+msgstr ""
 
 #: src/views/card/components/ActivityList.tsx:114
 msgid "marked a checklist item as incomplete"
@@ -1657,7 +1699,7 @@ msgstr "Średni priorytet"
 msgid "Member"
 msgstr "Członek"
 
-#: src/components/SideNavigation.tsx:122
+#: src/components/SideNavigation.tsx:128
 #: src/views/board/components/Filters.tsx:147
 #: src/views/board/components/NewCardForm.tsx:377
 #: src/views/card/index.tsx:141
@@ -1767,7 +1809,7 @@ msgid "Next Steps"
 msgstr "Następne kroki"
 
 #. placeholder {0}: isTemplate ? "templates" : "boards"
-#: src/views/boards/components/BoardsList.tsx:41
+#: src/views/boards/components/BoardsList.tsx:62
 msgid "No {0}"
 msgstr "Brak {0}"
 
@@ -1795,11 +1837,11 @@ msgstr "Brak dostępnego URL do pobrania tego załącznika."
 msgid "No keyboard shortcuts registered."
 msgstr "Brak zarejestrowanych skrótów klawiaturowych."
 
-#: src/views/board/index.tsx:518
+#: src/views/board/index.tsx:520
 msgid "No lists"
 msgstr "Brak list"
 
-#: src/views/board/index.tsx:523
+#: src/views/board/index.tsx:525
 msgid "No lists have been created yet"
 msgstr "Nie utworzono jeszcze żadnych list"
 
@@ -1810,6 +1852,12 @@ msgstr "Nie znaleziono wyników dla „{debouncedQuery}”."
 #: src/views/settings/components/RolePermissions.tsx:110
 msgid "No roles found for this workspace yet."
 msgstr "Nie znaleziono jeszcze żadnych ról dla tego obszaru roboczego."
+
+#: src/components/SideNavigation.tsx:140
+#: src/views/notifications/components/NotificationsHeader.tsx:22
+#: src/views/notifications/index.tsx:121
+msgid "Notifications"
+msgstr ""
 
 #: src/views/boards/components/TemplateBoards.tsx:66
 msgid "Offer"
@@ -1974,6 +2022,7 @@ msgstr "Proszę wybrać plik do przesłania."
 #: src/components/DeleteLabelConfirmation.tsx:26
 #: src/components/FeedbackModal.tsx:41
 #: src/components/NewWorkspaceForm.tsx:158
+#: src/views/board/components/BoardDropdown.tsx:63
 #: src/views/board/components/NewCardForm.tsx:184
 #: src/views/board/components/NewListForm.tsx:79
 #: src/views/board/components/NewTemplateForm.tsx:61
@@ -2023,6 +2072,7 @@ msgstr "Proszę spróbować ponownie później lub skontaktować się z obsług�
 
 #: src/views/members/components/InviteMemberForm.tsx:129
 #: src/views/members/components/InviteMemberForm.tsx:145
+#: src/views/notifications/index.tsx:107
 msgid "Please try again later."
 msgstr "Proszę spróbować ponownie później."
 
@@ -2101,6 +2151,10 @@ msgstr "Zdalne"
 msgid "Remove"
 msgstr "Usuń"
 
+#: src/views/board/components/BoardDropdown.tsx:92
+msgid "Remove from favorites"
+msgstr ""
+
 #: src/views/members/index.tsx:232
 msgid "Remove member"
 msgstr "Usuń członka"
@@ -2117,6 +2171,10 @@ msgstr "usunął etykietę z karty"
 #: src/views/card/components/ActivityList.tsx:107
 msgid "removed a member from the card"
 msgstr "usunął członka z karty"
+
+#: src/views/board/components/BoardDropdown.tsx:52
+msgid "Removed from favorites"
+msgstr ""
 
 #. placeholder {0}: truncate(label)
 #: src/views/card/components/ActivityList.tsx:174
@@ -2249,7 +2307,7 @@ msgid "set the due date"
 msgstr "ustawiono termin"
 
 #: src/components/SettingsLayout.tsx:95
-#: src/components/SideNavigation.tsx:134
+#: src/components/SideNavigation.tsx:154
 msgid "Settings"
 msgstr "Ustawienia"
 
@@ -2327,6 +2385,10 @@ msgstr "Media społecznościowe"
 msgid "Software Development"
 msgstr "Rozwój oprogramowania"
 
+#: src/views/notifications/index.tsx:77
+msgid "Something went wrong"
+msgstr ""
+
 #: src/views/home/index.tsx:37
 msgid "Star on Github"
 msgstr "Oznacz gwiazdką na Githubie"
@@ -2335,6 +2397,10 @@ msgstr "Oznacz gwiazdką na Githubie"
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:111
 msgid "Start 14 day free trial"
 msgstr "Rozpocznij 14-dniowy bezpłatny okres próbny"
+
+#: src/views/notifications/components/NotificationsHeader.tsx:25
+msgid "Stay up to date with activity that needs your attention."
+msgstr ""
 
 #: src/views/members/components/InviteMemberForm.tsx:122
 msgid "Subscription Required"
@@ -2394,7 +2460,7 @@ msgstr "Nazwa szablonu nie może przekraczać 100 znaków"
 msgid "Template name is required"
 msgstr "Nazwa szablonu jest wymagana"
 
-#: src/components/SideNavigation.tsx:110
+#: src/components/SideNavigation.tsx:116
 #: src/views/home/components/Features.tsx:115
 msgid "Templates"
 msgstr "Szablony"
@@ -2592,6 +2658,10 @@ msgstr "Nie można usunąć elementu listy kontrolnej"
 msgid "Unable to delete comment"
 msgstr "Nie można usunąć komentarza"
 
+#: src/views/notifications/index.tsx:106
+msgid "Unable to mark notification as read"
+msgstr ""
+
 #: src/views/members/components/DeleteMemberConfirmation.tsx:27
 msgid "Unable to remove member"
 msgstr "Nie można usunąć członka"
@@ -2607,6 +2677,10 @@ msgstr "Nie można zresetować uprawnień"
 #: src/components/FeedbackModal.tsx:40
 msgid "Unable to send feedback"
 msgstr "Nie można wysłać opinii"
+
+#: src/views/board/components/BoardDropdown.tsx:62
+msgid "Unable to update board"
+msgstr ""
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:72
 msgid "Unable to update board URL"
@@ -2744,7 +2818,7 @@ msgstr "zaktualizowano tytuł"
 msgid "updated the title to <0>{0}</0>"
 msgstr "zaktualizowano tytuł na <0>{0}</0>"
 
-#: src/components/SideNavigation.tsx:239
+#: src/components/SideNavigation.tsx:261
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:53
 #: src/views/settings/WorkspaceSettings.tsx:107
 msgid "Upgrade to Pro"
@@ -2803,6 +2877,10 @@ msgstr "Zobacz i zarządzaj swoimi kluczami API."
 msgid "View and manage your billing and subscription."
 msgstr "Zobacz i zarządzaj swoimi płatnościami i subskrypcją."
 
+#: src/views/notifications/components/NotificationCard.tsx:104
+msgid "View board"
+msgstr ""
+
 #: src/views/pricing/components/Pricing.tsx:67
 #: src/views/pricing/components/PricingTiers.tsx:64
 msgid "View docs"
@@ -2827,6 +2905,10 @@ msgstr "Widoczność"
 #: src/views/home/components/Faqs.tsx:94
 msgid "We are using the <0>AGPL-3.0 license</0>."
 msgstr "Używamy licencji <0>AGPL-3.0</0>."
+
+#: src/views/notifications/index.tsx:78
+msgid "We could not mark all notifications as read. Please try again later."
+msgstr ""
 
 #: src/pages/unsubscribe/index.tsx:63
 msgid "We couldn't update your preferences. Please try again."
@@ -2864,8 +2946,9 @@ msgstr "Dlaczego próbujecie stworzyć Trello w wersji otwartoźródłowej?"
 #: src/views/board/index.tsx:399
 #: src/views/boards/index.tsx:35
 #: src/views/members/index.tsx:257
+#: src/views/notifications/index.tsx:120
 #: src/views/public/board/index.tsx:120
-#: src/views/public/boards/index.tsx:66
+#: src/views/public/boards/index.tsx:65
 msgid "Workspace"
 msgstr "Obszar roboczy"
 
@@ -2970,8 +3053,8 @@ msgstr "Możesz hostować samodzielnie, postępując zgodnie z instrukcjami w na
 #: src/views/board/components/UpdateBoardSlugButton.tsx:31
 #: src/views/board/components/VisibilityButton.tsx:72
 #: src/views/board/index.tsx:472
-#: src/views/board/index.tsx:528
-#: src/views/boards/components/BoardsList.tsx:49
+#: src/views/board/index.tsx:530
+#: src/views/boards/components/BoardsList.tsx:70
 #: src/views/boards/index.tsx:46
 #: src/views/boards/index.tsx:67
 msgid "You don't have permission"
@@ -2996,6 +3079,14 @@ msgstr "Masz nielimitowaną liczbę miejsc w swoim planie Pro. Nie ma dodatkowyc
 #: src/views/settings/PermissionsSettings.tsx:84
 msgid "You need to be an admin to manage workspace permissions."
 msgstr "Musisz być administratorem, aby zarządzać uprawnieniami przestrzeni roboczej."
+
+#: src/views/notifications/components/NotificationCard.tsx:39
+msgid "You were added to {cardTitle} in {workspaceName}"
+msgstr ""
+
+#: src/views/notifications/components/NotificationsEmptyState.tsx:6
+msgid "You're all caught up!"
+msgstr ""
 
 #: src/views/invite/index.tsx:134
 msgid "You've been invited to join a workspace on kan.bn."

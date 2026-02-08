@@ -35,6 +35,16 @@ msgstr "{0}"
 msgid "{0} | {1}"
 msgstr "{0} | {1}"
 
+#. placeholder {0}: boardName ?? "Board"
+#: src/views/board/components/BoardDropdown.tsx:54
+msgid "{0} has been added to your favorites."
+msgstr "{0} has been added to your favorites."
+
+#. placeholder {0}: boardName ?? "Board"
+#: src/views/board/components/BoardDropdown.tsx:55
+msgid "{0} has been removed from your favorites."
+msgstr "{0} has been removed from your favorites."
+
 #. placeholder {0}: labelPublicIds.length
 #: src/views/board/components/NewCardForm.tsx:453
 msgid "{0} labels"
@@ -44,6 +54,10 @@ msgstr "{0} labels"
 #: src/views/board/index.tsx:427
 msgid "{0} not found"
 msgstr "{0} not found"
+
+#: src/views/notifications/components/NotificationCard.tsx:38
+msgid "{assignedBy} added you to {cardTitle} in {workspaceName}"
+msgstr "{assignedBy} added you to {cardTitle} in {workspaceName}"
 
 #: src/views/boards/components/ImportBoardsForm.tsx:299
 msgid "{boardCount, plural, one {Import board (1)} other {Import boards ({boardCount})}}"
@@ -70,6 +84,10 @@ msgstr "1 user"
 #: src/views/pricing/components/PricingTiers.tsx:136
 msgid "14 day free trial"
 msgstr "14 day free trial"
+
+#: src/views/notifications/components/NotificationCard.tsx:34
+msgid "a card"
+msgstr "a card"
 
 #: src/views/home/index.tsx:71
 #~ msgid ""
@@ -147,6 +165,10 @@ msgstr "Add label"
 msgid "Add member"
 msgstr "Add member"
 
+#: src/views/board/components/BoardDropdown.tsx:93
+msgid "Add to favorites"
+msgstr "Add to favorites"
+
 #. placeholder {0}: mergedLabels.length
 #: src/views/card/components/ActivityList.tsx:78
 msgid "added {0} labels: <0>{labelList}</0>"
@@ -186,6 +208,10 @@ msgstr "added label <0>{0}</0>"
 #: src/views/card/components/ActivityList.tsx:110
 #~ msgid "added label <0>{label}</0>"
 #~ msgstr "added label <0>{label}</0>"
+
+#: src/views/board/components/BoardDropdown.tsx:51
+msgid "Added to favorites"
+msgstr "Added to favorites"
 
 #: src/views/members/components/InviteMemberForm.tsx:327
 msgid "Adding a new member will cost an additional {price} ({billingType}) per seat."
@@ -314,6 +340,10 @@ msgstr "Are you sure you want to delete your account?"
 #~ msgid "around the world"
 #~ msgstr "around the world"
 
+#: src/views/notifications/components/NotificationsEmptyState.tsx:8
+msgid "Assign or update cards to see new activity appear here."
+msgstr "Assign or update cards to see new activity appear here."
+
 #. placeholder {0}: truncate(memberName)
 #: src/views/card/components/ActivityList.tsx:146
 msgid "assigned <0>{0}</0> to the card"
@@ -430,7 +460,7 @@ msgstr "Board visibility"
 msgid "Board visibility updated"
 msgstr "Board visibility updated"
 
-#: src/components/SideNavigation.tsx:98
+#: src/components/SideNavigation.tsx:104
 msgid "Boards"
 msgstr "Boards"
 
@@ -828,7 +858,7 @@ msgid "Create list"
 msgstr "Create list"
 
 #. placeholder {0}: isTemplate ? "template" : "board"
-#: src/views/boards/components/BoardsList.tsx:58
+#: src/views/boards/components/BoardsList.tsx:79
 #: src/views/boards/index.tsx:28
 msgid "Create new {0}"
 msgstr "Create new {0}"
@@ -847,7 +877,7 @@ msgid "Create new label"
 msgstr "Create new label"
 
 #: src/views/board/index.tsx:74
-#: src/views/board/index.tsx:537
+#: src/views/board/index.tsx:539
 msgid "Create new list"
 msgstr "Create new list"
 
@@ -946,7 +976,7 @@ msgstr "Delete"
 msgid "Delete account"
 msgstr "Delete account"
 
-#: src/views/board/components/BoardDropdown.tsx:55
+#: src/views/board/components/BoardDropdown.tsx:104
 msgid "Delete board"
 msgstr "Delete board"
 
@@ -962,7 +992,7 @@ msgstr "Delete comment"
 msgid "Delete list"
 msgstr "Delete list"
 
-#: src/views/board/components/BoardDropdown.tsx:55
+#: src/views/board/components/BoardDropdown.tsx:104
 msgid "Delete template"
 msgstr "Delete template"
 
@@ -1082,7 +1112,7 @@ msgstr "Due tomorrow"
 msgid "Edit"
 msgstr "Edit"
 
-#: src/views/board/components/BoardDropdown.tsx:44
+#: src/views/board/components/BoardDropdown.tsx:84
 #: src/views/board/components/UpdateBoardSlugForm.tsx:116
 msgid "Edit board URL"
 msgstr "Edit board URL"
@@ -1378,7 +1408,7 @@ msgid "Get Started"
 msgstr "Get Started"
 
 #. placeholder {0}: isTemplate ? "template" : "board"
-#: src/views/boards/components/BoardsList.tsx:44
+#: src/views/boards/components/BoardsList.tsx:65
 msgid "Get started by creating a new {0}"
 msgstr "Get started by creating a new {0}"
 
@@ -1386,7 +1416,7 @@ msgstr "Get started by creating a new {0}"
 #~ msgid "Get started by creating a new board"
 #~ msgstr "Get started by creating a new board"
 
-#: src/views/board/index.tsx:522
+#: src/views/board/index.tsx:524
 msgid "Get started by creating a new list"
 msgstr "Get started by creating a new list"
 
@@ -1420,19 +1450,23 @@ msgstr "Go Home"
 msgid "Go to app"
 msgstr "Go to app"
 
-#: src/components/SideNavigation.tsx:106
+#: src/components/SideNavigation.tsx:112
 msgid "Go to boards"
 msgstr "Go to boards"
 
-#: src/components/SideNavigation.tsx:130
+#: src/components/SideNavigation.tsx:136
 msgid "Go to members"
 msgstr "Go to members"
 
-#: src/components/SideNavigation.tsx:142
+#: src/components/SideNavigation.tsx:148
+msgid "Go to notifications"
+msgstr "Go to notifications"
+
+#: src/components/SideNavigation.tsx:162
 msgid "Go to settings"
 msgstr "Go to settings"
 
-#: src/components/SideNavigation.tsx:118
+#: src/components/SideNavigation.tsx:124
 msgid "Go to templates"
 msgstr "Go to templates"
 
@@ -1704,6 +1738,10 @@ msgstr "List name"
 msgid "Lists"
 msgstr "Lists"
 
+#: src/views/notifications/components/NotificationList.tsx:41
+msgid "Load more"
+msgstr "Load more"
+
 #: src/views/card/components/ActivityList.tsx:533
 msgid "Load more activities"
 msgstr "Load more activities"
@@ -1740,9 +1778,13 @@ msgstr "Low Priority"
 msgid "magic link"
 msgstr "magic link"
 
-#: src/views/board/components/BoardDropdown.tsx:34
+#: src/views/board/components/BoardDropdown.tsx:73
 msgid "Make template"
 msgstr "Make template"
+
+#: src/views/notifications/components/NotificationsHeader.tsx:35
+msgid "Mark all as read"
+msgstr "Mark all as read"
 
 #: src/views/card/components/ActivityList.tsx:114
 msgid "marked a checklist item as incomplete"
@@ -1761,7 +1803,7 @@ msgstr "Medium Priority"
 msgid "Member"
 msgstr "Member"
 
-#: src/components/SideNavigation.tsx:122
+#: src/components/SideNavigation.tsx:128
 #: src/views/board/components/Filters.tsx:147
 #: src/views/board/components/NewCardForm.tsx:377
 #: src/views/card/index.tsx:141
@@ -1887,7 +1929,7 @@ msgid "Next Steps"
 msgstr "Next Steps"
 
 #. placeholder {0}: isTemplate ? "templates" : "boards"
-#: src/views/boards/components/BoardsList.tsx:41
+#: src/views/boards/components/BoardsList.tsx:62
 msgid "No {0}"
 msgstr "No {0}"
 
@@ -1919,11 +1961,11 @@ msgstr "No download URL available for this attachment."
 msgid "No keyboard shortcuts registered."
 msgstr "No keyboard shortcuts registered."
 
-#: src/views/board/index.tsx:518
+#: src/views/board/index.tsx:520
 msgid "No lists"
 msgstr "No lists"
 
-#: src/views/board/index.tsx:523
+#: src/views/board/index.tsx:525
 msgid "No lists have been created yet"
 msgstr "No lists have been created yet"
 
@@ -1934,6 +1976,12 @@ msgstr "No results found for \"{debouncedQuery}\"."
 #: src/views/settings/components/RolePermissions.tsx:110
 msgid "No roles found for this workspace yet."
 msgstr "No roles found for this workspace yet."
+
+#: src/components/SideNavigation.tsx:140
+#: src/views/notifications/components/NotificationsHeader.tsx:22
+#: src/views/notifications/index.tsx:121
+msgid "Notifications"
+msgstr "Notifications"
 
 #: src/views/boards/components/TemplateBoards.tsx:66
 msgid "Offer"
@@ -2098,6 +2146,7 @@ msgstr "Please select a file to upload."
 #: src/components/DeleteLabelConfirmation.tsx:26
 #: src/components/FeedbackModal.tsx:41
 #: src/components/NewWorkspaceForm.tsx:158
+#: src/views/board/components/BoardDropdown.tsx:63
 #: src/views/board/components/NewCardForm.tsx:184
 #: src/views/board/components/NewListForm.tsx:79
 #: src/views/board/components/NewTemplateForm.tsx:61
@@ -2147,6 +2196,7 @@ msgstr "Please try again later, or contact customer support."
 
 #: src/views/members/components/InviteMemberForm.tsx:129
 #: src/views/members/components/InviteMemberForm.tsx:145
+#: src/views/notifications/index.tsx:107
 msgid "Please try again later."
 msgstr "Please try again later."
 
@@ -2225,6 +2275,10 @@ msgstr "Remote"
 msgid "Remove"
 msgstr "Remove"
 
+#: src/views/board/components/BoardDropdown.tsx:92
+msgid "Remove from favorites"
+msgstr "Remove from favorites"
+
 #: src/views/members/index.tsx:232
 msgid "Remove member"
 msgstr "Remove member"
@@ -2241,6 +2295,10 @@ msgstr "removed a label from the card"
 #: src/views/card/components/ActivityList.tsx:107
 msgid "removed a member from the card"
 msgstr "removed a member from the card"
+
+#: src/views/board/components/BoardDropdown.tsx:52
+msgid "Removed from favorites"
+msgstr "Removed from favorites"
 
 #. placeholder {0}: truncate(label)
 #: src/views/card/components/ActivityList.tsx:174
@@ -2385,7 +2443,7 @@ msgid "set the due date"
 msgstr "set the due date"
 
 #: src/components/SettingsLayout.tsx:95
-#: src/components/SideNavigation.tsx:134
+#: src/components/SideNavigation.tsx:154
 msgid "Settings"
 msgstr "Settings"
 
@@ -2471,6 +2529,10 @@ msgstr "Social Media"
 msgid "Software Development"
 msgstr "Software Development"
 
+#: src/views/notifications/index.tsx:77
+msgid "Something went wrong"
+msgstr "Something went wrong"
+
 #: src/views/home/index.tsx:37
 msgid "Star on Github"
 msgstr "Star on Github"
@@ -2479,6 +2541,10 @@ msgstr "Star on Github"
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:111
 msgid "Start 14 day free trial"
 msgstr "Start 14 day free trial"
+
+#: src/views/notifications/components/NotificationsHeader.tsx:25
+msgid "Stay up to date with activity that needs your attention."
+msgstr "Stay up to date with activity that needs your attention."
 
 #: src/views/members/components/InviteMemberForm.tsx:122
 msgid "Subscription Required"
@@ -2538,7 +2604,7 @@ msgstr "Template name cannot exceed 100 characters"
 msgid "Template name is required"
 msgstr "Template name is required"
 
-#: src/components/SideNavigation.tsx:110
+#: src/components/SideNavigation.tsx:116
 #: src/views/home/components/Features.tsx:115
 msgid "Templates"
 msgstr "Templates"
@@ -2744,6 +2810,10 @@ msgstr "Unable to delete checklist item"
 msgid "Unable to delete comment"
 msgstr "Unable to delete comment"
 
+#: src/views/notifications/index.tsx:106
+msgid "Unable to mark notification as read"
+msgstr "Unable to mark notification as read"
+
 #: src/views/members/components/DeleteMemberConfirmation.tsx:27
 msgid "Unable to remove member"
 msgstr "Unable to remove member"
@@ -2759,6 +2829,10 @@ msgstr "Unable to reset permissions"
 #: src/components/FeedbackModal.tsx:40
 msgid "Unable to send feedback"
 msgstr "Unable to send feedback"
+
+#: src/views/board/components/BoardDropdown.tsx:62
+msgid "Unable to update board"
+msgstr "Unable to update board"
 
 #: src/views/board/components/UpdateBoardSlugForm.tsx:72
 msgid "Unable to update board URL"
@@ -2908,7 +2982,7 @@ msgstr "updated the title to <0>{0}</0>"
 #~ msgid "Upgrade"
 #~ msgstr "Upgrade"
 
-#: src/components/SideNavigation.tsx:239
+#: src/components/SideNavigation.tsx:261
 #: src/views/settings/components/UpgradeToProConfirmation.tsx:53
 #: src/views/settings/WorkspaceSettings.tsx:107
 msgid "Upgrade to Pro"
@@ -2971,6 +3045,10 @@ msgstr "View and manage your API keys."
 msgid "View and manage your billing and subscription."
 msgstr "View and manage your billing and subscription."
 
+#: src/views/notifications/components/NotificationCard.tsx:104
+msgid "View board"
+msgstr "View board"
+
 #: src/views/pricing/components/Pricing.tsx:67
 #: src/views/pricing/components/PricingTiers.tsx:64
 msgid "View docs"
@@ -2995,6 +3073,10 @@ msgstr "Visibility"
 #: src/views/home/components/Faqs.tsx:94
 msgid "We are using the <0>AGPL-3.0 license</0>."
 msgstr "We are using the <0>AGPL-3.0 license</0>."
+
+#: src/views/notifications/index.tsx:78
+msgid "We could not mark all notifications as read. Please try again later."
+msgstr "We could not mark all notifications as read. Please try again later."
 
 #: src/pages/unsubscribe/index.tsx:63
 msgid "We couldn't update your preferences. Please try again."
@@ -3040,8 +3122,9 @@ msgstr "Why make an open source Trello?"
 #: src/views/board/index.tsx:399
 #: src/views/boards/index.tsx:35
 #: src/views/members/index.tsx:257
+#: src/views/notifications/index.tsx:120
 #: src/views/public/board/index.tsx:120
-#: src/views/public/boards/index.tsx:66
+#: src/views/public/boards/index.tsx:65
 msgid "Workspace"
 msgstr "Workspace"
 
@@ -3150,8 +3233,8 @@ msgstr "You can self-host by following the instructions in our <0>repo</0>."
 #: src/views/board/components/UpdateBoardSlugButton.tsx:31
 #: src/views/board/components/VisibilityButton.tsx:72
 #: src/views/board/index.tsx:472
-#: src/views/board/index.tsx:528
-#: src/views/boards/components/BoardsList.tsx:49
+#: src/views/board/index.tsx:530
+#: src/views/boards/components/BoardsList.tsx:70
 #: src/views/boards/index.tsx:46
 #: src/views/boards/index.tsx:67
 msgid "You don't have permission"
@@ -3176,6 +3259,14 @@ msgstr "You have unlimited seats with your Pro Plan. There is no additional char
 #: src/views/settings/PermissionsSettings.tsx:84
 msgid "You need to be an admin to manage workspace permissions."
 msgstr "You need to be an admin to manage workspace permissions."
+
+#: src/views/notifications/components/NotificationCard.tsx:39
+msgid "You were added to {cardTitle} in {workspaceName}"
+msgstr "You were added to {cardTitle} in {workspaceName}"
+
+#: src/views/notifications/components/NotificationsEmptyState.tsx:6
+msgid "You're all caught up!"
+msgstr "You're all caught up!"
 
 #: src/views/invite/index.tsx:134
 msgid "You've been invited to join a workspace on kan.bn."
