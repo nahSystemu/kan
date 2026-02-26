@@ -813,7 +813,7 @@
     "origin": [
       [
         "src/views/auth/signup/index.tsx",
-        88
+        90
       ]
     ],
     "translation": "Already have an account? <0><1>Sign in</1></0>"
@@ -2077,7 +2077,7 @@
       ],
       [
         "src/views/auth/signup/index.tsx",
-        69
+        71
       ]
     ],
     "translation": "Check your inbox"
@@ -2177,7 +2177,7 @@
       ],
       [
         "src/views/auth/signup/index.tsx",
-        74
+        76
       ]
     ],
     "translation": "Click on the link we've sent to {magicLinkRecipient} to sign in."
@@ -4409,7 +4409,7 @@
     "origin": [
       [
         "src/views/auth/signup/index.tsx",
-        69
+        71
       ],
       [
         "src/views/home/components/Cta.tsx",
@@ -7807,11 +7807,11 @@
     "origin": [
       [
         "src/views/auth/signup/index.tsx",
-        34
+        36
       ],
       [
         "src/views/auth/signup/index.tsx",
-        59
+        61
       ]
     ],
     "translation": "Sign up | kan.bn"
@@ -7823,7 +7823,7 @@
     "origin": [
       [
         "src/views/auth/signup/index.tsx",
-        44
+        46
       ]
     ],
     "translation": "Sign up disabled"
@@ -7835,7 +7835,7 @@
     "origin": [
       [
         "src/views/auth/signup/index.tsx",
-        47
+        49
       ]
     ],
     "translation": "Sign up is currently disabled. Please try again later."

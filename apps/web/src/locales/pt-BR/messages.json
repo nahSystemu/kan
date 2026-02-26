@@ -482,7 +482,7 @@
     "message": "Already have an account? <0><1>Sign in</1></0>",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/auth/signup/index.tsx", 88]],
+    "origin": [["src/views/auth/signup/index.tsx", 90]],
     "translation": "Já tem uma conta? <0><1>Entrar</1></0>"
   },
   "WmPhYW": {
@@ -1237,7 +1237,7 @@
     "comments": [],
     "origin": [
       ["src/views/auth/login/index.tsx", 43],
-      ["src/views/auth/signup/index.tsx", 69]
+      ["src/views/auth/signup/index.tsx", 71]
     ],
     "translation": "Verifique sua caixa de entrada"
   },
@@ -1305,7 +1305,7 @@
     "comments": [],
     "origin": [
       ["src/views/auth/login/index.tsx", 48],
-      ["src/views/auth/signup/index.tsx", 74]
+      ["src/views/auth/signup/index.tsx", 76]
     ],
     "translation": "Clique no link que enviamos para {magicLinkRecipient} para fazer login."
   },
@@ -2622,7 +2622,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/auth/signup/index.tsx", 69],
+      ["src/views/auth/signup/index.tsx", 71],
       ["src/views/home/components/Cta.tsx", 61],
       ["src/views/home/components/Header.tsx", 106],
       ["src/views/pricing/components/PricingTiers.tsx", 29],
@@ -4570,8 +4570,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/auth/signup/index.tsx", 34],
-      ["src/views/auth/signup/index.tsx", 59]
+      ["src/views/auth/signup/index.tsx", 36],
+      ["src/views/auth/signup/index.tsx", 61]
     ],
     "translation": "Cadastrar | kan.bn"
   },
@@ -4579,14 +4579,14 @@
     "message": "Sign up disabled",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/auth/signup/index.tsx", 44]],
+    "origin": [["src/views/auth/signup/index.tsx", 46]],
     "translation": "Cadastro desabilitado"
   },
   "s6iE/c": {
     "message": "Sign up is currently disabled. Please try again later.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/auth/signup/index.tsx", 47]],
+    "origin": [["src/views/auth/signup/index.tsx", 49]],
     "translation": "O cadastro está temporariamente desabilitado. Por favor, tente novamente mais tarde."
   },
   "6FDocz": {
