@@ -19,7 +19,7 @@
       "0": ["isTemplate ? \"Templates\" : \"Boards\""]
     },
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 40]],
+    "origin": [["src/views/boards/index.tsx", 53]],
     "translation": "{0}"
   },
   "JArWcF": {
@@ -33,7 +33,7 @@
     },
     "comments": [],
     "origin": [
-      ["src/views/boards/index.tsx", 35],
+      ["src/views/boards/index.tsx", 48],
       ["src/views/card/index.tsx", 309]
     ],
     "translation": "{0} | {1}"
@@ -44,7 +44,7 @@
       "0": ["boardName ?? \"Board\""]
     },
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 54]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 56]],
     "translation": "{0} został dodany do ulubionych."
   },
   "bDI6VI": {
@@ -53,7 +53,7 @@
       "0": ["boardName ?? \"Board\""]
     },
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 55]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 57]],
     "translation": "{0} został usunięty z ulubionych."
   },
   "CJukzS": {
@@ -185,6 +185,13 @@
     "origin": [["src/providers/keyboard-shortcuts.tsx", 56]],
     "translation": "Akcje"
   },
+  "F6pfE9": {
+    "translation": "Aktywna",
+    "message": "Active",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/boards/index.tsx", 26]]
+  },
   "XJOV1Y": {
     "message": "Activity",
     "placeholders": {},
@@ -280,7 +287,7 @@
     "message": "Add to favorites",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 93]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 122]],
     "translation": "Dodaj do ulubionych"
   },
   "bmXKoX": {
@@ -368,7 +375,7 @@
     "message": "Added to favorites",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 51]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 53]],
     "translation": "Dodano do ulubionych"
   },
   "14Xi3Z": {
@@ -573,6 +580,20 @@
     "comments": [],
     "origin": [["src/views/boards/components/TemplateBoards.tsx", 46]],
     "translation": "Zatwierdzenie"
+  },
+  "aKJHG+": {
+    "translation": "Zarchiwizuj tablicę",
+    "message": "Archive board",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+  },
+  "TdfEV7": {
+    "translation": "Zarchiwizowana",
+    "message": "Archived",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/boards/index.tsx", 27]]
   },
   "lo8xBK": {
     "message": "Are you sure want to remove {entityLabel}?",
@@ -785,6 +806,13 @@
     ],
     "translation": "Analiza tablicy"
   },
+  "i0ZMQl": {
+    "translation": "Tablica zarchiwizowana",
+    "message": "Board archived",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+  },
   "wewm3j": {
     "message": "Board name cannot exceed 100 characters",
     "placeholders": {},
@@ -814,6 +842,13 @@
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 116]
     ],
     "translation": "Szablony tablic"
+  },
+  "tbNcu4": {
+    "translation": "Tablica przywrócona z archiwum",
+    "message": "Board unarchived",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
   },
   "Xid3K6": {
     "message": "Board URL can only contain letters, numbers, and hyphens",
@@ -872,6 +907,13 @@
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 73]
     ],
     "translation": "Tablice"
+  },
+  "0RE1AJ": {
+    "translation": "Zarchiwizowane tablice pojawią się tutaj.",
+    "message": "Boards you archive will appear here.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/boards/components/BoardsList.tsx", 66]]
   },
   "ZDo4HN": {
     "message": "Brainstorming",
@@ -1612,8 +1654,8 @@
     },
     "comments": [],
     "origin": [
-      ["src/views/boards/components/BoardsList.tsx", 79],
-      ["src/views/boards/index.tsx", 28]
+      ["src/views/boards/components/BoardsList.tsx", 80],
+      ["src/views/boards/index.tsx", 41]
     ],
     "translation": "Utwórz nową {0}"
   },
@@ -1835,7 +1877,7 @@
     "message": "Delete board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 104]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 133]],
     "translation": "Usuń tablicę"
   },
   "nabda1": {
@@ -1863,7 +1905,7 @@
     "message": "Delete template",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 104]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 133]],
     "translation": "Usuń szablon"
   },
   "kYu0eF": {
@@ -2079,7 +2121,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/components/BoardDropdown.tsx", 84],
+      ["src/views/board/components/BoardDropdown.tsx", 102],
       ["src/views/board/components/UpdateBoardSlugForm.tsx", 116]
     ],
     "translation": "Edytuj URL tablicy"
@@ -2647,7 +2689,7 @@
       "0": ["isTemplate ? \"template\" : \"board\""]
     },
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 65]],
+    "origin": [["src/views/boards/components/BoardsList.tsx", 66]],
     "translation": "Rozpocznij, tworząc nowy {0}"
   },
   "zC8Whw": {
@@ -2863,7 +2905,7 @@
     "message": "Import",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 60]],
+    "origin": [["src/views/boards/index.tsx", 73]],
     "translation": "Importuj"
   },
   "2MPcep": {
@@ -3299,7 +3341,7 @@
     "message": "Make template",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 73]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 91]],
     "translation": "Utwórz szablon"
   },
   "IDvohQ": {
@@ -3432,7 +3474,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/boards/index.tsx", 82],
+      ["src/views/boards/index.tsx", 95],
       ["src/views/home/components/Features.tsx", 73]
     ],
     "translation": "Nowy"
@@ -3550,8 +3592,15 @@
       "0": ["isTemplate ? \"templates\" : \"boards\""]
     },
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 62]],
+    "origin": [["src/views/boards/components/BoardsList.tsx", 63]],
     "translation": "Brak {0}"
+  },
+  "tlhgDC": {
+    "translation": "Brak zarchiwizowanych tablic",
+    "message": "No archived boards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/boards/components/BoardsList.tsx", 63]]
   },
   "Eg99Sc": {
     "message": "No authentication methods are currently available",
@@ -3963,7 +4012,7 @@
       ["src/components/DeleteLabelConfirmation.tsx", 26],
       ["src/components/FeedbackModal.tsx", 41],
       ["src/components/NewWorkspaceForm.tsx", 158],
-      ["src/views/board/components/BoardDropdown.tsx", 63],
+      ["src/views/board/components/BoardDropdown.tsx", 65],
       ["src/views/board/components/NewCardForm.tsx", 184],
       ["src/views/board/components/NewListForm.tsx", 79],
       ["src/views/board/components/NewTemplateForm.tsx", 61],
@@ -4178,7 +4227,7 @@
     "message": "Remove from favorites",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 92]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 121]],
     "translation": "Usuń z ulubionych"
   },
   "99VIgC": {
@@ -4232,7 +4281,7 @@
     "message": "Removed from favorites",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 52]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 54]],
     "translation": "Usunięto z ulubionych"
   },
   "YVT40D": {
@@ -4809,6 +4858,20 @@
     "origin": [["src/components/FeedbackModal.tsx", 34]],
     "translation": "Dziękujemy za Twoją opinię!"
   },
+  "NcFrgC": {
+    "translation": "Tablica została zarchiwizowana.",
+    "message": "The board has been archived.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]]
+  },
+  "C6gv54": {
+    "translation": "Tablica została przywrócona z archiwum.",
+    "message": "The board has been unarchived.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]]
+  },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
     "placeholders": {},
@@ -5196,7 +5259,7 @@
     "message": "Unable to update board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 62]],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 64]],
     "translation": "Nie można zaktualizować tablicy"
   },
   "XpcjLO": {
@@ -5291,6 +5354,13 @@
     "comments": [],
     "origin": [["src/views/members/index.tsx", 65]],
     "translation": "Nie można zaktualizować roli"
+  },
+  "It4/FS": {
+    "translation": "Przywróć tablicę z archiwum",
+    "message": "Unarchive board",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
   },
   "E8zYtd": {
     "message": "unassigned <0>{0}</0> from the card",
@@ -5671,7 +5741,7 @@
     "origin": [
       ["src/components/SettingsLayout.tsx", 46],
       ["src/views/board/index.tsx", 400],
-      ["src/views/boards/index.tsx", 35],
+      ["src/views/boards/index.tsx", 48],
       ["src/views/members/index.tsx", 258],
       ["src/views/public/board/index.tsx", 125],
       ["src/views/public/boards/index.tsx", 65]
@@ -5883,9 +5953,9 @@
       ["src/views/board/components/VisibilityButton.tsx", 72],
       ["src/views/board/index.tsx", 474],
       ["src/views/board/index.tsx", 532],
-      ["src/views/boards/components/BoardsList.tsx", 70],
-      ["src/views/boards/index.tsx", 46],
-      ["src/views/boards/index.tsx", 67]
+      ["src/views/boards/components/BoardsList.tsx", 71],
+      ["src/views/boards/index.tsx", 59],
+      ["src/views/boards/index.tsx", 80]
     ],
     "translation": "Nie masz uprawnień"
   },

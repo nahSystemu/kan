@@ -34,7 +34,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        40
+        53
       ]
     ],
     "translation": "{0}"
@@ -55,7 +55,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        35
+        48
       ],
       [
         "src/views/card/index.tsx",
@@ -75,7 +75,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        54
+        56
       ]
     ],
     "translation": "{0} has been added to your favorites."
@@ -91,7 +91,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        55
+        57
       ]
     ],
     "translation": "{0} has been removed from your favorites."
@@ -312,6 +312,18 @@
     ],
     "translation": "Actions"
   },
+  "F6pfE9": {
+    "translation": "Active",
+    "message": "Active",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/boards/index.tsx",
+        26
+      ]
+    ]
+  },
   "XJOV1Y": {
     "message": "Activity",
     "placeholders": {},
@@ -467,7 +479,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        93
+        122
       ]
     ],
     "translation": "Add to favorites"
@@ -622,7 +634,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        51
+        53
       ]
     ],
     "translation": "Added to favorites"
@@ -965,6 +977,30 @@
       ]
     ],
     "translation": "Approval"
+  },
+  "aKJHG+": {
+    "translation": "Archive board",
+    "message": "Archive board",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/BoardDropdown.tsx",
+        111
+      ]
+    ]
+  },
+  "TdfEV7": {
+    "translation": "Archived",
+    "message": "Archived",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/boards/index.tsx",
+        27
+      ]
+    ]
   },
   "lo8xBK": {
     "message": "Are you sure want to remove {entityLabel}?",
@@ -1314,6 +1350,18 @@
     ],
     "translation": "Board analytics"
   },
+  "i0ZMQl": {
+    "translation": "Board archived",
+    "message": "Board archived",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/BoardDropdown.tsx",
+        44
+      ]
+    ]
+  },
   "wewm3j": {
     "message": "Board name cannot exceed 100 characters",
     "placeholders": {},
@@ -1361,6 +1409,18 @@
       ]
     ],
     "translation": "Board templates"
+  },
+  "tbNcu4": {
+    "translation": "Board unarchived",
+    "message": "Board unarchived",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/BoardDropdown.tsx",
+        44
+      ]
+    ]
   },
   "Xid3K6": {
     "message": "Board URL can only contain letters, numbers, and hyphens",
@@ -1457,6 +1517,18 @@
       ]
     ],
     "translation": "Boards"
+  },
+  "0RE1AJ": {
+    "translation": "Boards you archive will appear here.",
+    "message": "Boards you archive will appear here.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/boards/components/BoardsList.tsx",
+        66
+      ]
+    ]
   },
   "ZDo4HN": {
     "message": "Brainstorming",
@@ -2693,11 +2765,11 @@
     "origin": [
       [
         "src/views/boards/components/BoardsList.tsx",
-        79
+        80
       ],
       [
         "src/views/boards/index.tsx",
-        28
+        41
       ]
     ],
     "translation": "Create new {0}"
@@ -3077,7 +3149,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        104
+        133
       ]
     ],
     "translation": "Delete board"
@@ -3125,7 +3197,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        104
+        133
       ]
     ],
     "translation": "Delete template"
@@ -3513,7 +3585,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        84
+        102
       ],
       [
         "src/views/board/components/UpdateBoardSlugForm.tsx",
@@ -4461,7 +4533,7 @@
     "origin": [
       [
         "src/views/boards/components/BoardsList.tsx",
-        65
+        66
       ]
     ],
     "translation": "Get started by creating a new {0}"
@@ -4821,7 +4893,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        60
+        73
       ]
     ],
     "translation": "Import"
@@ -5557,7 +5629,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        73
+        91
       ]
     ],
     "translation": "Make template"
@@ -5792,7 +5864,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        82
+        95
       ],
       [
         "src/views/home/components/Features.tsx",
@@ -5988,10 +6060,22 @@
     "origin": [
       [
         "src/views/boards/components/BoardsList.tsx",
-        62
+        63
       ]
     ],
     "translation": "No {0}"
+  },
+  "tlhgDC": {
+    "translation": "No archived boards",
+    "message": "No archived boards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/boards/components/BoardsList.tsx",
+        63
+      ]
+    ]
   },
   "Eg99Sc": {
     "message": "No authentication methods are currently available",
@@ -6672,7 +6756,7 @@
       ],
       [
         "src/views/board/components/BoardDropdown.tsx",
-        63
+        65
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
@@ -7144,7 +7228,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        92
+        121
       ]
     ],
     "translation": "Remove from favorites"
@@ -7239,7 +7323,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        52
+        54
       ]
     ],
     "translation": "Removed from favorites"
@@ -8200,6 +8284,30 @@
     ],
     "translation": "Thank you for your feedback!"
   },
+  "NcFrgC": {
+    "translation": "The board has been archived.",
+    "message": "The board has been archived.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/BoardDropdown.tsx",
+        46
+      ]
+    ]
+  },
+  "C6gv54": {
+    "translation": "The board has been unarchived.",
+    "message": "The board has been unarchived.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/BoardDropdown.tsx",
+        47
+      ]
+    ]
+  },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
     "placeholders": {},
@@ -8827,7 +8935,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        62
+        64
       ]
     ],
     "translation": "Unable to update board"
@@ -8987,6 +9095,18 @@
       ]
     ],
     "translation": "Unable to update role"
+  },
+  "It4/FS": {
+    "translation": "Unarchive board",
+    "message": "Unarchive board",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/BoardDropdown.tsx",
+        111
+      ]
+    ]
   },
   "E8zYtd": {
     "message": "unassigned <0>{0}</0> from the card",
@@ -9659,7 +9779,7 @@
       ],
       [
         "src/views/boards/index.tsx",
-        35
+        48
       ],
       [
         "src/views/members/index.tsx",
@@ -10011,15 +10131,15 @@
       ],
       [
         "src/views/boards/components/BoardsList.tsx",
-        70
+        71
       ],
       [
         "src/views/boards/index.tsx",
-        46
+        59
       ],
       [
         "src/views/boards/index.tsx",
-        67
+        80
       ]
     ],
     "translation": "You don't have permission"
