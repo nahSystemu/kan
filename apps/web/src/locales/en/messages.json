@@ -313,7 +313,6 @@
     "translation": "Actions"
   },
   "F6pfE9": {
-    "translation": "Active",
     "message": "Active",
     "placeholders": {},
     "comments": [],
@@ -322,7 +321,8 @@
         "src/views/boards/index.tsx",
         26
       ]
-    ]
+    ],
+    "translation": "Active"
   },
   "XJOV1Y": {
     "message": "Activity",
@@ -979,7 +979,6 @@
     "translation": "Approval"
   },
   "aKJHG+": {
-    "translation": "Archive board",
     "message": "Archive board",
     "placeholders": {},
     "comments": [],
@@ -988,10 +987,10 @@
         "src/views/board/components/BoardDropdown.tsx",
         111
       ]
-    ]
+    ],
+    "translation": "Archive board"
   },
   "TdfEV7": {
-    "translation": "Archived",
     "message": "Archived",
     "placeholders": {},
     "comments": [],
@@ -1000,7 +999,8 @@
         "src/views/boards/index.tsx",
         27
       ]
-    ]
+    ],
+    "translation": "Archived"
   },
   "lo8xBK": {
     "message": "Are you sure want to remove {entityLabel}?",
@@ -1351,7 +1351,6 @@
     "translation": "Board analytics"
   },
   "i0ZMQl": {
-    "translation": "Board archived",
     "message": "Board archived",
     "placeholders": {},
     "comments": [],
@@ -1360,7 +1359,8 @@
         "src/views/board/components/BoardDropdown.tsx",
         44
       ]
-    ]
+    ],
+    "translation": "Board archived"
   },
   "wewm3j": {
     "message": "Board name cannot exceed 100 characters",
@@ -1411,7 +1411,6 @@
     "translation": "Board templates"
   },
   "tbNcu4": {
-    "translation": "Board unarchived",
     "message": "Board unarchived",
     "placeholders": {},
     "comments": [],
@@ -1420,7 +1419,8 @@
         "src/views/board/components/BoardDropdown.tsx",
         44
       ]
-    ]
+    ],
+    "translation": "Board unarchived"
   },
   "Xid3K6": {
     "message": "Board URL can only contain letters, numbers, and hyphens",
@@ -1519,7 +1519,6 @@
     "translation": "Boards"
   },
   "0RE1AJ": {
-    "translation": "Boards you archive will appear here.",
     "message": "Boards you archive will appear here.",
     "placeholders": {},
     "comments": [],
@@ -1528,7 +1527,8 @@
         "src/views/boards/components/BoardsList.tsx",
         66
       ]
-    ]
+    ],
+    "translation": "Boards you archive will appear here."
   },
   "ZDo4HN": {
     "message": "Brainstorming",
@@ -6066,7 +6066,6 @@
     "translation": "No {0}"
   },
   "tlhgDC": {
-    "translation": "No archived boards",
     "message": "No archived boards",
     "placeholders": {},
     "comments": [],
@@ -6075,7 +6074,8 @@
         "src/views/boards/components/BoardsList.tsx",
         63
       ]
-    ]
+    ],
+    "translation": "No archived boards"
   },
   "Eg99Sc": {
     "message": "No authentication methods are currently available",
@@ -8285,7 +8285,6 @@
     "translation": "Thank you for your feedback!"
   },
   "NcFrgC": {
-    "translation": "The board has been archived.",
     "message": "The board has been archived.",
     "placeholders": {},
     "comments": [],
@@ -8294,10 +8293,10 @@
         "src/views/board/components/BoardDropdown.tsx",
         46
       ]
-    ]
+    ],
+    "translation": "The board has been archived."
   },
   "C6gv54": {
-    "translation": "The board has been unarchived.",
     "message": "The board has been unarchived.",
     "placeholders": {},
     "comments": [],
@@ -8306,7 +8305,8 @@
         "src/views/board/components/BoardDropdown.tsx",
         47
       ]
-    ]
+    ],
+    "translation": "The board has been unarchived."
   },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
@@ -9097,7 +9097,6 @@
     "translation": "Unable to update role"
   },
   "It4/FS": {
-    "translation": "Unarchive board",
     "message": "Unarchive board",
     "placeholders": {},
     "comments": [],
@@ -9106,7 +9105,8 @@
         "src/views/board/components/BoardDropdown.tsx",
         111
       ]
-    ]
+    ],
+    "translation": "Unarchive board"
   },
   "E8zYtd": {
     "message": "unassigned <0>{0}</0> from the card",

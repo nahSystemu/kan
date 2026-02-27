@@ -186,11 +186,11 @@
     "translation": "Acciones"
   },
   "F6pfE9": {
-    "translation": "Activo",
     "message": "Active",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 26]]
+    "origin": [["src/views/boards/index.tsx", 26]],
+    "translation": "Activo"
   },
   "XJOV1Y": {
     "message": "Activity",
@@ -582,18 +582,18 @@
     "translation": "Aprobación"
   },
   "aKJHG+": {
-    "translation": "Archivar tablero",
     "message": "Archive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Archivar tablero"
   },
   "TdfEV7": {
-    "translation": "Archivado",
     "message": "Archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 27]]
+    "origin": [["src/views/boards/index.tsx", 27]],
+    "translation": "Archivado"
   },
   "lo8xBK": {
     "message": "Are you sure want to remove {entityLabel}?",
@@ -807,11 +807,11 @@
     "translation": "Analíticas del tablero"
   },
   "i0ZMQl": {
-    "translation": "Tablero archivado",
     "message": "Board archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Tablero archivado"
   },
   "wewm3j": {
     "message": "Board name cannot exceed 100 characters",
@@ -844,11 +844,11 @@
     "translation": "Plantillas de tablero"
   },
   "tbNcu4": {
-    "translation": "Tablero desarchivado",
     "message": "Board unarchived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Tablero desarchivado"
   },
   "Xid3K6": {
     "message": "Board URL can only contain letters, numbers, and hyphens",
@@ -909,11 +909,11 @@
     "translation": "Tableros"
   },
   "0RE1AJ": {
-    "translation": "Los tableros que archives aparecerán aquí.",
     "message": "Boards you archive will appear here.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 66]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 66]],
+    "translation": "Los tableros que archives aparecerán aquí."
   },
   "ZDo4HN": {
     "message": "Brainstorming",
@@ -3596,11 +3596,11 @@
     "translation": "No hay {0}"
   },
   "tlhgDC": {
-    "translation": "No hay tableros archivados",
     "message": "No archived boards",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 63]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 63]],
+    "translation": "No hay tableros archivados"
   },
   "Eg99Sc": {
     "message": "No authentication methods are currently available",
@@ -4859,18 +4859,18 @@
     "translation": "¡Gracias por tus comentarios!"
   },
   "NcFrgC": {
-    "translation": "El tablero ha sido archivado.",
     "message": "The board has been archived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]],
+    "translation": "El tablero ha sido archivado."
   },
   "C6gv54": {
-    "translation": "El tablero ha sido desarchivado.",
     "message": "The board has been unarchived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]],
+    "translation": "El tablero ha sido desarchivado."
   },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
@@ -5356,11 +5356,11 @@
     "translation": "No se pudo actualizar el rol"
   },
   "It4/FS": {
-    "translation": "Desarchivar tablero",
     "message": "Unarchive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Desarchivar tablero"
   },
   "E8zYtd": {
     "message": "unassigned <0>{0}</0> from the card",

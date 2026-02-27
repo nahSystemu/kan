@@ -186,11 +186,11 @@
     "translation": "Akcje"
   },
   "F6pfE9": {
-    "translation": "Aktywna",
     "message": "Active",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 26]]
+    "origin": [["src/views/boards/index.tsx", 26]],
+    "translation": "Aktywna"
   },
   "XJOV1Y": {
     "message": "Activity",
@@ -582,18 +582,18 @@
     "translation": "Zatwierdzenie"
   },
   "aKJHG+": {
-    "translation": "Zarchiwizuj tablicę",
     "message": "Archive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Zarchiwizuj tablicę"
   },
   "TdfEV7": {
-    "translation": "Zarchiwizowana",
     "message": "Archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 27]]
+    "origin": [["src/views/boards/index.tsx", 27]],
+    "translation": "Zarchiwizowana"
   },
   "lo8xBK": {
     "message": "Are you sure want to remove {entityLabel}?",
@@ -807,11 +807,11 @@
     "translation": "Analiza tablicy"
   },
   "i0ZMQl": {
-    "translation": "Tablica zarchiwizowana",
     "message": "Board archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Tablica zarchiwizowana"
   },
   "wewm3j": {
     "message": "Board name cannot exceed 100 characters",
@@ -844,11 +844,11 @@
     "translation": "Szablony tablic"
   },
   "tbNcu4": {
-    "translation": "Tablica przywrócona z archiwum",
     "message": "Board unarchived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Tablica przywrócona z archiwum"
   },
   "Xid3K6": {
     "message": "Board URL can only contain letters, numbers, and hyphens",
@@ -909,11 +909,11 @@
     "translation": "Tablice"
   },
   "0RE1AJ": {
-    "translation": "Zarchiwizowane tablice pojawią się tutaj.",
     "message": "Boards you archive will appear here.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 66]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 66]],
+    "translation": "Zarchiwizowane tablice pojawią się tutaj."
   },
   "ZDo4HN": {
     "message": "Brainstorming",
@@ -3596,11 +3596,11 @@
     "translation": "Brak {0}"
   },
   "tlhgDC": {
-    "translation": "Brak zarchiwizowanych tablic",
     "message": "No archived boards",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 63]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 63]],
+    "translation": "Brak zarchiwizowanych tablic"
   },
   "Eg99Sc": {
     "message": "No authentication methods are currently available",
@@ -4859,18 +4859,18 @@
     "translation": "Dziękujemy za Twoją opinię!"
   },
   "NcFrgC": {
-    "translation": "Tablica została zarchiwizowana.",
     "message": "The board has been archived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]],
+    "translation": "Tablica została zarchiwizowana."
   },
   "C6gv54": {
-    "translation": "Tablica została przywrócona z archiwum.",
     "message": "The board has been unarchived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]],
+    "translation": "Tablica została przywrócona z archiwum."
   },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
@@ -5356,11 +5356,11 @@
     "translation": "Nie można zaktualizować roli"
   },
   "It4/FS": {
-    "translation": "Przywróć tablicę z archiwum",
     "message": "Unarchive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Przywróć tablicę z archiwum"
   },
   "E8zYtd": {
     "message": "unassigned <0>{0}</0> from the card",

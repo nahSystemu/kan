@@ -186,11 +186,11 @@
     "translation": "Aktionen"
   },
   "F6pfE9": {
-    "translation": "Aktiv",
     "message": "Active",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 26]]
+    "origin": [["src/views/boards/index.tsx", 26]],
+    "translation": "Aktiv"
   },
   "XJOV1Y": {
     "message": "Activity",
@@ -582,18 +582,18 @@
     "translation": "Genehmigung"
   },
   "aKJHG+": {
-    "translation": "Board archivieren",
     "message": "Archive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Board archivieren"
   },
   "TdfEV7": {
-    "translation": "Archiviert",
     "message": "Archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 27]]
+    "origin": [["src/views/boards/index.tsx", 27]],
+    "translation": "Archiviert"
   },
   "lo8xBK": {
     "message": "Are you sure want to remove {entityLabel}?",
@@ -807,11 +807,11 @@
     "translation": "Board-Analyse"
   },
   "i0ZMQl": {
-    "translation": "Board archiviert",
     "message": "Board archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Board archiviert"
   },
   "wewm3j": {
     "message": "Board name cannot exceed 100 characters",
@@ -844,11 +844,11 @@
     "translation": "Board-Vorlagen"
   },
   "tbNcu4": {
-    "translation": "Board wiederhergestellt",
     "message": "Board unarchived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Board wiederhergestellt"
   },
   "Xid3K6": {
     "message": "Board URL can only contain letters, numbers, and hyphens",
@@ -909,11 +909,11 @@
     "translation": "Boards"
   },
   "0RE1AJ": {
-    "translation": "Boards, die du archivierst, werden hier angezeigt.",
     "message": "Boards you archive will appear here.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 66]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 66]],
+    "translation": "Boards, die du archivierst, werden hier angezeigt."
   },
   "ZDo4HN": {
     "message": "Brainstorming",
@@ -3596,11 +3596,11 @@
     "translation": "Keine {0}"
   },
   "tlhgDC": {
-    "translation": "Keine archivierten Boards",
     "message": "No archived boards",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 63]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 63]],
+    "translation": "Keine archivierten Boards"
   },
   "Eg99Sc": {
     "message": "No authentication methods are currently available",
@@ -4859,18 +4859,18 @@
     "translation": "Vielen Dank für Ihr Feedback!"
   },
   "NcFrgC": {
-    "translation": "Das Board wurde archiviert.",
     "message": "The board has been archived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]],
+    "translation": "Das Board wurde archiviert."
   },
   "C6gv54": {
-    "translation": "Das Board wurde wiederhergestellt.",
     "message": "The board has been unarchived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]],
+    "translation": "Das Board wurde wiederhergestellt."
   },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
@@ -5356,11 +5356,11 @@
     "translation": "Rolle konnte nicht aktualisiert werden"
   },
   "It4/FS": {
-    "translation": "Board wiederherstellen",
     "message": "Unarchive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Board wiederherstellen"
   },
   "E8zYtd": {
     "message": "unassigned <0>{0}</0> from the card",

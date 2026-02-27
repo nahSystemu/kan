@@ -186,11 +186,11 @@
     "translation": "Ações"
   },
   "F6pfE9": {
-    "translation": "Ativo",
     "message": "Active",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 26]]
+    "origin": [["src/views/boards/index.tsx", 26]],
+    "translation": "Ativo"
   },
   "XJOV1Y": {
     "message": "Activity",
@@ -582,18 +582,18 @@
     "translation": "Aprovação"
   },
   "aKJHG+": {
-    "translation": "Arquivar quadro",
     "message": "Archive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Arquivar quadro"
   },
   "TdfEV7": {
-    "translation": "Arquivado",
     "message": "Archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 27]]
+    "origin": [["src/views/boards/index.tsx", 27]],
+    "translation": "Arquivado"
   },
   "lo8xBK": {
     "message": "Are you sure want to remove {entityLabel}?",
@@ -807,11 +807,11 @@
     "translation": "Análise do quadro"
   },
   "i0ZMQl": {
-    "translation": "Quadro arquivado",
     "message": "Board archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Quadro arquivado"
   },
   "wewm3j": {
     "message": "Board name cannot exceed 100 characters",
@@ -844,11 +844,11 @@
     "translation": "Modelos de quadro"
   },
   "tbNcu4": {
-    "translation": "Quadro desarquivado",
     "message": "Board unarchived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Quadro desarquivado"
   },
   "Xid3K6": {
     "message": "Board URL can only contain letters, numbers, and hyphens",
@@ -909,11 +909,11 @@
     "translation": "Quadros"
   },
   "0RE1AJ": {
-    "translation": "Os quadros que você arquivar aparecerão aqui.",
     "message": "Boards you archive will appear here.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 66]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 66]],
+    "translation": "Os quadros que você arquivar aparecerão aqui."
   },
   "ZDo4HN": {
     "message": "Brainstorming",
@@ -3596,11 +3596,11 @@
     "translation": "Nenhum {0}"
   },
   "tlhgDC": {
-    "translation": "Nenhum quadro arquivado",
     "message": "No archived boards",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 63]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 63]],
+    "translation": "Nenhum quadro arquivado"
   },
   "Eg99Sc": {
     "message": "No authentication methods are currently available",
@@ -4859,18 +4859,18 @@
     "translation": "Obrigado pelo seu feedback!"
   },
   "NcFrgC": {
-    "translation": "O quadro foi arquivado.",
     "message": "The board has been archived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]],
+    "translation": "O quadro foi arquivado."
   },
   "C6gv54": {
-    "translation": "O quadro foi desarquivado.",
     "message": "The board has been unarchived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]],
+    "translation": "O quadro foi desarquivado."
   },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
@@ -5356,11 +5356,11 @@
     "translation": "Não foi possível atualizar a função"
   },
   "It4/FS": {
-    "translation": "Desarquivar quadro",
     "message": "Unarchive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Desarquivar quadro"
   },
   "E8zYtd": {
     "message": "unassigned <0>{0}</0> from the card",

@@ -186,11 +186,11 @@
     "translation": "Azioni"
   },
   "F6pfE9": {
-    "translation": "Attivo",
     "message": "Active",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 26]]
+    "origin": [["src/views/boards/index.tsx", 26]],
+    "translation": "Attivo"
   },
   "XJOV1Y": {
     "message": "Activity",
@@ -582,18 +582,18 @@
     "translation": "Approvazione"
   },
   "aKJHG+": {
-    "translation": "Archivia bacheca",
     "message": "Archive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Archivia bacheca"
   },
   "TdfEV7": {
-    "translation": "Archiviato",
     "message": "Archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 27]]
+    "origin": [["src/views/boards/index.tsx", 27]],
+    "translation": "Archiviato"
   },
   "lo8xBK": {
     "message": "Are you sure want to remove {entityLabel}?",
@@ -807,11 +807,11 @@
     "translation": "Analisi della board"
   },
   "i0ZMQl": {
-    "translation": "Bacheca archiviata",
     "message": "Board archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Bacheca archiviata"
   },
   "wewm3j": {
     "message": "Board name cannot exceed 100 characters",
@@ -844,11 +844,11 @@
     "translation": "Template di board"
   },
   "tbNcu4": {
-    "translation": "Bacheca ripristinata",
     "message": "Board unarchived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 44]],
+    "translation": "Bacheca ripristinata"
   },
   "Xid3K6": {
     "message": "Board URL can only contain letters, numbers, and hyphens",
@@ -909,11 +909,11 @@
     "translation": "Board"
   },
   "0RE1AJ": {
-    "translation": "Le bacheche che archivi appariranno qui.",
     "message": "Boards you archive will appear here.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 66]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 66]],
+    "translation": "Le bacheche che archivi appariranno qui."
   },
   "ZDo4HN": {
     "message": "Brainstorming",
@@ -3596,11 +3596,11 @@
     "translation": "Nessun {0}"
   },
   "tlhgDC": {
-    "translation": "Nessuna bacheca archiviata",
     "message": "No archived boards",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/components/BoardsList.tsx", 63]]
+    "origin": [["src/views/boards/components/BoardsList.tsx", 63]],
+    "translation": "Nessuna bacheca archiviata"
   },
   "Eg99Sc": {
     "message": "No authentication methods are currently available",
@@ -4859,18 +4859,18 @@
     "translation": "Grazie per il tuo feedback!"
   },
   "NcFrgC": {
-    "translation": "La bacheca è stata archiviata.",
     "message": "The board has been archived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 46]],
+    "translation": "La bacheca è stata archiviata."
   },
   "C6gv54": {
-    "translation": "La bacheca è stata ripristinata.",
     "message": "The board has been unarchived.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 47]],
+    "translation": "La bacheca è stata ripristinata."
   },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
@@ -5356,11 +5356,11 @@
     "translation": "Impossibile aggiornare il ruolo"
   },
   "It4/FS": {
-    "translation": "Ripristina bacheca",
     "message": "Unarchive board",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]]
+    "origin": [["src/views/board/components/BoardDropdown.tsx", 111]],
+    "translation": "Ripristina bacheca"
   },
   "E8zYtd": {
     "message": "unassigned <0>{0}</0> from the card",
