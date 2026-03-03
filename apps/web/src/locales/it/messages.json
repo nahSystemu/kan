@@ -34,7 +34,7 @@
     "comments": [],
     "origin": [
       ["src/views/boards/index.tsx", 48],
-      ["src/views/card/index.tsx", 309]
+      ["src/views/card/index.tsx", 308]
     ],
     "translation": "{0} | {1}"
   },
@@ -206,7 +206,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/card/index.tsx", 447],
+      ["src/views/card/index.tsx", 446],
       ["src/views/public/board/CardModal.tsx", 189]
     ],
     "translation": "Attività"
@@ -814,7 +814,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/index.tsx", 400],
-      ["src/views/card/index.tsx", 309],
+      ["src/views/card/index.tsx", 308],
       ["src/views/public/board/index.tsx", 125]
     ],
     "translation": "Board"
@@ -1228,7 +1228,7 @@
     "message": "Card",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/index.tsx", 309]],
+    "origin": [["src/views/card/index.tsx", 308]],
     "translation": "Card"
   },
   "fEY2vP": {
@@ -1236,8 +1236,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/card/index.tsx", 355],
-      ["src/views/card/index.tsx", 392]
+      ["src/views/card/index.tsx", 354],
+      ["src/views/card/index.tsx", 391]
     ],
     "translation": "Card non trovata"
   },
@@ -1379,7 +1379,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/card/index.tsx", 346],
+      ["src/views/card/index.tsx", 345],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 172],
       ["src/views/settings/components/NewApiKeyModal.tsx", 136]
     ],

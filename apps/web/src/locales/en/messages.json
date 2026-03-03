@@ -59,7 +59,7 @@
       ],
       [
         "src/views/card/index.tsx",
-        309
+        308
       ]
     ],
     "translation": "{0} | {1}"
@@ -347,7 +347,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        447
+        446
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -1365,7 +1365,7 @@
       ],
       [
         "src/views/card/index.tsx",
-        309
+        308
       ],
       [
         "src/views/public/board/index.tsx",
@@ -2061,7 +2061,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        309
+        308
       ]
     ],
     "translation": "Card"
@@ -2073,11 +2073,11 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        355
+        354
       ],
       [
         "src/views/card/index.tsx",
-        392
+        391
       ]
     ],
     "translation": "Card not found"
@@ -2301,7 +2301,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        346
+        345
       ],
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
