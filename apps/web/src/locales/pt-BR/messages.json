@@ -156,11 +156,11 @@
     "translation": "Teste gratuito de 14 dias · Mude de plano ou cancele a qualquer momento"
   },
   "4obmDr": {
-    "translation": "404 - Página Não Encontrada | kan.bn",
     "message": "404 - Page Not Found | kan.bn",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 11]]
+    "origin": [["src/pages/404.tsx", 11]],
+    "translation": "404 - Página Não Encontrada | kan.bn"
   },
   "/rn4RE": {
     "message": "A powerful, flexible kanban app that helps you organise work, track progress, and deliver results—all in one place.",
@@ -2963,11 +2963,11 @@
     "translation": "Ir para quadros"
   },
   "XEoGkQ": {
-    "translation": "Ir para a página inicial",
     "message": "Go to homepage",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 38]]
+    "origin": [["src/pages/404.tsx", 38]],
+    "translation": "Ir para a página inicial"
   },
   "KAsRdK": {
     "message": "Go to members",
@@ -4055,11 +4055,11 @@
     "translation": "Seja dono dos seus dados"
   },
   "8F1i42": {
-    "translation": "Página não encontrada",
     "message": "Page not found",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 24]]
+    "origin": [["src/pages/404.tsx", 24]],
+    "translation": "Página não encontrada"
   },
   "Uworke": {
     "message": "Part-time",
@@ -5258,11 +5258,11 @@
     "translation": "A alternativa open source <0/> ao Trello"
   },
   "0xD8Of": {
-    "translation": "A página que você está procurando não existe ou foi movida.",
     "message": "The page you're looking for doesn't exist or has been moved.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 29]]
+    "origin": [["src/pages/404.tsx", 29]],
+    "translation": "A página que você está procurando não existe ou foi movida."
   },
   "fQCrjt": {
     "message": "The visibility of your board has been set to {0}.",

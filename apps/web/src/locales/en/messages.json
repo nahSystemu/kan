@@ -269,7 +269,6 @@
     "translation": "14 day free trial · Switch plans or cancel anytime"
   },
   "4obmDr": {
-    "translation": "404 - Page Not Found | kan.bn",
     "message": "404 - Page Not Found | kan.bn",
     "placeholders": {},
     "comments": [],
@@ -278,7 +277,8 @@
         "src/pages/404.tsx",
         11
       ]
-    ]
+    ],
+    "translation": "404 - Page Not Found | kan.bn"
   },
   "/rn4RE": {
     "message": "A powerful, flexible kanban app that helps you organise work, track progress, and deliver results—all in one place.",
@@ -4995,7 +4995,6 @@
     "translation": "Go to boards"
   },
   "XEoGkQ": {
-    "translation": "Go to homepage",
     "message": "Go to homepage",
     "placeholders": {},
     "comments": [],
@@ -5004,7 +5003,8 @@
         "src/pages/404.tsx",
         38
       ]
-    ]
+    ],
+    "translation": "Go to homepage"
   },
   "KAsRdK": {
     "message": "Go to members",
@@ -6842,7 +6842,6 @@
     "translation": "Own your data"
   },
   "8F1i42": {
-    "translation": "Page not found",
     "message": "Page not found",
     "placeholders": {},
     "comments": [],
@@ -6851,7 +6850,8 @@
         "src/pages/404.tsx",
         24
       ]
-    ]
+    ],
+    "translation": "Page not found"
   },
   "Uworke": {
     "message": "Part-time",
@@ -8961,7 +8961,6 @@
     "translation": "The open source <0/> alternative to Trello"
   },
   "0xD8Of": {
-    "translation": "The page you're looking for doesn't exist or has been moved.",
     "message": "The page you're looking for doesn't exist or has been moved.",
     "placeholders": {},
     "comments": [],
@@ -8970,7 +8969,8 @@
         "src/pages/404.tsx",
         29
       ]
-    ]
+    ],
+    "translation": "The page you're looking for doesn't exist or has been moved."
   },
   "fQCrjt": {
     "message": "The visibility of your board has been set to {0}.",

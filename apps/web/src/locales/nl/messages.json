@@ -156,11 +156,11 @@
     "translation": "14 dagen gratis proefperiode · Wissel van abonnement of annuleer op elk moment"
   },
   "4obmDr": {
-    "translation": "404 - Pagina niet gevonden | kan.bn",
     "message": "404 - Page Not Found | kan.bn",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 11]]
+    "origin": [["src/pages/404.tsx", 11]],
+    "translation": "404 - Pagina niet gevonden | kan.bn"
   },
   "/rn4RE": {
     "message": "A powerful, flexible kanban app that helps you organise work, track progress, and deliver results—all in one place.",
@@ -2963,11 +2963,11 @@
     "translation": "Ga naar borden"
   },
   "XEoGkQ": {
-    "translation": "Ga naar homepage",
     "message": "Go to homepage",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 38]]
+    "origin": [["src/pages/404.tsx", 38]],
+    "translation": "Ga naar homepage"
   },
   "KAsRdK": {
     "message": "Go to members",
@@ -4055,11 +4055,11 @@
     "translation": "Beheer je eigen data"
   },
   "8F1i42": {
-    "translation": "Pagina niet gevonden",
     "message": "Page not found",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 24]]
+    "origin": [["src/pages/404.tsx", 24]],
+    "translation": "Pagina niet gevonden"
   },
   "Uworke": {
     "message": "Part-time",
@@ -5258,11 +5258,11 @@
     "translation": "Het open source <0/> alternatief voor Trello"
   },
   "0xD8Of": {
-    "translation": "De pagina die je zoekt bestaat niet of is verplaatst.",
     "message": "The page you're looking for doesn't exist or has been moved.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 29]]
+    "origin": [["src/pages/404.tsx", 29]],
+    "translation": "De pagina die je zoekt bestaat niet of is verplaatst."
   },
   "fQCrjt": {
     "message": "The visibility of your board has been set to {0}.",

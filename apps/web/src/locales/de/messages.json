@@ -156,11 +156,11 @@
     "translation": "14 Tage kostenlose Testversion · Jederzeit Plan wechseln oder kündigen"
   },
   "4obmDr": {
-    "translation": "404 - Seite nicht gefunden | kan.bn",
     "message": "404 - Page Not Found | kan.bn",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 11]]
+    "origin": [["src/pages/404.tsx", 11]],
+    "translation": "404 - Seite nicht gefunden | kan.bn"
   },
   "/rn4RE": {
     "message": "A powerful, flexible kanban app that helps you organise work, track progress, and deliver results—all in one place.",
@@ -2963,11 +2963,11 @@
     "translation": "Zu den Boards"
   },
   "XEoGkQ": {
-    "translation": "Zur Startseite",
     "message": "Go to homepage",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 38]]
+    "origin": [["src/pages/404.tsx", 38]],
+    "translation": "Zur Startseite"
   },
   "KAsRdK": {
     "message": "Go to members",
@@ -4055,11 +4055,11 @@
     "translation": "Behalten Sie die Kontrolle über Ihre Daten"
   },
   "8F1i42": {
-    "translation": "Seite nicht gefunden",
     "message": "Page not found",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 24]]
+    "origin": [["src/pages/404.tsx", 24]],
+    "translation": "Seite nicht gefunden"
   },
   "Uworke": {
     "message": "Part-time",
@@ -5258,11 +5258,11 @@
     "translation": "Die Open-Source-<0/>Alternative zu Trello"
   },
   "0xD8Of": {
-    "translation": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
     "message": "The page you're looking for doesn't exist or has been moved.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/pages/404.tsx", 29]]
+    "origin": [["src/pages/404.tsx", 29]],
+    "translation": "Die gesuchte Seite existiert nicht oder wurde verschoben."
   },
   "fQCrjt": {
     "message": "The visibility of your board has been set to {0}.",
