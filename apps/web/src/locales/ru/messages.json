@@ -71,7 +71,7 @@
       "0": ["isTemplate ? \"Template\" : \"Board\""]
     },
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 427]],
+    "origin": [["src/views/board/index.tsx", 430]],
     "translation": "{0} не найдено"
   },
   "0xWkkH": {
@@ -813,7 +813,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 400],
+      ["src/views/board/index.tsx", 403],
       ["src/views/card/index.tsx", 308],
       ["src/views/public/board/index.tsx", 125]
     ],
@@ -1722,8 +1722,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 75],
-      ["src/views/board/index.tsx", 541]
+      ["src/views/board/index.tsx", 76],
+      ["src/views/board/index.tsx", 544]
     ],
     "translation": "Создать новый список"
   },
@@ -2758,7 +2758,7 @@
     "message": "Get started by creating a new list",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 526]],
+    "origin": [["src/views/board/index.tsx", 529]],
     "translation": "Начните с создания нового списка"
   },
   "oW13KZ": {
@@ -3614,7 +3614,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/NewListForm.tsx", 113],
-      ["src/views/board/index.tsx", 490]
+      ["src/views/board/index.tsx", 493]
     ],
     "translation": "Новый список"
   },
@@ -3733,14 +3733,14 @@
     "message": "No lists",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 522]],
+    "origin": [["src/views/board/index.tsx", 525]],
     "translation": "Нет списков"
   },
   "fvLNDy": {
     "message": "No lists have been created yet",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 527]],
+    "origin": [["src/views/board/index.tsx", 530]],
     "translation": "Списки ещё не созданы"
   },
   "i30J2U": {
@@ -4111,8 +4111,8 @@
       ["src/views/board/components/NewTemplateForm.tsx", 77],
       ["src/views/board/components/UpdateBoardSlugForm.tsx", 73],
       ["src/views/board/components/VisibilityButton.tsx", 57],
-      ["src/views/board/index.tsx", 181],
-      ["src/views/board/index.tsx", 237],
+      ["src/views/board/index.tsx", 184],
+      ["src/views/board/index.tsx", 240],
       ["src/views/boards/components/ImportBoardsForm.tsx", 243],
       ["src/views/boards/components/ImportBoardsForm.tsx", 395],
       ["src/views/card/components/AttachmentThumbnails.tsx", 74],
@@ -4890,8 +4890,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 400],
-      ["src/views/board/index.tsx", 436]
+      ["src/views/board/index.tsx", 403],
+      ["src/views/board/index.tsx", 439]
     ],
     "translation": "Шаблон"
   },
@@ -5384,7 +5384,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 236],
+      ["src/views/board/index.tsx", 239],
       ["src/views/card/index.tsx", 222]
     ],
     "translation": "Не удалось обновить карточку"
@@ -5429,7 +5429,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 180],
+      ["src/views/board/index.tsx", 183],
       ["src/views/card/components/ListSelector.tsx", 54]
     ],
     "translation": "Не удалось обновить список"
@@ -5843,7 +5843,7 @@
     "comments": [],
     "origin": [
       ["src/components/SettingsLayout.tsx", 46],
-      ["src/views/board/index.tsx", 400],
+      ["src/views/board/index.tsx", 403],
       ["src/views/boards/index.tsx", 48],
       ["src/views/members/index.tsx", 258],
       ["src/views/public/board/index.tsx", 125],
@@ -6054,8 +6054,8 @@
       ["src/views/board/components/List.tsx", 117],
       ["src/views/board/components/UpdateBoardSlugButton.tsx", 58],
       ["src/views/board/components/VisibilityButton.tsx", 72],
-      ["src/views/board/index.tsx", 474],
-      ["src/views/board/index.tsx", 532],
+      ["src/views/board/index.tsx", 477],
+      ["src/views/board/index.tsx", 535],
       ["src/views/boards/components/BoardsList.tsx", 71],
       ["src/views/boards/index.tsx", 59],
       ["src/views/boards/index.tsx", 80]

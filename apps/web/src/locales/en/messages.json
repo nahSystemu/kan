@@ -123,7 +123,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        427
+        430
       ]
     ],
     "translation": "{0} not found"
@@ -1361,7 +1361,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        400
+        403
       ],
       [
         "src/views/card/index.tsx",
@@ -2881,11 +2881,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        75
+        76
       ],
       [
         "src/views/board/index.tsx",
-        541
+        544
       ]
     ],
     "translation": "Create new list"
@@ -4653,7 +4653,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        526
+        529
       ]
     ],
     "translation": "Get started by creating a new list"
@@ -6104,7 +6104,7 @@
       ],
       [
         "src/views/board/index.tsx",
-        490
+        493
       ]
     ],
     "translation": "New list"
@@ -6300,7 +6300,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        522
+        525
       ]
     ],
     "translation": "No lists"
@@ -6312,7 +6312,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        527
+        530
       ]
     ],
     "translation": "No lists have been created yet"
@@ -6940,11 +6940,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        181
+        184
       ],
       [
         "src/views/board/index.tsx",
-        237
+        240
       ],
       [
         "src/views/boards/components/ImportBoardsForm.tsx",
@@ -8339,11 +8339,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        400
+        403
       ],
       [
         "src/views/board/index.tsx",
-        436
+        439
       ]
     ],
     "translation": "Template"
@@ -9147,7 +9147,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        236
+        239
       ],
       [
         "src/views/card/index.tsx",
@@ -9223,7 +9223,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        180
+        183
       ],
       [
         "src/views/card/components/ListSelector.tsx",
@@ -9951,7 +9951,7 @@
       ],
       [
         "src/views/board/index.tsx",
-        400
+        403
       ],
       [
         "src/views/boards/index.tsx",
@@ -10299,11 +10299,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        474
+        477
       ],
       [
         "src/views/board/index.tsx",
-        532
+        535
       ],
       [
         "src/views/boards/components/BoardsList.tsx",
