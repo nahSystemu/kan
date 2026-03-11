@@ -107,7 +107,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        453
+        455
       ]
     ],
     "translation": "{0} labels"
@@ -1429,7 +1429,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        349
+        350
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
@@ -2141,7 +2141,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        319
+        321
       ]
     ],
     "translation": "Card title"
@@ -2409,7 +2409,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        352
+        353
       ],
       [
         "src/views/home/components/Features.tsx",
@@ -2809,7 +2809,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        517
+        520
       ],
       [
         "src/views/board/components/NewListForm.tsx",
@@ -2837,7 +2837,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        527
+        530
       ]
     ],
     "translation": "Create card"
@@ -2929,7 +2929,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        415
+        417
       ],
       [
         "src/views/card/components/LabelSelector.tsx",
@@ -2985,7 +2985,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        387
+        388
       ],
       [
         "src/components/WorkspaceMenu.tsx",
@@ -3133,7 +3133,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        318
+        319
       ]
     ],
     "translation": "Custom URLs require upgrading to a Pro plan"
@@ -3161,7 +3161,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        342
+        343
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
@@ -3393,11 +3393,11 @@
       ],
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        115
+        125
       ],
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        126
+        136
       ]
     ],
     "translation": "Delete workspace"
@@ -3701,7 +3701,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        470
+        472
       ],
       [
         "src/views/card/index.tsx",
@@ -3937,7 +3937,7 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        90
+        100
       ]
     ],
     "translation": "Email visibility"
@@ -4289,7 +4289,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        145
+        146
       ]
     ],
     "translation": "Error upgrading to Pro"
@@ -5681,7 +5681,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        419
+        421
       ],
       [
         "src/views/card/index.tsx",
@@ -5733,7 +5733,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        335
+        336
       ],
       [
         "src/views/pricing/components/PricingTiers.tsx",
@@ -6097,7 +6097,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        377
+        379
       ],
       [
         "src/views/card/index.tsx",
@@ -6141,6 +6141,18 @@
       ]
     ],
     "translation": "Mentions"
+  },
+  "hty0d5": {
+    "translation": "Monday",
+    "message": "Monday",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/UpdateWeekStartDayForm.tsx",
+        53
+      ]
+    ]
   },
   "+8Nek/": {
     "message": "Monthly",
@@ -6316,7 +6328,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        302
+        304
       ]
     ],
     "translation": "New card"
@@ -6440,7 +6452,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        243
+        244
       ]
     ],
     "translation": "New workspace"
@@ -6712,7 +6724,7 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        118
+        128
       ]
     ],
     "translation": "Once you delete your workspace, there is no going back. This action cannot be undone."
@@ -7220,7 +7232,7 @@
       ],
       [
         "src/components/NewWorkspaceForm.tsx",
-        158
+        159
       ],
       [
         "src/views/board/components/BoardDropdown.tsx",
@@ -7228,7 +7240,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        184
+        186
       ],
       [
         "src/views/board/components/NewListForm.tsx",
@@ -7304,7 +7316,7 @@
       ],
       [
         "src/views/card/components/DueDateSelector.tsx",
-        62
+        64
       ],
       [
         "src/views/card/components/LabelSelector.tsx",
@@ -8032,6 +8044,18 @@
     ],
     "translation": "SAML SSO"
   },
+  "+5kO8P": {
+    "translation": "Saturday",
+    "message": "Saturday",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/UpdateWeekStartDayForm.tsx",
+        54
+      ]
+    ]
+  },
   "tfDRzk": {
     "message": "Save",
     "placeholders": {},
@@ -8267,7 +8291,7 @@
     "origin": [
       [
         "src/views/card/components/DueDateSelector.tsx",
-        119
+        121
       ]
     ],
     "translation": "Set due date"
@@ -8379,7 +8403,7 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        58
+        59
       ]
     ],
     "translation": "Settings | Workspace"
@@ -8639,6 +8663,18 @@
       ]
     ],
     "translation": "Success"
+  },
+  "DBC3t5": {
+    "translation": "Sunday",
+    "message": "Sunday",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/UpdateWeekStartDayForm.tsx",
+        52
+      ]
+    ]
   },
   "uZg2+w": {
     "message": "Supercharge your workspace for just $29/month. Here's what you'll get:",
@@ -9143,7 +9179,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        287
+        288
       ]
     ],
     "translation": "This workspace URL has already been taken"
@@ -9155,7 +9191,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        289
+        290
       ]
     ],
     "translation": "This workspace URL is reserved"
@@ -9375,7 +9411,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        181
+        183
       ]
     ],
     "translation": "Unable to create card"
@@ -9427,7 +9463,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        157
+        158
       ]
     ],
     "translation": "Unable to create workspace"
@@ -9635,7 +9671,7 @@
     "origin": [
       [
         "src/views/card/components/DueDateSelector.tsx",
-        61
+        63
       ]
     ],
     "translation": "Unable to update due date"
@@ -9887,7 +9923,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        332
+        333
       ],
       [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
@@ -10055,7 +10091,7 @@
       ],
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        108
+        118
       ]
     ],
     "translation": "Upgrade to Pro"
@@ -10067,7 +10103,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        372
+        373
       ]
     ],
     "translation": "Upgrade to Pro ($29/month)"
@@ -10460,6 +10496,18 @@
     ],
     "translation": "Webhooks"
   },
+  "xLTZVf": {
+    "translation": "Week start day",
+    "message": "Week start day",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/WorkspaceSettings.tsx",
+        91
+      ]
+    ]
+  },
   "9eF5oV": {
     "message": "Welcome back",
     "placeholders": {},
@@ -10559,7 +10607,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        146
+        147
       ]
     ],
     "translation": "Workspace created successfully. You can upgrade later in settings."
@@ -10583,7 +10631,7 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        81
+        82
       ]
     ],
     "translation": "Workspace description"
@@ -10651,11 +10699,11 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        262
+        263
       ],
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        62
+        63
       ]
     ],
     "translation": "Workspace name"
@@ -10743,7 +10791,7 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        71
+        72
       ]
     ],
     "translation": "Workspace URL"
@@ -10767,7 +10815,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        276
+        277
       ]
     ],
     "translation": "workspace-url"

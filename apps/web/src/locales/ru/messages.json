@@ -62,7 +62,7 @@
       "0": ["labelPublicIds.length"]
     },
     "comments": [],
-    "origin": [["src/views/board/components/NewCardForm.tsx", 453]],
+    "origin": [["src/views/board/components/NewCardForm.tsx", 455]],
     "translation": "{0} метки"
   },
   "9x4DAL": {
@@ -853,7 +853,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/NewWorkspaceForm.tsx", 349],
+      ["src/components/NewWorkspaceForm.tsx", 350],
       ["src/views/settings/components/UpgradeToProConfirmation.tsx", 83]
     ],
     "translation": "Аналитика доски"
@@ -1275,7 +1275,7 @@
     "message": "Card title",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/NewCardForm.tsx", 319]],
+    "origin": [["src/views/board/components/NewCardForm.tsx", 321]],
     "translation": "Название карточки"
   },
   "rQXTmd": {
@@ -1443,7 +1443,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/NewWorkspaceForm.tsx", 352],
+      ["src/components/NewWorkspaceForm.tsx", 353],
       ["src/views/home/components/Features.tsx", 67],
       ["src/views/settings/components/UpgradeToProConfirmation.tsx", 86]
     ],
@@ -1678,7 +1678,7 @@
     "comments": [],
     "origin": [
       ["src/components/LabelForm.tsx", 213],
-      ["src/views/board/components/NewCardForm.tsx", 517],
+      ["src/views/board/components/NewCardForm.tsx", 520],
       ["src/views/board/components/NewListForm.tsx", 141]
     ],
     "translation": "Создать ещё одну"
@@ -1694,7 +1694,7 @@
     "message": "Create card",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/NewCardForm.tsx", 527]],
+    "origin": [["src/views/board/components/NewCardForm.tsx", 530]],
     "translation": "Создать карточку"
   },
   "d33Usy": {
@@ -1749,7 +1749,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/components/NewCardForm.tsx", 415],
+      ["src/views/board/components/NewCardForm.tsx", 417],
       ["src/views/card/components/LabelSelector.tsx", 100]
     ],
     "translation": "Создать новую метку"
@@ -1783,7 +1783,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/NewWorkspaceForm.tsx", 387],
+      ["src/components/NewWorkspaceForm.tsx", 388],
       ["src/components/WorkspaceMenu.tsx", 153]
     ],
     "translation": "Создать рабочее пространство"
@@ -1871,7 +1871,7 @@
     "message": "Custom URLs require upgrading to a Pro plan",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/NewWorkspaceForm.tsx", 318]],
+    "origin": [["src/components/NewWorkspaceForm.tsx", 319]],
     "translation": "Для пользовательских URL требуется переход на тариф Pro"
   },
   "7RpHg/": {
@@ -1889,7 +1889,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/NewWorkspaceForm.tsx", 342],
+      ["src/components/NewWorkspaceForm.tsx", 343],
       ["src/views/settings/components/UpgradeToProConfirmation.tsx", 76]
     ],
     "translation": "Пользовательский URL рабочего пространства"
@@ -2017,8 +2017,8 @@
     "comments": [],
     "origin": [
       ["src/views/settings/components/DeleteWorkspaceConfirmation.tsx", 106],
-      ["src/views/settings/WorkspaceSettings.tsx", 115],
-      ["src/views/settings/WorkspaceSettings.tsx", 126]
+      ["src/views/settings/WorkspaceSettings.tsx", 125],
+      ["src/views/settings/WorkspaceSettings.tsx", 136]
     ],
     "translation": "Удалить рабочее пространство"
   },
@@ -2186,7 +2186,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/Filters.tsx", 171],
-      ["src/views/board/components/NewCardForm.tsx", 470],
+      ["src/views/board/components/NewCardForm.tsx", 472],
       ["src/views/card/index.tsx", 153]
     ],
     "translation": "Срок выполнения"
@@ -2328,7 +2328,7 @@
     "message": "Email visibility",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/WorkspaceSettings.tsx", 90]],
+    "origin": [["src/views/settings/WorkspaceSettings.tsx", 100]],
     "translation": "Видимость email"
   },
   "0+ewPp": {
@@ -2552,7 +2552,7 @@
     "message": "Error upgrading to Pro",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/NewWorkspaceForm.tsx", 145]],
+    "origin": [["src/components/NewWorkspaceForm.tsx", 146]],
     "translation": "Ошибка при переходе на Pro"
   },
   "CYWHT+": {
@@ -3373,7 +3373,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/Filters.tsx", 155],
-      ["src/views/board/components/NewCardForm.tsx", 419],
+      ["src/views/board/components/NewCardForm.tsx", 421],
       ["src/views/card/index.tsx", 133]
     ],
     "translation": "Метки"
@@ -3406,7 +3406,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/NewWorkspaceForm.tsx", 335],
+      ["src/components/NewWorkspaceForm.tsx", 336],
       ["src/views/pricing/components/PricingTiers.tsx", 159],
       ["src/views/settings/components/UpgradeToProConfirmation.tsx", 69]
     ],
@@ -3616,7 +3616,7 @@
     "origin": [
       ["src/components/SideNavigation.tsx", 123],
       ["src/views/board/components/Filters.tsx", 147],
-      ["src/views/board/components/NewCardForm.tsx", 377],
+      ["src/views/board/components/NewCardForm.tsx", 379],
       ["src/views/card/index.tsx", 143],
       ["src/views/members/index.tsx", 263],
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 81]
@@ -3640,6 +3640,13 @@
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 183]
     ],
     "translation": "Упоминания"
+  },
+  "hty0d5": {
+    "translation": "Понедельник",
+    "message": "Monday",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/settings/components/UpdateWeekStartDayForm.tsx", 53]]
   },
   "+8Nek/": {
     "message": "Monthly",
@@ -3739,7 +3746,7 @@
     "message": "New card",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/NewCardForm.tsx", 302]],
+    "origin": [["src/views/board/components/NewCardForm.tsx", 304]],
     "translation": "Новая карточка"
   },
   "cWcxrL": {
@@ -3816,7 +3823,7 @@
     "message": "New workspace",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/NewWorkspaceForm.tsx", 243]],
+    "origin": [["src/components/NewWorkspaceForm.tsx", 244]],
     "translation": "Новый рабочий пространство"
   },
   "5ACX4z": {
@@ -3976,7 +3983,7 @@
     "message": "Once you delete your workspace, there is no going back. This action cannot be undone.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/WorkspaceSettings.tsx", 118]],
+    "origin": [["src/views/settings/WorkspaceSettings.tsx", 128]],
     "translation": "После удаления рабочего пространства возврата не будет. Это действие необратимо."
   },
   "69b7aE": {
@@ -4286,9 +4293,9 @@
     "origin": [
       ["src/components/DeleteLabelConfirmation.tsx", 26],
       ["src/components/FeedbackModal.tsx", 41],
-      ["src/components/NewWorkspaceForm.tsx", 158],
+      ["src/components/NewWorkspaceForm.tsx", 159],
       ["src/views/board/components/BoardDropdown.tsx", 65],
-      ["src/views/board/components/NewCardForm.tsx", 184],
+      ["src/views/board/components/NewCardForm.tsx", 186],
       ["src/views/board/components/NewListForm.tsx", 79],
       ["src/views/board/components/NewTemplateForm.tsx", 61],
       ["src/views/board/components/NewTemplateForm.tsx", 77],
@@ -4307,7 +4314,7 @@
       ["src/views/card/components/DeleteCardConfirmation.tsx", 52],
       ["src/views/card/components/DeleteChecklistConfirmation.tsx", 38],
       ["src/views/card/components/DeleteCommentConfirmation.tsx", 46],
-      ["src/views/card/components/DueDateSelector.tsx", 62],
+      ["src/views/card/components/DueDateSelector.tsx", 64],
       ["src/views/card/components/LabelSelector.tsx", 75],
       ["src/views/card/components/ListSelector.tsx", 55],
       ["src/views/card/components/MemberSelector.tsx", 82],
@@ -4699,6 +4706,13 @@
     "origin": [["src/views/pricing/components/PricingTiers.tsx", 102]],
     "translation": "SAML SSO"
   },
+  "+5kO8P": {
+    "translation": "Суббота",
+    "message": "Saturday",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/settings/components/UpdateWeekStartDayForm.tsx", 54]]
+  },
   "tfDRzk": {
     "message": "Save",
     "placeholders": {},
@@ -4838,7 +4852,7 @@
     "message": "Set due date",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/DueDateSelector.tsx", 119]],
+    "origin": [["src/views/card/components/DueDateSelector.tsx", 121]],
     "translation": "Установить срок"
   },
   "Eit43O": {
@@ -4904,7 +4918,7 @@
     "message": "Settings | Workspace",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/WorkspaceSettings.tsx", 58]],
+    "origin": [["src/views/settings/WorkspaceSettings.tsx", 59]],
     "translation": "Настройки | Рабочее пространство"
   },
   "CTqTgr": {
@@ -5062,6 +5076,13 @@
       ["src/components/AuthForm.tsx", 232]
     ],
     "translation": "Успех"
+  },
+  "DBC3t5": {
+    "translation": "Воскресенье",
+    "message": "Sunday",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/settings/components/UpdateWeekStartDayForm.tsx", 52]]
   },
   "uZg2+w": {
     "message": "Supercharge your workspace for just $29/month. Here's what you'll get:",
@@ -5373,14 +5394,14 @@
     "message": "This workspace URL has already been taken",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/NewWorkspaceForm.tsx", 287]],
+    "origin": [["src/components/NewWorkspaceForm.tsx", 288]],
     "translation": "Этот URL рабочего пространства уже занят"
   },
   "bJtM0P": {
     "message": "This workspace URL is reserved",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/NewWorkspaceForm.tsx", 289]],
+    "origin": [["src/components/NewWorkspaceForm.tsx", 290]],
     "translation": "Этот URL рабочей области зарезервирован"
   },
   "kp6L3T": {
@@ -5511,7 +5532,7 @@
     "message": "Unable to create card",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/NewCardForm.tsx", 181]],
+    "origin": [["src/views/board/components/NewCardForm.tsx", 183]],
     "translation": "Не удалось создать карточку"
   },
   "mHhffx": {
@@ -5542,7 +5563,7 @@
     "message": "Unable to create workspace",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/NewWorkspaceForm.tsx", 157]],
+    "origin": [["src/components/NewWorkspaceForm.tsx", 158]],
     "translation": "Не удалось создать рабочую область"
   },
   "WHHLh9": {
@@ -5670,7 +5691,7 @@
     "message": "Unable to update due date",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/DueDateSelector.tsx", 61]],
+    "origin": [["src/views/card/components/DueDateSelector.tsx", 63]],
     "translation": "Не удалось обновить дату выполнения"
   },
   "delOXn": {
@@ -5813,7 +5834,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/NewWorkspaceForm.tsx", 332],
+      ["src/components/NewWorkspaceForm.tsx", 333],
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 84],
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 85],
       ["src/views/pricing/components/PricingTiers.tsx", 80],
@@ -5902,7 +5923,7 @@
     "origin": [
       ["src/components/SideNavigation.tsx", 240],
       ["src/views/settings/components/UpgradeToProConfirmation.tsx", 53],
-      ["src/views/settings/WorkspaceSettings.tsx", 108]
+      ["src/views/settings/WorkspaceSettings.tsx", 118]
     ],
     "translation": "Перейти на Pro"
   },
@@ -5910,7 +5931,7 @@
     "message": "Upgrade to Pro ($29/month)",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/NewWorkspaceForm.tsx", 372]],
+    "origin": [["src/components/NewWorkspaceForm.tsx", 373]],
     "translation": "Перейти на Pro (29 $/месяц)"
   },
   "b3Thhd": {
@@ -6146,6 +6167,13 @@
     ],
     "translation": "Вебхуки"
   },
+  "xLTZVf": {
+    "translation": "День начала недели",
+    "message": "Week start day",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/settings/WorkspaceSettings.tsx", 91]]
+  },
   "9eF5oV": {
     "message": "Welcome back",
     "placeholders": {},
@@ -6199,7 +6227,7 @@
     "message": "Workspace created successfully. You can upgrade later in settings.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/NewWorkspaceForm.tsx", 146]],
+    "origin": [["src/components/NewWorkspaceForm.tsx", 147]],
     "translation": "Рабочее пространство успешно создано. Вы сможете обновить его позже в настройках."
   },
   "UlhdTP": {
@@ -6215,7 +6243,7 @@
     "message": "Workspace description",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/WorkspaceSettings.tsx", 81]],
+    "origin": [["src/views/settings/WorkspaceSettings.tsx", 82]],
     "translation": "Описание рабочего пространства"
   },
   "Ax/hYa": {
@@ -6261,8 +6289,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/NewWorkspaceForm.tsx", 262],
-      ["src/views/settings/WorkspaceSettings.tsx", 62]
+      ["src/components/NewWorkspaceForm.tsx", 263],
+      ["src/views/settings/WorkspaceSettings.tsx", 63]
     ],
     "translation": "Название рабочего пространства"
   },
@@ -6321,7 +6349,7 @@
     "message": "Workspace URL",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/WorkspaceSettings.tsx", 71]],
+    "origin": [["src/views/settings/WorkspaceSettings.tsx", 72]],
     "translation": "URL рабочего пространства"
   },
   "DSGzV+": {
@@ -6335,7 +6363,7 @@
     "message": "workspace-url",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/NewWorkspaceForm.tsx", 276]],
+    "origin": [["src/components/NewWorkspaceForm.tsx", 277]],
     "translation": "workspace-url"
   },
   "4kJRen": {
