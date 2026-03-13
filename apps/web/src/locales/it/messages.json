@@ -1293,18 +1293,25 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/settings/AccountSettings.tsx", 77],
-      ["src/views/settings/AccountSettings.tsx", 87],
+      ["src/views/settings/AccountSettings.tsx", 88],
+      ["src/views/settings/AccountSettings.tsx", 98],
       ["src/views/settings/components/ChangePasswordConfirmation.tsx", 109],
       ["src/views/settings/components/ChangePasswordConfirmation.tsx", 178]
     ],
     "translation": "Cambia password"
   },
+  "fzGyWs": {
+    "translation": "Modifica la dimensione del carattere dell'applicazione.",
+    "message": "Change the application font size.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/settings/AccountSettings.tsx", 63]]
+  },
   "yD3ZSw": {
     "message": "Change your language preferences.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/AccountSettings.tsx", 52]],
+    "origin": [["src/views/settings/AccountSettings.tsx", 53]],
     "translation": "Modifica le tue preferenze di lingua."
   },
   "gZxH/p": {
@@ -1961,8 +1968,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/settings/AccountSettings.tsx", 59],
-      ["src/views/settings/AccountSettings.tsx", 69],
+      ["src/views/settings/AccountSettings.tsx", 70],
+      ["src/views/settings/AccountSettings.tsx", 80],
       ["src/views/settings/components/DeleteAccountConfirmation.tsx", 96]
     ],
     "translation": "Elimina account"
@@ -2086,7 +2093,7 @@
     "message": "Display name",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/AccountSettings.tsx", 35]],
+    "origin": [["src/views/settings/AccountSettings.tsx", 36]],
     "translation": "Nome visualizzato"
   },
   "MlyjJu": {
@@ -2304,7 +2311,7 @@
     "comments": [],
     "origin": [
       ["src/views/members/components/InviteMemberForm.tsx", 272],
-      ["src/views/settings/AccountSettings.tsx", 42]
+      ["src/views/settings/AccountSettings.tsx", 43]
     ],
     "translation": "Email"
   },
@@ -2767,6 +2774,13 @@
     "comments": [],
     "origin": [["src/views/home/components/Faqs.tsx", 150]],
     "translation": "Trova risposte alle domande più comuni su Kan. Non trovi quello che cerchi? Sentiti libero di <0>contattarci</0>."
+  },
+  "q3il6U": {
+    "translation": "Dimensione del carattere",
+    "message": "Font size",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/settings/AccountSettings.tsx", 60]]
   },
   "+3TYXa": {
     "message": "For long-term sustainability, we recognise all good open source projects need a source of revenue. Ours comes from the paid cloud offering for workspaces with multiple users and for custom workspace slugs. There's no obligation to use it, and you can self-host the software on your own infrastructure free of charge.",
@@ -3398,8 +3412,15 @@
     "message": "Language",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/AccountSettings.tsx", 49]],
+    "origin": [["src/views/settings/AccountSettings.tsx", 50]],
     "translation": "Lingua"
+  },
+  "k7rCa/": {
+    "translation": "Grande",
+    "message": "Large",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/components/FontSizeSelector.tsx", 9]]
   },
   "8Is1ih": {
     "message": "Launch offer",
@@ -3591,6 +3612,13 @@
     "origin": [["src/views/card/components/ActivityList.tsx", 258]],
     "translation": "ha contrassegnato l'elemento della checklist <0>{0}</0> come incompleto"
   },
+  "agPptk": {
+    "translation": "Medio",
+    "message": "Medium",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/components/FontSizeSelector.tsx", 8]]
+  },
   "W/Elkg": {
     "message": "Medium Priority",
     "placeholders": {},
@@ -3642,11 +3670,13 @@
     "translation": "Menzioni"
   },
   "hty0d5": {
-    "translation": "Lunedì",
     "message": "Monday",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/components/UpdateWeekStartDayForm.tsx", 53]]
+    "origin": [
+      ["src/views/settings/components/UpdateWeekStartDayForm.tsx", 53]
+    ],
+    "translation": "Lunedì"
   },
   "+8Nek/": {
     "message": "Monthly",
@@ -3976,7 +4006,7 @@
     "message": "Once you delete your account, there is no going back. This action cannot be undone.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/AccountSettings.tsx", 62]],
+    "origin": [["src/views/settings/AccountSettings.tsx", 73]],
     "translation": "Una volta eliminato il tuo account, non si può tornare indietro. Questa azione non può essere annullata."
   },
   "dmKdk0": {
@@ -4438,7 +4468,7 @@
     "message": "Profile picture",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/AccountSettings.tsx", 29]],
+    "origin": [["src/views/settings/AccountSettings.tsx", 30]],
     "translation": "Immagine del profilo"
   },
   "7d1a0d": {
@@ -4707,11 +4737,13 @@
     "translation": "SAML SSO"
   },
   "+5kO8P": {
-    "translation": "Sabato",
     "message": "Saturday",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/components/UpdateWeekStartDayForm.tsx", 54]]
+    "origin": [
+      ["src/views/settings/components/UpdateWeekStartDayForm.tsx", 54]
+    ],
+    "translation": "Sabato"
   },
   "tfDRzk": {
     "message": "Save",
@@ -4876,7 +4908,7 @@
     "message": "Settings | Account",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/AccountSettings.tsx", 25]],
+    "origin": [["src/views/settings/AccountSettings.tsx", 26]],
     "translation": "Impostazioni | Account"
   },
   "iy1wb+": {
@@ -5006,6 +5038,13 @@
     ],
     "translation": "SLA"
   },
+  "4Revpc": {
+    "translation": "Piccolo",
+    "message": "Small",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/components/FontSizeSelector.tsx", 7]]
+  },
   "++rVAm": {
     "message": "Social Media",
     "placeholders": {},
@@ -5078,11 +5117,13 @@
     "translation": "Successo"
   },
   "DBC3t5": {
-    "translation": "Domenica",
     "message": "Sunday",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/components/UpdateWeekStartDayForm.tsx", 52]]
+    "origin": [
+      ["src/views/settings/components/UpdateWeekStartDayForm.tsx", 52]
+    ],
+    "translation": "Domenica"
   },
   "uZg2+w": {
     "message": "Supercharge your workspace for just $29/month. Here's what you'll get:",
@@ -6168,11 +6209,11 @@
     "translation": "Webhook"
   },
   "xLTZVf": {
-    "translation": "Giorno di inizio settimana",
     "message": "Week start day",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/WorkspaceSettings.tsx", 91]]
+    "origin": [["src/views/settings/WorkspaceSettings.tsx", 91]],
+    "translation": "Giorno di inizio settimana"
   },
   "9eF5oV": {
     "message": "Welcome back",
@@ -6394,7 +6435,7 @@
     "message": "You are about to change your password.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/AccountSettings.tsx", 80]],
+    "origin": [["src/views/settings/AccountSettings.tsx", 91]],
     "translation": "Stai per modificare la tua password."
   },
   "aelko+": {
