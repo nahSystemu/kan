@@ -1301,11 +1301,11 @@
     "translation": "Alterar senha"
   },
   "fzGyWs": {
-    "translation": "Altere o tamanho da fonte do aplicativo.",
     "message": "Change the application font size.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/AccountSettings.tsx", 63]]
+    "origin": [["src/views/settings/AccountSettings.tsx", 63]],
+    "translation": "Altere o tamanho da fonte do aplicativo."
   },
   "yD3ZSw": {
     "message": "Change your language preferences.",
@@ -1722,7 +1722,7 @@
     "message": "Create label",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/LabelForm.tsx", 238]],
+    "origin": [["src/components/LabelForm.tsx", 236]],
     "translation": "Criar etiqueta"
   },
   "XTKtey": {
@@ -2776,11 +2776,11 @@
     "translation": "Encontre respostas para perguntas comuns sobre o Kan. Não encontrou o que procura? Sinta-se à vontade para <0>entrar em contato</0>."
   },
   "q3il6U": {
-    "translation": "Tamanho da fonte",
     "message": "Font size",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/AccountSettings.tsx", 60]]
+    "origin": [["src/views/settings/AccountSettings.tsx", 60]],
+    "translation": "Tamanho da fonte"
   },
   "+3TYXa": {
     "message": "For long-term sustainability, we recognise all good open source projects need a source of revenue. Ours comes from the paid cloud offering for workspaces with multiple users and for custom workspace slugs. There's no obligation to use it, and you can self-host the software on your own infrastructure free of charge.",
@@ -3201,7 +3201,7 @@
     "message": "in",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/CommandPallette.tsx", 168]],
+    "origin": [["src/components/CommandPallette.tsx", 167]],
     "translation": "em"
   },
   "WbTDwg": {
@@ -3416,11 +3416,11 @@
     "translation": "Idioma"
   },
   "k7rCa/": {
-    "translation": "Grande",
     "message": "Large",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/FontSizeSelector.tsx", 9]]
+    "origin": [["src/components/FontSizeSelector.tsx", 9]],
+    "translation": "Grande"
   },
   "8Is1ih": {
     "message": "Launch offer",
@@ -3613,11 +3613,11 @@
     "translation": "marcou o item da checklist <0>{0}</0> como incompleto"
   },
   "agPptk": {
-    "translation": "Médio",
     "message": "Medium",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/FontSizeSelector.tsx", 8]]
+    "origin": [["src/components/FontSizeSelector.tsx", 8]],
+    "translation": "Médio"
   },
   "W/Elkg": {
     "message": "Medium Priority",
@@ -3955,7 +3955,7 @@
       "debouncedQuery": ["debouncedQuery"]
     },
     "comments": [],
-    "origin": [["src/components/CommandPallette.tsx", 184]],
+    "origin": [["src/components/CommandPallette.tsx", 183]],
     "translation": "Nenhum resultado encontrado para \"{debouncedQuery}\"."
   },
   "Q9pQaX": {
@@ -5039,11 +5039,11 @@
     "translation": "SLA"
   },
   "4Revpc": {
-    "translation": "Pequeno",
     "message": "Small",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/FontSizeSelector.tsx", 7]]
+    "origin": [["src/components/FontSizeSelector.tsx", 7]],
+    "translation": "Pequeno"
   },
   "++rVAm": {
     "message": "Social Media",
@@ -5917,7 +5917,7 @@
     "message": "Update label",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/LabelForm.tsx", 238]],
+    "origin": [["src/components/LabelForm.tsx", 236]],
     "translation": "Atualizar etiqueta"
   },
   "L5ZPjz": {
