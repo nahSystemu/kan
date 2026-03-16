@@ -280,7 +280,7 @@
     "message": "Add details...",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/ChecklistItemRow.tsx", 200]],
+    "origin": [["src/views/card/components/ChecklistItemRow.tsx", 169]],
     "translation": "Ajouter des détails..."
   },
   "lyqwgn": {
@@ -4336,8 +4336,8 @@
       ["src/views/boards/components/ImportBoardsForm.tsx", 243],
       ["src/views/boards/components/ImportBoardsForm.tsx", 395],
       ["src/views/card/components/AttachmentThumbnails.tsx", 74],
-      ["src/views/card/components/ChecklistItemRow.tsx", 69],
-      ["src/views/card/components/ChecklistItemRow.tsx", 97],
+      ["src/views/card/components/ChecklistItemRow.tsx", 67],
+      ["src/views/card/components/ChecklistItemRow.tsx", 95],
       ["src/views/card/components/ChecklistNameInput.tsx", 47],
       ["src/views/card/components/Checklists.tsx", 81],
       ["src/views/card/components/Comment.tsx", 93],
@@ -5634,7 +5634,7 @@
     "message": "Unable to delete checklist item",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/ChecklistItemRow.tsx", 96]],
+    "origin": [["src/views/card/components/ChecklistItemRow.tsx", 94]],
     "translation": "Impossible de supprimer l'élément de liste de contrôle"
   },
   "2QGEbi": {
@@ -5718,7 +5718,7 @@
     "message": "Unable to update checklist item",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/ChecklistItemRow.tsx", 68]],
+    "origin": [["src/views/card/components/ChecklistItemRow.tsx", 66]],
     "translation": "Impossible de mettre à jour l'élément de la checklist"
   },
   "fYVH36": {

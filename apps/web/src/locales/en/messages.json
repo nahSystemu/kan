@@ -471,7 +471,7 @@
     "origin": [
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        200
+        169
       ]
     ],
     "translation": "Add details..."
@@ -7332,11 +7332,11 @@
       ],
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        69
+        67
       ],
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        97
+        95
       ],
       [
         "src/views/card/components/ChecklistNameInput.tsx",
@@ -9571,7 +9571,7 @@
     "origin": [
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        96
+        94
       ]
     ],
     "translation": "Unable to delete checklist item"
@@ -9707,7 +9707,7 @@
     "origin": [
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        68
+        66
       ]
     ],
     "translation": "Unable to update checklist item"
