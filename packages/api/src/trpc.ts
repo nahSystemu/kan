@@ -3,7 +3,6 @@ import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
 import type { NextApiRequest } from "next";
 import type { OpenApiMeta } from "trpc-to-openapi";
 import { initTRPC, TRPCError } from "@trpc/server";
-import { getHTTPStatusCodeFromError } from "@trpc/server/http";
 import { env } from "next-runtime-env";
 import superjson from "superjson";
 import { ZodError } from "zod";
@@ -14,6 +13,27 @@ import { createDrizzleClient } from "@kan/db/client";
 import { createLogger } from "@kan/logger";
 
 const log = createLogger("api");
+
+const TRPC_STATUS_MAP: Partial<Record<TRPCError["code"], number>> = {
+  PARSE_ERROR: 400,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  METHOD_NOT_SUPPORTED: 405,
+  TIMEOUT: 408,
+  CONFLICT: 409,
+  PRECONDITION_FAILED: 412,
+  PAYLOAD_TOO_LARGE: 413,
+  UNPROCESSABLE_CONTENT: 422,
+  TOO_MANY_REQUESTS: 429,
+  CLIENT_CLOSED_REQUEST: 499,
+  INTERNAL_SERVER_ERROR: 500,
+  NOT_IMPLEMENTED: 501,
+  BAD_GATEWAY: 502,
+  SERVICE_UNAVAILABLE: 503,
+  GATEWAY_TIMEOUT: 504,
+};
 
 export interface User {
   id: string;
@@ -110,8 +130,7 @@ export const createRESTContext = async ({ req }: CreateNextContextOptions) => {
   try {
     session = await auth.api.getSession();
   } catch (error) {
-    log.error({ err: error }, "Error getting session");
-    throw error;
+    log.warn({ err: error }, "Failed to get session, treating as unauthenticated");
   }
 
   return createInnerTRPCContext({
@@ -170,7 +189,7 @@ const loggingMiddleware = t.middleware(async ({ path, type, next, ctx }) => {
   if (result.ok) {
     log.info({ ...meta, status: 200 }, `${label} OK`);
   } else {
-    const status = getHTTPStatusCodeFromError(result.error);
+    const status = TRPC_STATUS_MAP[result.error.code] ?? 500;
     const errorCode = result.error.code;
     log.error(
       { ...meta, status, errorCode, err: result.error },
