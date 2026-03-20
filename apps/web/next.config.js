@@ -65,6 +65,8 @@ const config = {
       },
     },
   },
+  serverExternalPackages: ["pino", "pino-pretty", "@axiomhq/pino"],
+
   experimental: {
     // instrumentationHook: true,
     swcPlugins: [["@lingui/swc-plugin", {}]],
