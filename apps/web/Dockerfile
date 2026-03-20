@@ -114,14 +114,6 @@ COPY --from=builder /app/apps/web/.next/standalone/ ./
 COPY --from=builder /app/apps/web/.next/static/ ./apps/web/.next/static/
 COPY --from=builder /app/apps/web/public/ ./apps/web/public/
 
-# Copy pino transport packages not detected by static analysis (loaded via worker threads)
-COPY --from=builder /app/node_modules/@axiomhq/pino/ ./node_modules/@axiomhq/pino/
-COPY --from=builder /app/node_modules/@axiomhq/js/ ./node_modules/@axiomhq/js/
-COPY --from=builder /app/node_modules/pino-abstract-transport/ ./node_modules/pino-abstract-transport/
-COPY --from=builder /app/node_modules/thread-stream/ ./node_modules/thread-stream/
-COPY --from=builder /app/node_modules/real-require/ ./node_modules/real-require/
-COPY --from=builder /app/node_modules/split2/ ./node_modules/split2/
-
 # Copy bootstrap script for runtime env var injection
 COPY apps/web/bootstrap.cjs ./bootstrap.cjs
 

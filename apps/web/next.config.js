@@ -66,7 +66,7 @@ const config = {
       },
     },
   },
-  serverExternalPackages: ["pino", "@axiomhq/pino", "pino-abstract-transport", "thread-stream"],
+  serverExternalPackages: ["pino"],
 
   experimental: {
     // instrumentationHook: true,
