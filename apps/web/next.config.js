@@ -28,6 +28,11 @@ const config = {
     ],
   },
 
+  /** Include pino transports which are loaded dynamically via worker threads */
+  outputFileTracingIncludes: {
+    "**/*": ["../../node_modules/@axiomhq/pino/**/*"],
+  },
+
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@kan/api",
@@ -65,7 +70,7 @@ const config = {
       },
     },
   },
-  serverExternalPackages: ["pino", "pino-pretty", "@axiomhq/pino"],
+  serverExternalPackages: ["pino", "@axiomhq/pino"],
 
   experimental: {
     // instrumentationHook: true,
