@@ -23,7 +23,13 @@ function createAxiomStream(token: string, dataset: string): pino.DestinationStre
 }
 
 export const logger = useAxiom
-  ? pino({ level }, pino.multistream([{ stream: createAxiomStream(axiomToken, axiomDataset), level }]))
+  ? pino(
+      { level },
+      pino.multistream([
+        { stream: process.stdout, level },
+        { stream: createAxiomStream(axiomToken, axiomDataset), level },
+      ]),
+    )
   : pino({
       level,
       ...(isDev && {
