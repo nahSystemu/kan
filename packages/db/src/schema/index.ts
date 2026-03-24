@@ -7,6 +7,7 @@ export * from "./feedback";
 export * from "./imports";
 export * from "./labels";
 export * from "./lists";
+export * from "./pages";
 export * from "./users";
 export * from "./integrations";
 export * from "./workspaces";

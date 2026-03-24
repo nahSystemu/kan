@@ -32,7 +32,7 @@ export default function UpdateWeekStartDayForm({
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (disabled) return;
-    const newValue = Number(e.target.value);
+    const newValue = Number(e.target.value) as 0 | 1 | 6;
     setValue(newValue);
     updateWorkspace.mutate({
       workspacePublicId,

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 
 import LoadingSpinner from "./LoadingSpinner";
@@ -117,7 +116,7 @@ const Button = ({
 
   if (href) {
     return (
-      <Link
+      <a
         href={href}
         className={classes}
         target={openInNewTab ? "_blank" : undefined}
@@ -125,7 +124,7 @@ const Button = ({
         {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {content}
-      </Link>
+      </a>
     );
   }
 

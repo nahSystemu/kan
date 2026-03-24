@@ -28,6 +28,7 @@ import { EditYouTubeModal } from "~/components/YouTubeEmbed/EditYouTubeModal";
 import { useDragToScroll } from "~/hooks/useDragToScroll";
 import { useScrollRestore } from "~/hooks/useScrollRestore";
 import { usePermissions } from "~/hooks/usePermissions";
+import { useBoardEvents } from "~/hooks/useRealtime";
 import { useKeyboardShortcut } from "~/providers/keyboard-shortcuts";
 import { useModal } from "~/providers/modal";
 import { usePopup } from "~/providers/popup";
@@ -153,6 +154,9 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
   const isLoading = isInitialLoading || isQueryLoading;
 
   useScrollRestore(boardId, scrollRef, router, !isLoading && (boardData?.lists.length ?? 0) > 0);
+
+  // Subscribe to board-level SSE events and refresh cache on changes
+  useBoardEvents(boardId);
 
   const updateListMutation = api.list.update.useMutation({
     onMutate: async (args) => {

@@ -1,6 +1,6 @@
 import type { DraggableProvided } from "react-beautiful-dnd";
 import { t } from "@lingui/core/macro";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { RiDraggable } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
@@ -34,6 +34,7 @@ export default function ChecklistItemRow({
   const utils = api.useUtils();
   const { showPopup } = usePopup();
   const [completed, setCompleted] = useState(item.completed);
+  const [title, setTitle] = useState("");
 
   const updateItem = api.checklist.updateItem.useMutation({
     onMutate: async (vars) => {
@@ -101,12 +102,25 @@ export default function ChecklistItemRow({
     },
   });
 
+  // Only resync from props when switching items to avoid clobbering edits
+  useEffect(() => {
+    setTitle(item.title);
+    // keep checkbox controlled by props; no local completed state
+  }, [item.publicId, item.title]);
+
+  const sanitizeHtmlToPlainText = (html: string): string =>
+    html
+      .replace(/<br\s*\/?>(\n)?/gi, "\n")
+      .replace(/<div><br\s*\/?><\/div>/gi, "")
+      .replace(/<[^>]*>/g, "")
+      .replace(/&nbsp;/g, " ")
+      .trim();
+
   const handleToggleCompleted = () => {
     if (viewOnly) return;
-    setCompleted((prev) => !prev);
     updateItem.mutate({
       checklistItemPublicId: item.publicId,
-      completed: !completed,
+      completed: !item.completed,
     });
   };
 
@@ -146,7 +160,7 @@ export default function ChecklistItemRow({
       >
         <input
           type="checkbox"
-          checked={completed}
+          checked={item.completed}
           onChange={(e) => {
             if (viewOnly) {
               e.preventDefault();

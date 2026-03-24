@@ -20,6 +20,8 @@ import boardsIconDark from "~/assets/boards-dark.json";
 import boardsIconLight from "~/assets/boards-light.json";
 import membersIconDark from "~/assets/members-dark.json";
 import membersIconLight from "~/assets/members-light.json";
+import pagesIconDark from "~/assets/pages-dark.json";
+import pagesIconLight from "~/assets/pages-light.json";
 import settingsIconDark from "~/assets/settings-dark.json";
 import settingsIconLight from "~/assets/settings-light.json";
 import templatesIconDark from "~/assets/templates-dark.json";
@@ -117,6 +119,18 @@ export default function SideNavigation({
         action: () => router.push("/templates"),
         group: "NAVIGATION",
         description: t`Go to templates`,
+      },
+    },
+    {
+      name: t`Pages`,
+      href: "/pages",
+      icon: isDarkMode ? pagesIconDark : pagesIconLight,
+      keyboardShortcut: {
+        type: "SEQUENCE",
+        strokes: [{ key: "G" }, { key: "P" }],
+        action: () => router.push("/pages"),
+        group: "NAVIGATION",
+        description: t`Go to pages`,
       },
     },
     {

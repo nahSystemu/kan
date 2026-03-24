@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { t } from "@lingui/core/macro";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { HiXMark } from "react-icons/hi2";
 import { IoChevronForwardSharp } from "react-icons/io5";
@@ -18,6 +18,7 @@ import { NewWorkspaceForm } from "~/components/NewWorkspaceForm";
 import { PageHead } from "~/components/PageHead";
 import { EditYouTubeModal } from "~/components/YouTubeEmbed/EditYouTubeModal";
 import { usePermissions } from "~/hooks/usePermissions";
+import { useCardEvents } from "~/hooks/useRealtime";
 import { useModal } from "~/providers/modal";
 import { usePopup } from "~/providers/popup";
 import { useWorkspace } from "~/providers/workspace";
@@ -39,6 +40,33 @@ import ListSelector from "./components/ListSelector";
 import MemberSelector from "./components/MemberSelector";
 import { NewChecklistForm } from "./components/NewChecklistForm";
 import NewCommentForm from "./components/NewCommentForm";
+
+// Small helper to resolve board publicId from a card publicId using tRPC.
+// We encapsulate a local cast to bridge typegen lag between packages; at runtime this is safe.
+function useBoardPublicIdByCard(cardId: string | undefined) {
+  type BoardLookup = { boardPublicId: string } | null;
+  const hook = (
+    api as unknown as {
+      card?: {
+        boardIdByCardPublicId?: {
+          useQuery: (
+            input: { cardPublicId: string },
+            opts?: unknown,
+          ) => { data?: BoardLookup };
+        };
+      };
+    }
+  ).card?.boardIdByCardPublicId?.useQuery;
+
+  const res = hook?.(
+    { cardPublicId: cardId ?? "" },
+    {
+      enabled: !!cardId,
+      retry: false,
+    },
+  );
+  return { boardPublicId: res?.data?.boardPublicId ?? undefined };
+}
 
 interface FormValues {
   cardId: string;
@@ -185,30 +213,73 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
     ? router.query.cardId[0]
     : router.query.cardId;
 
-  const { data: card, isLoading, error } = api.card.byId.useQuery(
-    { cardPublicId: cardId ?? "" },
-    { enabled: !!cardId && cardId.length >= 12 },
-  );
+  // Resolve boardPublicId from the server by cardPublicId (works even if card is soft-deleted)
+  const { boardPublicId: boardPublicIdFromApi } =
+    useBoardPublicIdByCard(cardId);
 
-  // Redirect to 404 if card doesn't exist
-  useEffect(() => {
-    if (router.isReady && cardId && !isLoading) {
-      if (error?.data?.code === "NOT_FOUND" || (!card && !isLoading)) {
-        router.replace("/404");
-      }
-    }
-  }, [router, cardId, isLoading, error, card]);
+  const {
+    data: card,
+    isLoading,
+    isError,
+    error,
+    isFetched,
+  } = api.card.byId.useQuery(
+    { cardPublicId: cardId ?? "" },
+    {
+      enabled: !!cardId && cardId.length >= 12,
+      retry: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  );
 
   const isCreator = card?.createdBy && session?.user.id === card.createdBy;
   const canEdit = canEditCard || isCreator;
+
+  const board = card?.list.board;
+  const boardId = board?.publicId;
+
+  // Persist last known boardId so we can redirect correctly after the card disappears
+  const lastBoardIdRef = useRef<string | undefined>(
+    boardId ?? boardPublicIdFromApi,
+  );
+  useEffect(() => {
+    if (boardId) lastBoardIdRef.current = boardId;
+    else if (boardPublicIdFromApi)
+      lastBoardIdRef.current = boardPublicIdFromApi;
+  }, [boardId, boardPublicIdFromApi]);
+
+  // If the card no longer exists (404 from server), redirect to its board (or boards index)
+  useEffect(() => {
+    const httpStatus = (
+      error as unknown as {
+        data?: { httpStatus?: number; code?: string };
+      } | null
+    )?.data?.httpStatus;
+    const code = (
+      error as unknown as {
+        data?: { httpStatus?: number; code?: string };
+      } | null
+    )?.data?.code;
+    if (isError && (httpStatus === 404 || code === "NOT_FOUND")) {
+      const targetBoardId = lastBoardIdRef.current;
+      void router.push(targetBoardId ? `/boards/${targetBoardId}` : "/boards");
+    }
+  }, [isError, error, router]);
+
+  // If the query has been fetched and no card data exists (e.g., after a delete event cleared the cache), redirect
+  useEffect(() => {
+    if (!isLoading && isFetched && !card) {
+      const targetBoardId: string | undefined = lastBoardIdRef.current;
+      void router.push(targetBoardId ? `/boards/${targetBoardId}` : "/boards");
+    }
+  }, [card, isFetched, isLoading, router]);
 
   const refetchCard = async () => {
     if (cardId) await utils.card.byId.refetch({ cardPublicId: cardId });
   };
 
-  const board = card?.list.board;
   const workspaceMembers = board?.workspace.members;
-  const boardId = board?.publicId;
 
   const editorWorkspaceMembers =
     workspaceMembers
@@ -224,6 +295,10 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
             }
           : null,
       })) ?? [];
+
+  // Subscribe to card and board SSE events to keep this view live (moves/deletes)
+  useCardEvents(cardId, boardId);
+  const activities = card?.activities;
 
   const updateCard = api.card.update.useMutation({
     onError: () => {
@@ -253,7 +328,7 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
     },
   });
 
-  const { register, handleSubmit, setValue, watch } = useForm<FormValues>({
+  const { register, handleSubmit, setValue } = useForm<FormValues>({
     values: {
       cardId: cardId ?? "",
       title: card?.title ?? "",
@@ -394,11 +469,6 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
                       />
                     </div>
                   </form>
-                )}
-                {!card && !isLoading && (
-                  <p className="block p-0 py-0 font-bold leading-[2.3rem] tracking-tight text-neutral-900 dark:text-dark-1000 sm:text-[1.2rem]">
-                    {t`Card not found`}
-                  </p>
                 )}
               </div>
               {card && (

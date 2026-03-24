@@ -7,6 +7,7 @@ import type {
 import type { Instance as TippyInstance } from "tippy.js";
 import { Button } from "@headlessui/react";
 import { t } from "@lingui/core/macro";
+import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import Link from "@tiptap/extension-link";
 import Mention from "@tiptap/extension-mention";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -20,6 +21,7 @@ import {
 import Typography from "@tiptap/extension-typography";
 import StarterKit from "@tiptap/starter-kit";
 import Suggestion from "@tiptap/suggestion";
+import { common, createLowlight } from "lowlight";
 import {
   forwardRef,
   useEffect,
@@ -47,6 +49,8 @@ import { Markdown } from "tiptap-markdown";
 import { getAvatarUrl } from "~/utils/helpers";
 import Avatar from "./Avatar";
 import { YouTubeNode } from "./YouTubeEmbed/YouTubeNode";
+
+const lowlight = createLowlight(common);
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
@@ -462,6 +466,7 @@ export default function Editor({
       extensions: [
         StarterKit.configure({
           heading: disableHeadings ? false : undefined,
+          codeBlock: false,
         }),
         Link.configure({
           openOnClick: true,
@@ -481,6 +486,7 @@ export default function Editor({
             : placeholder ??
               t`Add description... (type '/' to open commands or '@' to mention)`,
         }),
+        CodeBlockLowlight.configure({ lowlight }),
         SlashCommands.configure({
           commandItems: getCommandItems(disableHeadings),
           suggestion: {
@@ -498,23 +504,23 @@ export default function Editor({
             char: "@",
             items: ({ query }: { query: string }) => {
               const withEmail = workspaceMembers.filter((member) => member.email);
-              
+
               const mapped = withEmail.map((member: WorkspaceMember) => ({
                 id: member.publicId,
                 label: member?.user?.name?.trim() || member.email || "",
                 image: member?.user?.image ?? null,
               }));
-              
+
               const all: MentionItem[] = mapped.filter(
                 (item) => item.label && item.label.length > 0,
               );
-              
+
               const q = query.toLowerCase().trim();
-              
+
               if (q === "") {
                 return all;
               }
-              
+
               const filtered = all.filter((u) =>
                 u.label.toLowerCase().includes(q),
               );
@@ -599,6 +605,28 @@ export default function Editor({
         .tiptap p {
           margin: 0 0 1rem 0 !important;
         }
+        .tiptap pre,
+        .tiptap code,
+        .tiptap pre code {
+          font-family:
+            ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+            "Liberation Mono", "Courier New", monospace !important;
+          font-variant-ligatures: none;
+        }
+        .tiptap pre {
+          padding: 0.75rem 1rem;
+          border-radius: 0.5rem;
+          /* Wrap long lines in code blocks and avoid horizontal scroll */
+          white-space: pre-wrap;
+          overflow-x: hidden;
+          overflow-y: auto;
+          word-break: break-word;
+          overflow-wrap: anywhere;
+          background: #111111;
+        }
+        .tiptap code {
+          font-size: 0.875rem;
+        }
         .tiptap .mention {
           background-color: rgba(59, 130, 246, 0.1);
           border-radius: 0.25rem;
@@ -614,7 +642,7 @@ export default function Editor({
       {!readOnly && editor && <EditorBubbleMenu editor={editor} />}
       <EditorContent
         editor={editor}
-        className="prose dark:prose-invert prose-sm max-w-none overflow-y-auto [&_blockquote]:!text-xs [&_h1]:!text-lg [&_h2]:!text-base [&_h3]:!text-sm [&_ol]:!text-xs [&_p.is-empty::before]:text-light-900 [&_p.is-empty::before]:dark:text-dark-800 [&_p]:!text-sm [&_p]:text-light-950 [&_p]:dark:text-dark-950 [&_ul]:!text-xs"
+        className="tiptap prose dark:prose-invert prose-sm max-w-none overflow-y-auto [&_blockquote]:!text-xs [&_h1]:!text-lg [&_h2]:!text-base [&_h3]:!text-sm [&_ol]:!text-xs [&_p.is-empty::before]:text-light-900 [&_p.is-empty::before]:dark:text-dark-800 [&_p]:!text-sm [&_p]:text-light-950 [&_p]:dark:text-dark-950 [&_pre]:!overflow-x-hidden [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_ul]:!text-xs"
       />
     </div>
   );

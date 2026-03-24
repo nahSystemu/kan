@@ -6,6 +6,7 @@ import * as cardActivityRepo from "@kan/db/repository/cardActivity.repo";
 import * as checklistRepo from "@kan/db/repository/checklist.repo";
 import { stripHtml } from "@kan/shared/utils";
 
+import { emitBoardEvent, emitCardEvent } from "../events";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { assertPermission } from "../utils/permissions";
 
@@ -79,6 +80,28 @@ export const checklistRouter = createTRPCRouter({
         createdBy: userId,
       });
 
+      // Emit checklist changed at both scopes
+      const cardWithList = await cardRepo.getCardWithListByPublicId(
+        ctx.db,
+        input.cardPublicId,
+      );
+      const listRefCreate = cardWithList ? cardWithList.list : undefined;
+      const boardIdCreate = listRefCreate ? listRefCreate.boardId : undefined;
+      if (boardIdCreate !== undefined) {
+        emitBoardEvent(boardIdCreate, {
+          scope: "board",
+          type: "checklist.changed",
+          boardId: boardIdCreate,
+          cardPublicId: input.cardPublicId,
+        });
+      }
+      emitCardEvent(card.id, {
+        scope: "card",
+        type: "checklist.changed",
+        cardId: card.id,
+        cardPublicId: input.cardPublicId,
+      });
+
       return newChecklist;
     }),
   update: protectedProcedure
@@ -142,6 +165,24 @@ export const checklistRouter = createTRPCRouter({
         fromTitle: previousName,
         toTitle: updated.name,
         createdBy: userId,
+      });
+
+      // Emit checklist changed
+      const listRefUpdate = checklist.card.list;
+      const boardIdUpdate = listRefUpdate.boardId;
+      if (typeof boardIdUpdate === "number") {
+        emitBoardEvent(boardIdUpdate, {
+          scope: "board",
+          type: "checklist.changed",
+          boardId: boardIdUpdate,
+          cardPublicId: checklist.card.publicId,
+        });
+      }
+      emitCardEvent(checklist.cardId, {
+        scope: "card",
+        type: "checklist.changed",
+        cardId: checklist.cardId,
+        cardPublicId: checklist.card.publicId,
       });
 
       return updated;
@@ -208,6 +249,24 @@ export const checklistRouter = createTRPCRouter({
         createdBy: userId,
       });
 
+      // Emit checklist changed
+      const listRefDelete = checklist.card.list;
+      const boardIdDelete = listRefDelete.boardId;
+      if (typeof boardIdDelete === "number") {
+        emitBoardEvent(boardIdDelete, {
+          scope: "board",
+          type: "checklist.changed",
+          boardId: boardIdDelete,
+          cardPublicId: checklist.card.publicId,
+        });
+      }
+      emitCardEvent(checklist.cardId, {
+        scope: "card",
+        type: "checklist.changed",
+        cardId: checklist.cardId,
+        cardPublicId: checklist.card.publicId,
+      });
+
       return { success: true };
     }),
   createItem: protectedProcedure
@@ -271,6 +330,24 @@ export const checklistRouter = createTRPCRouter({
         cardId: checklist.cardId,
         toTitle: newChecklistItem.title,
         createdBy: userId,
+      });
+
+      // Emit checklist changed
+      const listRefCreateItem = checklist.card.list;
+      const boardIdCreateItem = listRefCreateItem.boardId;
+      if (typeof boardIdCreateItem === "number") {
+        emitBoardEvent(boardIdCreateItem, {
+          scope: "board",
+          type: "checklist.changed",
+          boardId: boardIdCreateItem,
+          cardPublicId: checklist.card.publicId,
+        });
+      }
+      emitCardEvent(checklist.cardId, {
+        scope: "card",
+        type: "checklist.changed",
+        cardId: checklist.cardId,
+        cardPublicId: checklist.card.publicId,
       });
 
       return newChecklistItem;
@@ -370,6 +447,24 @@ export const checklistRouter = createTRPCRouter({
         });
       }
 
+      // Emit checklist changed (either completed toggled or title updated)
+      const listRefUpdateItem = item.checklist.card.list;
+      const boardIdUpdateItem = listRefUpdateItem.boardId;
+      if (typeof boardIdUpdateItem === "number") {
+        emitBoardEvent(boardIdUpdateItem, {
+          scope: "board",
+          type: "checklist.changed",
+          boardId: boardIdUpdateItem,
+          cardPublicId: item.checklist.card.publicId,
+        });
+      }
+      emitCardEvent(item.checklist.cardId, {
+        scope: "card",
+        type: "checklist.changed",
+        cardId: item.checklist.cardId,
+        cardPublicId: item.checklist.card.publicId,
+      });
+
       return updatedItem;
     }),
   deleteItem: protectedProcedure
@@ -426,6 +521,24 @@ export const checklistRouter = createTRPCRouter({
         cardId: item.checklist.cardId,
         fromTitle: item.title,
         createdBy: userId,
+      });
+
+      // Emit checklist changed
+      const listRefDeleteItem = item.checklist.card.list;
+      const boardIdDeleteItem = listRefDeleteItem.boardId;
+      if (typeof boardIdDeleteItem === "number") {
+        emitBoardEvent(boardIdDeleteItem, {
+          scope: "board",
+          type: "checklist.changed",
+          boardId: boardIdDeleteItem,
+          cardPublicId: item.checklist.card.publicId,
+        });
+      }
+      emitCardEvent(item.checklist.cardId, {
+        scope: "card",
+        type: "checklist.changed",
+        cardId: item.checklist.cardId,
+        cardPublicId: item.checklist.card.publicId,
       });
 
       return { success: true };

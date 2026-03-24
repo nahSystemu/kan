@@ -161,6 +161,9 @@ export function NewCardForm({
               _filteredLabels: labelPublicIds.map((id) => ({ publicId: id })),
               _filteredMembers: memberPublicIds.map((id) => ({ publicId: id })),
               index: position === "start" ? 0 : list.cards.length,
+              comments: [],
+              checklists: [],
+              attachments: [],
             };
 
             const updatedCards =

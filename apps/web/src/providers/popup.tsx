@@ -3,9 +3,10 @@ import { createContext, useContext, useState } from "react";
 interface PopupContextType {
   isOpen: boolean;
   showPopup: (params: {
-    header: string;
+    header?: string;
     message: string;
-    icon: string;
+    icon?: string;
+    type?: "success" | "error" | "info";
   }) => void;
   hidePopup: () => void;
   popupHeader: string;
@@ -29,15 +30,17 @@ export const PopupProvider: React.FC<Props> = ({ children }) => {
     header,
     message,
     icon,
+    type,
   }: {
-    header: string;
+    header?: string;
     message: string;
-    icon: string;
+    icon?: string;
+    type?: "success" | "error" | "info";
   }) => {
     setIsOpen(true);
-    setPopupHeader(header);
+    setPopupHeader(header ?? (type === "error" ? "Error" : type === "success" ? "Success" : ""));
     setPopupMessage(message);
-    setPopupIcon(icon);
+    setPopupIcon(icon ?? type ?? "");
   };
 
   const hidePopup = () => {

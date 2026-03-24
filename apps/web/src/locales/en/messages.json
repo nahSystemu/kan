@@ -59,7 +59,7 @@
       ],
       [
         "src/views/card/index.tsx",
-        317
+        392
       ]
     ],
     "translation": "{0} | {1}"
@@ -107,7 +107,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        455
+        458
       ]
     ],
     "translation": "{0} labels"
@@ -123,7 +123,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        440
+        444
       ]
     ],
     "translation": "{0} not found"
@@ -367,7 +367,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        455
+        525
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -424,6 +424,18 @@
     ],
     "translation": "Add an item..."
   },
+  "hM4sIx": {
+    "message": "Add author",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/AuthorSelector.tsx",
+        86
+      ]
+    ],
+    "translation": "Add author"
+  },
   "Gxxi5J": {
     "message": "Add checklist",
     "placeholders": {},
@@ -459,7 +471,7 @@
     "origin": [
       [
         "src/components/Editor.tsx",
-        482
+        487
       ]
     ],
     "translation": "Add description... (type '/' to open commands or '@' to mention)"
@@ -471,7 +483,7 @@
     "origin": [
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        169
+        183
       ]
     ],
     "translation": "Add details..."
@@ -507,6 +519,22 @@
       ]
     ],
     "translation": "Add member"
+  },
+  "M5mfAe": {
+    "message": "Add tag",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        231
+      ],
+      [
+        "src/views/page/components/TagSelector.tsx",
+        266
+      ]
+    ],
+    "translation": "Add tag"
   },
   "pBsoKL": {
     "message": "Add to favorites",
@@ -1145,7 +1173,7 @@
     "origin": [
       [
         "src/views/card/components/DeleteCardConfirmation.tsx",
-        75
+        77
       ]
     ],
     "translation": "Are you sure you want to delete this card?"
@@ -1237,6 +1265,22 @@
       ]
     ],
     "translation": "Attachment uploaded"
+  },
+  "dpqPBg": {
+    "message": "Authors",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        434
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        213
+      ]
+    ],
+    "translation": "Authors"
   },
   "1rWxEw": {
     "message": "Awaiting Customer",
@@ -1409,11 +1453,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        413
+        417
       ],
       [
         "src/views/card/index.tsx",
-        317
+        392
       ],
       [
         "src/views/public/board/index.tsx",
@@ -1597,7 +1641,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        99
+        101
       ],
       [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
@@ -2061,7 +2105,7 @@
       ],
       [
         "src/views/card/components/DeleteCardConfirmation.tsx",
-        86
+        88
       ],
       [
         "src/views/card/components/DeleteChecklistConfirmation.tsx",
@@ -2113,7 +2157,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        317
+        392
       ]
     ],
     "translation": "Card"
@@ -2125,11 +2169,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        363
-      ],
-      [
-        "src/views/card/index.tsx",
-        400
+        438
       ]
     ],
     "translation": "Card not found"
@@ -2141,7 +2181,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        321
+        324
       ]
     ],
     "translation": "Card title"
@@ -2365,7 +2405,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        354
+        429
       ],
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
@@ -2782,6 +2822,22 @@
     ],
     "translation": "Copy card link"
   },
+  "FO91Ip": {
+    "message": "Copy public link",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        357
+      ],
+      [
+        "src/views/page/index.tsx",
+        358
+      ]
+    ],
+    "translation": "Copy public link"
+  },
   "9PaIxv": {
     "message": "Core features",
     "placeholders": {},
@@ -2793,6 +2849,18 @@
       ]
     ],
     "translation": "Core features"
+  },
+  "hYgDIe": {
+    "message": "Create",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        356
+      ]
+    ],
+    "translation": "Create"
   },
   "b9XOHo": {
     "message": "Create {0}",
@@ -2821,7 +2889,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        520
+        523
       ],
       [
         "src/views/board/components/NewListForm.tsx",
@@ -2849,7 +2917,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        530
+        533
       ]
     ],
     "translation": "Create card"
@@ -2941,7 +3009,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        417
+        420
       ],
       [
         "src/views/card/components/LabelSelector.tsx",
@@ -2957,14 +3025,50 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        76
+        77
       ],
       [
         "src/views/board/index.tsx",
-        554
+        558
       ]
     ],
     "translation": "Create new list"
+  },
+  "kQ3Otm": {
+    "message": "Create new page",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/pages/components/PagesList.tsx",
+        110
+      ]
+    ],
+    "translation": "Create new page"
+  },
+  "/1hd7s": {
+    "message": "Create new tag",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        218
+      ]
+    ],
+    "translation": "Create new tag"
+  },
+  "XRuL0i": {
+    "message": "Create page",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/pages/components/NewPageForm.tsx",
+        95
+      ]
+    ],
+    "translation": "Create page"
   },
   "A5hiCy": {
     "message": "Create template",
@@ -3281,7 +3385,7 @@
       ],
       [
         "src/views/card/components/DeleteCardConfirmation.tsx",
-        92
+        94
       ],
       [
         "src/views/card/components/DeleteChecklistConfirmation.tsx",
@@ -3290,6 +3394,14 @@
       [
         "src/views/card/components/DeleteCommentConfirmation.tsx",
         83
+      ],
+      [
+        "src/views/page/components/TagSelector.tsx",
+        454
+      ],
+      [
+        "src/views/page/index.tsx",
+        366
       ],
       [
         "src/views/settings/components/DeleteWebhookConfirmation.tsx",
@@ -3713,11 +3825,11 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        472
+        475
       ],
       [
         "src/views/card/index.tsx",
-        153
+        181
       ]
     ],
     "translation": "Due date"
@@ -3826,6 +3938,18 @@
     ],
     "translation": "Edit label"
   },
+  "rBVwNh": {
+    "message": "Edit page URL",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        102
+      ]
+    ],
+    "translation": "Edit page URL"
+  },
   "TCOMOO": {
     "message": "Edit permissions",
     "placeholders": {},
@@ -3841,6 +3965,18 @@
       ]
     ],
     "translation": "Edit permissions"
+  },
+  "/deyVX": {
+    "message": "Edit Tag",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        368
+      ]
+    ],
+    "translation": "Edit Tag"
   },
   "fW5sSv": {
     "message": "Edit webhook",
@@ -3862,6 +3998,10 @@
       [
         "src/views/board/components/UpdateBoardSlugForm.tsx",
         162
+      ],
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        192
       ]
     ],
     "translation": "Edit workspace URL"
@@ -4881,10 +5021,22 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        539
+        543
       ]
     ],
     "translation": "Get started by creating a new list"
+  },
+  "MphnQZ": {
+    "message": "Get started by creating a new page",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/pages/components/PagesList.tsx",
+        105
+      ]
+    ],
+    "translation": "Get started by creating a new page"
   },
   "oW13KZ": {
     "message": "Get started for free today",
@@ -4974,6 +5126,22 @@
     ],
     "translation": "GitHub disconnected"
   },
+  "iWpEwy": {
+    "message": "Go home",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/pages/pages/[...pageSlug]/index.tsx",
+        49
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        184
+      ]
+    ],
+    "translation": "Go home"
+  },
   "7eMo+U": {
     "message": "Go Home",
     "placeholders": {},
@@ -5009,7 +5177,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        107
+        109
       ],
       [
         "src/pages/404.tsx",
@@ -5037,10 +5205,22 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        131
+        145
       ]
     ],
     "translation": "Go to members"
+  },
+  "4fVLnQ": {
+    "message": "Go to pages",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/SideNavigation.tsx",
+        133
+      ]
+    ],
+    "translation": "Go to pages"
   },
   "1WuwiM": {
     "message": "Go to settings",
@@ -5049,7 +5229,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        143
+        157
       ]
     ],
     "translation": "Go to settings"
@@ -5061,7 +5241,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        119
+        121
       ]
     ],
     "translation": "Go to templates"
@@ -5109,6 +5289,18 @@
       ]
     ],
     "translation": "Guest"
+  },
+  "SgTSuq": {
+    "message": "Hide info",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        403
+      ]
+    ],
+    "translation": "Hide info"
   },
   "CB/NpV": {
     "message": "High Priority",
@@ -5522,6 +5714,18 @@
     ],
     "translation": "Invite"
   },
+  "BrEcFH": {
+    "message": "Invite author",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/AuthorSelector.tsx",
+        67
+      ]
+    ],
+    "translation": "Invite author"
+  },
   "KLJ4eD": {
     "message": "Invite link copied",
     "placeholders": {},
@@ -5705,11 +5909,11 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        421
+        424
       ],
       [
         "src/views/card/index.tsx",
-        133
+        161
       ]
     ],
     "translation": "Labels"
@@ -5761,6 +5965,22 @@
       ]
     ],
     "translation": "Large"
+  },
+  "C3yOz3": {
+    "message": "Last updated",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        513
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        285
+      ]
+    ],
+    "translation": "Last updated"
   },
   "8Is1ih": {
     "message": "Launch offer",
@@ -5892,12 +6112,20 @@
         42
       ],
       [
+        "src/views/page/index.tsx",
+        348
+      ],
+      [
         "src/views/public/board/CardModal.tsx",
         36
       ],
       [
         "src/views/public/board/index.tsx",
         77
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        114
       ]
     ],
     "translation": "Link copied"
@@ -5909,7 +6137,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        124
+        152
       ]
     ],
     "translation": "List"
@@ -5945,7 +6173,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        580
+        579
       ]
     ],
     "translation": "Load more activities"
@@ -5969,7 +6197,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        580
+        579
       ]
     ],
     "translation": "Loading..."
@@ -6137,7 +6365,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        123
+        137
       ],
       [
         "src/views/board/components/Filters.tsx",
@@ -6145,11 +6373,11 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        379
+        382
       ],
       [
         "src/views/card/index.tsx",
-        143
+        171
       ],
       [
         "src/views/members/index.tsx",
@@ -6337,6 +6565,10 @@
       [
         "src/views/home/components/Features.tsx",
         73
+      ],
+      [
+        "src/views/pages/index.tsx",
+        51
       ]
     ],
     "translation": "New"
@@ -6376,7 +6608,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        304
+        307
       ]
     ],
     "translation": "New card"
@@ -6428,10 +6660,22 @@
       ],
       [
         "src/views/board/index.tsx",
-        503
+        507
       ]
     ],
     "translation": "New list"
+  },
+  "fos4db": {
+    "message": "New page",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/pages/components/NewPageForm.tsx",
+        71
+      ]
+    ],
+    "translation": "New page"
   },
   "+MdEsf": {
     "message": "New password is required",
@@ -6456,6 +6700,18 @@
       ]
     ],
     "translation": "New password must be different from current password"
+  },
+  "TBMAwb": {
+    "message": "New Tag",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        277
+      ]
+    ],
+    "translation": "New Tag"
   },
   "G1Gw0v": {
     "message": "New template",
@@ -6636,7 +6892,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        535
+        539
       ]
     ],
     "translation": "No lists"
@@ -6648,10 +6904,22 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        540
+        544
       ]
     ],
     "translation": "No lists have been created yet"
+  },
+  "Oglptu": {
+    "message": "No pages",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/pages/components/PagesList.tsx",
+        102
+      ]
+    ],
+    "translation": "No pages"
   },
   "i30J2U": {
     "message": "No projects found",
@@ -6704,6 +6972,18 @@
       ]
     ],
     "translation": "No webhooks configured. Add a webhook to receive notifications."
+  },
+  "EdQY6l": {
+    "message": "None",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/public/page/index.tsx",
+        270
+      ]
+    ],
+    "translation": "None"
   },
   "9h7RDh": {
     "message": "Offer",
@@ -6909,9 +7189,117 @@
       [
         "src/pages/404.tsx",
         24
+      ],
+      [
+        "src/pages/pages/[...pageSlug]/index.tsx",
+        39
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        145
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        173
       ]
     ],
     "translation": "Page not found"
+  },
+  "/JWpF7": {
+    "message": "Page title cannot exceed 200 characters",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/pages/components/NewPageForm.tsx",
+        18
+      ]
+    ],
+    "translation": "Page title cannot exceed 200 characters"
+  },
+  "VM9Zwm": {
+    "message": "Page title is required",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/pages/components/NewPageForm.tsx",
+        17
+      ]
+    ],
+    "translation": "Page title is required"
+  },
+  "aZGiKR": {
+    "message": "Page URL can only contain letters, numbers, and hyphens",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        31
+      ]
+    ],
+    "translation": "Page URL can only contain letters, numbers, and hyphens"
+  },
+  "3tGap0": {
+    "message": "Page URL cannot exceed 60 characters",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        29
+      ]
+    ],
+    "translation": "Page URL cannot exceed 60 characters"
+  },
+  "CGthoX": {
+    "message": "Page URL copied to clipboard",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        349
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        116
+      ]
+    ],
+    "translation": "Page URL copied to clipboard"
+  },
+  "T1/aRR": {
+    "message": "Page URL must be at least 3 characters long",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        28
+      ]
+    ],
+    "translation": "Page URL must be at least 3 characters long"
+  },
+  "wRR604": {
+    "message": "Pages",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/SideNavigation.tsx",
+        125
+      ],
+      [
+        "src/views/pages/index.tsx",
+        25
+      ],
+      [
+        "src/views/pages/index.tsx",
+        28
+      ]
+    ],
+    "translation": "Pages"
   },
   "Uworke": {
     "message": "Part-time",
@@ -7288,7 +7676,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        186
+        189
       ],
       [
         "src/views/board/components/NewListForm.tsx",
@@ -7312,11 +7700,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        194
+        198
       ],
       [
         "src/views/board/index.tsx",
-        250
+        254
       ],
       [
         "src/views/boards/components/ImportBoardsForm.tsx",
@@ -7332,11 +7720,11 @@
       ],
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        67
+        68
       ],
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        95
+        96
       ],
       [
         "src/views/card/components/ChecklistNameInput.tsx",
@@ -7352,7 +7740,7 @@
       ],
       [
         "src/views/card/components/DeleteCardConfirmation.tsx",
-        52
+        54
       ],
       [
         "src/views/card/components/DeleteChecklistConfirmation.tsx",
@@ -7392,11 +7780,11 @@
       ],
       [
         "src/views/card/index.tsx",
-        232
+        307
       ],
       [
         "src/views/card/index.tsx",
-        245
+        320
       ],
       [
         "src/views/members/components/DeleteMemberConfirmation.tsx",
@@ -7425,6 +7813,42 @@
       [
         "src/views/members/index.tsx",
         66
+      ],
+      [
+        "src/views/page/components/AuthorSelector.tsx",
+        42
+      ],
+      [
+        "src/views/page/components/TagSelector.tsx",
+        62
+      ],
+      [
+        "src/views/page/components/TagSelector.tsx",
+        90
+      ],
+      [
+        "src/views/page/components/TagSelector.tsx",
+        105
+      ],
+      [
+        "src/views/page/components/TagSelector.tsx",
+        124
+      ],
+      [
+        "src/views/page/components/TagSelector.tsx",
+        136
+      ],
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        61
+      ],
+      [
+        "src/views/page/index.tsx",
+        128
+      ],
+      [
+        "src/views/page/index.tsx",
+        144
       ],
       [
         "src/views/settings/components/Avatar.tsx",
@@ -7577,6 +8001,10 @@
       [
         "src/views/board/components/VisibilityButton.tsx",
         84
+      ],
+      [
+        "src/views/page/index.tsx",
+        255
       ]
     ],
     "translation": "Private"
@@ -7653,6 +8081,10 @@
       [
         "src/views/board/components/VisibilityButton.tsx",
         79
+      ],
+      [
+        "src/views/page/index.tsx",
+        229
       ]
     ],
     "translation": "Public"
@@ -8118,6 +8550,10 @@
         202
       ],
       [
+        "src/views/page/components/TagSelector.tsx",
+        468
+      ],
+      [
         "src/views/settings/components/Avatar.tsx",
         290
       ]
@@ -8367,7 +8803,7 @@
       ],
       [
         "src/components/SideNavigation.tsx",
-        135
+        149
       ]
     ],
     "translation": "Settings"
@@ -8467,6 +8903,18 @@
       ]
     ],
     "translation": "Shortcuts"
+  },
+  "S6K1Ig": {
+    "message": "Show info",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        403
+      ]
+    ],
+    "translation": "Show info"
   },
   "5lWFkC": {
     "message": "Sign in",
@@ -8788,6 +9236,38 @@
     ],
     "translation": "System"
   },
+  "1Q51O1": {
+    "message": "Tag name",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        280
+      ],
+      [
+        "src/views/page/components/TagSelector.tsx",
+        371
+      ]
+    ],
+    "translation": "Tag name"
+  },
+  "OYHzN1": {
+    "message": "Tags",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        478
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        243
+      ]
+    ],
+    "translation": "Tags"
+  },
   "bff61F": {
     "message": "Team Plan",
     "placeholders": {},
@@ -8831,11 +9311,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        413
+        417
       ],
       [
         "src/views/board/index.tsx",
-        449
+        453
       ]
     ],
     "translation": "Template"
@@ -8895,7 +9375,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        111
+        113
       ],
       [
         "src/views/home/components/Features.tsx",
@@ -9123,7 +9603,7 @@
       ],
       [
         "src/views/card/components/DeleteCardConfirmation.tsx",
-        78
+        80
       ],
       [
         "src/views/card/components/DeleteChecklistConfirmation.tsx",
@@ -9195,6 +9675,42 @@
       ]
     ],
     "translation": "This member's permissions have been reset to their role defaults."
+  },
+  "2HRPUB": {
+    "message": "This page is private or does not exist",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/pages/pages/[...pageSlug]/index.tsx",
+        42
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        176
+      ]
+    ],
+    "translation": "This page is private or does not exist"
+  },
+  "V/OuwL": {
+    "message": "This page URL has already been taken",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        59
+      ],
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        177
+      ],
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        180
+      ]
+    ],
+    "translation": "This page URL has already been taken"
   },
   "OAYToL": {
     "message": "This will remove all custom member permissions in this workspace. Members will inherit permissions only from their roles.",
@@ -9276,6 +9792,10 @@
       [
         "src/components/YouTubeEmbed/EditYouTubeModal.tsx",
         127
+      ],
+      [
+        "src/views/pages/components/NewPageForm.tsx",
+        85
       ]
     ],
     "translation": "Title"
@@ -9427,10 +9947,22 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        244
+        319
       ]
     ],
     "translation": "Unable to add label"
+  },
+  "U3jach": {
+    "message": "Unable to add tag",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        123
+      ]
+    ],
+    "translation": "Unable to add tag"
   },
   "LeM5RY": {
     "message": "Unable to clear overrides",
@@ -9471,7 +10003,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        183
+        186
       ]
     ],
     "translation": "Unable to create card"
@@ -9499,6 +10031,18 @@
       ]
     ],
     "translation": "Unable to create list"
+  },
+  "lp9FuA": {
+    "message": "Unable to create tag",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        61
+      ]
+    ],
+    "translation": "Unable to create tag"
   },
   "YcyP2z": {
     "message": "Unable to create template",
@@ -9547,7 +10091,7 @@
     "origin": [
       [
         "src/views/card/components/DeleteCardConfirmation.tsx",
-        51
+        53
       ]
     ],
     "translation": "Unable to delete card"
@@ -9571,7 +10115,7 @@
     "origin": [
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        94
+        95
       ]
     ],
     "translation": "Unable to delete checklist item"
@@ -9588,6 +10132,30 @@
     ],
     "translation": "Unable to delete comment"
   },
+  "Fx/ZW2": {
+    "message": "Unable to delete page",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        143
+      ]
+    ],
+    "translation": "Unable to delete page"
+  },
+  "cQKbFB": {
+    "message": "Unable to delete tag",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        89
+      ]
+    ],
+    "translation": "Unable to delete tag"
+  },
   "8yFGGF": {
     "message": "Unable to remove member",
     "placeholders": {},
@@ -9599,6 +10167,18 @@
       ]
     ],
     "translation": "Unable to remove member"
+  },
+  "bG3CDe": {
+    "message": "Unable to remove tag",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        135
+      ]
+    ],
+    "translation": "Unable to remove tag"
   },
   "YKeYae": {
     "message": "Unable to reorder checklist item",
@@ -9635,6 +10215,18 @@
       ]
     ],
     "translation": "Unable to send feedback"
+  },
+  "C/XupJ": {
+    "message": "Unable to update authors",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/AuthorSelector.tsx",
+        41
+      ]
+    ],
+    "translation": "Unable to update authors"
   },
   "T7Mywq": {
     "message": "Unable to update board",
@@ -9679,11 +10271,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        249
+        253
       ],
       [
         "src/views/card/index.tsx",
-        231
+        306
       ]
     ],
     "translation": "Unable to update card"
@@ -9707,7 +10299,7 @@
     "origin": [
       [
         "src/views/card/components/ChecklistItemRow.tsx",
-        66
+        67
       ]
     ],
     "translation": "Unable to update checklist item"
@@ -9755,7 +10347,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        193
+        197
       ],
       [
         "src/views/card/components/ListSelector.tsx",
@@ -9775,6 +10367,30 @@
       ]
     ],
     "translation": "Unable to update members"
+  },
+  "NU1Yy9": {
+    "message": "Unable to update page",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        127
+      ]
+    ],
+    "translation": "Unable to update page"
+  },
+  "07SzG5": {
+    "message": "Unable to update page URL",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        57
+      ]
+    ],
+    "translation": "Unable to update page URL"
   },
   "GYv20o": {
     "message": "Unable to update permissions",
@@ -9803,6 +10419,18 @@
       ]
     ],
     "translation": "Unable to update role"
+  },
+  "MPAIrq": {
+    "message": "Unable to update tag",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/components/TagSelector.tsx",
+        104
+      ]
+    ],
+    "translation": "Unable to update tag"
   },
   "It4/FS": {
     "message": "Unarchive board",
@@ -9855,6 +10483,30 @@
       ]
     ],
     "translation": "Under Review"
+  },
+  "Ef7StM": {
+    "message": "Unknown",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/page/index.tsx",
+        518
+      ],
+      [
+        "src/views/page/index.tsx",
+        520
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        231
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        293
+      ]
+    ],
+    "translation": "Unknown"
   },
   "M9p3Vw": {
     "message": "Unlimited activity log",
@@ -10042,6 +10694,10 @@
         175
       ],
       [
+        "src/views/page/components/UpdatePageSlugForm.tsx",
+        214
+      ],
+      [
         "src/views/settings/components/UpdateDisplayNameForm.tsx",
         80
       ],
@@ -10143,7 +10799,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        240
+        254
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
@@ -10376,6 +11032,10 @@
       [
         "src/views/public/board/index.tsx",
         153
+      ],
+      [
+        "src/views/public/page/index.tsx",
+        159
       ]
     ],
     "translation": "View only"
@@ -10412,6 +11072,10 @@
       [
         "src/views/board/components/VisibilityButton.tsx",
         103
+      ],
+      [
+        "src/views/page/index.tsx",
+        334
       ]
     ],
     "translation": "Visibility"
@@ -10639,7 +11303,7 @@
       ],
       [
         "src/views/board/index.tsx",
-        413
+        417
       ],
       [
         "src/views/boards/index.tsx",
@@ -10987,11 +11651,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        487
+        491
       ],
       [
         "src/views/board/index.tsx",
-        545
+        549
       ],
       [
         "src/views/boards/components/BoardsList.tsx",
