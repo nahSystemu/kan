@@ -336,6 +336,10 @@
       [
         "src/providers/keyboard-shortcuts.tsx",
         56
+      ],
+      [
+        "src/views/settings/RolesSettings.tsx",
+        70
       ]
     ],
     "translation": "Действия"
@@ -756,7 +760,8 @@
         201
       ]
     ],
-    "translation": "Админ"
+    "translation": "Админ",
+    "obsolete": true
   },
   "3pIq39": {
     "message": "Admin roles",
@@ -1641,7 +1646,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        101
+        103
       ],
       [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
@@ -1708,6 +1713,18 @@
         146
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        38
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        37
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        38
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         35
       ]
@@ -1722,6 +1739,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         131
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        26
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        25
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        26
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -1740,6 +1769,18 @@
         141
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        34
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        33
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        34
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         30
       ]
@@ -1756,11 +1797,51 @@
         136
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        30
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        29
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        30
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         25
       ]
     ],
     "translation": "Можно создавать списки"
+  },
+  "4rP5G9": {
+    "message": "Can create roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/components/EditMemberPermissionsModal.tsx",
+        156
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        46
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        45
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        46
+      ],
+      [
+        "src/views/settings/components/RolePermissions.tsx",
+        45
+      ]
+    ],
+    "translation": "Может создавать роли"
   },
   "pXVFJy": {
     "message": "Can delete boards",
@@ -1770,6 +1851,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         133
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        28
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        27
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        28
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -1788,6 +1881,18 @@
         143
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        36
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        35
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        36
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         32
       ]
@@ -1802,6 +1907,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         148
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        40
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        39
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        40
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -1820,11 +1937,51 @@
         138
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        32
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        31
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        32
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         27
       ]
     ],
     "translation": "Можно удалять списки"
+  },
+  "9OnV/c": {
+    "message": "Can delete roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/components/EditMemberPermissionsModal.tsx",
+        158
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        48
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        47
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        48
+      ],
+      [
+        "src/views/settings/components/RolePermissions.tsx",
+        47
+      ]
+    ],
+    "translation": "Может удалять роли"
   },
   "Cmudpi": {
     "message": "Can delete workspace",
@@ -1834,6 +1991,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         127
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        23
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        22
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        23
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -1852,6 +2021,18 @@
         132
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        27
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        26
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        27
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         21
       ]
@@ -1866,6 +2047,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         142
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        35
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        34
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        35
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -1884,6 +2077,18 @@
         147
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        39
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        38
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        39
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         36
       ]
@@ -1898,6 +2103,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         137
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        31
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        30
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        31
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -1916,11 +2133,51 @@
         152
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        43
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        42
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        43
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         41
       ]
     ],
     "translation": "Можно редактировать роли и права участников"
+  },
+  "JwYlBX": {
+    "message": "Can edit roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/components/EditMemberPermissionsModal.tsx",
+        157
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        47
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        46
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        47
+      ],
+      [
+        "src/views/settings/components/RolePermissions.tsx",
+        46
+      ]
+    ],
+    "translation": "Может редактировать роли"
   },
   "iLbjv+": {
     "message": "Can edit workspace",
@@ -1930,6 +2187,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         126
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        22
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        21
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        22
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -1948,6 +2217,18 @@
         151
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        42
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        41
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        42
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         40
       ]
@@ -1962,6 +2243,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         128
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        24
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        23
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        24
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -1980,6 +2273,18 @@
         153
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        44
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        43
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        44
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         42
       ]
@@ -1994,6 +2299,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         130
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        25
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        24
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        25
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -2012,6 +2329,18 @@
         140
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        33
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        32
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        33
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         29
       ]
@@ -2026,6 +2355,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         145
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        37
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        36
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        37
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -2044,6 +2385,18 @@
         135
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        29
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        28
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        29
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         24
       ]
@@ -2060,11 +2413,51 @@
         150
       ],
       [
+        "src/views/settings/components/RoleCreateView.tsx",
+        41
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        40
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        41
+      ],
+      [
         "src/views/settings/components/RolePermissions.tsx",
         39
       ]
     ],
     "translation": "Может просматривать участников"
+  },
+  "+yPfEQ": {
+    "message": "Can view roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/components/EditMemberPermissionsModal.tsx",
+        155
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        45
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        44
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        45
+      ],
+      [
+        "src/views/settings/components/RolePermissions.tsx",
+        44
+      ]
+    ],
+    "translation": "Может просматривать роли"
   },
   "SNfg0e": {
     "message": "Can view workspace",
@@ -2074,6 +2467,18 @@
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         125
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        21
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        20
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        21
       ],
       [
         "src/views/settings/components/RolePermissions.tsx",
@@ -2136,12 +2541,20 @@
         88
       ],
       [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        97
+      ],
+      [
         "src/views/settings/components/DeleteWebhookConfirmation.tsx",
         66
       ],
       [
         "src/views/settings/components/DeleteWorkspaceConfirmation.tsx",
         98
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        378
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
@@ -2409,7 +2822,7 @@
       ],
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
-        172
+        177
       ],
       [
         "src/views/settings/components/NewApiKeyModal.tsx",
@@ -2453,6 +2866,26 @@
       ]
     ],
     "translation": "Сотрудничество"
+  },
+  "jZlrte": {
+    "message": "Color",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        195
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        304
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        311
+      ]
+    ],
+    "translation": "Цвет"
   },
   "AUYALh": {
     "message": "Coming soon",
@@ -3070,6 +3503,38 @@
     ],
     "translation": "Создать страницу"
   },
+  "j710Ty": {
+    "message": "Create role",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        128
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        141
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        270
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        229
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        386
+      ],
+      [
+        "src/views/settings/RolesSettings.tsx",
+        44
+      ]
+    ],
+    "translation": "Создать роль"
+  },
   "A5hiCy": {
     "message": "Create template",
     "placeholders": {},
@@ -3229,6 +3694,18 @@
       ]
     ],
     "translation": "Пользовательские разрешения"
+  },
+  "jspdE3": {
+    "message": "Custom roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/RolesSettings.tsx",
+        122
+      ]
+    ],
+    "translation": "Пользовательские роли"
   },
   "UirJfL": {
     "message": "Custom SLA",
@@ -3482,6 +3959,34 @@
     ],
     "translation": "Удалить список"
   },
+  "efjzvW": {
+    "message": "Delete role",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        105
+      ]
+    ],
+    "translation": "Удалить роль"
+  },
+  "RoSi3O": {
+    "message": "Delete role \"{entityLabel}\"?",
+    "placeholders": {
+      "entityLabel": [
+        "entityLabel"
+      ]
+    },
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        66
+      ]
+    ],
+    "translation": "Удалить роль \"{entityLabel}\"?"
+  },
   "DFjdv0": {
     "message": "Delete template",
     "placeholders": {},
@@ -3581,6 +4086,30 @@
       ]
     ],
     "translation": "удалил(а) элемент чек-листа <0>{0}</0>"
+  },
+  "Nu4oKW": {
+    "message": "Description",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        160
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        258
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        265
+      ],
+      [
+        "src/views/settings/RolesSettings.tsx",
+        61
+      ]
+    ],
+    "translation": "Описание"
   },
   "f8fH8W": {
     "message": "Design",
@@ -3957,14 +4486,42 @@
     "origin": [
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
-        162
+        167
       ],
       [
         "src/views/members/index.tsx",
-        224
+        251
       ]
     ],
     "translation": "Изменить права доступа"
+  },
+  "bs+sVd": {
+    "message": "Edit role",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        229
+      ]
+    ],
+    "translation": "Редактировать роль"
+  },
+  "KYHxRs": {
+    "message": "Edit role — {0}",
+    "placeholders": {
+      "0": [
+        "role.name"
+      ]
+    },
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        219
+      ]
+    ],
+    "translation": "Редактировать роль — {0}"
   },
   "/deyVX": {
     "message": "Edit Tag",
@@ -4877,7 +5434,7 @@
       ],
       [
         "src/views/members/index.tsx",
-        293
+        320
       ]
     ],
     "translation": "Бесплатный тариф"
@@ -5177,7 +5734,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        109
+        111
       ],
       [
         "src/pages/404.tsx",
@@ -5205,7 +5762,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        145
+        147
       ]
     ],
     "translation": "Перейти к участникам"
@@ -5217,10 +5774,22 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        133
+        135
       ]
     ],
     "translation": "Перейти к страницам"
+  },
+  "ziYwNT": {
+    "message": "Go to roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/SideNavigation.tsx",
+        159
+      ]
+    ],
+    "translation": "Перейти к ролям"
   },
   "1WuwiM": {
     "message": "Go to settings",
@@ -5229,7 +5798,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        157
+        171
       ]
     ],
     "translation": "Перейти к настройкам"
@@ -5241,7 +5810,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        121
+        123
       ]
     ],
     "translation": "Перейти к шаблонам"
@@ -5288,7 +5857,8 @@
         203
       ]
     ],
-    "translation": "Гость"
+    "translation": "Гость",
+    "obsolete": true
   },
   "SgTSuq": {
     "message": "Hide info",
@@ -5302,6 +5872,26 @@
     ],
     "translation": "Скрыть информацию"
   },
+  "xYgsZK": {
+    "message": "Hierarchy level",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        171
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        269
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        276
+      ]
+    ],
+    "translation": "Уровень иерархии"
+  },
   "CB/NpV": {
     "message": "High Priority",
     "placeholders": {},
@@ -5313,6 +5903,26 @@
       ]
     ],
     "translation": "Высокий приоритет"
+  },
+  "TcB6ll": {
+    "message": "Higher priority",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        189
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        297
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        303
+      ]
+    ],
+    "translation": "Более высокий приоритет"
   },
   "XXbgHS": {
     "message": "Hired",
@@ -5709,7 +6319,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        306
+        333
       ]
     ],
     "translation": "Пригласить"
@@ -6009,7 +6619,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        276
+        303
       ]
     ],
     "translation": "Стартовое предложение: неограниченное количество участников с Pro"
@@ -6061,6 +6671,18 @@
       ]
     ],
     "translation": "Юридическая информация"
+  },
+  "oCHfGC": {
+    "message": "Level",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/RolesSettings.tsx",
+        67
+      ]
+    ],
+    "translation": "Уровень"
   },
   "iQmbPb": {
     "message": "License",
@@ -6185,7 +6807,11 @@
     "origin": [
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
-        180
+        185
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        331
       ]
     ],
     "translation": "Загрузка разрешений..."
@@ -6262,6 +6888,26 @@
     ],
     "translation": "Низкий приоритет"
   },
+  "nDhgVD": {
+    "message": "Lower priority",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        185
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        293
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        299
+      ]
+    ],
+    "translation": "Более низкий приоритет"
+  },
   "JnWJXY": {
     "message": "magic link",
     "placeholders": {},
@@ -6285,6 +6931,18 @@
       ]
     ],
     "translation": "Создать шаблон"
+  },
+  "dbJj/u": {
+    "message": "Manage roles for this workspace. System roles cannot be deleted but their permissions can be edited on the Permissions page.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/RolesSettings.tsx",
+        49
+      ]
+    ],
+    "translation": "Управление ролями для этого рабочего пространства. Системные роли нельзя удалить, но их разрешения можно изменить на странице Разрешений."
   },
   "IDvohQ": {
     "message": "marked a checklist item as incomplete",
@@ -6350,13 +7008,21 @@
       [
         "src/views/card/components/ActivityList.tsx",
         88
-      ],
-      [
-        "src/views/members/index.tsx",
-        202
       ]
     ],
     "translation": "Участник"
+  },
+  "+er1j8": {
+    "message": "Member (default)",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        84
+      ]
+    ],
+    "translation": "Участник (по умолчанию)"
   },
   "wlQNTg": {
     "message": "Members",
@@ -6365,7 +7031,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        137
+        139
       ],
       [
         "src/views/board/components/Filters.tsx",
@@ -6381,11 +7047,15 @@
       ],
       [
         "src/views/members/index.tsx",
-        263
+        290
       ],
       [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
         81
+      ],
+      [
+        "src/views/settings/RolesSettings.tsx",
+        64
       ]
     ],
     "translation": "Участники"
@@ -6401,7 +7071,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        258
+        285
       ]
     ],
     "translation": "Участники | {0}"
@@ -6521,6 +7191,18 @@
       [
         "src/views/settings/components/NewWebhookModal.tsx",
         205
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        149
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        246
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        253
       ],
       [
         "src/views/settings/components/WebhookList.tsx",
@@ -6956,10 +7638,22 @@
     "origin": [
       [
         "src/views/settings/components/RolePermissions.tsx",
-        110
+        115
       ]
     ],
     "translation": "Для этого рабочего пространства пока не найдено ролей."
+  },
+  "ig97sW": {
+    "message": "No roles found.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/RolesSettings.tsx",
+        147
+      ]
+    ],
+    "translation": "Роли не найдены."
   },
   "TX0bT7": {
     "message": "No webhooks configured. Add a webhook to receive notifications.",
@@ -7104,6 +7798,26 @@
       ]
     ],
     "translation": "Друзья Open Source"
+  },
+  "pbzA+s": {
+    "message": "Optional description",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        165
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        263
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        270
+      ]
+    ],
+    "translation": "Необязательное описание"
   },
   "BzEFor": {
     "message": "or",
@@ -7288,7 +8002,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        125
+        127
       ],
       [
         "src/views/pages/index.tsx",
@@ -7380,7 +8094,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        210
+        237
       ]
     ],
     "translation": "Приостановлено"
@@ -7408,7 +8122,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        210
+        237
       ]
     ],
     "translation": "В ожидании"
@@ -7468,7 +8182,7 @@
     "origin": [
       [
         "src/views/settings/components/RolePermissions.tsx",
-        119
+        124
       ]
     ],
     "translation": "Разрешение"
@@ -7481,6 +8195,18 @@
       [
         "src/components/SettingsLayout.tsx",
         53
+      ],
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        221
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        327
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        349
       ]
     ],
     "translation": "Разрешения"
@@ -7812,7 +8538,7 @@
       ],
       [
         "src/views/members/index.tsx",
-        66
+        73
       ],
       [
         "src/views/page/components/AuthorSelector.tsx",
@@ -8032,7 +8758,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        290
+        317
       ]
     ],
     "translation": "Тариф Pro"
@@ -8137,6 +8863,18 @@
     ],
     "translation": "Быстрая победа"
   },
+  "yUApjD": {
+    "message": "Reassign members to",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        77
+      ]
+    ],
+    "translation": "Переназначить участников на"
+  },
   "6EWT6T": {
     "message": "Recruitment",
     "placeholders": {},
@@ -8204,7 +8942,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        233
+        260
       ]
     ],
     "translation": "Удалить участника"
@@ -8403,7 +9141,7 @@
     "origin": [
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
-        245
+        250
       ]
     ],
     "translation": "Сбросить к настройкам роли по умолчанию"
@@ -8471,10 +9209,74 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        328
+        355
+      ],
+      [
+        "src/views/settings/RolesSettings.tsx",
+        58
       ]
     ],
     "translation": "Роль"
+  },
+  "Egotu0": {
+    "message": "Role created",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        90
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        125
+      ]
+    ],
+    "translation": "Роль создана"
+  },
+  "191uYD": {
+    "message": "Role deleted",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        35
+      ]
+    ],
+    "translation": "Роль удалена"
+  },
+  "iSfzXo": {
+    "message": "Role name",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        154
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        251
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        258
+      ]
+    ],
+    "translation": "Название роли"
+  },
+  "/BTyf+": {
+    "message": "Role not found.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        211
+      ]
+    ],
+    "translation": "Роль не найдена."
   },
   "jQ6I8X": {
     "message": "Role updated",
@@ -8483,10 +9285,30 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        58
+        65
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        144
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        132
       ]
     ],
     "translation": "Роль обновлена"
+  },
+  "5dJK4M": {
+    "message": "Roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/SideNavigation.tsx",
+        151
+      ]
+    ],
+    "translation": "Роли"
   },
   "RzxgOE": {
     "message": "Roles & permissions",
@@ -8568,6 +9390,14 @@
       [
         "src/views/settings/components/NewWebhookModal.tsx",
         316
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        386
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        342
       ]
     ],
     "translation": "Сохранить изменения"
@@ -8803,7 +9633,7 @@
       ],
       [
         "src/components/SideNavigation.tsx",
-        149
+        163
       ]
     ],
     "translation": "Настройки"
@@ -8867,6 +9697,18 @@
       ]
     ],
     "translation": "Настройки | Разрешения"
+  },
+  "cEYCsH": {
+    "message": "Settings | Roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/RolesSettings.tsx",
+        31
+      ]
+    ],
+    "translation": "Настройки | Роли"
   },
   "+h2faV": {
     "message": "Settings | Webhooks",
@@ -9232,9 +10074,49 @@
       [
         "src/components/UserMenu.tsx",
         144
+      ],
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        88
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        243
+      ],
+      [
+        "src/views/settings/RolesSettings.tsx",
+        203
       ]
     ],
     "translation": "Система"
+  },
+  "MuTqYL": {
+    "message": "System role level cannot be changed",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        278
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        285
+      ]
+    ],
+    "translation": "Уровень системной роли нельзя изменить"
+  },
+  "srBRP0": {
+    "message": "System roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/RolesSettings.tsx",
+        100
+      ]
+    ],
+    "translation": "Системные роли"
   },
   "1Q51O1": {
     "message": "Tag name",
@@ -9279,7 +10161,7 @@
       ],
       [
         "src/views/members/index.tsx",
-        292
+        319
       ]
     ],
     "translation": "Тариф для команды"
@@ -9375,7 +10257,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        113
+        115
       ],
       [
         "src/views/home/components/Features.tsx",
@@ -9519,7 +10401,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        59
+        66
       ]
     ],
     "translation": "Роль участника была обновлена."
@@ -9547,6 +10429,66 @@
       ]
     ],
     "translation": "Страница, которую вы ищете, не существует или была перемещена."
+  },
+  "BoIpoC": {
+    "message": "The role has been created successfully.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        91
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        126
+      ]
+    ],
+    "translation": "Роль успешно создана."
+  },
+  "pgqxxk": {
+    "message": "The role has been deleted and {0} member(s) have been reassigned.",
+    "placeholders": {
+      "0": [
+        "String(data.reassignedCount)"
+      ]
+    },
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        38
+      ]
+    ],
+    "translation": "Роль удалена, и {0} участник(ов) переназначен(ы)."
+  },
+  "X59EBi": {
+    "message": "The role has been deleted.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        39
+      ]
+    ],
+    "translation": "Роль удалена."
+  },
+  "RKtuKN": {
+    "message": "The role has been updated successfully.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        145
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        133
+      ]
+    ],
+    "translation": "Роль успешно обновлена."
   },
   "fQCrjt": {
     "message": "The visibility of your board has been set to {0}.",
@@ -9711,6 +10653,34 @@
       ]
     ],
     "translation": "Этот URL страницы уже занят"
+  },
+  "egmo3k": {
+    "message": "This role has {0} member(s). They will be reassigned to the fallback role below.",
+    "placeholders": {
+      "0": [
+        "String(roleToDelete.memberCount)"
+      ]
+    },
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        70
+      ]
+    ],
+    "translation": "У этой роли {0} участник(ов). Они будут переназначены на запасную роль ниже."
+  },
+  "jMe1It": {
+    "message": "This role will be permanently deleted. This action cannot be undone.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        71
+      ]
+    ],
+    "translation": "Эта роль будет безвозвратно удалена. Это действие нельзя отменить."
   },
   "OAYToL": {
     "message": "This will remove all custom member permissions in this workspace. Members will inherit permissions only from their roles.",
@@ -10032,6 +11002,22 @@
     ],
     "translation": "Не удалось создать список"
   },
+  "8KQkv0": {
+    "message": "Unable to create role",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/RoleCreateView.tsx",
+        98
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        132
+      ]
+    ],
+    "translation": "Не удалось создать роль"
+  },
   "lp9FuA": {
     "message": "Unable to create tag",
     "placeholders": {},
@@ -10143,6 +11129,18 @@
       ]
     ],
     "translation": "Не удалось удалить страницу"
+  },
+  "gsCTFm": {
+    "message": "Unable to delete role",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteRoleConfirmation.tsx",
+        45
+      ]
+    ],
+    "translation": "Не удалось удалить роль"
   },
   "cQKbFB": {
     "message": "Unable to delete tag",
@@ -10415,7 +11413,15 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        65
+        72
+      ],
+      [
+        "src/views/settings/components/RoleEditor.tsx",
+        151
+      ],
+      [
+        "src/views/settings/components/RoleEditView.tsx",
+        139
       ]
     ],
     "translation": "Не удалось обновить роль"
@@ -10799,7 +11805,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        254
+        268
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
@@ -10959,7 +11965,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        322
+        349
       ]
     ],
     "translation": "Пользователь"
@@ -11311,7 +12317,7 @@
       ],
       [
         "src/views/members/index.tsx",
-        258
+        285
       ],
       [
         "src/views/public/board/index.tsx",
@@ -11495,6 +12501,18 @@
       ]
     ],
     "translation": "Права доступа рабочего пространства"
+  },
+  "9wUHk3": {
+    "message": "Workspace roles",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/RolesSettings.tsx",
+        36
+      ]
+    ],
+    "translation": "Роли рабочего пространства"
   },
   "MN6YzG": {
     "message": "Workspace slug updated",
@@ -11731,6 +12749,18 @@
       ]
     ],
     "translation": "Вам нужно быть администратором, чтобы управлять правами доступа рабочего пространства."
+  },
+  "VZrwhN": {
+    "message": "You need to be an admin to manage workspace roles.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/RolesSettings.tsx",
+        156
+      ]
+    ],
+    "translation": "Для управления ролями рабочего пространства необходимы права администратора."
   },
   "2SePRT": {
     "message": "You've been invited to join a workspace on kan.bn.",
