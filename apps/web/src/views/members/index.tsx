@@ -46,6 +46,13 @@ export default function MembersPage() {
 
   const utils = api.useUtils();
 
+  const { data: rolesData } = api.permission.getWorkspaceRoles.useQuery(
+    { workspacePublicId: workspace.publicId },
+    { enabled: !!workspace.publicId && workspace.publicId.length >= 12 },
+  );
+
+  const availableRoles = rolesData?.roles ?? [];
+
   const updateRoleMutation = api.member.updateRole.useMutation({
     onSuccess: async () => {
       if (workspace.publicId && workspace.publicId.length >= 12) {
@@ -83,6 +90,8 @@ export default function MembersPage() {
     memberEmail,
     memberImage,
     memberRole,
+    memberRoleColor,
+    memberRolePublicId,
     memberStatus,
     isLastRow,
     showSkeleton,
@@ -94,18 +103,20 @@ export default function MembersPage() {
     memberEmail?: string | null | undefined;
     memberImage?: string | null | undefined;
     memberRole?: string;
+    memberRoleColor?: string | null;
+    memberRolePublicId?: string;
     memberStatus?: string;
     isLastRow?: boolean;
     showSkeleton?: boolean;
     showPendingIcon?: boolean;
   }) => {
-    const handleRoleChange = (newRole: "admin" | "member" | "guest") => {
+    const handleRoleChange = (newRolePublicId: string) => {
       if (!memberPublicId) return;
 
       updateRoleMutation.mutate({
         workspacePublicId: workspace.publicId,
         memberPublicId,
-        role: newRole,
+        rolePublicId: newRolePublicId,
       });
     };
 
@@ -178,7 +189,23 @@ export default function MembersPage() {
                 />
               ) : (
                 <div className="relative inline-flex items-center">
-                  <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-400 ring-1 ring-inset ring-emerald-500/20 sm:text-[11px]">
+                  <span
+                    className={twMerge(
+                      "inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-medium sm:text-[11px]",
+                      memberRoleColor
+                        ? ""
+                        : "bg-emerald-500/10 text-emerald-400 ring-1 ring-inset ring-emerald-500/20",
+                    )}
+                    style={
+                      memberRoleColor
+                        ? {
+                            backgroundColor: `${memberRoleColor}1a`,
+                            color: memberRoleColor,
+                            boxShadow: `inset 0 0 0 1px ${memberRoleColor}33`,
+                          }
+                        : undefined
+                    }
+                  >
                     {memberRole &&
                       memberRole.charAt(0).toUpperCase() +
                         memberRole.slice(1)}
@@ -189,18 +216,18 @@ export default function MembersPage() {
 
                   {canEditMember && session?.user.id !== memberId && (
                     <select
-                      value={memberRole}
+                      value={memberRolePublicId ?? ""}
                       onChange={(e) =>
-                        handleRoleChange(
-                          e.target.value as "admin" | "member" | "guest",
-                        )
+                        handleRoleChange(e.target.value)
                       }
                       disabled={updateRoleMutation.isPending}
                       className="absolute inset-0 h-full w-full cursor-pointer appearance-none border-none bg-transparent p-0 text-[10px] leading-none opacity-0 focus:outline-none focus-visible:outline-none sm:text-[11px]"
                     >
-                      <option value="admin">{t`Admin`}</option>
-                      <option value="member">{t`Member`}</option>
-                      <option value="guest">{t`Guest`}</option>
+                      {availableRoles.map((r) => (
+                        <option key={r.publicId} value={r.publicId}>
+                          {r.name.charAt(0).toUpperCase() + r.name.slice(1)}
+                        </option>
+                      ))}
                     </select>
                   )}
                 </div>
@@ -333,6 +360,9 @@ export default function MembersPage() {
                     {!isLoading &&
                       data?.members.map((member, index) => {
                         const isPendingInvite = member.status === "invited";
+                        const enrichedMember = member as typeof member & {
+                          workspaceRole?: { name: string; publicId: string; color: string | null };
+                        };
 
                         return (
                           <TableRow
@@ -342,7 +372,9 @@ export default function MembersPage() {
                             memberName={member.user?.name}
                             memberEmail={member.user?.email ?? member.email}
                             memberImage={member.user?.image}
-                            memberRole={member.role}
+                            memberRole={enrichedMember.workspaceRole?.name ?? member.role}
+                            memberRoleColor={enrichedMember.workspaceRole?.color ?? null}
+                            memberRolePublicId={enrichedMember.workspaceRole?.publicId}
                             memberStatus={member.status}
                             isLastRow={index === data.members.length - 1}
                             showPendingIcon={isPendingInvite}

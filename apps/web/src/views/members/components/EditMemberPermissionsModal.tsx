@@ -151,6 +151,11 @@ export function EditMemberPermissionsModal() {
     "member:invite": t`Can invite members`,
     "member:edit": t`Can edit member roles and permissions`,
     "member:remove": t`Can remove members`,
+
+    "role:view": t`Can view roles`,
+    "role:create": t`Can create roles`,
+    "role:edit": t`Can edit roles`,
+    "role:delete": t`Can delete roles`,
   };
 
   return (

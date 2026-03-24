@@ -239,6 +239,13 @@
       "when": 1773312242730,
       "tag": "20250922060110_dear_molecule_man",
       "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1774385824299,
+      "tag": "20260324205704_AddColorAndDeletedAtToWorkspaceRoles",
+      "breakpoints": true
     }
   ]
 }

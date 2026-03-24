@@ -1,4 +1,4 @@
-import { and, eq, isNull, inArray } from "drizzle-orm";
+import { and, eq, isNull, inArray, count } from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
 import {
@@ -381,6 +381,7 @@ export const createRole = async (
     description: string;
     hierarchyLevel: number;
     isSystem: boolean;
+    color?: string;
     permissions: Permission[];
   },
 ) => {
@@ -393,6 +394,7 @@ export const createRole = async (
       description: args.description,
       hierarchyLevel: args.hierarchyLevel,
       isSystem: args.isSystem,
+      color: args.color,
     })
     .returning({
       id: workspaceRoles.id,
@@ -486,9 +488,135 @@ export const getRolesByWorkspaceId = async (
       description: workspaceRoles.description,
       hierarchyLevel: workspaceRoles.hierarchyLevel,
       isSystem: workspaceRoles.isSystem,
+      color: workspaceRoles.color,
     })
     .from(workspaceRoles)
-    .where(eq(workspaceRoles.workspaceId, workspaceId));
+    .where(
+      and(
+        eq(workspaceRoles.workspaceId, workspaceId),
+        isNull(workspaceRoles.deletedAt),
+      ),
+    );
+};
+
+/**
+ * Get a role by its public ID
+ */
+export const getRoleByPublicId = async (db: dbClient, publicId: string) => {
+  const [role] = await db
+    .select()
+    .from(workspaceRoles)
+    .where(
+      and(
+        eq(workspaceRoles.publicId, publicId),
+        isNull(workspaceRoles.deletedAt),
+      ),
+    )
+    .limit(1);
+
+  return role;
+};
+
+/**
+ * Get the count of active members assigned to a role
+ */
+export const getMemberCountByRoleId = async (
+  db: dbClient,
+  roleId: number,
+) => {
+  const [result] = await db
+    .select({ count: count() })
+    .from(workspaceMembers)
+    .where(
+      and(
+        eq(workspaceMembers.roleId, roleId),
+        isNull(workspaceMembers.deletedAt),
+      ),
+    );
+
+  return result?.count ?? 0;
+};
+
+/**
+ * Update a workspace role
+ */
+export const updateRole = async (
+  db: dbClient,
+  roleId: number,
+  args: {
+    name?: string;
+    description?: string;
+    hierarchyLevel?: number;
+    color?: string | null;
+  },
+) => {
+  const [result] = await db
+    .update(workspaceRoles)
+    .set({
+      ...args,
+      updatedAt: new Date(),
+    })
+    .where(
+      and(eq(workspaceRoles.id, roleId), isNull(workspaceRoles.deletedAt)),
+    )
+    .returning({
+      id: workspaceRoles.id,
+      publicId: workspaceRoles.publicId,
+      name: workspaceRoles.name,
+      description: workspaceRoles.description,
+      hierarchyLevel: workspaceRoles.hierarchyLevel,
+      isSystem: workspaceRoles.isSystem,
+      color: workspaceRoles.color,
+    });
+
+  return result;
+};
+
+/**
+ * Soft-delete a workspace role and reassign affected members to fallback role
+ */
+export const deleteRole = async (
+  db: dbClient,
+  roleId: number,
+  fallbackRoleId: number,
+) => {
+  // Reassign members currently on this role to the fallback role
+  const fallbackRole = await db
+    .select({ name: workspaceRoles.name })
+    .from(workspaceRoles)
+    .where(eq(workspaceRoles.id, fallbackRoleId))
+    .limit(1);
+
+  const fallbackRoleName = fallbackRole[0]?.name ?? "member";
+  const legacyRole = (["admin", "member", "guest"].includes(fallbackRoleName)
+    ? fallbackRoleName
+    : "member") as "admin" | "member" | "guest";
+
+  await db
+    .update(workspaceMembers)
+    .set({
+      roleId: fallbackRoleId,
+      role: legacyRole,
+      updatedAt: new Date(),
+    })
+    .where(
+      and(
+        eq(workspaceMembers.roleId, roleId),
+        isNull(workspaceMembers.deletedAt),
+      ),
+    );
+
+  // Soft-delete the role
+  const [result] = await db
+    .update(workspaceRoles)
+    .set({ deletedAt: new Date() })
+    .where(eq(workspaceRoles.id, roleId))
+    .returning({
+      id: workspaceRoles.id,
+      publicId: workspaceRoles.publicId,
+    });
+
+  return result;
 };
 
 

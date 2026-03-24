@@ -2,6 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { env } from "next-runtime-env";
 import { z } from "zod";
 
+import * as permissionRepo from "@kan/db/repository/permission.repo";
 import * as workspaceRepo from "@kan/db/repository/workspace.repo";
 import * as workspaceSlugRepo from "@kan/db/repository/workspaceSlug.repo";
 import { generateAvatarUrl, generateUID } from "@kan/shared/utils";
@@ -103,9 +104,34 @@ export const workspaceRouter = createTRPCRouter({
         }),
       );
 
+      // Enrich members with their workspace role data
+      const workspaceRoles = await permissionRepo.getRolesByWorkspaceId(
+        ctx.db,
+        result.id,
+      );
+      const rolesById = new Map(workspaceRoles.map((r) => [r.id, r]));
+
+      const membersWithRoles = membersWithAvatarUrls.map((member) => {
+        const memberRole = member.roleId
+          ? rolesById.get(member.roleId)
+          : undefined;
+        return {
+          ...member,
+          workspaceRole: memberRole
+            ? {
+                publicId: memberRole.publicId,
+                name: memberRole.name,
+                color: memberRole.color ?? null,
+                hierarchyLevel: memberRole.hierarchyLevel,
+                isSystem: memberRole.isSystem,
+              }
+            : null,
+        };
+      });
+
       // If emails should be hidden, filter them out
       if (!shouldShowEmails) {
-        const sanitizedMembers = membersWithAvatarUrls.map((member) => {
+        const sanitizedMembers = membersWithRoles.map((member) => {
           // If user doesn't have a display name, use anonymous identifier
           const displayName =
             member.user?.name?.trim() ?? `anonymous_${member.publicId}`;
@@ -134,12 +160,12 @@ export const workspaceRouter = createTRPCRouter({
         return {
           ...result,
           members: sanitizedMembers,
-        } as Awaited<ReturnType<typeof workspaceRepo.getByPublicIdWithMembers>>;
+        } as unknown as Awaited<ReturnType<typeof workspaceRepo.getByPublicIdWithMembers>>;
       }
 
       return {
         ...result,
-        members: membersWithAvatarUrls,
+        members: membersWithRoles,
       };
     }),
   bySlug: publicProcedure

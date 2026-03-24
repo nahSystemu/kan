@@ -29,21 +29,25 @@ const SYSTEM_ROLES: {
   name: Role;
   description: string;
   hierarchyLevel: number;
+  color: string;
 }[] = [
     {
       name: "admin",
       description: "Full access to all workspace features",
       hierarchyLevel: 100,
+      color: "#ef4444",
     },
     {
       name: "member",
       description: "Standard member with create and edit permissions",
       hierarchyLevel: 50,
+      color: "#22c55e",
     },
     {
       name: "guest",
       description: "View-only access",
       hierarchyLevel: 10,
+      color: "#6b7280",
     },
   ];
 
@@ -93,6 +97,7 @@ export const create = async (
         description: roleData.description,
         hierarchyLevel: roleData.hierarchyLevel,
         isSystem: true,
+        color: roleData.color,
         permissions: [...getDefaultPermissions(roleData.name)] as Permission[],
       });
       if (roleData.name === "admin" && role) {
@@ -200,6 +205,7 @@ export const getByPublicIdWithMembers = (
           publicId: true,
           email: true,
           role: true,
+          roleId: true,
           status: true,
           createdAt: true,
         },

@@ -22,6 +22,8 @@ import membersIconDark from "~/assets/members-dark.json";
 import membersIconLight from "~/assets/members-light.json";
 import pagesIconDark from "~/assets/pages-dark.json";
 import pagesIconLight from "~/assets/pages-light.json";
+import rolesIconDark from "~/assets/roles-dark.json";
+import rolesIconLight from "~/assets/roles-light.json";
 import settingsIconDark from "~/assets/settings-dark.json";
 import settingsIconLight from "~/assets/settings-light.json";
 import templatesIconDark from "~/assets/templates-dark.json";
@@ -143,6 +145,18 @@ export default function SideNavigation({
         action: () => router.push("/members"),
         group: "NAVIGATION",
         description: t`Go to members`,
+      },
+    },
+    {
+      name: t`Roles`,
+      href: "/roles",
+      icon: isDarkMode ? rolesIconDark : rolesIconLight,
+      keyboardShortcut: {
+        type: "SEQUENCE",
+        strokes: [{ key: "G" }, { key: "R" }],
+        action: () => router.push("/roles"),
+        group: "NAVIGATION",
+        description: t`Go to roles`,
       },
     },
     {

@@ -38,6 +38,7 @@ export const memberRouter = createTRPCRouter({
       z.object({
         email: z.string().email(),
         workspacePublicId: z.string().min(12),
+        rolePublicId: z.string().min(12).optional(),
       }),
     )
     .output(z.custom<Awaited<ReturnType<typeof memberRepo.create>>>())
@@ -118,19 +119,41 @@ export const memberRouter = createTRPCRouter({
       const existingUser = await userRepo.getByEmail(ctx.db, input.email);
 
       // Get the workspace role to set roleId
-      const memberRole = await permissionRepo.getRoleByWorkspaceIdAndName(
-        ctx.db,
-        workspace.id,
-        "member",
-      );
+      let inviteRole;
+      if (input.rolePublicId) {
+        inviteRole = await permissionRepo.getRoleByWorkspaceIdAndPublicId(
+          ctx.db,
+          workspace.id,
+          input.rolePublicId,
+        );
+        if (!inviteRole) {
+          throw new TRPCError({
+            message: "Specified role not found",
+            code: "NOT_FOUND",
+          });
+        }
+      } else {
+        inviteRole = await permissionRepo.getRoleByWorkspaceIdAndName(
+          ctx.db,
+          workspace.id,
+          "member",
+        );
+      }
+
+      // Determine legacy role value
+      const legacyRole = (
+        inviteRole && ["admin", "member", "guest"].includes(inviteRole.name)
+          ? inviteRole.name
+          : "member"
+      ) as "admin" | "member" | "guest";
 
       const invite = await memberRepo.create(ctx.db, {
         workspaceId: workspace.id,
         email: input.email,
         userId: existingUser?.id ?? null,
         createdBy: userId,
-        role: "member",
-        roleId: memberRole?.id ?? null,
+        role: legacyRole,
+        roleId: inviteRole?.id ?? null,
         status: "invited",
       });
 
@@ -683,7 +706,7 @@ export const memberRouter = createTRPCRouter({
       z.object({
         workspacePublicId: z.string().min(12),
         memberPublicId: z.string().min(12),
-        role: z.enum(["admin", "member", "guest"]),
+        rolePublicId: z.string().min(12),
       }),
     )
     .output(
@@ -728,25 +751,43 @@ export const memberRouter = createTRPCRouter({
         });
       }
 
-      await assertCanManageMember(ctx.db, userId, workspace.id, member.id);
-      await assertCanManageRole(ctx.db, userId, workspace.id, input.role);
-
-      // Get the workspace role to set roleId
-      const workspaceRole = await permissionRepo.getRoleByWorkspaceIdAndName(
+      const targetRole = await permissionRepo.getRoleByWorkspaceIdAndPublicId(
         ctx.db,
         workspace.id,
-        input.role,
+        input.rolePublicId,
       );
+
+      if (!targetRole) {
+        throw new TRPCError({
+          message: "Role not found",
+          code: "NOT_FOUND",
+        });
+      }
+
+      await assertCanManageMember(ctx.db, userId, workspace.id, member.id);
+      await assertCanManageRole(
+        ctx.db,
+        userId,
+        workspace.id,
+        targetRole.hierarchyLevel,
+      );
+
+      // Determine the legacy role field value
+      const legacyRole = (
+        ["admin", "member", "guest"].includes(targetRole.name)
+          ? targetRole.name
+          : "member"
+      ) as "admin" | "member" | "guest";
 
       await memberRepo.updateRole(ctx.db, {
         memberId: member.id,
-        role: input.role,
-        roleId: workspaceRole?.id ?? null,
+        role: legacyRole,
+        roleId: targetRole.id,
       });
 
       return {
         success: true,
-        role: input.role,
+        role: targetRole.name,
       };
     }),
 });

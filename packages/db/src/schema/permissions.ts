@@ -25,8 +25,10 @@ export const workspaceRoles = pgTable(
     description: varchar("description", { length: 255 }),
     hierarchyLevel: integer("hierarchyLevel").notNull(),
     isSystem: boolean("isSystem").notNull().default(false),
+    color: varchar("color", { length: 7 }),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
     updatedAt: timestamp("updatedAt"),
+    deletedAt: timestamp("deletedAt"),
   },
   (table) => [
     uniqueIndex("unique_role_per_workspace").on(table.workspaceId, table.name),

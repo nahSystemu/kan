@@ -4,7 +4,7 @@ import type { dbClient } from "@kan/db/client";
 import * as memberRepo from "@kan/db/repository/member.repo";
 import * as permissionRepo from "@kan/db/repository/permission.repo";
 import type { Permission, Role } from "@kan/shared";
-import { canManageRole, getDefaultPermissions } from "@kan/shared";
+import { canManageRoleByLevel, getDefaultPermissions, roleHierarchy } from "@kan/shared";
 
 /**
  * Get effective permissions for a member by combining role permissions with overrides
@@ -161,13 +161,29 @@ export async function assertPermission(
 }
 
 /**
+ * Resolve a member's hierarchy level from their role
+ */
+async function getMemberHierarchyLevel(
+  db: dbClient,
+  member: { roleId: number | null; role: string },
+  workspaceId: number,
+): Promise<number> {
+  if (member.roleId) {
+    const roles = await permissionRepo.getRolesByWorkspaceId(db, workspaceId);
+    const found = roles.find((r) => r.id === member.roleId);
+    if (found) return found.hierarchyLevel;
+  }
+  return roleHierarchy[member.role as keyof typeof roleHierarchy] ?? 0;
+}
+
+/**
  * Assert user can assign a specific role (based on hierarchy)
  */
 export async function assertCanManageRole(
   db: dbClient,
   managerUserId: string,
   workspaceId: number,
-  targetRoleName: string,
+  targetHierarchyLevel: number,
 ): Promise<void> {
   const managerMember = await permissionRepo.getMemberWithRole(
     db,
@@ -182,11 +198,15 @@ export async function assertCanManageRole(
     });
   }
 
-  const managerRole = managerMember.role;
+  const managerLevel = await getMemberHierarchyLevel(
+    db,
+    managerMember,
+    workspaceId,
+  );
 
-  if (!canManageRole(managerRole, targetRoleName as Role)) {
+  if (!canManageRoleByLevel(managerLevel, targetHierarchyLevel)) {
     throw new TRPCError({
-      message: `You cannot assign the "${targetRoleName}" role`,
+      message: "You cannot assign this role due to role hierarchy",
       code: "FORBIDDEN",
     });
   }
@@ -223,10 +243,18 @@ export async function assertCanManageMember(
     });
   }
 
-  const managerRole = managerMember.role;
-  const targetRole = targetMember.role;
+  const managerLevel = await getMemberHierarchyLevel(
+    db,
+    managerMember,
+    workspaceId,
+  );
+  const targetLevel = await getMemberHierarchyLevel(
+    db,
+    { roleId: targetMember.roleId ?? null, role: targetMember.role },
+    workspaceId,
+  );
 
-  if (!canManageRole(managerRole, targetRole)) {
+  if (!canManageRoleByLevel(managerLevel, targetLevel)) {
     throw new TRPCError({
       message: "You cannot manage this member due to role hierarchy",
       code: "FORBIDDEN",

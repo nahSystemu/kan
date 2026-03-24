@@ -14,6 +14,7 @@ export const permissionResources = [
   "card",
   "comment",
   "member",
+  "role",
 ] as const;
 export type PermissionResource = (typeof permissionResources)[number];
 
@@ -42,6 +43,10 @@ export const allPermissions = [
   "member:invite",
   "member:edit",
   "member:remove",
+  "role:view",
+  "role:create",
+  "role:edit",
+  "role:delete",
 ] as const;
 
 export type Permission = (typeof allPermissions)[number];
@@ -51,6 +56,10 @@ export const roleHierarchy = {
   member: 50,
   guest: 10,
 } as const;
+
+export const SYSTEM_ROLE_LEVELS = roleHierarchy;
+export const MIN_CUSTOM_ROLE_LEVEL = 11;
+export const MAX_CUSTOM_ROLE_LEVEL = 99;
 
 export type Role = keyof typeof roleHierarchy;
 export const roles = Object.keys(roleHierarchy) as Role[];
@@ -74,6 +83,7 @@ export const defaultRolePermissions: Record<Role, readonly Permission[]> = {
     "comment:edit",
     "comment:delete",
     "member:view",
+    "role:view",
   ],
 
   guest: [
@@ -83,6 +93,7 @@ export const defaultRolePermissions: Record<Role, readonly Permission[]> = {
     "card:view",
     "comment:view",
     "member:view",
+    "role:view",
   ],
 } as const;
 
@@ -142,6 +153,15 @@ export const permissionCategories = {
       "member:remove",
     ] as const,
   },
+  role: {
+    label: "Roles",
+    permissions: [
+      "role:view",
+      "role:create",
+      "role:edit",
+      "role:delete",
+    ] as const,
+  },
 } as const;
 
 export function getDefaultPermissions(role: Role): readonly Permission[] {
@@ -154,6 +174,13 @@ export function getRoleLevel(role: Role): number {
 
 export function canManageRole(managerRole: Role, targetRole: Role): boolean {
   return roleHierarchy[managerRole] >= roleHierarchy[targetRole];
+}
+
+export function canManageRoleByLevel(
+  managerLevel: number,
+  targetLevel: number,
+): boolean {
+  return managerLevel >= targetLevel;
 }
 
 export function hasPermissionInDefaults(

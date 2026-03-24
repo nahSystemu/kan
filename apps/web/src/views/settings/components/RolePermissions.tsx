@@ -40,6 +40,11 @@ const permissionLabels: Record<Permission, string> = {
   "member:invite": t`Can invite members`,
   "member:edit": t`Can edit member roles and permissions`,
   "member:remove": t`Can remove members`,
+
+  "role:view": t`Can view roles`,
+  "role:create": t`Can create roles`,
+  "role:edit": t`Can edit roles`,
+  "role:delete": t`Can delete roles`,
 };
 
 export function RolePermissions() {
@@ -150,9 +155,6 @@ export function RolePermissions() {
                     const role = systemRoles.find((r) => r.name === roleName);
                     const checked = role?.permissions.includes(permission);
                     const isAdminRole = roleName === "admin";
-                    const isBillingOrDeletePermission =
-                      permission === "workspace:manage" ||
-                      permission === "workspace:delete";
 
                     return (
                       <td
@@ -164,7 +166,6 @@ export function RolePermissions() {
                           className="h-[16px] w-[16px] appearance-none rounded-md border border-light-500 bg-transparent outline-none ring-0 checked:bg-blue-600 focus:shadow-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none dark:border-dark-500 dark:hover:border-dark-500 disabled:opacity-60"
                           disabled={
                             isAdminRole ||
-                            isBillingOrDeletePermission ||
                             !role ||
                             isLoading ||
                             isBusy
