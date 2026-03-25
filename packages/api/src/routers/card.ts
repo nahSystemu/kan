@@ -9,6 +9,14 @@ import * as listRepo from "@kan/db/repository/list.repo";
 import * as workspaceRepo from "@kan/db/repository/workspace.repo";
 
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import {
+  cardCreateResponseSchema,
+  cardUpdateResponseSchema,
+  cardDetailSchema,
+  commentResponseSchema,
+  commentDeleteResponseSchema,
+  activityItemSchema,
+} from "../schemas";
 import { mergeActivities } from "../utils/activities";
 import { sendMentionEmails } from "../utils/notifications";
 import { assertCanDelete, assertCanEdit, assertPermission } from "../utils/permissions";
@@ -41,7 +49,7 @@ export const cardRouter = createTRPCRouter({
         dueDate: z.date().nullable().optional(),
       }),
     )
-    .output(z.custom<Awaited<ReturnType<typeof cardRepo.create>>>())
+    .output(cardCreateResponseSchema)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
 
@@ -214,7 +222,7 @@ export const cardRouter = createTRPCRouter({
         comment: z.string().min(1),
       }),
     )
-    .output(z.custom<Awaited<ReturnType<typeof cardCommentRepo.create>>>())
+    .output(commentResponseSchema)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
 
@@ -287,7 +295,7 @@ export const cardRouter = createTRPCRouter({
         comment: z.string().min(1),
       }),
     )
-    .output(z.custom<Awaited<ReturnType<typeof cardCommentRepo.update>>>())
+    .output(commentResponseSchema)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
 
@@ -375,7 +383,7 @@ export const cardRouter = createTRPCRouter({
         commentPublicId: z.string().min(12),
       }),
     )
-    .output(z.custom<Awaited<ReturnType<typeof cardCommentRepo.softDelete>>>())
+    .output(commentDeleteResponseSchema)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
 
@@ -434,7 +442,7 @@ export const cardRouter = createTRPCRouter({
         createdBy: userId,
       });
 
-      return deletedComment;
+      return { publicId: input.commentPublicId };
     }),
   addOrRemoveLabel: protectedProcedure
     .meta({
@@ -638,25 +646,7 @@ export const cardRouter = createTRPCRouter({
       },
     })
     .input(z.object({ cardPublicId: z.string().min(12) }))
-    .output(
-      z.custom<
-        Omit<
-          NonNullable<
-            Awaited<ReturnType<typeof cardRepo.getWithListAndMembersByPublicId>>
-          >,
-          "attachments"
-        > & {
-          attachments: {
-            publicId: string;
-            contentType: string;
-            s3Key: string;
-            originalFilename: string | null;
-            size?: number | null;
-            url: string | null;
-          }[];
-        }
-      >(),
-    )
+    .output(cardDetailSchema)
     .query(async ({ ctx, input }) => {
       const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
         ctx.db,
@@ -762,15 +752,7 @@ export const cardRouter = createTRPCRouter({
     )
     .output(
       z.object({
-        activities: z.array(
-          z.custom<
-            NonNullable<
-              Awaited<
-                ReturnType<typeof cardActivityRepo.getPaginatedActivities>
-              >
-            >["activities"][number]
-          >(),
-        ),
+        activities: z.array(activityItemSchema),
         hasMore: z.boolean(),
         nextCursor: z.string().datetime().nullable(),
       }),
@@ -870,7 +852,7 @@ export const cardRouter = createTRPCRouter({
         dueDate: z.date().nullable().optional(),
       }),
     )
-    .output(z.custom<Awaited<ReturnType<typeof cardRepo.update>>>())
+    .output(cardUpdateResponseSchema)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
 
