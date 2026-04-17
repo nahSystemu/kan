@@ -8,9 +8,20 @@ import type { Instance as TippyInstance } from "tippy.js";
 import { Button } from "@headlessui/react";
 import { t } from "@lingui/core/macro";
 import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
+import Highlight from "@tiptap/extension-highlight";
+import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
 import Mention from "@tiptap/extension-mention";
 import Placeholder from "@tiptap/extension-placeholder";
+import Subscript from "@tiptap/extension-subscript";
+import Superscript from "@tiptap/extension-superscript";
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
+import TaskItem from "@tiptap/extension-task-item";
+import TaskList from "@tiptap/extension-task-list";
+import Underline from "@tiptap/extension-underline";
 import {
   BubbleMenu,
   EditorContent,
@@ -35,12 +46,18 @@ import {
   HiH3,
   HiOutlineBold,
   HiOutlineChatBubbleLeftEllipsis,
+  HiOutlineCheck,
   HiOutlineCodeBracket,
   HiOutlineCodeBracketSquare,
   HiOutlineItalic,
   HiOutlineListBullet,
+  HiOutlineMinus,
   HiOutlineNumberedList,
+  HiOutlinePaintBrush,
+  HiOutlinePhoto,
   HiOutlineStrikethrough,
+  HiOutlineTableCells,
+  HiOutlineUnderline,
 } from "react-icons/hi2";
 import { twMerge } from "tailwind-merge";
 import tippy from "tippy.js";
@@ -428,6 +445,12 @@ const getCommandItems = (disableHeadings: boolean): SlashCommandItem[] => {
       command: ({ editor }) => editor.chain().focus().toggleOrderedList().run(),
     },
     {
+      title: "Task List",
+      icon: <HiOutlineCheck />,
+      command: ({ editor }) =>
+        (editor.chain().focus() as any).toggleTaskList().run(),
+    },
+    {
       title: "Blockquote",
       icon: <HiOutlineChatBubbleLeftEllipsis />,
       command: ({ editor }) => editor.chain().focus().toggleBlockquote().run(),
@@ -436,6 +459,30 @@ const getCommandItems = (disableHeadings: boolean): SlashCommandItem[] => {
       title: "Code Block",
       icon: <HiOutlineCodeBracketSquare />,
       command: ({ editor }) => editor.chain().focus().toggleCodeBlock().run(),
+    },
+    {
+      title: "Table",
+      icon: <HiOutlineTableCells />,
+      command: ({ editor }) =>
+        (editor.chain().focus() as any)
+          .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+          .run(),
+    },
+    {
+      title: "Horizontal Rule",
+      icon: <HiOutlineMinus />,
+      command: ({ editor }) =>
+        editor.chain().focus().setHorizontalRule().run(),
+    },
+    {
+      title: "Image",
+      icon: <HiOutlinePhoto />,
+      command: ({ editor }) => {
+        const url = window.prompt("Image URL");
+        if (url) {
+          (editor.chain().focus() as any).setImage({ src: url }).run();
+        }
+      },
     },
   ];
 };
@@ -467,6 +514,33 @@ export default function Editor({
         StarterKit.configure({
           heading: disableHeadings ? false : undefined,
           codeBlock: false,
+        }),
+        Underline,
+        Highlight.configure({ multicolor: false }),
+        Subscript,
+        Superscript,
+        Image.configure({
+          inline: false,
+          allowBase64: true,
+          HTMLAttributes: {
+            class: "rounded-md max-w-full h-auto",
+          },
+        }),
+        Table.configure({
+          resizable: true,
+          HTMLAttributes: {
+            class: "tiptap-table",
+          },
+        }),
+        TableRow,
+        TableHeader,
+        TableCell,
+        TaskList.configure({
+          HTMLAttributes: { class: "tiptap-task-list" },
+        }),
+        TaskItem.configure({
+          nested: true,
+          HTMLAttributes: { class: "tiptap-task-item" },
         }),
         Link.configure({
           openOnClick: true,
@@ -638,6 +712,125 @@ export default function Editor({
         .tiptap [data-youtube] {
           margin: 1rem 0;
         }
+        .tiptap mark {
+          background-color: #fef08a;
+          border-radius: 0.25rem;
+          padding: 0.05rem 0.2rem;
+          color: inherit;
+        }
+        .dark .tiptap mark {
+          background-color: rgba(250, 204, 21, 0.35);
+        }
+        .tiptap img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 0.5rem;
+          margin: 0.5rem 0;
+        }
+        .tiptap img.ProseMirror-selectednode {
+          outline: 2px solid rgb(59, 130, 246);
+        }
+        .tiptap hr {
+          border: none;
+          border-top: 1px solid #e5e7eb;
+          margin: 1.25rem 0;
+        }
+        .dark .tiptap hr {
+          border-top-color: #2a2a2a;
+        }
+        .tiptap a {
+          color: rgb(37, 99, 235);
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        .dark .tiptap a {
+          color: rgb(96, 165, 250);
+        }
+        /* Tables */
+        .tiptap table {
+          border-collapse: collapse;
+          margin: 0.75rem 0;
+          overflow: hidden;
+          table-layout: fixed;
+          width: 100%;
+        }
+        .tiptap table td,
+        .tiptap table th {
+          border: 1px solid #e5e7eb;
+          box-sizing: border-box;
+          min-width: 1em;
+          padding: 0.4rem 0.6rem;
+          position: relative;
+          vertical-align: top;
+          font-size: 0.8125rem;
+        }
+        .dark .tiptap table td,
+        .dark .tiptap table th {
+          border-color: #2a2a2a;
+        }
+        .tiptap table th {
+          background-color: #f9fafb;
+          font-weight: 600;
+          text-align: left;
+        }
+        .dark .tiptap table th {
+          background-color: #1a1a1a;
+        }
+        .tiptap table .selectedCell:after {
+          background: rgba(59, 130, 246, 0.15);
+          content: "";
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          pointer-events: none;
+          position: absolute;
+          z-index: 2;
+        }
+        .tiptap table .column-resize-handle {
+          background-color: rgb(59, 130, 246);
+          bottom: -2px;
+          pointer-events: none;
+          position: absolute;
+          right: -2px;
+          top: 0;
+          width: 4px;
+        }
+        .tiptap .tableWrapper {
+          overflow-x: auto;
+        }
+        .tiptap.resize-cursor {
+          cursor: col-resize;
+        }
+        /* Task lists */
+        .tiptap ul[data-type="taskList"] {
+          list-style: none;
+          padding-left: 0;
+          margin-left: 0;
+        }
+        .tiptap ul[data-type="taskList"] li {
+          align-items: flex-start;
+          display: flex;
+          gap: 0.5rem;
+          margin: 0.15rem 0;
+        }
+        .tiptap ul[data-type="taskList"] li > label {
+          flex-shrink: 0;
+          margin-top: 0.2rem;
+          user-select: none;
+        }
+        .tiptap ul[data-type="taskList"] li > div {
+          flex: 1 1 auto;
+          min-width: 0;
+        }
+        .tiptap ul[data-type="taskList"] input[type="checkbox"] {
+          cursor: pointer;
+        }
+        .tiptap sub,
+        .tiptap sup {
+          font-size: 0.75em;
+          line-height: 0;
+        }
       `}</style>
       {!readOnly && editor && <EditorBubbleMenu editor={editor} />}
       <EditorContent
@@ -667,6 +860,14 @@ function EditorBubbleMenu({ editor }: { editor: TiptapEditor | null }) {
       active: editor?.isActive("italic"),
     },
     {
+      title: "Underline",
+      icon: <HiOutlineUnderline />,
+      keys: ["meta", "u"],
+      onClick: () =>
+        (editor?.chain().focus() as any)?.toggleUnderline().run(),
+      active: editor?.isActive("underline"),
+    },
+    {
       title: "Strikethrough",
       icon: <HiOutlineStrikethrough />,
       keys: ["meta", "shift", "s"],
@@ -674,11 +875,42 @@ function EditorBubbleMenu({ editor }: { editor: TiptapEditor | null }) {
       active: editor?.isActive("strike"),
     },
     {
+      title: "Highlight",
+      icon: <HiOutlinePaintBrush />,
+      keys: ["meta", "shift", "h"],
+      onClick: () =>
+        (editor?.chain().focus() as any)?.toggleHighlight().run(),
+      active: editor?.isActive("highlight"),
+    },
+    {
       title: "Code",
       icon: <HiOutlineCodeBracket />,
       keys: ["meta", "e"],
       onClick: () => editor?.chain().focus().toggleCode().run(),
       active: editor?.isActive("code"),
+    },
+    {
+      title: "Link",
+      icon: <span className="text-[10px] font-bold underline">link</span>,
+      keys: ["meta", "k"],
+      onClick: () => {
+        const previousUrl = editor?.getAttributes("link").href as
+          | string
+          | undefined;
+        const url = window.prompt("URL", previousUrl ?? "https://");
+        if (url === null) return;
+        if (url === "") {
+          editor?.chain().focus().extendMarkRange("link").unsetLink().run();
+          return;
+        }
+        editor
+          ?.chain()
+          .focus()
+          .extendMarkRange("link")
+          .setLink({ href: url })
+          .run();
+      },
+      active: editor?.isActive("link"),
     },
   ];
   return (
