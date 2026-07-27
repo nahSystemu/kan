@@ -5616,11 +5616,11 @@
     "translation": "Status"
   },
   "hQRttt": {
-    "translation": "Prześlij",
     "message": "Submit",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/NewCommentForm.tsx", 60]]
+    "origin": [["src/views/card/components/NewCommentForm.tsx", 60]],
+    "translation": "Prześlij"
   },
   "WYDptz": {
     "message": "Subscription Required",

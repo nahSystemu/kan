@@ -9577,7 +9577,6 @@
     "translation": "Status"
   },
   "hQRttt": {
-    "translation": "Submit",
     "message": "Submit",
     "placeholders": {},
     "comments": [],
@@ -9586,7 +9585,8 @@
         "src/views/card/components/NewCommentForm.tsx",
         60
       ]
-    ]
+    ],
+    "translation": "Submit"
   },
   "WYDptz": {
     "message": "Subscription Required",
