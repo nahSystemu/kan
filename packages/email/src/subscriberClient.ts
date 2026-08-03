@@ -15,6 +15,7 @@ export const subscriberClient =
     : null;
 
 interface CreateSubscriberInput {
+  publicId: string;
   email: string;
   externalId: string;
   firstName?: string;
@@ -49,5 +50,42 @@ export async function createSubscriber(input: CreateSubscriberInput) {
     }
   } catch (error) {
     log.error({ err: error }, "Error creating subscriber.dev subscriber");
+  }
+}
+
+interface UpdateSubscriberPreferencesInput {
+  email: boolean;
+}
+
+export async function updateSubscriberPreferences(
+  subscriberId: string,
+  input: UpdateSubscriberPreferencesInput,
+) {
+  if (!subscriberClient) return;
+
+  try {
+    const response = await fetch(
+      `${subscriberClient.apiUrl}/environments/${subscriberClient.environmentId}/subscribers/${subscriberId}/preferences`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-Key": subscriberClient.apiKey,
+        },
+        body: JSON.stringify(input),
+      },
+    );
+
+    if (!response.ok) {
+      log.error(
+        {
+          status: response.status,
+          body: await response.text().catch(() => undefined),
+        },
+        "Failed to update subscriber preferences",
+      );
+    }
+  } catch (error) {
+    log.error({ err: error }, "Error updating subscriber.dev preferences");
   }
 }

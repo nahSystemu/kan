@@ -158,6 +158,7 @@ export function createDatabaseHooks(db: dbClient) {
 
             try {
               await createSubscriber({
+                publicId: user.id,
                 email: user.email,
                 externalId: user.id,
                 firstName,
