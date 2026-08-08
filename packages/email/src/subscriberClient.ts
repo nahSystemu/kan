@@ -14,6 +14,46 @@ export const subscriberClient =
       }
     : null;
 
+async function subscriberRequest(
+  method: string,
+  path: string,
+  body: unknown,
+  errorMessage: string,
+) {
+  if (!subscriberClient) return;
+
+  const url = `${subscriberClient.apiUrl}${path}`;
+
+  log.debug({ method, url, body }, "subscriber.dev request");
+
+  try {
+    const response = await fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": subscriberClient.apiKey,
+      },
+      body: JSON.stringify(body),
+    });
+
+    const responseBody = await response.text().catch(() => undefined);
+
+    log.debug(
+      { method, url, status: response.status, body: responseBody },
+      "subscriber.dev response",
+    );
+
+    if (!response.ok) {
+      log.error(
+        { status: response.status, body: responseBody },
+        errorMessage,
+      );
+    }
+  } catch (error) {
+    log.error({ err: error }, errorMessage);
+  }
+}
+
 interface CreateSubscriberInput {
   publicId: string;
   email: string;
@@ -21,36 +61,18 @@ interface CreateSubscriberInput {
   firstName?: string;
   lastName?: string;
   name?: string;
+  attributes?: Record<string, unknown>;
 }
 
 export async function createSubscriber(input: CreateSubscriberInput) {
   if (!subscriberClient) return;
 
-  try {
-    const response = await fetch(
-      `${subscriberClient.apiUrl}/environments/${subscriberClient.environmentId}/subscribers`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-API-Key": subscriberClient.apiKey,
-        },
-        body: JSON.stringify(input),
-      },
-    );
-
-    if (!response.ok) {
-      log.error(
-        {
-          status: response.status,
-          body: await response.text().catch(() => undefined),
-        },
-        "Failed to create subscriber.dev subscriber",
-      );
-    }
-  } catch (error) {
-    log.error({ err: error }, "Error creating subscriber.dev subscriber");
-  }
+  await subscriberRequest(
+    "POST",
+    `/environments/${subscriberClient.environmentId}/subscribers`,
+    input,
+    "Failed to create subscriber.dev subscriber",
+  );
 }
 
 interface UpdateSubscriberPreferencesInput {
@@ -63,29 +85,31 @@ export async function updateSubscriberPreferences(
 ) {
   if (!subscriberClient) return;
 
-  try {
-    const response = await fetch(
-      `${subscriberClient.apiUrl}/environments/${subscriberClient.environmentId}/subscribers/${subscriberId}/preferences`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "X-API-Key": subscriberClient.apiKey,
-        },
-        body: JSON.stringify(input),
-      },
-    );
+  await subscriberRequest(
+    "PATCH",
+    `/environments/${subscriberClient.environmentId}/subscribers/${subscriberId}/preferences`,
+    input,
+    "Failed to update subscriber preferences",
+  );
+}
 
-    if (!response.ok) {
-      log.error(
-        {
-          status: response.status,
-          body: await response.text().catch(() => undefined),
-        },
-        "Failed to update subscriber preferences",
-      );
-    }
-  } catch (error) {
-    log.error({ err: error }, "Error updating subscriber.dev preferences");
-  }
+interface TriggerWorkflowSubscriberInput {
+  publicId?: string;
+  externalId?: string;
+  email?: string;
+}
+
+export async function triggerSubscriberWorkflow(
+  key: string,
+  subscriber: TriggerWorkflowSubscriberInput,
+  payload?: Record<string, unknown>,
+) {
+  if (!subscriberClient) return;
+
+  await subscriberRequest(
+    "POST",
+    `/environments/${subscriberClient.environmentId}/workflows/trigger`,
+    { key, subscriber, payload },
+    "Failed to trigger subscriber.dev workflow",
+  );
 }

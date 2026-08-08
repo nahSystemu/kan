@@ -124,9 +124,6 @@ importers:
       '@lingui/react':
         specifier: ^5.3.2
         version: 5.4.1(@lingui/babel-plugin-lingui-macro@5.4.1(typescript@5.9.2))(react@18.3.1)
-      '@novu/api':
-        specifier: ^3.11.0
-        version: 3.11.0
       '@t3-oss/env-nextjs':
         specifier: ^0.11.1
         version: 0.11.1(typescript@5.9.2)(zod@3.25.76)
@@ -470,9 +467,6 @@ importers:
       '@kan/logger':
         specifier: workspace:^
         version: link:../logger
-      '@novu/api':
-        specifier: ^3.11.0
-        version: 3.11.0
       '@react-email/components':
         specifier: ^1.0.1
         version: 1.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1544,11 +1538,11 @@ packages:
 
   '@esbuild-kit/core-utils@3.3.2':
     resolution: {integrity: sha512-sPRAnw9CdSsRmEtnsl2WXWdyquogVpB3yZ3dgwJfe8zrOzTsV7cJvmwrKVa+0ma5BoiGJ+BoqkMvawbayKUsqQ==}
-    deprecated: 'Merged into tsx: https://tsx.is'
+    deprecated: 'Merged into tsx: https://tsx.hirok.io'
 
   '@esbuild-kit/esm-loader@2.6.5':
     resolution: {integrity: sha512-FxEMIkJKnodyA1OaCUoEvbYRkoZlLZ4d/eXFu9Fh8CbBBgP5EmZxrfTRyN0qpXZ4vOvqnE5YdRdcrmUUXuU+dA==}
-    deprecated: 'Merged into tsx: https://tsx.is'
+    deprecated: 'Merged into tsx: https://tsx.hirok.io'
 
   '@esbuild/aix-ppc64@0.19.12':
     resolution: {integrity: sha512-bmoCYyWdEL3wDQIVbcyzRyeKLgk2WtWLTWz1ZIAZF/EGbNOwSA6ew3PftJ1PqMiOOGu0OyFMzG53L0zqIpPeNA==}
@@ -3000,9 +2994,6 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
-
-  '@novu/api@3.11.0':
-    resolution: {integrity: sha512-8u0mB5VThL7MhdxoN0UoA4CS9eu2k3Xa6iulauMhCHENuJNxUNuirJWq5t8jDoH4bFTQTfMN0VRkC0qodKR2qA==}
 
   '@octokit/auth-token@3.0.4':
     resolution: {integrity: sha512-TWFX7cZF2LXoCvdmJWY7XVPi74aSY0+FfBZNSXEXFkMpjcqsQwDSYVv5FhRFaI0V1ECnwbz4j59T/G+rXNWaIQ==}
@@ -11504,10 +11495,6 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
-
-  '@novu/api@3.11.0':
-    dependencies:
-      zod: 3.25.76
 
   '@octokit/auth-token@3.0.4': {}
 
