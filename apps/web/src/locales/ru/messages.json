@@ -1626,7 +1626,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 81]],
-    "translation": "Подтвердите ваши настройки электронной почты:"
+    "translation": "Подтвердите ваши настройки электронной почты:",
+    "obsolete": true
   },
   "479pdJ": {
     "message": "Confirm your new password",
@@ -2294,7 +2295,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 78]],
-    "translation": "Вы хотите отписаться?"
+    "translation": "Вы хотите отписаться?",
+    "obsolete": true
   },
   "JyXBgS": {
     "message": "docs",
@@ -6606,7 +6608,8 @@
       ["src/pages/unsubscribe/index.tsx", 68],
       ["src/pages/unsubscribe/index.tsx", 93]
     ],
-    "translation": "Отписаться"
+    "translation": "Отписаться",
+    "obsolete": true
   },
   "EkH9pt": {
     "message": "Update",
@@ -6851,7 +6854,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 63]],
-    "translation": "Не удалось обновить ваши настройки. Пожалуйста, попробуйте ещё раз."
+    "translation": "Не удалось обновить ваши настройки. Пожалуйста, попробуйте ещё раз.",
+    "obsolete": true
   },
   "7sdSkl": {
     "message": "We sent a link to {magicLinkRecipient}",
@@ -7261,7 +7265,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 98]],
-    "translation": "Вы отписались!"
+    "translation": "Вы отписались!",
+    "obsolete": true
   },
   "R275Pz": {
     "message": "You have unlimited seats with your Pro Plan. There is no additional charge for new members!",
@@ -7440,7 +7445,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 33]],
-    "translation": "В вашей ссылке для отписки отсутствует токен. Пожалуйста, откройте последнее письмо и попробуйте снова."
+    "translation": "В вашей ссылке для отписки отсутствует токен. Пожалуйста, откройте последнее письмо и попробуйте снова.",
+    "obsolete": true
   },
   "GRAGsB": {
     "message": "Your workspace",

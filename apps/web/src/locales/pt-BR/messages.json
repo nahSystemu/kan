@@ -1626,7 +1626,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 81]],
-    "translation": "Confirme suas preferências de e-mail:"
+    "translation": "Confirme suas preferências de e-mail:",
+    "obsolete": true
   },
   "479pdJ": {
     "message": "Confirm your new password",
@@ -2294,7 +2295,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 78]],
-    "translation": "Você deseja cancelar a assinatura?"
+    "translation": "Você deseja cancelar a assinatura?",
+    "obsolete": true
   },
   "JyXBgS": {
     "message": "docs",
@@ -6606,7 +6608,8 @@
       ["src/pages/unsubscribe/index.tsx", 68],
       ["src/pages/unsubscribe/index.tsx", 93]
     ],
-    "translation": "Cancelar inscrição"
+    "translation": "Cancelar inscrição",
+    "obsolete": true
   },
   "EkH9pt": {
     "message": "Update",
@@ -6851,7 +6854,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 63]],
-    "translation": "Não foi possível atualizar suas preferências. Tente novamente."
+    "translation": "Não foi possível atualizar suas preferências. Tente novamente.",
+    "obsolete": true
   },
   "7sdSkl": {
     "message": "We sent a link to {magicLinkRecipient}",
@@ -7261,7 +7265,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 98]],
-    "translation": "Você cancelou a inscrição!"
+    "translation": "Você cancelou a inscrição!",
+    "obsolete": true
   },
   "R275Pz": {
     "message": "You have unlimited seats with your Pro Plan. There is no additional charge for new members!",
@@ -7440,7 +7445,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 33]],
-    "translation": "Seu link de cancelamento de inscrição está sem um token. Por favor, abra o e-mail mais recente e tente novamente."
+    "translation": "Seu link de cancelamento de inscrição está sem um token. Por favor, abra o e-mail mais recente e tente novamente.",
+    "obsolete": true
   },
   "GRAGsB": {
     "message": "Your workspace",

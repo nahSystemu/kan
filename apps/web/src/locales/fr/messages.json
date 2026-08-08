@@ -1626,7 +1626,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 81]],
-    "translation": "Confirmez vos préférences d'e-mail :"
+    "translation": "Confirmez vos préférences d'e-mail :",
+    "obsolete": true
   },
   "479pdJ": {
     "message": "Confirm your new password",
@@ -2294,7 +2295,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 78]],
-    "translation": "Voulez-vous vous désabonner ?"
+    "translation": "Voulez-vous vous désabonner ?",
+    "obsolete": true
   },
   "JyXBgS": {
     "message": "docs",
@@ -6606,7 +6608,8 @@
       ["src/pages/unsubscribe/index.tsx", 68],
       ["src/pages/unsubscribe/index.tsx", 93]
     ],
-    "translation": "Se désabonner"
+    "translation": "Se désabonner",
+    "obsolete": true
   },
   "EkH9pt": {
     "message": "Update",
@@ -6851,7 +6854,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 63]],
-    "translation": "Nous n'avons pas pu mettre à jour vos préférences. Veuillez réessayer."
+    "translation": "Nous n'avons pas pu mettre à jour vos préférences. Veuillez réessayer.",
+    "obsolete": true
   },
   "7sdSkl": {
     "message": "We sent a link to {magicLinkRecipient}",
@@ -7261,7 +7265,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 98]],
-    "translation": "Vous avez été désabonné !"
+    "translation": "Vous avez été désabonné !",
+    "obsolete": true
   },
   "R275Pz": {
     "message": "You have unlimited seats with your Pro Plan. There is no additional charge for new members!",
@@ -7440,7 +7445,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 33]],
-    "translation": "Votre lien de désinscription ne contient pas de jeton. Veuillez ouvrir le dernier e-mail et réessayer."
+    "translation": "Votre lien de désinscription ne contient pas de jeton. Veuillez ouvrir le dernier e-mail et réessayer.",
+    "obsolete": true
   },
   "GRAGsB": {
     "message": "Your workspace",

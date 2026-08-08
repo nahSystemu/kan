@@ -2732,7 +2732,8 @@
         81
       ]
     ],
-    "translation": "Confirm your email preferences:"
+    "translation": "Confirm your email preferences:",
+    "obsolete": true
   },
   "479pdJ": {
     "message": "Confirm your new password",
@@ -3861,7 +3862,8 @@
         78
       ]
     ],
-    "translation": "Do you want to unsubscribe?"
+    "translation": "Do you want to unsubscribe?",
+    "obsolete": true
   },
   "JyXBgS": {
     "message": "docs",
@@ -11226,7 +11228,8 @@
         93
       ]
     ],
-    "translation": "Unsubscribe"
+    "translation": "Unsubscribe",
+    "obsolete": true
   },
   "EkH9pt": {
     "message": "Update",
@@ -11642,7 +11645,8 @@
         63
       ]
     ],
-    "translation": "We couldn't update your preferences. Please try again."
+    "translation": "We couldn't update your preferences. Please try again.",
+    "obsolete": true
   },
   "7sdSkl": {
     "message": "We sent a link to {magicLinkRecipient}",
@@ -12331,7 +12335,8 @@
         98
       ]
     ],
-    "translation": "You have been unsubscribed!"
+    "translation": "You have been unsubscribed!",
+    "obsolete": true
   },
   "R275Pz": {
     "message": "You have unlimited seats with your Pro Plan. There is no additional charge for new members!",
@@ -12624,7 +12629,8 @@
         33
       ]
     ],
-    "translation": "Your unsubscribe link is missing a token. Please open the latest email and try again."
+    "translation": "Your unsubscribe link is missing a token. Please open the latest email and try again.",
+    "obsolete": true
   },
   "GRAGsB": {
     "message": "Your workspace",

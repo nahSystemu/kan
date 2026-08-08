@@ -1626,7 +1626,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 81]],
-    "translation": "Bevestig je e-mailvoorkeuren:"
+    "translation": "Bevestig je e-mailvoorkeuren:",
+    "obsolete": true
   },
   "479pdJ": {
     "message": "Confirm your new password",
@@ -2294,7 +2295,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 78]],
-    "translation": "Wil je je uitschrijven?"
+    "translation": "Wil je je uitschrijven?",
+    "obsolete": true
   },
   "JyXBgS": {
     "message": "docs",
@@ -6606,7 +6608,8 @@
       ["src/pages/unsubscribe/index.tsx", 68],
       ["src/pages/unsubscribe/index.tsx", 93]
     ],
-    "translation": "Uitschrijven"
+    "translation": "Uitschrijven",
+    "obsolete": true
   },
   "EkH9pt": {
     "message": "Update",
@@ -6851,7 +6854,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 63]],
-    "translation": "We konden je voorkeuren niet bijwerken. Probeer het opnieuw."
+    "translation": "We konden je voorkeuren niet bijwerken. Probeer het opnieuw.",
+    "obsolete": true
   },
   "7sdSkl": {
     "message": "We sent a link to {magicLinkRecipient}",
@@ -7261,7 +7265,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 98]],
-    "translation": "Je bent uitgeschreven!"
+    "translation": "Je bent uitgeschreven!",
+    "obsolete": true
   },
   "R275Pz": {
     "message": "You have unlimited seats with your Pro Plan. There is no additional charge for new members!",
@@ -7440,7 +7445,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [["src/pages/unsubscribe/index.tsx", 33]],
-    "translation": "Je afmeldlink mist een token. Open de nieuwste e-mail en probeer het opnieuw."
+    "translation": "Je afmeldlink mist een token. Open de nieuwste e-mail en probeer het opnieuw.",
+    "obsolete": true
   },
   "GRAGsB": {
     "message": "Your workspace",
