@@ -19,7 +19,7 @@
       "0": ["isTemplate ? \"Templates\" : \"Boards\""]
     },
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 53]],
+    "origin": [["src/views/boards/index.tsx", 62]],
     "translation": "{0}"
   },
   "JArWcF": {
@@ -33,7 +33,7 @@
     },
     "comments": [],
     "origin": [
-      ["src/views/boards/index.tsx", 48],
+      ["src/views/boards/index.tsx", 57],
       ["src/views/card/index.tsx", 321]
     ],
     "translation": "{0} | {1}"
@@ -71,7 +71,7 @@
       "0": ["isTemplate ? \"Template\" : \"Board\""]
     },
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 565]],
+    "origin": [["src/views/board/index.tsx", 570]],
     "translation": "{0} não encontrado"
   },
   "0xWkkH": {
@@ -220,7 +220,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/boards/index.tsx", 26],
+      ["src/views/boards/index.tsx", 30],
       ["src/views/settings/components/NewWebhookModal.tsx", 321],
       ["src/views/settings/components/WebhookList.tsx", 106]
     ],
@@ -664,7 +664,7 @@
     "message": "Archived",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 27]],
+    "origin": [["src/views/boards/index.tsx", 31]],
     "translation": "Arquivado"
   },
   "lo8xBK": {
@@ -887,7 +887,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 538],
+      ["src/views/board/index.tsx", 543],
       ["src/views/card/index.tsx", 321],
       ["src/views/public/board/index.tsx", 125]
     ],
@@ -1006,7 +1006,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/SideNavigation.tsx", 97],
+      ["src/components/SideNavigation.tsx", 98],
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 73]
     ],
     "translation": "Quadros"
@@ -1361,7 +1361,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 309],
+      ["src/views/board/index.tsx", 314],
       ["src/views/card/components/Dropdown.tsx", 74],
       ["src/views/public/board/CardModal.tsx", 38]
     ],
@@ -1889,7 +1889,7 @@
     "comments": [],
     "origin": [
       ["src/views/boards/components/BoardsList.tsx", 80],
-      ["src/views/boards/index.tsx", 41]
+      ["src/views/boards/index.tsx", 45]
     ],
     "translation": "Criar novo {0}"
   },
@@ -1915,8 +1915,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 93],
-      ["src/views/board/index.tsx", 679]
+      ["src/views/board/index.tsx", 99],
+      ["src/views/board/index.tsx", 684]
     ],
     "translation": "Criar nova lista"
   },
@@ -1940,7 +1940,7 @@
     "comments": [],
     "origin": [
       ["src/components/NewWorkspaceForm.tsx", 227],
-      ["src/components/WorkspaceMenu.tsx", 171]
+      ["src/components/WorkspaceMenu.tsx", 176]
     ],
     "translation": "Criar workspace"
   },
@@ -3127,7 +3127,7 @@
     "message": "Get started by creating a new list",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 664]],
+    "origin": [["src/views/board/index.tsx", 669]],
     "translation": "Comece criando uma nova lista"
   },
   "oW13KZ": {
@@ -3204,7 +3204,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/SideNavigation.tsx", 105],
+      ["src/components/SideNavigation.tsx", 106],
       ["src/pages/404.tsx", 44]
     ],
     "translation": "Ir para quadros"
@@ -3220,21 +3220,21 @@
     "message": "Go to members",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/SideNavigation.tsx", 129]],
+    "origin": [["src/components/SideNavigation.tsx", 130]],
     "translation": "Ir para membros"
   },
   "1WuwiM": {
     "message": "Go to settings",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/SideNavigation.tsx", 141]],
+    "origin": [["src/components/SideNavigation.tsx", 142]],
     "translation": "Ir para configurações"
   },
   "csFbe+": {
     "message": "Go to templates",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/components/SideNavigation.tsx", 117]],
+    "origin": [["src/components/SideNavigation.tsx", 118]],
     "translation": "Ir para modelos"
   },
   "SUvm1Y": {
@@ -3384,7 +3384,7 @@
     "message": "Import",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/boards/index.tsx", 73]],
+    "origin": [["src/views/boards/index.tsx", 82]],
     "translation": "Importar"
   },
   "2MPcep": {
@@ -3767,7 +3767,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/UpdateBoardSlugButton.tsx", 80],
-      ["src/views/board/index.tsx", 307],
+      ["src/views/board/index.tsx", 312],
       ["src/views/card/components/Dropdown.tsx", 72],
       ["src/views/public/board/CardModal.tsx", 36],
       ["src/views/public/board/index.tsx", 77]
@@ -3947,7 +3947,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/SideNavigation.tsx", 121],
+      ["src/components/SideNavigation.tsx", 122],
       ["src/views/board/components/Filters.tsx", 147],
       ["src/views/board/components/NewCardForm.tsx", 386],
       ["src/views/card/index.tsx", 143],
@@ -4092,7 +4092,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/boards/index.tsx", 95],
+      ["src/views/boards/index.tsx", 104],
       ["src/views/home/components/Features.tsx", 73]
     ],
     "translation": "Novo"
@@ -4147,7 +4147,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/NewListForm.tsx", 113],
-      ["src/views/board/index.tsx", 628]
+      ["src/views/board/index.tsx", 633]
     ],
     "translation": "Nova lista"
   },
@@ -4280,14 +4280,14 @@
     "message": "No lists",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 660]],
+    "origin": [["src/views/board/index.tsx", 665]],
     "translation": "Nenhuma lista"
   },
   "fvLNDy": {
     "message": "No lists have been created yet",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 665]],
+    "origin": [["src/views/board/index.tsx", 670]],
     "translation": "Nenhuma lista foi criada ainda"
   },
   "i30J2U": {
@@ -4709,8 +4709,8 @@
       ["src/views/board/components/NewTemplateForm.tsx", 77],
       ["src/views/board/components/UpdateBoardSlugForm.tsx", 73],
       ["src/views/board/components/VisibilityButton.tsx", 57],
-      ["src/views/board/index.tsx", 219],
-      ["src/views/board/index.tsx", 275],
+      ["src/views/board/index.tsx", 224],
+      ["src/views/board/index.tsx", 280],
       ["src/views/boards/components/ImportBoardsForm.tsx", 243],
       ["src/views/boards/components/ImportBoardsForm.tsx", 395],
       ["src/views/card/components/AttachmentThumbnails.tsx", 74],
@@ -4768,7 +4768,7 @@
     "origin": [
       ["src/views/board/components/CardContextDuplicateModal.tsx", 76],
       ["src/views/board/components/CardContextMoveListModal.tsx", 42],
-      ["src/views/board/index.tsx", 316],
+      ["src/views/board/index.tsx", 321],
       ["src/views/card/components/Dropdown.tsx", 55],
       ["src/views/card/components/Dropdown.tsx", 81],
       ["src/views/card/components/Dropdown.tsx", 100],
@@ -5361,7 +5361,7 @@
     "comments": [],
     "origin": [
       ["src/components/SettingsLayout.tsx", 102],
-      ["src/components/SideNavigation.tsx", 133]
+      ["src/components/SideNavigation.tsx", 134]
     ],
     "translation": "Configurações"
   },
@@ -5597,9 +5597,9 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/SideNavigation.tsx", 225],
-      ["src/components/SideNavigation.tsx", 226],
-      ["src/components/SideNavigation.tsx", 236]
+      ["src/components/SideNavigation.tsx", 228],
+      ["src/components/SideNavigation.tsx", 229],
+      ["src/components/SideNavigation.tsx", 239]
     ],
     "translation": "Iniciar teste gratuito"
   },
@@ -5717,8 +5717,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 538],
-      ["src/views/board/index.tsx", 574]
+      ["src/views/board/index.tsx", 543],
+      ["src/views/board/index.tsx", 579]
     ],
     "translation": "Modelo"
   },
@@ -5755,7 +5755,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/components/SideNavigation.tsx", 109],
+      ["src/components/SideNavigation.tsx", 110],
       ["src/views/home/components/Features.tsx", 115]
     ],
     "translation": "Templates"
@@ -6185,7 +6185,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 314],
+      ["src/views/board/index.tsx", 319],
       ["src/views/card/components/Dropdown.tsx", 79],
       ["src/views/public/board/CardModal.tsx", 43],
       ["src/views/public/board/index.tsx", 84]
@@ -6385,7 +6385,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 274],
+      ["src/views/board/index.tsx", 279],
       ["src/views/card/index.tsx", 235]
     ],
     "translation": "Não foi possível atualizar o cartão"
@@ -6430,7 +6430,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 218],
+      ["src/views/board/index.tsx", 223],
       ["src/views/card/components/ListSelector.tsx", 54]
     ],
     "translation": "Não foi possível atualizar a lista"
@@ -7008,8 +7008,8 @@
     "comments": [],
     "origin": [
       ["src/components/SettingsLayout.tsx", 47],
-      ["src/views/board/index.tsx", 538],
-      ["src/views/boards/index.tsx", 48],
+      ["src/views/board/index.tsx", 543],
+      ["src/views/boards/index.tsx", 57],
       ["src/views/members/index.tsx", 278],
       ["src/views/public/board/index.tsx", 125],
       ["src/views/public/boards/index.tsx", 75]
@@ -7238,11 +7238,11 @@
       ["src/views/board/components/List.tsx", 117],
       ["src/views/board/components/UpdateBoardSlugButton.tsx", 58],
       ["src/views/board/components/VisibilityButton.tsx", 72],
-      ["src/views/board/index.tsx", 612],
-      ["src/views/board/index.tsx", 670],
+      ["src/views/board/index.tsx", 617],
+      ["src/views/board/index.tsx", 675],
       ["src/views/boards/components/BoardsList.tsx", 71],
-      ["src/views/boards/index.tsx", 59],
-      ["src/views/boards/index.tsx", 80]
+      ["src/views/boards/index.tsx", 68],
+      ["src/views/boards/index.tsx", 89]
     ],
     "translation": "Você não tem permissão"
   },

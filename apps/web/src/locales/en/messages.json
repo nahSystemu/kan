@@ -34,7 +34,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        53
+        62
       ]
     ],
     "translation": "{0}"
@@ -55,7 +55,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        48
+        57
       ],
       [
         "src/views/card/index.tsx",
@@ -123,7 +123,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        565
+        570
       ]
     ],
     "translation": "{0} not found"
@@ -371,7 +371,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        26
+        30
       ],
       [
         "src/views/settings/components/NewWebhookModal.tsx",
@@ -1121,7 +1121,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        27
+        31
       ]
     ],
     "translation": "Archived"
@@ -1485,7 +1485,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        538
+        543
       ],
       [
         "src/views/card/index.tsx",
@@ -1681,7 +1681,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        97
+        98
       ],
       [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
@@ -2289,7 +2289,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        309
+        314
       ],
       [
         "src/views/card/components/Dropdown.tsx",
@@ -3166,7 +3166,7 @@
       ],
       [
         "src/views/boards/index.tsx",
-        41
+        45
       ]
     ],
     "translation": "Create new {0}"
@@ -3206,11 +3206,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        93
+        99
       ],
       [
         "src/views/board/index.tsx",
-        679
+        684
       ]
     ],
     "translation": "Create new list"
@@ -3250,7 +3250,7 @@
       ],
       [
         "src/components/WorkspaceMenu.tsx",
-        171
+        176
       ]
     ],
     "translation": "Create workspace"
@@ -5265,7 +5265,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        664
+        669
       ]
     ],
     "translation": "Get started by creating a new list"
@@ -5393,7 +5393,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        105
+        106
       ],
       [
         "src/pages/404.tsx",
@@ -5421,7 +5421,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        129
+        130
       ]
     ],
     "translation": "Go to members"
@@ -5433,7 +5433,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        141
+        142
       ]
     ],
     "translation": "Go to settings"
@@ -5445,7 +5445,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        117
+        118
       ]
     ],
     "translation": "Go to templates"
@@ -5693,7 +5693,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        73
+        82
       ]
     ],
     "translation": "Import"
@@ -6335,7 +6335,7 @@
       ],
       [
         "src/views/board/index.tsx",
-        307
+        312
       ],
       [
         "src/views/card/components/Dropdown.tsx",
@@ -6643,7 +6643,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        121
+        122
       ],
       [
         "src/views/board/components/Filters.tsx",
@@ -6902,7 +6902,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        95
+        104
       ],
       [
         "src/views/home/components/Features.tsx",
@@ -6998,7 +6998,7 @@
       ],
       [
         "src/views/board/index.tsx",
-        628
+        633
       ]
     ],
     "translation": "New list"
@@ -7218,7 +7218,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        660
+        665
       ]
     ],
     "translation": "No lists"
@@ -7230,7 +7230,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        665
+        670
       ]
     ],
     "translation": "No lists have been created yet"
@@ -7942,11 +7942,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        219
+        224
       ],
       [
         "src/views/board/index.tsx",
-        275
+        280
       ],
       [
         "src/views/boards/components/ImportBoardsForm.tsx",
@@ -8130,7 +8130,7 @@
       ],
       [
         "src/views/board/index.tsx",
-        316
+        321
       ],
       [
         "src/views/card/components/Dropdown.tsx",
@@ -9153,7 +9153,7 @@
       ],
       [
         "src/components/SideNavigation.tsx",
-        133
+        134
       ]
     ],
     "translation": "Settings"
@@ -9541,15 +9541,15 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        225
+        228
       ],
       [
         "src/components/SideNavigation.tsx",
-        226
+        229
       ],
       [
         "src/components/SideNavigation.tsx",
-        236
+        239
       ]
     ],
     "translation": "Start free trial"
@@ -9741,11 +9741,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        538
+        543
       ],
       [
         "src/views/board/index.tsx",
-        574
+        579
       ]
     ],
     "translation": "Template"
@@ -9805,7 +9805,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        109
+        110
       ],
       [
         "src/views/home/components/Features.tsx",
@@ -10505,7 +10505,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        314
+        319
       ],
       [
         "src/views/card/components/Dropdown.tsx",
@@ -10833,7 +10833,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        274
+        279
       ],
       [
         "src/views/card/index.tsx",
@@ -10909,7 +10909,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        218
+        223
       ],
       [
         "src/views/card/components/ListSelector.tsx",
@@ -11899,11 +11899,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        538
+        543
       ],
       [
         "src/views/boards/index.tsx",
-        48
+        57
       ],
       [
         "src/views/members/index.tsx",
@@ -12280,11 +12280,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        612
+        617
       ],
       [
         "src/views/board/index.tsx",
-        670
+        675
       ],
       [
         "src/views/boards/components/BoardsList.tsx",
@@ -12292,11 +12292,11 @@
       ],
       [
         "src/views/boards/index.tsx",
-        59
+        68
       ],
       [
         "src/views/boards/index.tsx",
-        80
+        89
       ]
     ],
     "translation": "You don't have permission"
