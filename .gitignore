@@ -55,4 +55,9 @@ i18n.cache
 # pgdata
 /apps/web/pgdata
 
+# local scripts
+scripts/
+
 .claude
+# local-only setup notes
+LOCAL_SETUP.md

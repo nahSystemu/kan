@@ -1,1 +1,0 @@
-CREATE UNIQUE INDEX IF NOT EXISTS "unique_page_slug_global" ON "page" USING btree ("slug") WHERE "page"."deletedAt" IS NULL;

@@ -1,17 +1,18 @@
 import {
   and,
+  asc,
   count,
   desc,
   eq,
   ilike,
   inArray,
   isNull,
-  asc,
   or,
   sql,
 } from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
+import type { Permission, Role } from "@kan/shared";
 import {
   boards,
   cards,
@@ -19,8 +20,11 @@ import {
   workspaceMembers,
   workspaces,
 } from "@kan/db/schema";
-import type { Permission, Role } from "@kan/shared";
-import { generateUID, getDefaultPermissions } from "@kan/shared";
+import {
+  generateUID,
+  generateWorkspacePrefix,
+  getDefaultPermissions,
+} from "@kan/shared";
 
 import * as permissionRepo from "./permission.repo";
 
@@ -31,25 +35,25 @@ const SYSTEM_ROLES: {
   hierarchyLevel: number;
   color: string;
 }[] = [
-    {
-      name: "admin",
-      description: "Full access to all workspace features",
-      hierarchyLevel: 100,
-      color: "#ef4444",
-    },
-    {
-      name: "member",
-      description: "Standard member with create and edit permissions",
-      hierarchyLevel: 50,
-      color: "#22c55e",
-    },
-    {
-      name: "guest",
-      description: "View-only access",
-      hierarchyLevel: 10,
-      color: "#6b7280",
-    },
-  ];
+  {
+    name: "admin",
+    description: "Full access to all workspace features",
+    hierarchyLevel: 100,
+    color: "#ef4444",
+  },
+  {
+    name: "member",
+    description: "Standard member with create and edit permissions",
+    hierarchyLevel: 50,
+    color: "#22c55e",
+  },
+  {
+    name: "guest",
+    description: "View-only access",
+    hierarchyLevel: 10,
+    color: "#6b7280",
+  },
+];
 
 export const getCount = async (db: dbClient) => {
   const result = await db
@@ -68,6 +72,8 @@ export const create = async (
     slug: string;
     createdBy: string;
     createdByEmail: string;
+    description?: string;
+    plan?: "free" | "team" | "pro" | "enterprise";
   },
 ) => {
   const [workspace] = await db
@@ -77,6 +83,12 @@ export const create = async (
       name: workspaceInput.name,
       slug: workspaceInput.slug,
       createdBy: workspaceInput.createdBy,
+      ...(workspaceInput.description && {
+        description: workspaceInput.description,
+      }),
+      ...(workspaceInput.plan && { plan: workspaceInput.plan }),
+      cardPrefix: generateWorkspacePrefix(workspaceInput.name),
+      cardCounter: 0,
     })
     .returning({
       id: workspaces.id,
@@ -85,6 +97,7 @@ export const create = async (
       slug: workspaces.slug,
       description: workspaces.description,
       plan: workspaces.plan,
+      cardPrefix: workspaces.cardPrefix,
     });
 
   if (workspace) {
@@ -129,7 +142,7 @@ export const update = async (
   workspaceInput: {
     name?: string;
     slug?: string;
-    plan?: "free" | "pro" | "enterprise";
+    plan?: "free" | "team" | "pro" | "enterprise";
     description?: string;
     showEmailsToMembers?: boolean;
     weekStartDay?: number;
@@ -168,6 +181,8 @@ export const getByPublicId = (db: dbClient, workspacePublicId: string) => {
       name: true,
       plan: true,
       slug: true,
+      deletedAt: true,
+      createdBy: true,
     },
     where: eq(workspaces.publicId, workspacePublicId),
   });
@@ -232,6 +247,7 @@ export const getByPublicIdWithMembers = (
           status: true,
           seats: true,
           unlimitedSeats: true,
+          partnerTier: true,
           periodStart: true,
           periodEnd: true,
         },
@@ -260,8 +276,12 @@ export const getBySlugWithBoards = (db: dbClient, workspaceSlug: string) => {
           slug: true,
           name: true,
         },
-        where: and(isNull(boards.deletedAt), eq(boards.visibility, "public"), eq(boards.isArchived, false)),
-        orderBy: [asc(boards.name)]
+        where: and(
+          isNull(boards.deletedAt),
+          eq(boards.visibility, "public"),
+          eq(boards.isArchived, false),
+        ),
+        orderBy: [asc(boards.name)],
       },
     },
     where: and(
@@ -285,6 +305,7 @@ export const getAllByUserId = async (db: dbClient, userId: string) => {
           slug: true,
           plan: true,
           weekStartDay: true,
+          cardPrefix: true,
           deletedAt: true,
         },
         // https://github.com/drizzle-team/drizzle-orm/issues/2903
@@ -299,6 +320,16 @@ export const getAllByUserId = async (db: dbClient, userId: string) => {
   });
 
   return result.filter((member) => !member.workspace.deletedAt);
+};
+
+export const getAllOwnedByUserId = async (db: dbClient, userId: string) => {
+  return await db.query.workspaces.findMany({
+    columns: {
+      publicId: true,
+      plan: true,
+    },
+    where: and(eq(workspaces.createdBy, userId), isNull(workspaces.deletedAt)),
+  });
 };
 
 export const getMemberByPublicId = (db: dbClient, memberPublicId: string) => {
@@ -367,6 +398,14 @@ export const isUserInWorkspace = async (
   return result?.id !== undefined;
 };
 
+const parseTicketId = (
+  query: string,
+): { prefix: string; number: number } | null => {
+  const match = /^([A-Za-z0-9]{1,10})-(\d+)$/.exec(query);
+  if (!match) return null;
+  return { prefix: match[1]!.toUpperCase(), number: parseInt(match[2]!, 10) };
+};
+
 export const searchBoardsAndCards = async (
   db: dbClient,
   workspaceId: number,
@@ -374,6 +413,8 @@ export const searchBoardsAndCards = async (
   limit = 20,
 ) => {
   const searchQuery = `%${query}%`;
+
+  const ticketId = parseTicketId(query.trim());
 
   // Search for boards
   const boardResults = await db
@@ -402,25 +443,19 @@ export const searchBoardsAndCards = async (
       sql`similarity(${boards.name}, ${query}) DESC`,
       desc(boards.updatedAt),
     )
-    .limit(Math.ceil(limit * 0.4));
+    .limit(ticketId ? 0 : Math.ceil(limit * 0.4));
 
-  // Search for cards
-  const cardResults = await db
-    .select({
-      publicId: cards.publicId,
-      title: cards.title,
-      description: cards.description,
-      boardPublicId: boards.publicId,
-      boardName: boards.name,
-      listName: lists.name,
-      updatedAt: cards.updatedAt,
-      createdAt: cards.createdAt,
-    })
-    .from(cards)
-    .innerJoin(lists, eq(cards.listId, lists.id))
-    .innerJoin(boards, eq(lists.boardId, boards.id))
-    .where(
-      and(
+  // Search for cards by ticket ID or by title
+  const cardWhereConditions = ticketId
+    ? and(
+        eq(boards.workspaceId, workspaceId),
+        eq(cards.cardNumber, ticketId.number),
+        ilike(workspaces.cardPrefix, ticketId.prefix),
+        isNull(cards.deletedAt),
+        isNull(lists.deletedAt),
+        isNull(boards.deletedAt),
+      )
+    : and(
         eq(boards.workspaceId, workspaceId),
         or(
           ilike(cards.title, searchQuery),
@@ -429,19 +464,46 @@ export const searchBoardsAndCards = async (
         isNull(cards.deletedAt),
         isNull(lists.deletedAt),
         isNull(boards.deletedAt),
-      ),
-    )
+      );
+
+  const cardResults = await db
+    .select({
+      publicId: cards.publicId,
+      title: cards.title,
+      description: cards.description,
+      boardPublicId: boards.publicId,
+      boardName: boards.name,
+      listName: lists.name,
+      cardNumber: cards.cardNumber,
+      updatedAt: cards.updatedAt,
+      createdAt: cards.createdAt,
+    })
+    .from(cards)
+    .innerJoin(lists, eq(cards.listId, lists.id))
+    .innerJoin(boards, eq(lists.boardId, boards.id))
+    .innerJoin(workspaces, eq(boards.workspaceId, workspaces.id))
+    .where(cardWhereConditions)
     .orderBy(
-      sql`CASE WHEN ${cards.title} ILIKE ${searchQuery} THEN 1 ELSE 0 END DESC`,
-      sql`similarity(${cards.title}, ${query}) DESC`,
-      desc(cards.updatedAt),
+      ...(ticketId
+        ? [desc(cards.createdAt)]
+        : [
+            sql`CASE WHEN ${cards.title} ILIKE ${searchQuery} THEN 1 ELSE 0 END DESC`,
+            sql`similarity(${cards.title}, ${query}) DESC`,
+            desc(cards.updatedAt),
+          ]),
     )
-    .limit(Math.floor(limit * 0.6));
+    .limit(ticketId ? limit : Math.floor(limit * 0.6));
 
   // Combine results
   const allResults = [
-    ...boardResults.map((board) => ({ ...board, type: "board" as const })),
-    ...cardResults.map((card) => ({ ...card, type: "card" as const })),
+    ...boardResults.map((board) => ({
+      ...board,
+      type: "board" as const,
+    })),
+    ...cardResults.map((card) => ({
+      ...card,
+      type: "card" as const,
+    })),
   ];
 
   // Ensure we don't exceed the total limit

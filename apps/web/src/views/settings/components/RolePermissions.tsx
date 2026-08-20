@@ -173,7 +173,6 @@ export function RolePermissions() {
                           checked={!!checked}
                           onChange={(e) =>
                             !isAdminRole &&
-                            !isBillingOrDeletePermission &&
                             role &&
                             handleToggle(
                               role.publicId,

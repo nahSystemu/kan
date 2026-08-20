@@ -222,29 +222,36 @@
     {
       "idx": 31,
       "version": "7",
-      "when": 1773312242728,
-      "tag": "20250921090849_melodic_runaways",
+      "when": 1775170588247,
+      "tag": "20260402225628_AddTeamWorkspacePlan",
       "breakpoints": true
     },
     {
       "idx": 32,
       "version": "7",
-      "when": 1773312242729,
-      "tag": "20250922033300_flashy_susan_delgado",
+      "when": 1776809379931,
+      "tag": "20260421220939_AddCardNumber",
       "breakpoints": true
     },
     {
       "idx": 33,
       "version": "7",
-      "when": 1773312242730,
-      "tag": "20250922060110_dear_molecule_man",
+      "when": 1778617946519,
+      "tag": "20260512203226_AddPartnerLicenseToSubscription",
       "breakpoints": true
     },
     {
       "idx": 34,
       "version": "7",
-      "when": 1774385824299,
-      "tag": "20260324205704_AddColorAndDeletedAtToWorkspaceRoles",
+      "when": 1780057951781,
+      "tag": "20260529123231_DropPartnerLicenseKeyUniqueConstraint",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1787186286574,
+      "tag": "20260820003806_safe_thunderball",
       "breakpoints": true
     }
   ]

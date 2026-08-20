@@ -18,6 +18,13 @@ import {
 
 import { boardTopic, eventBus } from "../events";
 import {
+  boardBySlugSchema,
+  boardCreateResponseSchema,
+  boardDetailSchema,
+  boardListItemSchema,
+  boardUpdateResponseSchema,
+} from "../schemas";
+import {
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
@@ -84,9 +91,7 @@ export const boardRouter = createTRPCRouter({
         archived: z.boolean().optional(),
       }),
     )
-    .output(
-      z.custom<Awaited<ReturnType<typeof boardRepo.getAllByWorkspaceId>>>(),
-    )
+    .output(z.array(boardListItemSchema))
     .query(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
 
@@ -153,7 +158,7 @@ export const boardRouter = createTRPCRouter({
         type: z.enum(["regular", "template"]).optional(),
       }),
     )
-    .output(z.custom<Awaited<ReturnType<typeof boardRepo.getByPublicId>>>())
+    .output(boardDetailSchema)
     .query(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
 
@@ -293,7 +298,7 @@ export const boardRouter = createTRPCRouter({
           .optional(),
       }),
     )
-    .output(z.custom<Awaited<ReturnType<typeof boardRepo.getBySlug>>>())
+    .output(boardBySlugSchema.nullable())
     .query(async ({ ctx, input }) => {
       const workspace = await workspaceRepo.getBySlugWithBoards(
         ctx.db,
@@ -346,7 +351,7 @@ export const boardRouter = createTRPCRouter({
         sourceBoardPublicId: z.string().min(12).optional(),
       }),
     )
-    .output(z.custom<Awaited<ReturnType<typeof boardRepo.create>>>())
+    .output(boardCreateResponseSchema)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
 
@@ -516,7 +521,7 @@ export const boardRouter = createTRPCRouter({
         isArchived: z.boolean().optional(),
       }),
     )
-    .output(z.object({ success: z.boolean() }).or(z.custom<Awaited<ReturnType<typeof boardRepo.update>>>()))
+    .output(boardUpdateResponseSchema)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
 
@@ -685,6 +690,119 @@ export const boardRouter = createTRPCRouter({
           await activityRepo.bulkCreate(ctx.db, activities);
         }
       }
+
+      return { success: true };
+    }),
+  move: protectedProcedure
+    .meta({
+      openapi: {
+        method: "POST",
+        path: "/boards/{boardPublicId}/move",
+        summary: "Move board to another workspace",
+        description:
+          "Moves a board and all its contents to a different workspace",
+        tags: ["Boards"],
+        protect: true,
+      },
+    })
+    .input(
+      z.object({
+        boardPublicId: z.string().min(12),
+        targetWorkspacePublicId: z.string().min(12),
+      }),
+    )
+    .output(z.object({ success: z.boolean() }))
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      // Get source board
+      const board = await boardRepo.getBoardForMove(
+        ctx.db,
+        input.boardPublicId,
+      );
+
+      if (!board)
+        throw new TRPCError({
+          message: `Board with public ID ${input.boardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      if (board.type === "template")
+        throw new TRPCError({
+          message: `Templates cannot be moved between workspaces`,
+          code: "BAD_REQUEST",
+        });
+
+      if (board.isArchived)
+        throw new TRPCError({
+          message: `Archived boards cannot be moved. Unarchive the board first.`,
+          code: "BAD_REQUEST",
+        });
+
+      // Check permission to edit board in source workspace
+      await assertCanEdit(
+        ctx.db,
+        userId,
+        board.workspaceId,
+        "board:edit",
+        board.createdBy ?? null,
+      );
+
+      // Get target workspace. workspaceRepo.getByPublicId does not yet
+      // filter soft-deleted workspaces (legacy: same is true for several
+      // peer callers); guard at this call site so we never move a board
+      // into a tombstoned workspace. A wider fix to make the repo treat
+      // deleted-as-not-found is a separate concern.
+      const targetWorkspace = await workspaceRepo.getByPublicId(
+        ctx.db,
+        input.targetWorkspacePublicId,
+      );
+
+      if (!targetWorkspace || targetWorkspace.deletedAt)
+        throw new TRPCError({
+          message: `Target workspace not found`,
+          code: "NOT_FOUND",
+        });
+
+      if (targetWorkspace.id === board.workspaceId)
+        throw new TRPCError({
+          message: `Board is already in this workspace`,
+          code: "BAD_REQUEST",
+        });
+
+      // Check permission to create boards in target workspace
+      await assertPermission(
+        ctx.db,
+        userId,
+        targetWorkspace.id,
+        "board:create",
+      );
+
+      let slug = board.slug ?? generateSlug(board.name);
+
+      const isSlugAvailable = await boardRepo.isBoardSlugAvailable(
+        ctx.db,
+        slug,
+        targetWorkspace.id,
+      );
+
+      if (!isSlugAvailable) {
+        slug = `${slug}-${generateUID()}`;
+      }
+
+      // Move the board
+      await boardRepo.moveToWorkspace(
+        ctx.db,
+        board.id,
+        targetWorkspace.id,
+        slug,
+      );
 
       return { success: true };
     }),

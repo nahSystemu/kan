@@ -4,7 +4,8 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { t } from "@lingui/core/macro";
 import { keepPreviousData } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { env } from "next-runtime-env";
+import { useEffect, useMemo, useState } from "react";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
 import {
@@ -15,6 +16,7 @@ import {
 
 import type { UpdateBoardInput } from "@kan/api/types";
 
+import type { CardContextMenuAction } from "./components/CardContextMenu";
 import Button from "~/components/Button";
 import { DeleteLabelConfirmation } from "~/components/DeleteLabelConfirmation";
 import { LabelForm } from "~/components/LabelForm";
@@ -26,21 +28,29 @@ import { StrictModeDroppable as Droppable } from "~/components/StrictModeDroppab
 import { Tooltip } from "~/components/Tooltip";
 import { EditYouTubeModal } from "~/components/YouTubeEmbed/EditYouTubeModal";
 import { useDragToScroll } from "~/hooks/useDragToScroll";
-import { useScrollRestore } from "~/hooks/useScrollRestore";
 import { usePermissions } from "~/hooks/usePermissions";
 import { useBoardEvents } from "~/hooks/useRealtime";
+import { useScrollRestore } from "~/hooks/useScrollRestore";
 import { useKeyboardShortcut } from "~/providers/keyboard-shortcuts";
 import { useModal } from "~/providers/modal";
 import { usePopup } from "~/providers/popup";
 import { useWorkspace } from "~/providers/workspace";
 import { api } from "~/utils/api";
 import { formatToArray } from "~/utils/helpers";
+import { DeleteCardConfirmation } from "~/views/card/components/DeleteCardConfirmation";
 import BoardDropdown from "./components/BoardDropdown";
 import Card from "./components/Card";
+import { CardContextDueDateModal } from "./components/CardContextDueDateModal";
+import { CardContextDuplicateModal } from "./components/CardContextDuplicateModal";
+import { CardContextLabelsModal } from "./components/CardContextLabelsModal";
+import { CardContextMembersModal } from "./components/CardContextMembersModal";
+import { CardContextMenu } from "./components/CardContextMenu";
+import { CardContextMoveListModal } from "./components/CardContextMoveListModal";
 import { DeleteBoardConfirmation } from "./components/DeleteBoardConfirmation";
 import { DeleteListConfirmation } from "./components/DeleteListConfirmation";
 import Filters from "./components/Filters";
 import List from "./components/List";
+import { MoveBoardForm } from "./components/MoveBoardForm";
 import { NewCardForm } from "./components/NewCardForm";
 import { NewListForm } from "./components/NewListForm";
 import { NewTemplateForm } from "./components/NewTemplateForm";
@@ -56,10 +66,17 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
   const utils = api.useUtils();
   const { showPopup } = usePopup();
   const { workspace } = useWorkspace();
-  const { openModal, modalContentType, entityId, isOpen } = useModal();
+  const { openModal, modalContentType, entityId, isOpen, setModalState } =
+    useModal();
   const [selectedPublicListId, setSelectedPublicListId] =
     useState<PublicListId>("");
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+
+  const [contextMenu, setContextMenu] = useState<{
+    x: number;
+    y: number;
+    cardPublicId: string;
+  } | null>(null);
 
   const { ref: scrollRef, onMouseDown } = useDragToScroll({
     enabled: true,
@@ -69,20 +86,25 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
   const { canCreateList, canEditList, canEditCard, canEditBoard } =
     usePermissions();
 
-  const { tooltipContent: createListShortcutTooltipContent } =
-    useKeyboardShortcut({
-      type: "PRESS",
-      stroke: { key: "C" },
-      action: () => boardId && canCreateList && openNewListForm(boardId),
-      description: t`Create new list`,
-      group: "ACTIONS",
-    });
-
   const boardId = params?.boardId
     ? Array.isArray(params.boardId)
       ? params.boardId[0]
       : params.boardId
     : null;
+
+  const createListShortcut = useMemo(
+    () => ({
+      type: "PRESS" as const,
+      stroke: { key: "C" },
+      action: () => boardId && canCreateList && openNewListForm(boardId),
+      description: t`Create new list`,
+      group: "ACTIONS" as const,
+    }),
+    [boardId, canCreateList],
+  );
+
+  const { tooltipContent: createListShortcutTooltipContent } =
+    useKeyboardShortcut(createListShortcut);
 
   const updateBoard = api.board.update.useMutation();
 
@@ -135,7 +157,10 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
   // Redirect to 404 if board doesn't exist
   useEffect(() => {
     if (router.isReady && boardId && !isQueryLoading) {
-      if (error?.data?.code === "NOT_FOUND" || (!boardData && !isQueryLoading)) {
+      if (
+        error?.data?.code === "NOT_FOUND" ||
+        (!boardData && !isQueryLoading)
+      ) {
         router.replace("/404");
       }
     }
@@ -153,7 +178,12 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
 
   const isLoading = isInitialLoading || isQueryLoading;
 
-  useScrollRestore(boardId, scrollRef, router, !isLoading && (boardData?.lists.length ?? 0) > 0);
+  useScrollRestore(
+    boardId,
+    scrollRef,
+    router,
+    !isLoading && (boardData?.lists.length ?? 0) > 0,
+  );
 
   // Subscribe to board-level SSE events and refresh cache on changes
   useBoardEvents(boardId);
@@ -269,6 +299,56 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
   const openNewListForm = (publicBoardId: string) => {
     openModal("NEW_LIST");
     setSelectedPublicListId(publicBoardId);
+  };
+
+  const handleCardContextMenuAction = (action: CardContextMenuAction) => {
+    const cardPublicId = contextMenu?.cardPublicId;
+    if (!cardPublicId) return;
+    setContextMenu(null);
+    if (action === "copyLink") {
+      const path = isTemplate
+        ? `/templates/${boardId}/cards/${cardPublicId}`
+        : `/cards/${cardPublicId}`;
+      const url = `${typeof window !== "undefined" ? window.location.origin : ""}${path}`;
+      void navigator.clipboard.writeText(url).then(
+        () => {
+          showPopup({
+            header: t`Link copied`,
+            icon: "success",
+            message: t`Card URL copied to clipboard`,
+          });
+        },
+        () => {
+          showPopup({
+            header: t`Unable to copy link`,
+            icon: "error",
+            message: t`Please try again.`,
+          });
+        },
+      );
+      return;
+    }
+    if (action === "duplicate") {
+      setModalState("CARD_CONTEXT_DUPLICATE", {
+        boardPublicId: boardId ?? "",
+        isTemplate: !!isTemplate,
+      });
+      openModal("CARD_CONTEXT_DUPLICATE", cardPublicId);
+      return;
+    }
+    if (action === "delete") {
+      openModal("DELETE_CARD", cardPublicId);
+      return;
+    }
+    const modalType =
+      action === "members"
+        ? "CARD_CONTEXT_MEMBERS"
+        : action === "move"
+          ? "CARD_CONTEXT_MOVE_LIST"
+          : action === "labels"
+            ? "CARD_CONTEXT_LABELS"
+            : "CARD_CONTEXT_DUE_DATE";
+    openModal(modalType, cardPublicId);
   };
 
   const onDragEnd = ({
@@ -392,6 +472,13 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
 
         <Modal
           modalSize="sm"
+          isVisible={isOpen && modalContentType === "MOVE_BOARD"}
+        >
+          <MoveBoardForm boardPublicId={boardId ?? ""} />
+        </Modal>
+
+        <Modal
+          modalSize="sm"
           isVisible={isOpen && modalContentType === "CREATE_TEMPLATE"}
         >
           <NewTemplateForm
@@ -406,6 +493,49 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
           isVisible={isOpen && modalContentType === "EDIT_YOUTUBE"}
         >
           <EditYouTubeModal />
+        </Modal>
+
+        <Modal
+          modalSize="sm"
+          isVisible={isOpen && modalContentType === "CARD_CONTEXT_MEMBERS"}
+        >
+          <CardContextMembersModal />
+        </Modal>
+        <Modal
+          modalSize="sm"
+          isVisible={isOpen && modalContentType === "CARD_CONTEXT_MOVE_LIST"}
+        >
+          <CardContextMoveListModal />
+        </Modal>
+        <Modal
+          modalSize="sm"
+          isVisible={isOpen && modalContentType === "CARD_CONTEXT_LABELS"}
+        >
+          <CardContextLabelsModal />
+        </Modal>
+        <Modal
+          modalSize="sm"
+          isVisible={isOpen && modalContentType === "CARD_CONTEXT_DUE_DATE"}
+        >
+          <CardContextDueDateModal />
+        </Modal>
+        <Modal
+          modalSize="md"
+          isVisible={isOpen && modalContentType === "CARD_CONTEXT_DUPLICATE"}
+        >
+          <CardContextDuplicateModal
+            boardPublicId={boardId ?? ""}
+            isTemplate={!!isTemplate}
+          />
+        </Modal>
+        <Modal
+          modalSize="sm"
+          isVisible={isOpen && modalContentType === "DELETE_CARD"}
+        >
+          <DeleteCardConfirmation
+            cardPublicId={entityId}
+            boardPublicId={boardId ?? ""}
+          />
         </Modal>
       </>
     );
@@ -521,7 +651,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
         <div
           ref={scrollRef}
           onMouseDown={onMouseDown}
-          className={`scrollbar-w-none scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-h-[8px] z-0 flex-1 overflow-y-hidden overflow-x-scroll overscroll-contain scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300`}
+          className={`scrollbar-w-none scrollbar-track-rounded-[4px] scrollbar-thumb-rounded-[4px] scrollbar-h-[8px] z-0 flex-1 snap-x snap-mandatory scroll-pl-[10px] overflow-y-hidden overflow-x-scroll overscroll-contain scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300 md:snap-none`}
         >
           {isLoading ? (
             <div className="ml-[2rem] flex">
@@ -568,11 +698,11 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                   >
                     {(provided) => (
                       <div
-                        className="flex"
+                        className="flex w-max"
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                       >
-                        <div className="min-w-[2rem]" />
+                        <div className="min-w-[10px] md:min-w-[2rem]" />
                         {boardData.lists.map((list, index) => (
                           <List
                             index={index}
@@ -609,24 +739,46 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                                             )
                                               e.preventDefault();
                                           }}
+                                          onContextMenu={(e) => {
+                                            if (
+                                              card.publicId.startsWith(
+                                                "PLACEHOLDER",
+                                              ) ||
+                                              env("NEXT_PUBLIC_KAN_ENV") ===
+                                                "cloud"
+                                            )
+                                              return;
+                                            e.preventDefault();
+                                            setContextMenu({
+                                              x: e.clientX,
+                                              y: e.clientY,
+                                              cardPublicId: card.publicId,
+                                            });
+                                          }}
                                           key={card.publicId}
                                           href={
                                             isTemplate
                                               ? `/templates/${boardId}/cards/${card.publicId}`
                                               : `/cards/${card.publicId}`
                                           }
-                                          className={`mb-2 flex !cursor-pointer flex-col ${card.publicId.startsWith(
-                                            "PLACEHOLDER",
-                                          )
-                                            ? "pointer-events-none"
-                                            : ""
-                                            }`}
+                                          className={`mb-2 flex !cursor-pointer flex-col ${
+                                            card.publicId.startsWith(
+                                              "PLACEHOLDER",
+                                            )
+                                              ? "pointer-events-none"
+                                              : ""
+                                          }`}
                                           ref={provided.innerRef}
                                           {...provided.draggableProps}
                                           {...provided.dragHandleProps}
                                         >
                                           <Card
                                             title={card.title}
+                                            ticketNumber={
+                                              card.cardNumber != null
+                                                ? `${boardData.workspace.cardPrefix}-${card.cardNumber}`
+                                                : null
+                                            }
                                             labels={card.labels}
                                             members={card.members}
                                             checklists={card.checklists ?? []}
@@ -647,7 +799,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                             </Droppable>
                           </List>
                         ))}
-                        <div className="min-w-[0.75rem]" />
+                        <div className="min-w-[calc(100vw-18rem)] md:min-w-[0.75rem]" />
                         {provided.placeholder}
                       </div>
                     )}
@@ -657,6 +809,15 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
             </>
           ) : null}
         </div>
+        {contextMenu && (
+          <CardContextMenu
+            x={contextMenu.x}
+            y={contextMenu.y}
+            onClose={() => setContextMenu(null)}
+            onAction={handleCardContextMenuAction}
+            canEdit={!!canEditCard}
+          />
+        )}
         {renderModalContent()}
       </div>
     </>

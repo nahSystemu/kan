@@ -1,5 +1,7 @@
+import { useRouter } from "next/router";
 import { t } from "@lingui/core/macro";
 import {
+  HiArrowRightOnRectangle,
   HiEllipsisHorizontal,
   HiLink,
   HiOutlineDocumentDuplicate,
@@ -29,6 +31,7 @@ export default function BoardDropdown({
   isFavorite?: boolean;
   boardName?: string;
 }) {
+  const router = useRouter();
   const { openModal } = useModal();
   const { showPopup } = usePopup();
   const { canEditBoard, canDeleteBoard, canCreateBoard, canArchiveBoard } =
@@ -47,6 +50,7 @@ export default function BoardDropdown({
             : t`The board has been unarchived.`,
           icon: "success",
         });
+        void router.push(`/boards`);
       } else if (variables.favorite !== undefined) {
         showPopup({
           header: variables.favorite
@@ -85,7 +89,7 @@ export default function BoardDropdown({
   const isArchiveActionPending = updateBoard.isPending;
 
   const items = [
-    ...(isTemplate && canCreateBoard
+    ...(!isTemplate && canCreateBoard
       ? [
         {
           label: t`Make template`,
@@ -112,6 +116,17 @@ export default function BoardDropdown({
           action: handleArchiveOrUnarchive,
           icon: (
             <IoArchiveOutline className="h-[16px] w-[16px] text-dark-900" />
+          ),
+        },
+      ]
+      : []),
+    ...(!isTemplate && canEditBoard
+      ? [
+        {
+          label: t`Move to workspace`,
+          action: () => openModal("MOVE_BOARD"),
+          icon: (
+            <HiArrowRightOnRectangle className="h-[16px] w-[16px] text-dark-900" />
           ),
         },
       ]

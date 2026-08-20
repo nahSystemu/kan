@@ -34,7 +34,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        53
+        62
       ]
     ],
     "translation": "{0}"
@@ -55,7 +55,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        48
+        57
       ],
       [
         "src/views/card/index.tsx",
@@ -75,7 +75,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        56
+        60
       ]
     ],
     "translation": "{0} добавлен в избранное."
@@ -91,7 +91,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        57
+        61
       ]
     ],
     "translation": "{0} удалён из избранного."
@@ -107,7 +107,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        458
+        465
       ]
     ],
     "translation": "{0} метки"
@@ -123,7 +123,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        444
+        574
       ]
     ],
     "translation": "{0} не найдено"
@@ -195,11 +195,11 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        158
+        169
       ],
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        170
+        181
       ]
     ],
     "translation": "$10/месяц"
@@ -211,7 +211,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        170
+        181
       ]
     ],
     "translation": "$8/месяц"
@@ -344,6 +344,30 @@
     ],
     "translation": "Действия"
   },
+  "JEt3q7": {
+    "message": "Activate | kan.bn",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/pages/partner/activate.tsx",
+        46
+      ]
+    ],
+    "translation": "Активация | kan.bn"
+  },
+  "mkehy7": {
+    "message": "Activate your account",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/pages/partner/activate.tsx",
+        56
+      ]
+    ],
+    "translation": "Активируйте свою учётную запись"
+  },
   "F6pfE9": {
     "message": "Active",
     "placeholders": {},
@@ -351,11 +375,11 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        26
+        30
       ],
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        293
+        321
       ],
       [
         "src/views/settings/components/WebhookList.tsx",
@@ -371,11 +395,11 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        525
+        542
       ],
       [
         "src/views/public/board/CardModal.tsx",
-        200
+        209
       ]
     ],
     "translation": "Активность"
@@ -403,6 +427,18 @@
       ]
     ],
     "translation": "Журналы активности"
+  },
+  "UGCIzB": {
+    "message": "Add / edit label",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextMenu.tsx",
+        50
+      ]
+    ],
+    "translation": "Добавить / изменить метку"
   },
   "B3xxao": {
     "message": "Add a card",
@@ -447,7 +483,7 @@
     "origin": [
       [
         "src/views/card/components/Dropdown.tsx",
-        65
+        123
       ]
     ],
     "translation": "Добавить чек-лист"
@@ -463,7 +499,7 @@
       ],
       [
         "src/views/card/components/NewCommentForm.tsx",
-        68
+        85
       ]
     ],
     "translation": "Добавить комментарий... (введите '/' для открытия команд или '@' для упоминания)"
@@ -475,7 +511,7 @@
     "origin": [
       [
         "src/components/Editor.tsx",
-        487
+        578
       ]
     ],
     "translation": "Добавить описание... (введите '/' для открытия команд или '@' для упоминания)"
@@ -499,11 +535,11 @@
     "origin": [
       [
         "src/views/card/components/LabelSelector.tsx",
-        113
+        114
       ],
       [
         "src/views/card/components/LabelSelector.tsx",
-        118
+        119
       ]
     ],
     "translation": "Добавить метку"
@@ -515,11 +551,11 @@
     "origin": [
       [
         "src/views/card/components/MemberSelector.tsx",
-        134
+        135
       ],
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        257
+        243
       ]
     ],
     "translation": "Добавить участника"
@@ -547,7 +583,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        122
+        137
       ]
     ],
     "translation": "Добавить в избранное"
@@ -714,7 +750,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        53
+        57
       ]
     ],
     "translation": "Добавлено в избранное"
@@ -733,7 +769,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        327
+        320
       ]
     ],
     "translation": "Добавление нового участника будет стоить дополнительно {price} ({billingType}) за место."
@@ -757,7 +793,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        201
+        221
       ]
     ],
     "translation": "Админ",
@@ -905,6 +941,10 @@
     "comments": [],
     "origin": [
       [
+        "src/pages/partner/activate.tsx",
+        96
+      ],
+      [
         "src/views/auth/signup/index.tsx",
         90
       ]
@@ -954,10 +994,22 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        90
+        122
       ]
     ],
     "translation": "Произошла непредвиденная ошибка. Пожалуйста, попробуйте позже."
+  },
+  "YkfDoz": {
+    "message": "Annual",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        68
+      ]
+    ],
+    "translation": "Ежегодно"
   },
   "3bqt9U": {
     "message": "Anyone with this link can join your workspace",
@@ -966,7 +1018,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        311
+        294
       ]
     ],
     "translation": "Любой, у кого есть эта ссылка, может присоединиться к вашему рабочему пространству"
@@ -1090,7 +1142,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        111
+        115
       ]
     ],
     "translation": "Архивировать доску"
@@ -1102,7 +1154,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        27
+        31
       ]
     ],
     "translation": "В архиве"
@@ -1134,7 +1186,7 @@
     "origin": [
       [
         "src/views/settings/components/DeleteWebhookConfirmation.tsx",
-        60
+        69
       ]
     ],
     "translation": "Вы уверены, что хотите удалить вебхук \"{webhookName}\"? Это действие невозможно отменить."
@@ -1299,6 +1351,18 @@
     ],
     "translation": "Ожидание клиента"
   },
+  "iH8pgl": {
+    "message": "Back",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        298
+      ]
+    ],
+    "translation": "Назад"
+  },
   "KNKCTb": {
     "message": "Backlog",
     "placeholders": {},
@@ -1371,6 +1435,18 @@
     ],
     "translation": "Лучше всего подходит для небольших и развивающихся команд, которым нужна совместная работа"
   },
+  "zt/6cS": {
+    "message": "Best for small teams who want to collaborate and move faster together.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        91
+      ]
+    ],
+    "translation": "Идеально для небольших команд, которые хотят сотрудничать и работать быстрее вместе."
+  },
   "qaS+1/": {
     "message": "Best for teams that want to scale without limits",
     "placeholders": {},
@@ -1390,7 +1466,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        171
+        182
       ]
     ],
     "translation": "оплата ежегодно"
@@ -1402,7 +1478,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        171
+        182
       ]
     ],
     "translation": "оплата ежемесячно"
@@ -1422,7 +1498,7 @@
       ],
       [
         "src/views/settings/BillingSettings.tsx",
-        39
+        88
       ]
     ],
     "translation": "Выставление счетов"
@@ -1434,7 +1510,7 @@
     "origin": [
       [
         "src/views/settings/BillingSettings.tsx",
-        49
+        98
       ]
     ],
     "translation": "Портал выставления счетов"
@@ -1458,7 +1534,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        417
+        547
       ],
       [
         "src/views/card/index.tsx",
@@ -1477,12 +1553,8 @@
     "comments": [],
     "origin": [
       [
-        "src/components/NewWorkspaceForm.tsx",
-        350
-      ],
-      [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        83
+        85
       ]
     ],
     "translation": "Аналитика доски"
@@ -1494,10 +1566,22 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        44
+        47
       ]
     ],
     "translation": "Доска архивирована"
+  },
+  "wE3hGS": {
+    "message": "Board moved",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        33
+      ]
+    ],
+    "translation": "Доска перемещена"
   },
   "wewm3j": {
     "message": "Board name cannot exceed 100 characters",
@@ -1554,7 +1638,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        44
+        47
       ]
     ],
     "translation": "Доска восстановлена из архива"
@@ -1646,7 +1730,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        103
+        102
       ],
       [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
@@ -2501,8 +2585,16 @@
         176
       ],
       [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        267
+      ],
+      [
         "src/views/board/components/DeleteBoardConfirmation.tsx",
         44
+      ],
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        99
       ],
       [
         "src/views/card/components/Comment.tsx",
@@ -2525,12 +2617,16 @@
         55
       ],
       [
+        "src/views/onboarding/select-plan/index.tsx",
+        240
+      ],
+      [
         "src/views/settings/components/Avatar.tsx",
         287
       ],
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        168
+        206
       ],
       [
         "src/views/settings/components/ClearCustomPermissionsConfirmation.tsx",
@@ -2546,7 +2642,7 @@
       ],
       [
         "src/views/settings/components/DeleteWebhookConfirmation.tsx",
-        66
+        75
       ],
       [
         "src/views/settings/components/DeleteWorkspaceConfirmation.tsx",
@@ -2558,7 +2654,7 @@
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        106
+        108
       ]
     ],
     "translation": "Отмена"
@@ -2575,6 +2671,46 @@
     ],
     "translation": "Карточка"
   },
+  "sU2uWc": {
+    "message": "Card duplicated",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        67
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        46
+      ]
+    ],
+    "translation": "Карточка продублирована"
+  },
+  "9trBXW": {
+    "message": "Card duplicated successfully.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/Dropdown.tsx",
+        48
+      ]
+    ],
+    "translation": "Карточка успешно продублирована."
+  },
+  "AgE2vR": {
+    "message": "Card member assignments will be cleared when moving to a different workspace.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        92
+      ]
+    ],
+    "translation": "При перемещении в другой рабочий пространство назначения участников карточек будут очищены."
+  },
   "fEY2vP": {
     "message": "Card not found",
     "placeholders": {},
@@ -2582,7 +2718,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        438
+        455
       ]
     ],
     "translation": "Карточка не найдена"
@@ -2594,7 +2730,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        324
+        331
       ]
     ],
     "translation": "Название карточки"
@@ -2605,8 +2741,12 @@
     "comments": [],
     "origin": [
       [
+        "src/views/board/index.tsx",
+        318
+      ],
+      [
         "src/views/card/components/Dropdown.tsx",
-        44
+        74
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -2626,15 +2766,15 @@
       ],
       [
         "src/views/settings/AccountSettings.tsx",
-        98
+        100
       ],
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        109
+        142
       ],
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        178
+        216
       ]
     ],
     "translation": "Сменить пароль"
@@ -2701,6 +2841,10 @@
     "comments": [],
     "origin": [
       [
+        "src/pages/partner/activate.tsx",
+        56
+      ],
+      [
         "src/views/auth/login/index.tsx",
         43
       ],
@@ -2738,6 +2882,34 @@
       ]
     ],
     "translation": "Чек-листы"
+  },
+  "zMquA7": {
+    "message": "Choose a plan",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        153
+      ]
+    ],
+    "translation": "Выберите тариф"
+  },
+  "5EMoSo": {
+    "message": "Choose plan",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/components/InviteMemberForm.tsx",
+        355
+      ],
+      [
+        "src/views/settings/BillingSettings.tsx",
+        80
+      ]
+    ],
+    "translation": "Выберите тариф"
   },
   "VHS0aJ": {
     "message": "Clear all custom permissions?",
@@ -2817,8 +2989,12 @@
     "comments": [],
     "origin": [
       [
+        "src/components/Dashboard.tsx",
+        281
+      ],
+      [
         "src/views/card/index.tsx",
-        429
+        446
       ],
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
@@ -2893,16 +3069,12 @@
     "comments": [],
     "origin": [
       [
-        "src/components/NewWorkspaceForm.tsx",
-        353
-      ],
-      [
         "src/views/home/components/Features.tsx",
         67
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        86
+        88
       ]
     ],
     "translation": "Скоро появится"
@@ -3033,7 +3205,8 @@
         81
       ]
     ],
-    "translation": "Подтвердите ваши настройки электронной почты:"
+    "translation": "Подтвердите ваши настройки электронной почты:",
+    "obsolete": true
   },
   "479pdJ": {
     "message": "Confirm your new password",
@@ -3042,7 +3215,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        150
+        188
       ]
     ],
     "translation": "Подтвердите новый пароль"
@@ -3179,6 +3352,22 @@
     ],
     "translation": "Создание контента"
   },
+  "xGVfLh": {
+    "message": "Continue",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        246
+      ],
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        315
+      ]
+    ],
+    "translation": "Продолжить"
+  },
   "J2Wbjt": {
     "message": "Continue with ",
     "placeholders": {},
@@ -3186,7 +3375,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        437
+        442
       ]
     ],
     "translation": "Продолжить с "
@@ -3202,7 +3391,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        355
+        360
       ]
     ],
     "translation": "Продолжить с {0}"
@@ -3250,10 +3439,58 @@
     "origin": [
       [
         "src/views/card/components/Dropdown.tsx",
-        58
+        107
       ]
     ],
     "translation": "Скопировать ссылку на карточку"
+  },
+  "0utuU6": {
+    "message": "Copy checklists",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        257
+      ]
+    ],
+    "translation": "Копировать чек-листы"
+  },
+  "fDQ7hA": {
+    "message": "Copy labels",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        221
+      ]
+    ],
+    "translation": "Копировать метки"
+  },
+  "1bJKhj": {
+    "message": "Copy link to card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextMenu.tsx",
+        62
+      ]
+    ],
+    "translation": "Копировать ссылку на карточку"
+  },
+  "uvH2xS": {
+    "message": "Copy members",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        239
+      ]
+    ],
+    "translation": "Копировать участников"
   },
   "FO91Ip": {
     "message": "Copy public link",
@@ -3270,6 +3507,18 @@
       ]
     ],
     "translation": "Скопировать публичную ссылку"
+  },
+  "7mrkyO": {
+    "message": "Copy ticket ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/Dropdown.tsx",
+        114
+      ]
+    ],
+    "translation": "Скопировать ID задачи"
   },
   "9PaIxv": {
     "message": "Core features",
@@ -3322,7 +3571,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        523
+        530
       ],
       [
         "src/views/board/components/NewListForm.tsx",
@@ -3350,7 +3599,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        533
+        540
       ]
     ],
     "translation": "Создать карточку"
@@ -3374,7 +3623,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        349
+        343
       ]
     ],
     "translation": "Создать пригласительную ссылку"
@@ -3418,7 +3667,7 @@
       ],
       [
         "src/views/boards/index.tsx",
-        41
+        45
       ]
     ],
     "translation": "Создать новый {0}"
@@ -3442,11 +3691,11 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        420
+        427
       ],
       [
         "src/views/card/components/LabelSelector.tsx",
-        100
+        101
       ]
     ],
     "translation": "Создать новую метку"
@@ -3458,11 +3707,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        77
+        100
       ],
       [
         "src/views/board/index.tsx",
-        558
+        688
       ]
     ],
     "translation": "Создать новый список"
@@ -3554,7 +3803,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        316
+        344
       ]
     ],
     "translation": "Создать вебхук"
@@ -3566,11 +3815,11 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        388
+        227
       ],
       [
         "src/components/WorkspaceMenu.tsx",
-        153
+        176
       ]
     ],
     "translation": "Создать рабочее пространство"
@@ -3582,7 +3831,7 @@
     "origin": [
       [
         "src/views/settings/components/WebhookList.tsx",
-        236
+        238
       ]
     ],
     "translation": "Создан"
@@ -3726,10 +3975,11 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        319
+        283
       ]
     ],
-    "translation": "Для пользовательских URL требуется переход на тариф Pro"
+    "translation": "Для пользовательских URL требуется переход на тариф Pro",
+    "obsolete": true
   },
   "7RpHg/": {
     "message": "Custom username",
@@ -3747,18 +3997,26 @@
     ],
     "translation": "Пользовательское имя"
   },
+  "ZDPJBc": {
+    "message": "Custom usernames require upgrading to a Pro plan",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        241
+      ]
+    ],
+    "translation": "Для пользовательских имен пользователей требуется обновление до тарифа Pro"
+  },
   "j9IZZ0": {
     "message": "Custom workspace URL",
     "placeholders": {},
     "comments": [],
     "origin": [
       [
-        "src/components/NewWorkspaceForm.tsx",
-        343
-      ],
-      [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        76
+        78
       ]
     ],
     "translation": "Пользовательский URL рабочего пространства"
@@ -3806,7 +4064,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        348
+        342
       ]
     ],
     "translation": "Деактивировать ссылку-приглашение"
@@ -3882,7 +4140,7 @@
       ],
       [
         "src/views/settings/components/DeleteWebhookConfirmation.tsx",
-        73
+        82
       ],
       [
         "src/views/settings/components/WebhookList.tsx",
@@ -3918,7 +4176,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        133
+        148
       ]
     ],
     "translation": "Удалить доску"
@@ -3929,8 +4187,12 @@
     "comments": [],
     "origin": [
       [
+        "src/views/board/components/CardContextMenu.tsx",
+        74
+      ],
+      [
         "src/views/card/components/Dropdown.tsx",
-        76
+        152
       ]
     ],
     "translation": "Удалить карточку"
@@ -3994,7 +4256,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        133
+        148
       ]
     ],
     "translation": "Удалить шаблон"
@@ -4006,7 +4268,7 @@
     "origin": [
       [
         "src/views/settings/components/DeleteWebhookConfirmation.tsx",
-        46
+        55
       ]
     ],
     "translation": "Удалить вебхук"
@@ -4022,11 +4284,11 @@
       ],
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        125
+        85
       ],
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        136
+        96
       ]
     ],
     "translation": "Удалить рабочее пространство"
@@ -4122,6 +4384,18 @@
       ]
     ],
     "translation": "Дизайн"
+  },
+  "Uf+1DF": {
+    "message": "Destination workspace",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        76
+      ]
+    ],
+    "translation": "Рабочее пространство назначения"
   },
   "Odv3J6": {
     "message": "Disconnect GitHub",
@@ -4229,7 +4503,8 @@
         78
       ]
     ],
-    "translation": "Вы хотите отписаться?"
+    "translation": "Вы хотите отписаться?",
+    "obsolete": true
   },
   "JyXBgS": {
     "message": "docs",
@@ -4305,6 +4580,18 @@
     "comments": [],
     "origin": [
       [
+        "src/views/board/components/CardContextDueDateModal.tsx",
+        36
+      ],
+      [
+        "src/views/board/components/CardContextLabelsModal.tsx",
+        48
+      ],
+      [
+        "src/views/board/components/CardContextMembersModal.tsx",
+        68
+      ],
+      [
         "src/views/boards/components/TemplateBoards.tsx",
         17
       ],
@@ -4354,7 +4641,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        475
+        482
       ],
       [
         "src/views/card/index.tsx",
@@ -4411,6 +4698,50 @@
     ],
     "translation": "Срок — завтра"
   },
+  "euc6Ns": {
+    "message": "Duplicate",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        279
+      ]
+    ],
+    "translation": "Дублировать"
+  },
+  "BTDPLo": {
+    "message": "Duplicate card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        111
+      ],
+      [
+        "src/views/board/components/CardContextMenu.tsx",
+        68
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        130
+      ]
+    ],
+    "translation": "Дублировать карточку"
+  },
+  "06EQqT": {
+    "message": "Duplicating…",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        279
+      ]
+    ],
+    "translation": "Дублирование…"
+  },
   "ePK91l": {
     "message": "Edit",
     "placeholders": {},
@@ -4434,7 +4765,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        102
+        106
       ],
       [
         "src/views/board/components/UpdateBoardSlugForm.tsx",
@@ -4490,7 +4821,7 @@
       ],
       [
         "src/views/members/index.tsx",
-        251
+        272
       ]
     ],
     "translation": "Изменить права доступа"
@@ -4542,7 +4873,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        188
+        210
       ]
     ],
     "translation": "Редактировать вебхук"
@@ -4594,10 +4925,10 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        438
+        443
       ]
     ],
-    "translation": "почта"
+    "translation": "email"
   },
   "O3oNi5": {
     "message": "Email",
@@ -4606,14 +4937,14 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        272
+        258
       ],
       [
         "src/views/settings/AccountSettings.tsx",
         43
       ]
     ],
-    "translation": "Почта"
+    "translation": "Email"
   },
   "aW3TOw": {
     "message": "Email notifications",
@@ -4625,7 +4956,7 @@
         191
       ]
     ],
-    "translation": "Уведомления по почте"
+    "translation": "Уведомления по email"
   },
   "V1KOLq": {
     "message": "Email notifications for mentions",
@@ -4637,7 +4968,7 @@
         60
       ]
     ],
-    "translation": "Уведомления по почте о упоминаниях"
+    "translation": "Уведомления по email о упоминаниях"
   },
   "IqjpYe": {
     "message": "Email visibility",
@@ -4646,10 +4977,34 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        100
+        73
       ]
     ],
-    "translation": "Видимость почты"
+    "translation": "Видимость email"
+  },
+  "bFREhu": {
+    "message": "End of list",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        200
+      ]
+    ],
+    "translation": "Конец списка"
+  },
+  "SUXBxp": {
+    "message": "Engineering",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        181
+      ]
+    ],
+    "translation": "Разработка"
   },
   "0+ewPp": {
     "message": "Enhancement",
@@ -4690,7 +5045,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        234
+        258
       ]
     ],
     "translation": "Введите новый секретный ключ для обновления"
@@ -4702,7 +5057,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        122
+        159
       ]
     ],
     "translation": "Введите текущий пароль"
@@ -4714,7 +5069,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        111
+        146
       ]
     ],
     "translation": "Введите текущий пароль и выберите новый надёжный пароль."
@@ -4726,7 +5081,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        402
+        407
       ]
     ],
     "translation": "Введите адрес электронной почты"
@@ -4738,7 +5093,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        390
+        395
       ]
     ],
     "translation": "Введите имя"
@@ -4750,7 +5105,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        136
+        174
       ]
     ],
     "translation": "Введите новый пароль"
@@ -4762,7 +5117,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        416
+        421
       ]
     ],
     "translation": "Введите пароль"
@@ -4798,7 +5153,7 @@
       ],
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        215
+        226
       ]
     ],
     "translation": "Ошибка"
@@ -4810,7 +5165,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        89
+        120
       ]
     ],
     "translation": "Ошибка при смене пароля"
@@ -4834,7 +5189,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        128
+        136
       ]
     ],
     "translation": "Ошибка при создании ссылки-приглашения"
@@ -4846,7 +5201,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        144
+        152
       ]
     ],
     "translation": "Ошибка при деактивации ссылки-приглашения"
@@ -4918,14 +5273,26 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        97
+        96
       ],
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        103
+        111
       ]
     ],
     "translation": "Ошибка при приглашении участника"
+  },
+  "sZixXc": {
+    "message": "Error Setting Password",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/ChangePasswordConfirmation.tsx",
+        121
+      ]
+    ],
+    "translation": "Ошибка установки пароля"
   },
   "sVBn4K": {
     "message": "Error updating display name",
@@ -4981,12 +5348,8 @@
     "comments": [],
     "origin": [
       [
-        "src/views/members/components/InviteMemberForm.tsx",
-        240
-      ],
-      [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        41
+        43
       ]
     ],
     "translation": "Ошибка при обновлении подписки"
@@ -5001,7 +5364,8 @@
         146
       ]
     ],
-    "translation": "Ошибка при переходе на Pro"
+    "translation": "Ошибка при переходе на Pro",
+    "obsolete": true
   },
   "CYWHT+": {
     "message": "Error uploading profile image",
@@ -5026,11 +5390,11 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        245
+        271
       ],
       [
         "src/views/settings/components/WebhookList.tsx",
-        224
+        226
       ]
     ],
     "translation": "События"
@@ -5090,7 +5454,7 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        41
+        52
       ]
     ],
     "translation": "Не удалось принять приглашение. Пожалуйста, попробуйте позже или обратитесь в службу поддержки."
@@ -5102,7 +5466,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        216
+        227
       ]
     ],
     "translation": "Не удалось скопировать ссылку-приглашение"
@@ -5130,7 +5494,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        109
+        119
       ]
     ],
     "translation": "Не удалось создать вебхук"
@@ -5142,7 +5506,7 @@
     "origin": [
       [
         "src/views/settings/components/DeleteWebhookConfirmation.tsx",
-        28
+        37
       ]
     ],
     "translation": "Не удалось удалить вебхук"
@@ -5170,7 +5534,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        291
+        296
       ]
     ],
     "translation": "Не удалось войти через {0}. Пожалуйста, попробуйте ещё раз."
@@ -5182,11 +5546,11 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        143
+        164
       ],
       [
         "src/views/settings/components/WebhookList.tsx",
-        184
+        186
       ]
     ],
     "translation": "Не удалось протестировать вебхук"
@@ -5198,7 +5562,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        123
+        138
       ]
     ],
     "translation": "Не удалось обновить вебхук"
@@ -5393,6 +5757,14 @@
     "comments": [],
     "origin": [
       [
+        "src/views/onboarding/select-plan/index.tsx",
+        82
+      ],
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        83
+      ],
+      [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
         331
       ],
@@ -5410,6 +5782,18 @@
       ]
     ],
     "translation": "Бесплатно"
+  },
+  "8LLt89": {
+    "message": "Free (1 member)",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/BillingSettings.tsx",
+        31
+      ]
+    ],
+    "translation": "Бесплатный (1 участник)"
   },
   "uP4V6I": {
     "message": "Free for everyone",
@@ -5430,11 +5814,11 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        333
+        326
       ],
       [
         "src/views/members/index.tsx",
-        320
+        339
       ]
     ],
     "translation": "Бесплатный тариф"
@@ -5578,7 +5962,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        543
+        673
       ]
     ],
     "translation": "Начните с создания нового списка"
@@ -5706,7 +6090,7 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        113
+        124
       ]
     ],
     "translation": "На главную"
@@ -5722,7 +6106,7 @@
       ],
       [
         "src/views/invite/index.tsx",
-        144
+        155
       ]
     ],
     "translation": "Перейти в приложение"
@@ -5734,7 +6118,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        111
+        110
       ],
       [
         "src/pages/404.tsx",
@@ -5762,7 +6146,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        147
+        146
       ]
     ],
     "translation": "Перейти к участникам"
@@ -5774,7 +6158,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        135
+        134
       ]
     ],
     "translation": "Перейти к страницам"
@@ -5786,7 +6170,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        159
+        158
       ]
     ],
     "translation": "Перейти к ролям"
@@ -5798,7 +6182,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        171
+        170
       ]
     ],
     "translation": "Перейти к настройкам"
@@ -5810,10 +6194,22 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        123
+        122
       ]
     ],
     "translation": "Перейти к шаблонам"
+  },
+  "SUvm1Y": {
+    "message": "Good for individuals starting out who just need the essentials.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        84
+      ]
+    ],
+    "translation": "Подходит для начинающих пользователей, которым нужны только базовые функции."
   },
   "cdyS7J": {
     "message": "Google SSO",
@@ -5854,7 +6250,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        203
+        223
       ]
     ],
     "translation": "Гость",
@@ -5943,7 +6339,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        234
+        259
       ]
     ],
     "translation": "Секретный ключ HMAC для проверки подписи"
@@ -6056,6 +6452,18 @@
     ],
     "translation": "Я подтверждаю, что все данные рабочего пространства будут безвозвратно удалены, и хочу продолжить."
   },
+  "VOwhhz": {
+    "message": "ID copied",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/Dropdown.tsx",
+        91
+      ]
+    ],
+    "translation": "ID скопирован"
+  },
   "iwr7AP": {
     "message": "Ideas",
     "placeholders": {},
@@ -6087,7 +6495,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        73
+        82
       ]
     ],
     "translation": "Импорт"
@@ -6191,7 +6599,7 @@
     "origin": [
       [
         "src/components/CommandPallette.tsx",
-        167
+        177
       ]
     ],
     "translation": "в"
@@ -6295,7 +6703,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        51
+        50
       ]
     ],
     "translation": "Недействительный адрес электронной почты"
@@ -6307,7 +6715,7 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        105
+        116
       ]
     ],
     "translation": "Недействительное приглашение"
@@ -6319,7 +6727,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        333
+        358
       ]
     ],
     "translation": "Пригласить"
@@ -6343,7 +6751,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        209
+        220
       ]
     ],
     "translation": "Ссылка-приглашение скопирована"
@@ -6355,7 +6763,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        210
+        221
       ]
     ],
     "translation": "Ссылка-приглашение скопирована в буфер обмена"
@@ -6383,7 +6791,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        123
+        131
       ]
     ],
     "translation": "Ссылки-приглашения доступны только с подпиской Team или Pro. Пожалуйста, обновите тариф вашего рабочего пространства."
@@ -6395,14 +6803,26 @@
     "origin": [
       [
         "src/views/card/components/MemberSelector.tsx",
-        114
+        115
       ],
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        367
+        363
       ]
     ],
     "translation": "Пригласить участника"
+  },
+  "M2zwdn": {
+    "message": "Inviting members requires a Team or Pro plan. You'll be redirected to upgrade your workspace.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/components/InviteMemberForm.tsx",
+        329
+      ]
+    ],
+    "translation": "Для приглашения участников требуется тариф Team или Pro. Вы будете перенаправлены на страницу обновления рабочего пространства."
   },
   "qPP4lD": {
     "message": "Inviting members requires a Team Plan. You'll be redirected to upgrade your workspace.",
@@ -6414,7 +6834,8 @@
         336
       ]
     ],
-    "translation": "Приглашение участников доступно только на тарифе Team. Вы будете перенаправлены для обновления рабочего пространства."
+    "translation": "Приглашение участников доступно только на тарифе Team. Вы будете перенаправлены для обновления рабочего пространства.",
+    "obsolete": true
   },
   "c9AJhn": {
     "message": "Join workspace",
@@ -6423,11 +6844,11 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        79
+        90
       ],
       [
         "src/views/invite/index.tsx",
-        129
+        140
       ]
     ],
     "translation": "Присоединиться к рабочему пространству"
@@ -6439,7 +6860,7 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        91
+        102
       ]
     ],
     "translation": "Присоединиться к рабочему пространству | kan.bn"
@@ -6514,12 +6935,16 @@
     "comments": [],
     "origin": [
       [
+        "src/views/board/components/CardContextLabelsModal.tsx",
+        31
+      ],
+      [
         "src/views/board/components/Filters.tsx",
         155
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        424
+        431
       ],
       [
         "src/views/card/index.tsx",
@@ -6598,16 +7023,12 @@
     "comments": [],
     "origin": [
       [
-        "src/components/NewWorkspaceForm.tsx",
-        336
-      ],
-      [
         "src/views/pricing/components/PricingTiers.tsx",
         159
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        69
+        71
       ]
     ],
     "translation": "Стартовое предложение"
@@ -6619,10 +7040,11 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        303
+        276
       ]
     ],
-    "translation": "Стартовое предложение: неограниченное количество участников с Pro"
+    "translation": "Стартовое предложение: неограниченное количество участников с Pro",
+    "obsolete": true
   },
   "sDuhfK": {
     "message": "Launch offer: unlimited seats for just $29/month with Pro",
@@ -6696,6 +7118,30 @@
     ],
     "translation": "Лицензия"
   },
+  "aDzbuM": {
+    "message": "License activated",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Dashboard.tsx",
+        115
+      ]
+    ],
+    "translation": "Лицензия активирована"
+  },
+  "K3LUJr": {
+    "message": "License activation failed",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Dashboard.tsx",
+        129
+      ]
+    ],
+    "translation": "Не удалось активировать лицензию"
+  },
   "1njn7W": {
     "message": "Light",
     "placeholders": {},
@@ -6730,8 +7176,12 @@
         80
       ],
       [
+        "src/views/board/index.tsx",
+        316
+      ],
+      [
         "src/views/card/components/Dropdown.tsx",
-        42
+        72
       ],
       [
         "src/views/page/index.tsx",
@@ -6757,6 +7207,10 @@
     "placeholders": {},
     "comments": [],
     "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        117
+      ],
       [
         "src/views/card/index.tsx",
         152
@@ -6915,7 +7369,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        438
+        443
       ]
     ],
     "translation": "магическая ссылка"
@@ -6927,10 +7381,26 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        91
+        95
       ]
     ],
     "translation": "Создать шаблон"
+  },
+  "hB02vO": {
+    "message": "Manage members",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextMembersModal.tsx",
+        51
+      ],
+      [
+        "src/views/board/components/CardContextMenu.tsx",
+        38
+      ]
+    ],
+    "translation": "Управление участниками"
   },
   "dbJj/u": {
     "message": "Manage roles for this workspace. System roles cannot be deleted but their permissions can be edited on the Permissions page.",
@@ -6972,6 +7442,18 @@
     ],
     "translation": "отметил элемент контрольного списка <0>{0}</0> как невыполненный"
   },
+  "vo2a+a": {
+    "message": "Marketing",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        181
+      ]
+    ],
+    "translation": "Маркетинг"
+  },
   "agPptk": {
     "message": "Medium",
     "placeholders": {},
@@ -6995,6 +7477,18 @@
       ]
     ],
     "translation": "Средний приоритет"
+  },
+  "NwiNTb": {
+    "message": "member",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/BillingSettings.tsx",
+        40
+      ]
+    ],
+    "translation": "участник"
   },
   "OvoEq7": {
     "message": "Member",
@@ -7024,6 +7518,18 @@
     ],
     "translation": "Участник (по умолчанию)"
   },
+  "GnG6Oy": {
+    "message": "members",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/BillingSettings.tsx",
+        40
+      ]
+    ],
+    "translation": "участников"
+  },
   "wlQNTg": {
     "message": "Members",
     "placeholders": {},
@@ -7031,7 +7537,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        139
+        138
       ],
       [
         "src/views/board/components/Filters.tsx",
@@ -7039,7 +7545,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        382
+        389
       ],
       [
         "src/views/card/index.tsx",
@@ -7047,7 +7553,7 @@
       ],
       [
         "src/views/members/index.tsx",
-        290
+        311
       ],
       [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
@@ -7071,7 +7577,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        285
+        306
       ]
     ],
     "translation": "Участники | {0}"
@@ -7106,6 +7612,10 @@
     "comments": [],
     "origin": [
       [
+        "src/views/onboarding/select-plan/index.tsx",
+        67
+      ],
+      [
         "src/views/pricing/components/Pricing.tsx",
         14
       ],
@@ -7123,10 +7633,70 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        159
+        170
       ]
     ],
     "translation": "ежемесячная оплата"
+  },
+  "sZ/WDz": {
+    "message": "Move board",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        107
+      ]
+    ],
+    "translation": "Переместить доску"
+  },
+  "VvCMyU": {
+    "message": "Move board to another workspace",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        64
+      ]
+    ],
+    "translation": "Переместить доску в другое рабочее пространство"
+  },
+  "51UCsN": {
+    "message": "Move to another list",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextMenu.tsx",
+        44
+      ]
+    ],
+    "translation": "Переместить в другой список"
+  },
+  "J4+OTA": {
+    "message": "Move to list",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextMoveListModal.tsx",
+        70
+      ]
+    ],
+    "translation": "Переместить в список"
+  },
+  "S3wq2O": {
+    "message": "Move to workspace",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/BoardDropdown.tsx",
+        126
+      ]
+    ],
+    "translation": "Переместить в рабочее пространство"
   },
   "BOqTi5": {
     "message": "moved the card from <0>{0}</0> to<1>{1}</1>",
@@ -7166,7 +7736,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        209
+        231
       ]
     ],
     "translation": "Мой вебхук"
@@ -7190,7 +7760,7 @@
       ],
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        205
+        227
       ],
       [
         "src/views/settings/components/RoleCreateView.tsx",
@@ -7206,7 +7776,7 @@
       ],
       [
         "src/views/settings/components/WebhookList.tsx",
-        212
+        214
       ]
     ],
     "translation": "Имя"
@@ -7242,7 +7812,7 @@
     "origin": [
       [
         "src/views/boards/index.tsx",
-        95
+        104
       ],
       [
         "src/views/home/components/Features.tsx",
@@ -7290,7 +7860,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        307
+        314
       ]
     ],
     "translation": "Новая карточка"
@@ -7342,7 +7912,7 @@
       ],
       [
         "src/views/board/index.tsx",
-        507
+        637
       ]
     ],
     "translation": "Новый список"
@@ -7366,7 +7936,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        23
+        24
       ]
     ],
     "translation": "Требуется новый пароль"
@@ -7378,7 +7948,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        31
+        36
       ]
     ],
     "translation": "Новый пароль должен отличаться от текущего"
@@ -7426,7 +7996,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        188
+        210
       ]
     ],
     "translation": "Новый вебхук"
@@ -7438,7 +8008,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        244
+        146
       ]
     ],
     "translation": "Новый рабочий пространство"
@@ -7502,7 +8072,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        369
+        374
       ]
     ],
     "translation": "В данный момент нет доступных методов аутентификации"
@@ -7567,6 +8137,18 @@
     ],
     "translation": "Горячие клавиши не зарегистрированы."
   },
+  "HOMO91": {
+    "message": "No license key was provided. Please try activating again.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Dashboard.tsx",
+        126
+      ]
+    ],
+    "translation": "Не указан лицензионный ключ. Попробуйте активировать ещё раз."
+  },
   "hXMFoN": {
     "message": "No lists",
     "placeholders": {},
@@ -7574,7 +8156,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        539
+        669
       ]
     ],
     "translation": "Нет списков"
@@ -7586,7 +8168,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        544
+        674
       ]
     ],
     "translation": "Списки ещё не созданы"
@@ -7626,7 +8208,7 @@
     "origin": [
       [
         "src/components/CommandPallette.tsx",
-        183
+        193
       ]
     ],
     "translation": "По запросу «{debouncedQuery}» ничего не найдено."
@@ -7662,7 +8244,7 @@
     "origin": [
       [
         "src/views/settings/components/WebhookList.tsx",
-        194
+        196
       ]
     ],
     "translation": "Вебхуки не настроены. Добавьте вебхук для получения уведомлений."
@@ -7746,7 +8328,7 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        128
+        88
       ]
     ],
     "translation": "После удаления рабочего пространства возврата не будет. Это действие необратимо."
@@ -7758,7 +8340,7 @@
     "origin": [
       [
         "src/components/WorkspaceMenu.tsx",
-        31
+        37
       ]
     ],
     "translation": "Открыть командное меню"
@@ -7826,7 +8408,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        380
+        385
       ]
     ],
     "translation": "или"
@@ -8002,7 +8584,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        127
+        126
       ],
       [
         "src/views/pages/index.tsx",
@@ -8027,6 +8609,18 @@
     ],
     "translation": "Частичная занятость"
   },
+  "nG7mus": {
+    "message": "Password already set",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Dashboard.tsx",
+        271
+      ]
+    ],
+    "translation": "Пароль уже установлен"
+  },
   "IrZaAn": {
     "message": "Password Changed",
     "placeholders": {},
@@ -8034,7 +8628,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        69
+        93
       ]
     ],
     "translation": "Пароль изменён"
@@ -8046,7 +8640,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        258
+        263
       ]
     ],
     "translation": "Для входа требуется пароль."
@@ -8058,7 +8652,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        257
+        262
       ]
     ],
     "translation": "Для регистрации требуется пароль."
@@ -8070,10 +8664,22 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        22
+        23
       ]
     ],
     "translation": "Пароль должен содержать не менее 8 символов"
+  },
+  "Xlkxmi": {
+    "message": "Password Set",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/ChangePasswordConfirmation.tsx",
+        93
+      ]
+    ],
+    "translation": "Пароль установлен"
   },
   "lpIMne": {
     "message": "Passwords do not match",
@@ -8082,7 +8688,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        27
+        30
       ]
     ],
     "translation": "Пароли не совпадают"
@@ -8094,7 +8700,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        237
+        258
       ]
     ],
     "translation": "Приостановлено"
@@ -8122,7 +8728,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        237
+        258
       ]
     ],
     "translation": "В ожидании"
@@ -8251,6 +8857,30 @@
     ],
     "translation": "Личный проект"
   },
+  "Oi+J+N": {
+    "message": "Pick a plan to get started. All paid plans include a 14-day free trial.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        156
+      ]
+    ],
+    "translation": "Выберите тариф, чтобы начать. Все платные тарифы включают 14-дневный бесплатный пробный период."
+  },
+  "GdgCoi": {
+    "message": "Plan",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/BillingSettings.tsx",
+        66
+      ]
+    ],
+    "translation": "Тариф"
+  },
   "Iqh0Uv": {
     "message": "Planned",
     "placeholders": {},
@@ -8298,7 +8928,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        24
+        25
       ]
     ],
     "translation": "Пожалуйста, подтвердите новый пароль"
@@ -8310,7 +8940,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        406
+        411
       ]
     ],
     "translation": "Пожалуйста, введите корректный адрес электронной почты"
@@ -8322,7 +8952,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        394
+        399
       ]
     ],
     "translation": "Пожалуйста, введите корректное имя"
@@ -8334,7 +8964,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        421
+        426
       ]
     ],
     "translation": "Пожалуйста, введите корректный пароль"
@@ -8394,15 +9024,15 @@
       ],
       [
         "src/components/NewWorkspaceForm.tsx",
-        159
+        110
       ],
       [
         "src/views/board/components/BoardDropdown.tsx",
-        65
+        69
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        189
+        196
       ],
       [
         "src/views/board/components/NewListForm.tsx",
@@ -8426,11 +9056,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        198
+        228
       ],
       [
         "src/views/board/index.tsx",
-        254
+        284
       ],
       [
         "src/views/boards/components/ImportBoardsForm.tsx",
@@ -8502,7 +9132,7 @@
       ],
       [
         "src/views/card/components/NewCommentForm.tsx",
-        37
+        38
       ],
       [
         "src/views/card/index.tsx",
@@ -8530,15 +9160,19 @@
       ],
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        104
-      ],
-      [
-        "src/views/members/components/InviteMemberForm.tsx",
-        241
+        112
       ],
       [
         "src/views/members/index.tsx",
-        73
+        78
+      ],
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        121
+      ],
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        170
       ],
       [
         "src/views/page/components/AuthorSelector.tsx",
@@ -8606,7 +9240,7 @@
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        42
+        44
       ],
       [
         "src/views/settings/PermissionsSettings.tsx",
@@ -8622,11 +9256,11 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        129
+        137
       ],
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        145
+        153
       ]
     ],
     "translation": "Пожалуйста, попробуйте позже."
@@ -8637,8 +9271,28 @@
     "comments": [],
     "origin": [
       [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        76
+      ],
+      [
+        "src/views/board/components/CardContextMoveListModal.tsx",
+        42
+      ],
+      [
+        "src/views/board/index.tsx",
+        325
+      ],
+      [
         "src/views/card/components/Dropdown.tsx",
-        51
+        55
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        81
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        100
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -8650,6 +9304,18 @@
       ]
     ],
     "translation": "Пожалуйста, попробуйте ещё раз."
+  },
+  "nYNMZZ": {
+    "message": "Position in list (0 = first, leave empty for end)",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        193
+      ]
+    ],
+    "translation": "Позиция в списке (0 = первая, оставьте пустым для конца)"
   },
   "aHCEmh": {
     "message": "Pricing",
@@ -8702,7 +9368,7 @@
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        93
+        95
       ]
     ],
     "translation": "Приоритетная поддержка по электронной почте"
@@ -8741,6 +9407,10 @@
     "comments": [],
     "origin": [
       [
+        "src/views/onboarding/select-plan/index.tsx",
+        96
+      ],
+      [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
         333
       ],
@@ -8757,8 +9427,12 @@
     "comments": [],
     "origin": [
       [
+        "src/views/members/components/InviteMemberForm.tsx",
+        305
+      ],
+      [
         "src/views/members/index.tsx",
-        317
+        336
       ]
     ],
     "translation": "Тариф Pro"
@@ -8770,7 +9444,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        322
+        317
       ]
     ],
     "translation": "Тариф Pro ∞"
@@ -8930,7 +9604,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        121
+        136
       ]
     ],
     "translation": "Удалить из избранного"
@@ -8942,7 +9616,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        260
+        281
       ]
     ],
     "translation": "Удалить участника"
@@ -9025,7 +9699,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        54
+        58
       ]
     ],
     "translation": "Удалено из избранного"
@@ -9198,6 +9872,10 @@
       [
         "src/views/home/components/Header.tsx",
         28
+      ],
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        181
       ]
     ],
     "translation": "Дорожная карта"
@@ -9209,7 +9887,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        355
+        380
       ],
       [
         "src/views/settings/RolesSettings.tsx",
@@ -9285,7 +9963,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        65
+        70
       ],
       [
         "src/views/settings/components/RoleEditor.tsx",
@@ -9305,7 +9983,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        151
+        150
       ]
     ],
     "translation": "Роли"
@@ -9389,7 +10067,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        316
+        344
       ],
       [
         "src/views/settings/components/RoleEditor.tsx",
@@ -9433,10 +10111,38 @@
     "origin": [
       [
         "src/components/CommandPallette.tsx",
-        104
+        105
       ]
     ],
     "translation": "Поиск досок и карточек..."
+  },
+  "66Jmqh": {
+    "message": "Seat limit reached",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/components/InviteMemberForm.tsx",
+        105
+      ]
+    ],
+    "translation": "Достигнут лимит мест"
+  },
+  "MpFIca": {
+    "message": "seats",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/components/InviteMemberForm.tsx",
+        308
+      ],
+      [
+        "src/views/members/index.tsx",
+        347
+      ]
+    ],
+    "translation": "мест"
   },
   "e1v+J3": {
     "message": "Secret (optional)",
@@ -9445,7 +10151,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        229
+        251
       ]
     ],
     "translation": "Секретный ключ (необязательно)"
@@ -9485,6 +10191,30 @@
       ]
     ],
     "translation": "Посмотрите, что наши пользователи говорят о Kan"
+  },
+  "zYRVNp": {
+    "message": "Select a list",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        131
+      ]
+    ],
+    "translation": "Выберите список"
+  },
+  "NM2hyD": {
+    "message": "Select a workspace",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        84
+      ]
+    ],
+    "translation": "Выберите рабочее пространство"
   },
   "wgNoIs": {
     "message": "Select all",
@@ -9581,7 +10311,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        310
+        338
       ]
     ],
     "translation": "Отправить тест"
@@ -9598,17 +10328,61 @@
     ],
     "translation": "Старший"
   },
+  "GXGbXi": {
+    "message": "Set a password to enable password-based login.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/AccountSettings.tsx",
+        93
+      ]
+    ],
+    "translation": "Установите пароль, чтобы включить вход по паролю."
+  },
   "8AbRER": {
     "message": "Set due date",
     "placeholders": {},
     "comments": [],
     "origin": [
       [
+        "src/views/board/components/CardContextDueDateModal.tsx",
+        20
+      ],
+      [
+        "src/views/board/components/CardContextMenu.tsx",
+        56
+      ],
+      [
         "src/views/card/components/DueDateSelector.tsx",
         121
       ]
     ],
     "translation": "Установить срок"
+  },
+  "2gHjVM": {
+    "message": "Set Password",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/AccountSettings.tsx",
+        88
+      ],
+      [
+        "src/views/settings/AccountSettings.tsx",
+        100
+      ],
+      [
+        "src/views/settings/components/ChangePasswordConfirmation.tsx",
+        142
+      ],
+      [
+        "src/views/settings/components/ChangePasswordConfirmation.tsx",
+        216
+      ]
+    ],
+    "translation": "Установить пароль"
   },
   "Eit43O": {
     "message": "set the due date",
@@ -9622,6 +10396,18 @@
     ],
     "translation": "установить срок"
   },
+  "JjEJSy": {
+    "message": "Set up your workspace",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        199
+      ]
+    ],
+    "translation": "Настройте ваше рабочее пространство"
+  },
   "Tz0i8g": {
     "message": "Settings",
     "placeholders": {},
@@ -9633,7 +10419,7 @@
       ],
       [
         "src/components/SideNavigation.tsx",
-        163
+        162
       ]
     ],
     "translation": "Настройки"
@@ -9669,7 +10455,7 @@
     "origin": [
       [
         "src/views/settings/BillingSettings.tsx",
-        35
+        62
       ]
     ],
     "translation": "Настройки | Оплата"
@@ -9729,7 +10515,7 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        59
+        32
       ]
     ],
     "translation": "Настройки | Рабочее пространство"
@@ -9777,10 +10563,54 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        154
+        165
       ]
     ],
     "translation": "Войти"
+  },
+  "jbGGzf": {
+    "message": "Sign in or create an account to activate your {partnerName} license",
+    "placeholders": {
+      "partnerName": [
+        "partnerName"
+      ]
+    },
+    "comments": [],
+    "origin": [
+      [
+        "src/pages/partner/activate.tsx",
+        62
+      ]
+    ],
+    "translation": "Войдите или создайте аккаунт, чтобы активировать лицензию {partnerName}"
+  },
+  "4dGN6E": {
+    "message": "Sign in or create an account to activate your license",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/pages/partner/activate.tsx",
+        67
+      ]
+    ],
+    "translation": "Войдите или создайте учётную запись, чтобы активировать лицензию"
+  },
+  "fcWrnU": {
+    "message": "Sign out",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        319
+      ],
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        386
+      ]
+    ],
+    "translation": "Выйти"
   },
   "mErq7F": {
     "message": "Sign Up",
@@ -9789,7 +10619,7 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        162
+        173
       ]
     ],
     "translation": "Зарегистрироваться"
@@ -9841,7 +10671,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        437
+        442
       ]
     ],
     "translation": "Зарегистрироваться через "
@@ -9922,6 +10752,42 @@
     ],
     "translation": "Разработка ПО"
   },
+  "6sKjjx": {
+    "message": "Solo",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        81
+      ]
+    ],
+    "translation": "Индивидуальный"
+  },
+  "J9+zIR": {
+    "message": "Something went wrong during activation. Please try again.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/pages/partner/activate.tsx",
+        73
+      ]
+    ],
+    "translation": "Во время активации произошла ошибка. Пожалуйста, попробуйте ещё раз."
+  },
+  "r+dxEH": {
+    "message": "Something went wrong during license activation.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Dashboard.tsx",
+        132
+      ]
+    ],
+    "translation": "Произошла ошибка при активации лицензии."
+  },
   "vnS6Rf": {
     "message": "SSO",
     "placeholders": {},
@@ -9952,15 +10818,31 @@
     "comments": [],
     "origin": [
       [
-        "src/views/members/components/InviteMemberForm.tsx",
-        359
-      ],
-      [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        111
+        113
       ]
     ],
     "translation": "Начните 14-дневный бесплатный пробный период"
+  },
+  "4+JaWo": {
+    "message": "Start free trial",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/SideNavigation.tsx",
+        256
+      ],
+      [
+        "src/components/SideNavigation.tsx",
+        257
+      ],
+      [
+        "src/components/SideNavigation.tsx",
+        267
+      ]
+    ],
+    "translation": "Начать бесплатный пробный период"
   },
   "Y8yzGg": {
     "message": "Start free. Upgrade as your team grows. No hidden fees, no contracts.",
@@ -9981,10 +10863,22 @@
     "origin": [
       [
         "src/views/settings/components/WebhookList.tsx",
-        230
+        232
       ]
     ],
     "translation": "Статус"
+  },
+  "hQRttt": {
+    "message": "Submit",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/NewCommentForm.tsx",
+        60
+      ]
+    ],
+    "translation": "Отправить"
   },
   "WYDptz": {
     "message": "Subscription Required",
@@ -9993,7 +10887,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        122
+        130
       ]
     ],
     "translation": "Требуется подписка"
@@ -10005,11 +10899,11 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        215
+        220
       ],
       [
         "src/components/AuthForm.tsx",
-        232
+        237
       ]
     ],
     "translation": "Успех"
@@ -10033,7 +10927,7 @@
     "origin": [
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        57
+        59
       ]
     ],
     "translation": "Улучшите свой workspace всего за $29 в месяц. Вы получите:"
@@ -10150,6 +11044,18 @@
     ],
     "translation": "Теги"
   },
+  "KM6m8p": {
+    "message": "Team",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        88
+      ]
+    ],
+    "translation": "Команда"
+  },
   "bff61F": {
     "message": "Team Plan",
     "placeholders": {},
@@ -10157,11 +11063,15 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        322
+        305
+      ],
+      [
+        "src/views/members/components/InviteMemberForm.tsx",
+        317
       ],
       [
         "src/views/members/index.tsx",
-        319
+        338
       ]
     ],
     "translation": "Тариф для команды"
@@ -10193,11 +11103,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        417
+        547
       ],
       [
         "src/views/board/index.tsx",
-        453
+        583
       ]
     ],
     "translation": "Шаблон"
@@ -10257,7 +11167,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        115
+        114
       ],
       [
         "src/views/home/components/Features.tsx",
@@ -10290,6 +11200,38 @@
     ],
     "translation": "Тест"
   },
+  "InJcdo": {
+    "message": "Test failed",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/NewWebhookModal.tsx",
+        154
+      ],
+      [
+        "src/views/settings/components/WebhookList.tsx",
+        177
+      ]
+    ],
+    "translation": "Тест не пройден"
+  },
+  "zDNL2V": {
+    "message": "Test sent",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/NewWebhookModal.tsx",
+        148
+      ],
+      [
+        "src/views/settings/components/WebhookList.tsx",
+        174
+      ]
+    ],
+    "translation": "Тест отправлен"
+  },
   "itgYbC": {
     "message": "Test webhook sent successfully!",
     "placeholders": {},
@@ -10297,7 +11239,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        132
+        149
       ],
       [
         "src/views/settings/components/WebhookList.tsx",
@@ -10330,6 +11272,18 @@
     ],
     "translation": "Спасибо за ваш отзыв!"
   },
+  "ssK7k+": {
+    "message": "That license key could not be found. Please contact support.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Dashboard.tsx",
+        124
+      ]
+    ],
+    "translation": "Указанный лицензионный ключ не найден. Обратитесь в службу поддержки."
+  },
   "NcFrgC": {
     "message": "The board has been archived.",
     "placeholders": {},
@@ -10337,10 +11291,26 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        46
+        49
       ]
     ],
     "translation": "Доска была архивирована."
+  },
+  "ZWk38w": {
+    "message": "The board has been moved to {0}.",
+    "placeholders": {
+      "0": [
+        "targetWorkspace?.name ?? \"the workspace\""
+      ]
+    },
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        34
+      ]
+    ],
+    "translation": "Доска была перемещена в {0}."
   },
   "C6gv54": {
     "message": "The board has been unarchived.",
@@ -10349,10 +11319,22 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        47
+        50
       ]
     ],
     "translation": "Доска была восстановлена из архива."
+  },
+  "nKBUeF": {
+    "message": "The card has been duplicated.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        69
+      ]
+    ],
+    "translation": "Карточка была продублирована."
   },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
@@ -10361,7 +11343,7 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        84
+        114
       ]
     ],
     "translation": "Введённый вами текущий пароль неверен."
@@ -10401,7 +11383,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        66
+        71
       ]
     ],
     "translation": "Роль участника была обновлена."
@@ -10601,7 +11583,7 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        108
+        119
       ]
     ],
     "translation": "Эта ссылка-приглашение недействительна или истекла."
@@ -10682,6 +11664,30 @@
     ],
     "translation": "Эта роль будет безвозвратно удалена. Это действие нельзя отменить."
   },
+  "HQVm6e": {
+    "message": "This URL has already been taken",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        84
+      ]
+    ],
+    "translation": "Этот URL уже занят"
+  },
+  "gKmoow": {
+    "message": "This URL is reserved",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        86
+      ]
+    ],
+    "translation": "Этот URL зарезервирован"
+  },
   "OAYToL": {
     "message": "This will remove all custom member permissions in this workspace. Members will inherit permissions only from their roles.",
     "placeholders": {},
@@ -10718,6 +11724,18 @@
     ],
     "translation": "Это приведёт к безвозвратному удалению всех данных, связанных с вашим аккаунтом."
   },
+  "PV7XRK": {
+    "message": "This workspace has reached its member limit. The workspace owner will need to upgrade their plan.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/invite/index.tsx",
+        44
+      ]
+    ],
+    "translation": "Это рабочее пространство достигло лимита участников. Владельцу рабочего пространства необходимо обновить тарифный план."
+  },
   "duf3Nr": {
     "message": "This workspace URL has already been taken",
     "placeholders": {},
@@ -10725,7 +11743,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        288
+        190
       ]
     ],
     "translation": "Этот URL рабочего пространства уже занят"
@@ -10737,7 +11755,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        290
+        192
       ]
     ],
     "translation": "Этот URL рабочей области зарезервирован"
@@ -10754,6 +11772,18 @@
     ],
     "translation": "Это имя пользователя рабочей области уже занято"
   },
+  "pEb95p": {
+    "message": "Ticket ID copied to clipboard",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/Dropdown.tsx",
+        93
+      ]
+    ],
+    "translation": "ID задачи скопирован в буфер обмена"
+  },
   "MHrjPM": {
     "message": "Title",
     "placeholders": {},
@@ -10769,6 +11799,18 @@
       ]
     ],
     "translation": "Заголовок"
+  },
+  "wK4OTM": {
+    "message": "Title (optional)",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        180
+      ]
+    ],
+    "translation": "Название (необязательно)"
   },
   "Se/UIp": {
     "message": "To Do",
@@ -10905,7 +11947,7 @@
     "origin": [
       [
         "src/views/card/components/NewCommentForm.tsx",
-        36
+        37
       ]
     ],
     "translation": "Не удалось добавить комментарий"
@@ -10946,14 +11988,30 @@
     ],
     "translation": "Не удалось сбросить переопределения"
   },
+  "5MPY04": {
+    "message": "Unable to copy ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/Dropdown.tsx",
+        98
+      ]
+    ],
+    "translation": "Не удалось скопировать ID"
+  },
   "W1ewR0": {
     "message": "Unable to copy link",
     "placeholders": {},
     "comments": [],
     "origin": [
       [
+        "src/views/board/index.tsx",
+        323
+      ],
+      [
         "src/views/card/components/Dropdown.tsx",
-        49
+        79
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -10973,7 +12031,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        186
+        193
       ]
     ],
     "translation": "Не удалось создать карточку"
@@ -11046,6 +12104,18 @@
     ],
     "translation": "Не удалось создать шаблон"
   },
+  "c1vOQR": {
+    "message": "Unable to create webhook",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/NewWebhookModal.tsx",
+        118
+      ]
+    ],
+    "translation": "Не удалось создать вебхук"
+  },
   "MxQXhL": {
     "message": "Unable to create workspace",
     "placeholders": {},
@@ -11053,7 +12123,11 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        158
+        109
+      ],
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        120
       ]
     ],
     "translation": "Не удалось создать рабочую область"
@@ -11154,6 +12228,58 @@
     ],
     "translation": "Не удалось удалить тег"
   },
+  "23nvb2": {
+    "message": "Unable to delete webhook",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteWebhookConfirmation.tsx",
+        36
+      ]
+    ],
+    "translation": "Не удалось удалить вебхук"
+  },
+  "Oo4E6p": {
+    "message": "Unable to duplicate card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextDuplicateModal.tsx",
+        75
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        53
+      ]
+    ],
+    "translation": "Невозможно дублировать карточку"
+  },
+  "d196/6": {
+    "message": "Unable to move board",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        45
+      ]
+    ],
+    "translation": "Не удалось переместить доску"
+  },
+  "K7k9u3": {
+    "message": "Unable to move card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextMoveListModal.tsx",
+        41
+      ]
+    ],
+    "translation": "Невозможно переместить карточку"
+  },
   "8yFGGF": {
     "message": "Unable to remove member",
     "placeholders": {},
@@ -11214,6 +12340,34 @@
     ],
     "translation": "Не удалось отправить отзыв"
   },
+  "Q60WUZ": {
+    "message": "Unable to start checkout",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        169
+      ]
+    ],
+    "translation": "Не удалось начать оформление заказа"
+  },
+  "KNK33q": {
+    "message": "Unable to test webhook",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/NewWebhookModal.tsx",
+        163
+      ],
+      [
+        "src/views/settings/components/WebhookList.tsx",
+        185
+      ]
+    ],
+    "translation": "Не удалось протестировать вебхук"
+  },
   "C/XupJ": {
     "message": "Unable to update authors",
     "placeholders": {},
@@ -11233,7 +12387,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        64
+        68
       ]
     ],
     "translation": "Не удалось обновить доску"
@@ -11269,7 +12423,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        253
+        283
       ],
       [
         "src/views/card/index.tsx",
@@ -11345,7 +12499,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        197
+        227
       ],
       [
         "src/views/card/components/ListSelector.tsx",
@@ -11413,7 +12567,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        72
+        77
       ],
       [
         "src/views/settings/components/RoleEditor.tsx",
@@ -11438,6 +12592,18 @@
     ],
     "translation": "Не удалось обновить тег"
   },
+  "V1o9Jo": {
+    "message": "Unable to update webhook",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/NewWebhookModal.tsx",
+        137
+      ]
+    ],
+    "translation": "Не удалось обновить вебхук"
+  },
   "It4/FS": {
     "message": "Unarchive board",
     "placeholders": {},
@@ -11445,7 +12611,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        111
+        115
       ]
     ],
     "translation": "Восстановить доску из архива"
@@ -11634,15 +12800,23 @@
     ],
     "translation": "Неограниченное количество списков"
   },
+  "uXKtPH": {
+    "message": "unlimited members",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/BillingSettings.tsx",
+        35
+      ]
+    ],
+    "translation": "неограниченное количество участников"
+  },
   "mx8+1u": {
     "message": "Unlimited members",
     "placeholders": {},
     "comments": [],
     "origin": [
-      [
-        "src/components/NewWorkspaceForm.tsx",
-        333
-      ],
       [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
         84
@@ -11657,10 +12831,34 @@
       ],
       [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        66
+        68
       ]
     ],
     "translation": "Неограниченное количество участников"
+  },
+  "8AwlaR": {
+    "message": "Unlimited members and a custom workspace username for teams ready to scale.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        99
+      ]
+    ],
+    "translation": "Неограниченное количество участников и персональное имя рабочего пространства для команд, готовых к масштабированию."
+  },
+  "i5yNAO": {
+    "message": "Unlimited seats",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/index.tsx",
+        346
+      ]
+    ],
+    "translation": "Неограниченное количество мест"
   },
   "Ws+3X+": {
     "message": "Unlimited seats and advanced features for growing teams.",
@@ -11688,7 +12886,8 @@
         93
       ]
     ],
-    "translation": "Отписаться"
+    "translation": "Отписаться",
+    "obsolete": true
   },
   "EkH9pt": {
     "message": "Update",
@@ -11798,22 +12997,30 @@
     ],
     "translation": "обновил(а) заголовок на <0>{0}</0>"
   },
+  "kwkhPe": {
+    "message": "Upgrade",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/index.tsx",
+        323
+      ],
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        245
+      ]
+    ],
+    "translation": "Обновить"
+  },
   "IelE1h": {
     "message": "Upgrade to Pro",
     "placeholders": {},
     "comments": [],
     "origin": [
       [
-        "src/components/SideNavigation.tsx",
-        268
-      ],
-      [
         "src/views/settings/components/UpgradeToProConfirmation.tsx",
-        53
-      ],
-      [
-        "src/views/settings/WorkspaceSettings.tsx",
-        118
+        55
       ]
     ],
     "translation": "Перейти на Pro"
@@ -11824,8 +13031,8 @@
     "comments": [],
     "origin": [
       [
-        "src/components/NewWorkspaceForm.tsx",
-        373
+        "src/views/onboarding/workspace-details/index.tsx",
+        265
       ]
     ],
     "translation": "Перейти на Pro (29 $/месяц)"
@@ -11865,11 +13072,11 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        217
+        239
       ],
       [
         "src/views/settings/components/WebhookList.tsx",
-        218
+        220
       ]
     ],
     "translation": "URL"
@@ -11881,7 +13088,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        38
+        31
       ],
       [
         "src/views/settings/components/UpdateWorkspaceUrlForm.tsx",
@@ -11909,7 +13116,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        36
+        29
       ],
       [
         "src/views/settings/components/UpdateWorkspaceUrlForm.tsx",
@@ -11925,7 +13132,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        34
+        27
       ],
       [
         "src/views/settings/components/UpdateWorkspaceUrlForm.tsx",
@@ -11953,7 +13160,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        239
+        265
       ]
     ],
     "translation": "Используется для подписи данных вебхука для проверки. Оставьте пустым, чтобы сохранить существующий секретный ключ."
@@ -11965,7 +13172,7 @@
     "origin": [
       [
         "src/views/members/index.tsx",
-        349
+        374
       ]
     ],
     "translation": "Пользователь"
@@ -11977,7 +13184,7 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        98
+        97
       ]
     ],
     "translation": "Пользователь уже является участником этого рабочего пространства"
@@ -12013,7 +13220,7 @@
     "origin": [
       [
         "src/views/settings/BillingSettings.tsx",
-        42
+        91
       ]
     ],
     "translation": "Просматривайте и управляйте своими платежами и подпиской."
@@ -12108,7 +13315,24 @@
         63
       ]
     ],
-    "translation": "Не удалось обновить ваши настройки. Пожалуйста, попробуйте ещё раз."
+    "translation": "Не удалось обновить ваши настройки. Пожалуйста, попробуйте ещё раз.",
+    "obsolete": true
+  },
+  "7sdSkl": {
+    "message": "We sent a link to {magicLinkRecipient}",
+    "placeholders": {
+      "magicLinkRecipient": [
+        "magicLinkRecipient"
+      ]
+    },
+    "comments": [],
+    "origin": [
+      [
+        "src/pages/partner/activate.tsx",
+        60
+      ]
+    ],
+    "translation": "Мы отправили ссылку на {magicLinkRecipient}"
   },
   "9y1RcT": {
     "message": "We're just getting started. ",
@@ -12122,6 +13346,18 @@
     ],
     "translation": "Мы только начинаем."
   },
+  "an6ayw": {
+    "message": "Webhook created",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/NewWebhookModal.tsx",
+        110
+      ]
+    ],
+    "translation": "Вебхук создан"
+  },
   "GdWB+V": {
     "message": "Webhook created successfully",
     "placeholders": {},
@@ -12129,10 +13365,22 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        104
+        111
       ]
     ],
     "translation": "Вебхук успешно создан"
+  },
+  "LnaC5y": {
+    "message": "Webhook deleted",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/DeleteWebhookConfirmation.tsx",
+        28
+      ]
+    ],
+    "translation": "Вебхук удалён"
   },
   "2X4ecw": {
     "message": "Webhook deleted successfully",
@@ -12141,7 +13389,7 @@
     "origin": [
       [
         "src/views/settings/components/DeleteWebhookConfirmation.tsx",
-        23
+        29
       ]
     ],
     "translation": "Вебхук успешно удалён"
@@ -12177,14 +13425,26 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        135
+        155
       ],
       [
         "src/views/settings/components/WebhookList.tsx",
-        177
+        178
       ]
     ],
     "translation": "Не удалось выполнить тест вебхука"
+  },
+  "kxZ7LS": {
+    "message": "Webhook updated",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/NewWebhookModal.tsx",
+        129
+      ]
+    ],
+    "translation": "Вебхук обновлён"
   },
   "3d54Wj": {
     "message": "Webhook updated successfully",
@@ -12193,7 +13453,7 @@
     "origin": [
       [
         "src/views/settings/components/NewWebhookModal.tsx",
-        118
+        130
       ]
     ],
     "translation": "Вебхук успешно обновлён"
@@ -12233,7 +13493,7 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        91
+        64
       ]
     ],
     "translation": "День начала недели"
@@ -12309,15 +13569,15 @@
       ],
       [
         "src/views/board/index.tsx",
-        417
+        547
       ],
       [
         "src/views/boards/index.tsx",
-        48
+        57
       ],
       [
         "src/views/members/index.tsx",
-        285
+        306
       ],
       [
         "src/views/public/board/index.tsx",
@@ -12340,7 +13600,8 @@
         147
       ]
     ],
-    "translation": "Рабочее пространство успешно создано. Вы сможете обновить его позже в настройках."
+    "translation": "Рабочее пространство успешно создано. Вы сможете обновить его позже в настройках.",
+    "obsolete": true
   },
   "UlhdTP": {
     "message": "Workspace deleted",
@@ -12360,8 +13621,12 @@
     "comments": [],
     "origin": [
       [
+        "src/views/onboarding/workspace-details/index.tsx",
+        275
+      ],
+      [
         "src/views/settings/WorkspaceSettings.tsx",
-        82
+        55
       ]
     ],
     "translation": "Описание рабочего пространства"
@@ -12429,11 +13694,15 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        263
+        165
+      ],
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        208
       ],
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        63
+        36
       ]
     ],
     "translation": "Название рабочего пространства"
@@ -12445,7 +13714,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        30
+        23
       ],
       [
         "src/views/settings/components/UpdateWorkspaceNameForm.tsx",
@@ -12461,7 +13730,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        29
+        22
       ]
     ],
     "translation": "Требуется указать название рабочего пространства"
@@ -12533,7 +13802,7 @@
     "origin": [
       [
         "src/views/settings/WorkspaceSettings.tsx",
-        72
+        45
       ]
     ],
     "translation": "URL рабочего пространства"
@@ -12557,7 +13826,7 @@
     "origin": [
       [
         "src/components/NewWorkspaceForm.tsx",
-        277
+        179
       ]
     ],
     "translation": "workspace-url"
@@ -12609,10 +13878,22 @@
     "origin": [
       [
         "src/views/settings/AccountSettings.tsx",
-        91
+        92
       ]
     ],
     "translation": "Вы собираетесь изменить свой пароль."
+  },
+  "3WXdoZ": {
+    "message": "You can always change these later in settings.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        202
+      ]
+    ],
+    "translation": "Вы всегда можете изменить это позже в настройках."
   },
   "aelko+": {
     "message": "You can get a custom workspace URL, like <0>kan.bn/kan</0>, by going into your <1>workspace settings</1> and purchasing a pro workspace subscription. All subscriptions help fund the development of the project!",
@@ -12650,6 +13931,18 @@
     ],
     "translation": "Вы можете развернуть сервис самостоятельно, следуя инструкциям в нашем <0>репозитории</0>."
   },
+  "tUL16u": {
+    "message": "You don't have any other workspaces to move this board to.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/MoveBoardForm.tsx",
+        68
+      ]
+    ],
+    "translation": "У вас нет других рабочих пространств для перемещения этой доски."
+  },
   "h2FKMV": {
     "message": "You don't have permission",
     "placeholders": {},
@@ -12669,11 +13962,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        491
+        621
       ],
       [
         "src/views/board/index.tsx",
-        549
+        679
       ],
       [
         "src/views/boards/components/BoardsList.tsx",
@@ -12681,11 +13974,11 @@
       ],
       [
         "src/views/boards/index.tsx",
-        59
+        68
       ],
       [
         "src/views/boards/index.tsx",
-        80
+        89
       ]
     ],
     "translation": "У вас нет прав доступа"
@@ -12697,7 +13990,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        233
+        238
       ]
     ],
     "translation": "Вы успешно вошли в систему."
@@ -12709,7 +14002,7 @@
     "origin": [
       [
         "src/components/AuthForm.tsx",
-        216
+        221
       ]
     ],
     "translation": "Вы успешно зарегистрировались."
@@ -12724,7 +14017,8 @@
         98
       ]
     ],
-    "translation": "Вы отписались!"
+    "translation": "Вы отписались!",
+    "obsolete": true
   },
   "R275Pz": {
     "message": "You have unlimited seats with your Pro Plan. There is no additional charge for new members!",
@@ -12733,10 +14027,11 @@
     "origin": [
       [
         "src/views/members/components/InviteMemberForm.tsx",
-        326
+        321
       ]
     ],
-    "translation": "В вашем Pro-плане неограниченное количество мест. За новых участников дополнительная плата не взимается!"
+    "translation": "В вашем Pro-плане неограниченное количество мест. За новых участников дополнительная плата не взимается!",
+    "obsolete": true
   },
   "MdN5zD": {
     "message": "You need to be an admin to manage workspace permissions.",
@@ -12762,6 +14057,18 @@
     ],
     "translation": "Для управления ролями рабочего пространства необходимы права администратора."
   },
+  "ZhQoZn": {
+    "message": "You signed in without a password. Set a password to enable password-based login.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/ChangePasswordConfirmation.tsx",
+        147
+      ]
+    ],
+    "translation": "Вы вошли без пароля. Установите пароль, чтобы включить вход по паролю."
+  },
   "2SePRT": {
     "message": "You've been invited to join a workspace on kan.bn.",
     "placeholders": {},
@@ -12769,7 +14076,7 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        134
+        145
       ]
     ],
     "translation": "Вас пригласили присоединиться к рабочему пространству на kan.bn."
@@ -12781,10 +14088,38 @@
     "origin": [
       [
         "src/views/invite/index.tsx",
-        135
+        146
       ]
     ],
     "translation": "Вас пригласили присоединиться к рабочему пространству."
+  },
+  "QriiAI": {
+    "message": "You've reached your {0}-seat limit. Please upgrade your plan to add more members.",
+    "placeholders": {
+      "0": [
+        "seatLimit ?? 0"
+      ]
+    },
+    "comments": [],
+    "origin": [
+      [
+        "src/views/members/components/InviteMemberForm.tsx",
+        106
+      ]
+    ],
+    "translation": "Вы достигли лимита в {0} мест. Пожалуйста, обновите тарифный план, чтобы добавить больше участников."
+  },
+  "8Zjc7q": {
+    "message": "Your account already has a password. You can change it from your account settings.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Dashboard.tsx",
+        273
+      ]
+    ],
+    "translation": "В вашей учетной записи уже есть пароль. Вы можете изменить его в настройках учетной записи."
   },
   "GoDLB9": {
     "message": "Your account has been deleted.",
@@ -12797,6 +14132,18 @@
       ]
     ],
     "translation": "Ваш аккаунт был удалён."
+  },
+  "c4nMcR": {
+    "message": "Your avatar",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/select-plan/index.tsx",
+        264
+      ]
+    ],
+    "translation": "Ваш аватар"
   },
   "evg7+A": {
     "message": "Your boards have been imported.",
@@ -12870,6 +14217,30 @@
     ],
     "translation": "Ваш аккаунт GitHub подключён."
   },
+  "ygpeZ8": {
+    "message": "Your license has been activated successfully.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Dashboard.tsx",
+        116
+      ]
+    ],
+    "translation": "Ваша лицензия успешно активирована."
+  },
+  "+A6Wuq": {
+    "message": "Your license is not active. Please check your account.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Dashboard.tsx",
+        125
+      ]
+    ],
+    "translation": "Ваша лицензия неактивна. Проверьте свою учётную запись."
+  },
   "Ozt2vv": {
     "message": "Your password has been changed.",
     "placeholders": {},
@@ -12877,10 +14248,22 @@
     "origin": [
       [
         "src/views/settings/components/ChangePasswordConfirmation.tsx",
-        70
+        95
       ]
     ],
     "translation": "Ваш пароль был изменён."
+  },
+  "EuK5ez": {
+    "message": "Your password has been set.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/settings/components/ChangePasswordConfirmation.tsx",
+        96
+      ]
+    ],
+    "translation": "Ваш пароль установлен."
   },
   "/tOdd2": {
     "message": "Your profile image has been updated.",
@@ -12940,7 +14323,32 @@
         33
       ]
     ],
-    "translation": "В вашей ссылке для отписки отсутствует токен. Пожалуйста, откройте последнее письмо и попробуйте снова."
+    "translation": "В вашей ссылке для отписки отсутствует токен. Пожалуйста, откройте последнее письмо и попробуйте снова.",
+    "obsolete": true
+  },
+  "GRAGsB": {
+    "message": "Your workspace",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        346
+      ]
+    ],
+    "translation": "Ваше рабочее пространство"
+  },
+  "j0o6ml": {
+    "message": "Your workspace description",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        349
+      ]
+    ],
+    "translation": "Описание вашего рабочего пространства"
   },
   "GnSSGm": {
     "message": "Your workspace description has been updated.",
@@ -12989,6 +14397,22 @@
       ]
     ],
     "translation": "Слаг вашего рабочего пространства был обновлён."
+  },
+  "OTxjpR": {
+    "message": "your-workspace",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        218
+      ],
+      [
+        "src/views/onboarding/workspace-details/index.tsx",
+        219
+      ]
+    ],
+    "translation": "your-workspace"
   },
   "4DOCMI": {
     "message": "YouTube URL",

@@ -21,6 +21,7 @@ import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
 import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
+import Typography from "@tiptap/extension-typography";
 import Underline from "@tiptap/extension-underline";
 import {
   BubbleMenu,
@@ -29,7 +30,6 @@ import {
   ReactRenderer,
   useEditor,
 } from "@tiptap/react";
-import Typography from "@tiptap/extension-typography";
 import StarterKit from "@tiptap/starter-kit";
 import Suggestion from "@tiptap/suggestion";
 import { common, createLowlight } from "lowlight";
@@ -106,7 +106,7 @@ export interface RenderSuggestionsProps {
 export interface WorkspaceMember {
   publicId: string;
   user: {
-    id: string;
+    id: string | null;
     name: string | null;
     image: string | null;
   } | null;
@@ -201,13 +201,13 @@ const RenderSuggestions = () => {
 
       if (!props.clientRect) return;
 
-      popup[0]?.setProps({
+      popup?.[0]?.setProps({
         getReferenceClientRect: props.clientRect,
       });
     },
     onKeyDown(props: SuggestionKeyDownProps): boolean {
       if (props.event.key === "Escape") {
-        popup[0]?.hide();
+        popup?.[0]?.hide();
         return true;
       }
 
@@ -220,7 +220,7 @@ const RenderSuggestions = () => {
       );
     },
     onExit() {
-      popup[0]?.destroy();
+      popup?.[0]?.destroy();
       reactRenderer.destroy();
     },
   };
@@ -329,11 +329,11 @@ const renderMentionSuggestions = () => {
     onUpdate(props: any) {
       reactRenderer.updateProps(props);
       if (!props.clientRect) return;
-      popup[0]?.setProps({ getReferenceClientRect: props.clientRect });
+      popup?.[0]?.setProps({ getReferenceClientRect: props.clientRect });
     },
     onKeyDown(props: SuggestionKeyDownProps) {
       if (props.event.key === "Escape") {
-        popup[0]?.hide();
+        popup?.[0]?.hide();
         return true;
       }
       return (
@@ -345,7 +345,7 @@ const renderMentionSuggestions = () => {
       );
     },
     onExit() {
-      popup[0]?.destroy();
+      popup?.[0]?.destroy();
       reactRenderer.destroy();
     },
   };
@@ -491,6 +491,7 @@ export default function Editor({
   content,
   onChange,
   onBlur,
+  onSubmit,
   readOnly = false,
   workspaceMembers,
   enableYouTubeEmbed = true,
@@ -500,6 +501,7 @@ export default function Editor({
   content: string | null;
   onChange?: (value: string) => void;
   onBlur?: () => void;
+  onSubmit?: () => void;
   readOnly?: boolean;
   workspaceMembers: WorkspaceMember[];
   enableYouTubeEmbed?: boolean;
@@ -507,6 +509,21 @@ export default function Editor({
   disableHeadings?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // useEditor is created once (empty deps below), so keep the latest callbacks
+  // in refs to avoid the editor capturing stale closures on re-render.
+  const onChangeRef = useRef(onChange);
+  const onBlurRef = useRef(onBlur);
+  const onSubmitRef = useRef(onSubmit);
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
+  useEffect(() => {
+    onBlurRef.current = onBlur;
+  }, [onBlur]);
+  useEffect(() => {
+    onSubmitRef.current = onSubmit;
+  }, [onSubmit]);
 
   const editor = useEditor(
     {
@@ -553,12 +570,12 @@ export default function Editor({
           autolink: true,
           linkOnPaste: true,
         }),
-        Markdown,
+        Markdown.configure({ transformPastedText: true }),
         Placeholder.configure({
           placeholder: readOnly
             ? ""
-            : placeholder ??
-              t`Add description... (type '/' to open commands or '@' to mention)`,
+            : (placeholder ??
+              t`Add description... (type '/' to open commands or '@' to mention)`),
         }),
         CodeBlockLowlight.configure({ lowlight }),
         SlashCommands.configure({
@@ -577,7 +594,9 @@ export default function Editor({
           suggestion: {
             char: "@",
             items: ({ query }: { query: string }) => {
-              const withEmail = workspaceMembers.filter((member) => member.email);
+              const withEmail = workspaceMembers.filter(
+                (member) => member.email,
+              );
 
               const mapped = withEmail.map((member: WorkspaceMember) => ({
                 id: member.publicId,
@@ -620,20 +639,20 @@ export default function Editor({
           },
         }),
         Typography.configure({
-            openDoubleQuote: false,
-            closeDoubleQuote: false,
-            openSingleQuote: false,
-            closeSingleQuote: false,
-            oneHalf: false,
-            oneQuarter: false,
-            threeQuarters: false,
-            superscriptTwo: false,
-            superscriptThree: false,
+          openDoubleQuote: false,
+          closeDoubleQuote: false,
+          openSingleQuote: false,
+          closeSingleQuote: false,
+          oneHalf: false,
+          oneQuarter: false,
+          threeQuarters: false,
+          superscriptTwo: false,
+          superscriptThree: false,
         }),
         ...(enableYouTubeEmbed ? [YouTubeNode] : []),
       ],
       content,
-      onUpdate: ({ editor }) => onChange?.(editor.getHTML()),
+      onUpdate: ({ editor }) => onChangeRef.current?.(editor.getHTML()),
       onBlur: ({ event }) => {
         if (
           document
@@ -643,12 +662,19 @@ export default function Editor({
           return;
         // Only trigger onBlur if the click was outside both the editor and menu
         if (!containerRef.current?.contains(event.relatedTarget as Node)) {
-          onBlur?.();
+          onBlurRef.current?.();
         }
       },
       editorProps: {
         attributes: {
           class: "outline-none focus:outline-none focus-visible:ring-0",
+        },
+        handleKeyDown: (_view, event) => {
+          if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+            onSubmitRef.current?.();
+            return true;
+          }
+          return false;
         },
       },
       editable: !readOnly,
@@ -666,6 +692,16 @@ export default function Editor({
       editor.commands.setContent(safeContent, false);
     }
   }, [content, editor]);
+
+  // useEditor captures `readOnly` once at creation time (empty deps above), so
+  // explicitly sync `editable` when the prop changes. Without this the editor
+  // gets stuck read-only when `readOnly` flips from true to false after mount
+  // (e.g. card permissions resolving slower than the card data on first load).
+  useEffect(() => {
+    if (!editor) return;
+    if (editor.isEditable === !readOnly) return;
+    editor.setEditable(!readOnly);
+  }, [editor, readOnly]);
 
   return (
     <div ref={containerRef}>

@@ -415,6 +415,15 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
                 >
                   {board?.name}
                 </Link>
+                {card.cardNumber != null &&
+                  card.list.board.workspace.cardPrefix && (
+                    <>
+                      <IoChevronForwardSharp className="h-[10px] w-[10px] text-light-900 dark:text-dark-900" />
+                      <span className="whitespace-nowrap text-sm font-bold leading-[1.5rem] text-light-700 dark:text-dark-800">
+                        {card.list.board.workspace.cardPrefix}-{card.cardNumber}
+                      </span>
+                    </>
+                  )}
               </div>
               <div className="flex items-center gap-2">
                 <Dropdown
@@ -422,6 +431,14 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
                   isTemplate={isTemplate}
                   boardPublicId={boardId}
                   cardCreatedBy={card?.createdBy}
+                  ticketNumber={
+                    card.cardNumber != null &&
+                    card.list.board.workspace.cardPrefix
+                      ? `${card.list.board.workspace.cardPrefix}-${card.cardNumber}`
+                      : null
+                  }
+                  listPublicId={card?.list.publicId}
+                  cardIndex={card?.index}
                 />
                 <Link
                   href={`/${isTemplate ? "templates" : "boards"}/${boardId}`}

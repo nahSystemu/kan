@@ -50,7 +50,6 @@ const getBaseUrl = () => {
 
 const queryClient = new QueryClient();
 
-// @ts-expect-error
 export const api = createTRPCNext<AppRouter>({
   config() {
     return {
