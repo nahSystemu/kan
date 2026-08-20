@@ -1,4 +1,8 @@
-CREATE TYPE "public"."page_visibility" AS ENUM('private', 'public');--> statement-breakpoint
+DO $$ BEGIN
+ CREATE TYPE "public"."page_visibility" AS ENUM('private', 'public');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "page_label" (
 	"id" bigserial PRIMARY KEY NOT NULL,
 	"publicId" varchar(12) NOT NULL,
@@ -60,8 +64,8 @@ CREATE TABLE IF NOT EXISTS "_page_workspace_members" (
 );
 --> statement-breakpoint
 ALTER TABLE "_page_workspace_members" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
-ALTER TABLE "workspace_roles" ADD COLUMN "color" varchar(7);--> statement-breakpoint
-ALTER TABLE "workspace_roles" ADD COLUMN "deletedAt" timestamp;--> statement-breakpoint
+ALTER TABLE "workspace_roles" ADD COLUMN IF NOT EXISTS "color" varchar(7);--> statement-breakpoint
+ALTER TABLE "workspace_roles" ADD COLUMN IF NOT EXISTS "deletedAt" timestamp;--> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "page_label" ADD CONSTRAINT "page_label_workspaceId_workspace_id_fk" FOREIGN KEY ("workspaceId") REFERENCES "public"."workspace"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
