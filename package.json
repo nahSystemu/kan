@@ -37,6 +37,12 @@
     "overrides": {
       "@types/minimatch": "npm:minimatch@*",
       "@types/glob": "npm:@types/glob@^8.1.0"
+    },
+    "//supportedArchitectures": "The Docker image builds the Next bundle once on the build host and ships it to both linux/amd64 and linux/arm64 runtime images. sharp (a transitive dep of next, used by next/image) resolves a prebuilt binary per architecture, so the install must fetch every Linux variant or the arm64 image ends up holding x64 binaries. 'current' keeps local development installs working on any platform.",
+    "supportedArchitectures": {
+      "os": ["linux", "current"],
+      "cpu": ["x64", "arm64", "current"],
+      "libc": ["glibc", "musl", "current"]
     }
   }
 }

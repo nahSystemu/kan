@@ -1,0 +1,42 @@
+# BuildKit daemon config for the persistent `kan-builder` on the self-hosted runner.
+#
+# Defining any gcpolicy replaces ALL FOUR BuildKit defaults, so every rule is
+# restated here. The reason this file exists at all: the default first rule
+# lumps exec.cachemount in with ephemeral build contexts under a 512MB / 48h
+# cap, which evicts the pnpm store between runs and forces a full redownload.
+#
+# The defaults also derive minFreeSpace from total disk size (10%), which on a
+# multi-TB volume means BuildKit prunes the whole cache while terabytes are
+# still free. The explicit values below are absolute.
+#
+# NOTE: docker/setup-buildx-action reuses an existing builder by name and does
+# not re-apply a changed config. After editing this file, drop the builder once
+# so it gets recreated:  docker buildx rm kan-builder
+
+[worker.oci]
+  gc = true
+
+  # 1. Genuinely ephemeral inputs. Cache mounts are deliberately excluded here.
+  [[worker.oci.gcpolicy]]
+    filters = ["type==source.local", "type==source.git.checkout"]
+    keepDuration = "48h"
+    maxUsedSpace = "4GB"
+
+  # 2. Package and compiler caches: pnpm store, npm cache, .next/cache, .turbo.
+  [[worker.oci.gcpolicy]]
+    filters = ["type==exec.cachemount"]
+    keepDuration = "720h"
+    maxUsedSpace = "30GB"
+
+  # 3. Ordinary layer cache.
+  [[worker.oci.gcpolicy]]
+    keepDuration = "720h"
+    reservedSpace = "20GB"
+    maxUsedSpace = "100GB"
+
+  # 4. Last resort, including shared and internal records.
+  [[worker.oci.gcpolicy]]
+    all = true
+    reservedSpace = "20GB"
+    maxUsedSpace = "150GB"
+    minFreeSpace = "50GB"

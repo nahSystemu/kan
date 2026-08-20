@@ -6,33 +6,27 @@ ARG DISTROLESS_NODE_IMAGE=gcr.io/distroless/nodejs${NODE_VERSION}-debian12
 # ============================================
 # Stage 1: Alpine base with pnpm and turbo
 # ============================================
-FROM node:${NODE_VERSION}-alpine AS alpine
-RUN apk update && \
-    apk add --no-cache libc6-compat && \
-    rm -rf /var/cache/apk/* /tmp/* || true && \
+# Pinned to BUILDPLATFORM so the JS toolchain never runs under QEMU. Every
+# artifact this base produces is architecture-independent JavaScript, which the
+# per-arch runtime stage consumes unchanged — the existing musl (alpine) to
+# glibc (distroless) hop already depended on that being true.
+FROM --platform=$BUILDPLATFORM node:${NODE_VERSION}-alpine AS alpine
+
+ENV PNPM_STORE=/pnpm/store
+
+RUN apk add --no-cache libc6-compat && \
     corepack enable && \
     corepack prepare pnpm@9.14.2 --activate && \
     npm install turbo@2.3.1 --global && \
-    pnpm config set store-dir ~/.pnpm-store
+    pnpm config set store-dir "$PNPM_STORE"
 
 # ============================================
 # Stage 2: Prune the monorepo
 # ============================================
 FROM alpine AS pruner
 
-RUN apk add --no-cache git
-
 WORKDIR /app
 COPY . .
-
-# Generate version from git (fallback if APP_VERSION not provided)
-RUN git fetch --tags --unshallow 2>/dev/null || git fetch --tags 2>/dev/null || true && \
-    AUTO_VERSION=$(git describe --tags --always --long 2>/dev/null | \
-    sed -E 's/^v?([0-9]+\.[0-9]+\.[0-9]+)-[0-9]+-g([a-f0-9]{7}).*/\1+\2/' | \
-    sed 's/^v//' || \
-    git rev-parse --short HEAD 2>/dev/null | head -c 7 || \
-    echo "unknown") && \
-    echo "$AUTO_VERSION" > /app/AUTO_VERSION
 
 RUN turbo prune --scope=@kan/web --scope=@kan/db --docker
 
@@ -47,19 +41,26 @@ COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY --from=pruner /app/out/json/ .
 
 ENV CI=true
-RUN --mount=type=cache,id=pnpm,target=~/.pnpm-store pnpm install --frozen-lockfile
+
+# The cache mount target must be absolute: BuildKit does not expand `~`, so a
+# `target=~/.pnpm-store` never lines up with pnpm's own store path and every
+# build re-downloads the entire dependency tree.
+RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store,sharing=locked \
+    pnpm install --frozen-lockfile
 
 # ============================================
 # Stage 4: Build the web application
 # ============================================
 FROM alpine AS builder
-ARG APP_VERSION
+
+# Empty rather than "unknown" so builds without a version stamp hide the version
+# in the UI instead of rendering a broken release link.
+ARG APP_VERSION=""
 
 WORKDIR /app
 
 COPY --from=deps /app/ ./
 COPY --from=pruner /app/out/full/ .
-COPY --from=pruner /app/AUTO_VERSION /tmp/AUTO_VERSION
 
 # Force standalone output for production Docker image
 ENV NEXT_PUBLIC_USE_STANDALONE_OUTPUT=true
@@ -68,19 +69,29 @@ ENV CI=true
 # Invoke turbo directly instead of the root `build` script: that script filters
 # out @kan/docs, which turbo prune strips from this workspace, and turbo >=2.5
 # hard-errors on a filter naming a package it cannot find.
-RUN VERSION="${APP_VERSION:-$(cat /tmp/AUTO_VERSION 2>/dev/null | tr -d '\n\r' || echo 'unknown')}" && \
-    NEXT_PUBLIC_APP_VERSION="$VERSION" pnpm exec turbo run build --filter=@kan/web
+#
+# .next/cache and .turbo are cache mounts carrying Next's incremental compiler
+# state between builds; being mounts, they never land in the image.
+RUN --mount=type=cache,id=next-cache,target=/app/apps/web/.next/cache,sharing=locked \
+    --mount=type=cache,id=turbo-cache,target=/app/.turbo,sharing=locked \
+    NEXT_PUBLIC_APP_VERSION="$APP_VERSION" pnpm exec turbo run build --filter=@kan/web
 
 # ============================================
 # Stage 5: Migration image (run-once container)
 # ============================================
+# Deliberately not pinned to BUILDPLATFORM: drizzle-kit pulls in a
+# platform-specific esbuild binary, so this stage has to install on the
+# architecture it will actually run on.
 FROM node:${NODE_VERSION}-alpine AS migrate
 WORKDIR /db
 
 COPY packages/db/drizzle.config.ts ./drizzle.config.ts
 COPY packages/db/migrations/ ./migrations/
 
-RUN npm init -y && \
+# /root/.npm is a cache mount here, so it must not be deleted at the end of the
+# layer the way a plain directory would be.
+RUN --mount=type=cache,id=npm-cache,target=/root/.npm,sharing=locked \
+    npm init -y && \
     npm install drizzle-kit drizzle-orm pg --save-exact && \
     # Strip unnecessary files from node_modules
     find node_modules -type f \( \
@@ -98,7 +109,7 @@ RUN npm init -y && \
       -name 'tsconfig*.json' \
     \) -delete && \
     find node_modules -type d -empty -delete && \
-    rm -rf /root/.npm /tmp/*
+    rm -rf /tmp/*
 
 CMD ["npx", "drizzle-kit", "migrate"]
 
