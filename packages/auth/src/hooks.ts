@@ -55,6 +55,26 @@ export function createDatabaseHooks(db: dbClient) {
           return Promise.resolve(true);
         },
         async after(user: BetterAuthUser, _context: unknown) {
+          try {
+            const pendingInvitations = await memberRepo.getAllByEmailAndStatus(
+              db,
+              user.email,
+              "invited",
+            );
+
+            for (const invitation of pendingInvitations) {
+              await memberRepo.acceptInvite(db, {
+                memberId: invitation.id,
+                userId: user.id,
+              });
+            }
+          } catch (error) {
+            log.error(
+              { err: error, userId: user.id },
+              "Error accepting pending workspace invitations",
+            );
+          }
+
           let avatarKey = user.image;
           const storageDomain = process.env.NEXT_PUBLIC_STORAGE_DOMAIN;
           if (

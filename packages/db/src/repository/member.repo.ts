@@ -128,6 +128,20 @@ export const getByEmailAndStatus = async (
   });
 };
 
+export const getAllByEmailAndStatus = async (
+  db: dbClient,
+  email: string,
+  status: MemberStatus,
+) => {
+  return db.query.workspaceMembers.findMany({
+    where: and(
+      eq(workspaceMembers.email, email),
+      eq(workspaceMembers.status, status),
+      isNull(workspaceMembers.deletedAt),
+    ),
+  });
+};
+
 export const acceptInvite = async (
   db: dbClient,
   args: { memberId: number; userId: string },

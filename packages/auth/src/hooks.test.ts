@@ -11,6 +11,7 @@ vi.mock("next-runtime-env", () => ({
 
 vi.mock("@kan/db/repository/member.repo", () => ({
   getByEmailAndStatus: vi.fn(),
+  getAllByEmailAndStatus: vi.fn(),
   getByPublicId: vi.fn(),
   acceptInvite: vi.fn(),
 }));
@@ -36,6 +37,9 @@ const mockEnv = env as ReturnType<typeof vi.fn>;
 const mockGetByEmailAndStatus = memberRepo.getByEmailAndStatus as ReturnType<
   typeof vi.fn
 >;
+const mockGetAllByEmailAndStatus =
+  memberRepo.getAllByEmailAndStatus as ReturnType<typeof vi.fn>;
+const mockAcceptInvite = memberRepo.acceptInvite as ReturnType<typeof vi.fn>;
 
 const db = {} as Parameters<typeof createDatabaseHooks>[0];
 
@@ -188,6 +192,43 @@ describe("createDatabaseHooks", () => {
       expect(result).toBe(true);
 
       delete process.env.BETTER_AUTH_ALLOWED_DOMAINS;
+    });
+  });
+
+  describe("user.create.after", () => {
+    beforeEach(() => {
+      mockEnv.mockReturnValue(undefined);
+      mockGetAllByEmailAndStatus.mockResolvedValue([]);
+    });
+
+    it("adds the new user to every workspace they were invited to", async () => {
+      mockGetAllByEmailAndStatus.mockResolvedValue([
+        { id: 1, email: "test@example.com", status: "invited" },
+        { id: 2, email: "test@example.com", status: "invited" },
+      ]);
+
+      await hooks.user.create.after(fakeUser, {});
+
+      expect(mockGetAllByEmailAndStatus).toHaveBeenCalledWith(
+        db,
+        "test@example.com",
+        "invited",
+      );
+      expect(mockAcceptInvite).toHaveBeenCalledTimes(2);
+      expect(mockAcceptInvite).toHaveBeenCalledWith(db, {
+        memberId: 1,
+        userId: "user-1",
+      });
+      expect(mockAcceptInvite).toHaveBeenCalledWith(db, {
+        memberId: 2,
+        userId: "user-1",
+      });
+    });
+
+    it("leaves users without pending invitations untouched", async () => {
+      await hooks.user.create.after(fakeUser, {});
+
+      expect(mockAcceptInvite).not.toHaveBeenCalled();
     });
   });
 });
