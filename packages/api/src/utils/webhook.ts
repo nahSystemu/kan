@@ -20,6 +20,7 @@ export interface WebhookPayload {
       title: string;
       description?: string | null;
       dueDate?: string | null; // ISO string after JSON serialization
+      priority?: string | null;
       listId: string;
       boardId: string;
     };
@@ -226,6 +227,7 @@ export function createCardWebhookPayload(
     title: string;
     description?: string | null;
     dueDate?: Date | null;
+    priority?: string | null;
     listId: string;
   },
   context: {
@@ -249,6 +251,7 @@ export function createCardWebhookPayload(
         title: card.title,
         description: card.description,
         dueDate: card.dueDate?.toISOString() ?? null,
+        priority: card.priority ?? null,
         listId: card.listId,
         boardId: context.boardId,
       },

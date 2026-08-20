@@ -15,6 +15,7 @@ import {
 } from "react-icons/hi2";
 
 import type { UpdateBoardInput } from "@kan/api/types";
+import type { CardPriority } from "@kan/db/schema";
 
 import type { CardContextMenuAction } from "./components/CardContextMenu";
 import Button from "~/components/Button";
@@ -46,6 +47,7 @@ import { CardContextLabelsModal } from "./components/CardContextLabelsModal";
 import { CardContextMembersModal } from "./components/CardContextMembersModal";
 import { CardContextMenu } from "./components/CardContextMenu";
 import { CardContextMoveListModal } from "./components/CardContextMoveListModal";
+import { CardContextPriorityModal } from "./components/CardContextPriorityModal";
 import { DeleteBoardConfirmation } from "./components/DeleteBoardConfirmation";
 import { DeleteListConfirmation } from "./components/DeleteListConfirmation";
 import Filters from "./components/Filters";
@@ -131,6 +133,10 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
     | "no-due-date"
   )[];
 
+  const priorityFilters = formatToArray(
+    router.query.priority,
+  ) as CardPriority[];
+
   const boardType: "regular" | "template" = isTemplate ? "template" : "regular";
 
   const queryParams = {
@@ -138,6 +144,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
     members: formatToArray(router.query.members),
     labels: formatToArray(router.query.labels),
     lists: formatToArray(router.query.lists),
+    priority: priorityFilters,
     ...(semanticFilters.length > 0 && {
       dueDateFilters: semanticFilters,
     }),
@@ -347,7 +354,9 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
           ? "CARD_CONTEXT_MOVE_LIST"
           : action === "labels"
             ? "CARD_CONTEXT_LABELS"
-            : "CARD_CONTEXT_DUE_DATE";
+            : action === "priority"
+              ? "CARD_CONTEXT_PRIORITY"
+              : "CARD_CONTEXT_DUE_DATE";
     openModal(modalType, cardPublicId);
   };
 
@@ -515,6 +524,12 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
         </Modal>
         <Modal
           modalSize="sm"
+          isVisible={isOpen && modalContentType === "CARD_CONTEXT_PRIORITY"}
+        >
+          <CardContextPriorityModal />
+        </Modal>
+        <Modal
+          modalSize="sm"
           isVisible={isOpen && modalContentType === "CARD_CONTEXT_DUE_DATE"}
         >
           <CardContextDueDateModal />
@@ -655,9 +670,9 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
         >
           {isLoading ? (
             <div className="ml-[2rem] flex">
-              <div className="0 mr-5 h-[500px] w-[18rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
-              <div className="0 mr-5 h-[275px] w-[18rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
-              <div className="0 mr-5 h-[375px] w-[18rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
+              <div className="0 mr-5 h-[500px] w-[22rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
+              <div className="0 mr-5 h-[275px] w-[22rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
+              <div className="0 mr-5 h-[375px] w-[22rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
             </div>
           ) : boardData ? (
             <>
@@ -788,6 +803,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                                             comments={card.comments ?? []}
                                             attachments={card.attachments}
                                             dueDate={card.dueDate ?? null}
+                                            priority={card.priority ?? null}
                                           />
                                         </Link>
                                       )}
@@ -799,7 +815,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                             </Droppable>
                           </List>
                         ))}
-                        <div className="min-w-[calc(100vw-18rem)] md:min-w-[0.75rem]" />
+                        <div className="min-w-[calc(100vw-22rem)] md:min-w-[0.75rem]" />
                         {provided.placeholder}
                       </div>
                     )}

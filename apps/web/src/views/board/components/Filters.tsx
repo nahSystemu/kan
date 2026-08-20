@@ -3,16 +3,20 @@ import { t } from "@lingui/core/macro";
 import {
   HiMiniXMark,
   HiOutlineClock,
+  HiOutlineFlag,
   HiOutlineSquare3Stack3D,
   HiOutlineTag,
   HiOutlineUserCircle,
 } from "react-icons/hi2";
 import { IoFilterOutline } from "react-icons/io5";
 
+import { cardPriorities } from "@kan/db/schema";
+
 import Avatar from "~/components/Avatar";
 import Button from "~/components/Button";
 import CheckboxDropdown from "~/components/CheckboxDropdown";
 import LabelIcon from "~/components/LabelIcon";
+import { getPriorityLabel, PriorityIcon } from "~/components/Priority";
 import {
   formatMemberDisplayName,
   formatToArray,
@@ -67,6 +71,7 @@ const Filters = ({
           labels: [],
           lists: [],
           dueDate: [],
+          priority: [],
         },
       });
     } catch (error) {
@@ -104,6 +109,13 @@ const Filters = ({
     key: list.publicId,
     value: list.name,
     selected: !!router.query.lists?.includes(list.publicId),
+  }));
+
+  const priorityItems = cardPriorities.map((priority) => ({
+    key: priority,
+    value: getPriorityLabel(priority),
+    selected: !!router.query.priority?.includes(priority),
+    leftIcon: <PriorityIcon priority={priority} />,
   }));
 
   const dueDateItems = [
@@ -167,6 +179,12 @@ const Filters = ({
         ]
       : []),
     {
+      key: "priority",
+      label: t`Priority`,
+      icon: <HiOutlineFlag size={16} />,
+      items: priorityItems,
+    },
+    {
       key: "dueDate",
       label: t`Due date`,
       icon: <HiOutlineClock size={16} />,
@@ -203,6 +221,7 @@ const Filters = ({
     ...formatToArray(router.query.labels),
     ...formatToArray(router.query.lists),
     ...formatToArray(router.query.dueDate),
+    ...formatToArray(router.query.priority),
   ].length;
 
   return (

@@ -10,6 +10,8 @@ import {
 } from "react-icons/hi2";
 
 import type { NewCardInput } from "@kan/api/types";
+import type { CardPriority } from "@kan/db/schema";
+import { cardPriorities } from "@kan/db/schema";
 import { generateUID } from "@kan/shared/utils";
 
 import type { WorkspaceMember } from "~/components/Editor";
@@ -20,6 +22,7 @@ import DateSelector from "~/components/DateSelector";
 import Editor from "~/components/Editor";
 import Input from "~/components/Input";
 import LabelIcon from "~/components/LabelIcon";
+import { getPriorityLabel, PriorityIcon } from "~/components/Priority";
 import Toggle from "~/components/Toggle";
 import { useModalFormState } from "~/hooks/useModalFormState";
 import { useModal } from "~/providers/modal";
@@ -31,6 +34,7 @@ import { formatMemberDisplayName, getAvatarUrl } from "~/utils/helpers";
 type NewCardFormInput = NewCardInput & {
   isCreateAnotherEnabled: boolean;
   dueDate?: Date | null;
+  priority?: CardPriority | null;
 };
 
 interface QueryParams {
@@ -71,6 +75,7 @@ export function NewCardForm({
       isCreateAnotherEnabled: false,
       position: "start",
       dueDate: null,
+      priority: null,
     },
     resetOnClose: true,
   });
@@ -87,6 +92,7 @@ export function NewCardForm({
   const title = watch("title");
   const description = watch("description");
   const dueDate = watch("dueDate");
+  const priority = watch("priority");
   const [isDateSelectorOpen, setIsDateSelectorOpen] = useState(false);
 
   // saving form state whenever form values change
@@ -146,6 +152,7 @@ export function NewCardForm({
               listId: 2,
               description: "",
               dueDate: args.dueDate ?? null,
+              priority: args.priority ?? null,
               cardNumber: null,
               comments: [],
               checklists: [],
@@ -207,6 +214,7 @@ export function NewCardForm({
           isCreateAnotherEnabled,
           position,
           dueDate: null,
+          priority: null,
         };
         reset(newFormState);
         saveFormState(newFormState);
@@ -265,6 +273,7 @@ export function NewCardForm({
       memberPublicIds: data.memberPublicIds,
       position: data.position,
       dueDate: data.dueDate ?? null,
+      priority: data.priority ?? null,
     });
   };
 
@@ -287,6 +296,11 @@ export function NewCardForm({
     }
   };
 
+  // Re-picking the active priority clears it — there is no explicit "None" option.
+  const handleSelectPriority = (value: CardPriority): void => {
+    setValue("priority", priority === value ? null : value);
+  };
+
   const handleSelectLabels = (labelPublicId: string): void => {
     const currentIndex = labelPublicIds.indexOf(labelPublicId);
     if (currentIndex === -1) {
@@ -297,6 +311,13 @@ export function NewCardForm({
       setValue("labelPublicIds", newLabelPublicIds);
     }
   };
+
+  const formattedPriorities = cardPriorities.map((value) => ({
+    key: value,
+    value: getPriorityLabel(value),
+    selected: priority === value,
+    leftIcon: <PriorityIcon priority={value} />,
+  }));
 
   const selectedList = formattedLists.find((item) => item.selected);
 
@@ -460,6 +481,25 @@ export function NewCardForm({
                       </div>
                     )}
                   </>
+                )}
+              </div>
+            </CheckboxDropdown>
+          </div>
+          <div className="w-fit">
+            <CheckboxDropdown
+              items={formattedPriorities}
+              handleSelect={(_groupKey, item) =>
+                handleSelectPriority(item.key as CardPriority)
+              }
+            >
+              <div className="flex h-full w-full items-center gap-x-1 rounded-[5px] border-[1px] border-light-600 bg-light-200 px-2 py-1 text-left text-xs text-light-800 hover:bg-light-300 dark:border-dark-600 dark:bg-dark-400 dark:text-dark-1000 dark:hover:bg-dark-500">
+                {priority ? (
+                  <>
+                    <PriorityIcon priority={priority} />
+                    {getPriorityLabel(priority)}
+                  </>
+                ) : (
+                  t`Priority`
                 )}
               </div>
             </CheckboxDropdown>

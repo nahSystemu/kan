@@ -13,7 +13,7 @@ import {
 } from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
-import type { BoardVisibilityStatus } from "@kan/db/schema";
+import type { BoardVisibilityStatus, CardPriority } from "@kan/db/schema";
 import {
   boards,
   cardActivities,
@@ -153,6 +153,7 @@ export const getByPublicId = async (
     labels: string[];
     lists: string[];
     dueDate: DueDateFilter[];
+    priority: CardPriority[];
     type: "regular" | "template" | undefined;
   },
 ) => {
@@ -256,6 +257,7 @@ export const getByPublicId = async (
               listId: true,
               index: true,
               dueDate: true,
+              priority: true,
               cardNumber: true,
             },
             with: {
@@ -331,6 +333,9 @@ export const getByPublicId = async (
               cardIds.length > 0 ? inArray(cards.publicId, cardIds) : undefined,
               isNull(cards.deletedAt),
               buildDueDateWhere(filters.dueDate),
+              filters.priority.length > 0
+                ? inArray(cards.priority, filters.priority)
+                : undefined,
             ),
             orderBy: [asc(cards.index)],
           },
@@ -389,6 +394,7 @@ export const getBySlug = async (
     labels: string[];
     lists: string[];
     dueDate: DueDateFilter[];
+    priority: CardPriority[];
   },
 ) => {
   let cardIds: string[] = [];
@@ -453,6 +459,7 @@ export const getBySlug = async (
               listId: true,
               index: true,
               dueDate: true,
+              priority: true,
               cardNumber: true,
             },
             with: {
@@ -507,6 +514,9 @@ export const getBySlug = async (
               cardIds.length > 0 ? inArray(cards.publicId, cardIds) : undefined,
               isNull(cards.deletedAt),
               buildDueDateWhere(filters.dueDate),
+              filters.priority.length > 0
+                ? inArray(cards.priority, filters.priority)
+                : undefined,
             ),
             orderBy: [asc(cards.index)],
           },
@@ -1078,3 +1088,4 @@ export const removeUserFavorite = async (
     )
     .returning();
 };
+

@@ -40,6 +40,7 @@ import ListSelector from "./components/ListSelector";
 import MemberSelector from "./components/MemberSelector";
 import { NewChecklistForm } from "./components/NewChecklistForm";
 import NewCommentForm from "./components/NewCommentForm";
+import PrioritySelector from "./components/PrioritySelector";
 
 // Small helper to resolve board publicId from a card publicId using tRPC.
 // We encapsulate a local cast to bridge typegen lag between packages; at runtime this is safe.
@@ -177,6 +178,15 @@ export function CardRightPanel({ isTemplate }: { isTemplate?: boolean }) {
           />
         </div>
       )}
+      <div className="mb-4 flex w-full flex-row">
+        <p className="my-2 mb-2 w-[100px] text-sm font-medium">{t`Priority`}</p>
+        <PrioritySelector
+          cardPublicId={cardId ?? ""}
+          priority={card?.priority ?? null}
+          isLoading={!card}
+          disabled={!canEdit}
+        />
+      </div>
       <div className="mb-4 flex w-full flex-row">
         <p className="my-2 mb-2 w-[100px] text-sm font-medium">{t`Due date`}</p>
         <DueDateSelector

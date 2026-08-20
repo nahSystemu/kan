@@ -8,6 +8,7 @@ import * as activityRepo from "@kan/db/repository/cardActivity.repo";
 import * as labelRepo from "@kan/db/repository/label.repo";
 import * as listRepo from "@kan/db/repository/list.repo";
 import * as workspaceRepo from "@kan/db/repository/workspace.repo";
+import { cardPriorities } from "@kan/db/schema";
 import { colours } from "@kan/shared/constants";
 import {
   convertDueDateFiltersToRanges,
@@ -155,6 +156,7 @@ export const boardRouter = createTRPCRouter({
             ]),
           )
           .optional(),
+        priority: z.array(z.enum(cardPriorities)).optional(),
         type: z.enum(["regular", "template"]).optional(),
       }),
     )
@@ -195,6 +197,7 @@ export const boardRouter = createTRPCRouter({
           labels: input.labels ?? [],
           lists: input.lists ?? [],
           dueDate: dueDateFilters,
+          priority: input.priority ?? [],
           type: input.type,
         },
       );
@@ -296,6 +299,7 @@ export const boardRouter = createTRPCRouter({
             ]),
           )
           .optional(),
+        priority: z.array(z.enum(cardPriorities)).optional(),
       }),
     )
     .output(boardBySlugSchema.nullable())
@@ -325,6 +329,7 @@ export const boardRouter = createTRPCRouter({
           labels: input.labels ?? [],
           lists: input.lists ?? [],
           dueDate: dueDateFilters,
+          priority: input.priority ?? [],
         },
       );
 
@@ -398,6 +403,7 @@ export const boardRouter = createTRPCRouter({
             labels: [],
             lists: [],
             dueDate: [],
+            priority: [],
             type: sourceBoardInfo.type,
           },
         );

@@ -6,6 +6,8 @@ import { env } from "next-runtime-env";
 import { useEffect, useState } from "react";
 import { HiLink, HiOutlineLockClosed } from "react-icons/hi2";
 
+import type { CardPriority } from "@kan/db/schema";
+
 import Button from "~/components/Button";
 import Modal from "~/components/modal";
 import { PageHead } from "~/components/PageHead";
@@ -53,6 +55,10 @@ export default function PublicBoardView() {
     | "no-due-date"
   )[];
 
+  const priorityFilters = formatToArray(
+    router.query.priority,
+  ) as CardPriority[];
+
   const { data, isLoading } = api.board.bySlug.useQuery(
     {
       boardSlug: boardSlug ?? "",
@@ -60,6 +66,7 @@ export default function PublicBoardView() {
       members: formatToArray(router.query.members),
       labels: formatToArray(router.query.labels),
       lists: formatToArray(router.query.lists),
+      priority: priorityFilters,
       ...(dueDateFilters.length > 0 && {
         dueDateFilters: dueDateFilters,
       }),
@@ -169,9 +176,9 @@ export default function PublicBoardView() {
           >
             {isLoading || !router.isReady ? (
               <div className="ml-[2rem] flex">
-                <div className="0 mr-5 h-[500px] w-[18rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
-                <div className="0 mr-5 h-[275px] w-[18rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
-                <div className="0 mr-5 h-[375px] w-[18rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
+                <div className="0 mr-5 h-[500px] w-[22rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
+                <div className="0 mr-5 h-[275px] w-[22rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
+                <div className="0 mr-5 h-[375px] w-[22rem] animate-pulse rounded-md bg-light-200 dark:bg-dark-100" />
               </div>
             ) : !data && !isLoading && router.isReady && !!boardSlug ? (
               <div className="z-10 flex h-full w-full flex-col items-center justify-center space-y-8 pb-[150px]">
@@ -192,7 +199,7 @@ export default function PublicBoardView() {
                 {data?.lists.map((list) => (
                   <div
                     key={list.publicId}
-                    className="dark-text-dark-1000 mr-5 h-fit min-w-[18rem] max-w-[18rem] snap-start rounded-md border border-light-400 bg-light-300 py-2 pl-2 pr-1 text-neutral-900 dark:border-dark-300 dark:bg-dark-100 md:snap-align-none"
+                    className="dark-text-dark-1000 mr-5 h-fit min-w-[22rem] max-w-[22rem] snap-start rounded-md border border-light-400 bg-light-300 py-2 pl-2 pr-1 text-neutral-900 dark:border-dark-300 dark:bg-dark-100 md:snap-align-none"
                   >
                     <div className="flex justify-between">
                       <span className="mb-4 block px-4 pt-1 text-sm font-medium text-neutral-900 dark:text-dark-1000">
@@ -227,6 +234,7 @@ export default function PublicBoardView() {
                               comments={card.comments ?? []}
                               attachments={card.attachments}
                               dueDate={card.dueDate ?? null}
+                              priority={card.priority ?? null}
                             />
                           </Link>
                         );
@@ -234,7 +242,7 @@ export default function PublicBoardView() {
                     </div>
                   </div>
                 ))}
-                <div className="min-w-[calc(100vw-18rem)] md:min-w-[0.75rem]" />
+                <div className="min-w-[calc(100vw-22rem)] md:min-w-[0.75rem]" />
               </div>
             )}
           </div>

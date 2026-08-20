@@ -7,10 +7,17 @@ import {
 } from "react-icons/hi2";
 import { twMerge } from "tailwind-merge";
 
+import type { CardPriority } from "@kan/db/schema";
+
 import Avatar from "~/components/Avatar";
 import Badge from "~/components/Badge";
 import CircularProgress from "~/components/CircularProgress";
 import LabelIcon from "~/components/LabelIcon";
+import {
+  getPriorityBadgeClassName,
+  getPriorityLabel,
+  PriorityIcon,
+} from "~/components/Priority";
 import { useLocalisation } from "~/hooks/useLocalisation";
 import { getAvatarUrl } from "~/utils/helpers";
 
@@ -24,6 +31,7 @@ const Card = ({
   comments,
   attachments,
   dueDate,
+  priority,
 }: {
   title: string;
   ticketNumber?: string | null;
@@ -47,6 +55,7 @@ const Card = ({
   comments: { publicId: string }[];
   attachments?: { publicId: string }[];
   dueDate?: Date | null;
+  priority?: CardPriority | null;
 }) => {
   const { dateLocale } = useLocalisation();
   const showYear = dueDate ? !isSameYear(dueDate, new Date()) : false;
@@ -75,7 +84,8 @@ const Card = ({
         </span>
       )}
       <span className="break-words">{title}</span>
-      {labels.length ||
+      {priority ||
+      labels.length ||
       members.length ||
       checklists.length > 0 ||
       hasDescription ||
@@ -84,6 +94,13 @@ const Card = ({
       hasAttachments ? (
         <div className="mt-2 flex flex-col justify-end">
           <div className="space-x-0.5">
+            {priority && (
+              <Badge
+                value={getPriorityLabel(priority)}
+                iconLeft={<PriorityIcon priority={priority} />}
+                className={getPriorityBadgeClassName(priority)}
+              />
+            )}
             {labels.map((label) => (
               <Badge
                 value={label.name}

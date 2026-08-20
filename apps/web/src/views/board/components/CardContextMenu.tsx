@@ -4,6 +4,7 @@ import {
   HiLink,
   HiOutlineCalendar,
   HiOutlineDocumentDuplicate,
+  HiOutlineFlag,
   HiOutlineTag,
   HiOutlineTrash,
   HiOutlineUserGroup,
@@ -14,6 +15,7 @@ export type CardContextMenuAction =
   | "members"
   | "move"
   | "labels"
+  | "priority"
   | "dueDate"
   | "copyLink"
   | "duplicate"
@@ -49,6 +51,12 @@ const MENU_ITEMS: {
     action: "labels",
     label: t`Add / edit label`,
     icon: <HiOutlineTag className="h-4 w-4 shrink-0" />,
+    requiresEdit: true,
+  },
+  {
+    action: "priority",
+    label: t`Set priority`,
+    icon: <HiOutlineFlag className="h-4 w-4 shrink-0" />,
     requiresEdit: true,
   },
   {
