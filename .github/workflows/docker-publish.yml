@@ -42,7 +42,12 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # `git describe` in the version step needs full history and tags.
+          # fetch-tags is required on top of fetch-depth: a persistent
+          # self-hosted runner reuses its clone, and the incremental fetch does
+          # not pull tags on its own — without this the version degrades to a
+          # bare commit sha.
           fetch-depth: 0
+          fetch-tags: true
 
       # The Dockerfile used to derive this from git inside the pruner stage, but
       # .dockerignore excludes .git, so every git call there silently no-opped
