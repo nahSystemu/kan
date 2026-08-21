@@ -36,11 +36,13 @@ import { DeleteCommentConfirmation } from "./components/DeleteCommentConfirmatio
 import Dropdown from "./components/Dropdown";
 import { DueDateSelector } from "./components/DueDateSelector";
 import LabelSelector from "./components/LabelSelector";
+import LinkCardForm from "./components/LinkCardForm";
 import ListSelector from "./components/ListSelector";
 import MemberSelector from "./components/MemberSelector";
 import { NewChecklistForm } from "./components/NewChecklistForm";
 import NewCommentForm from "./components/NewCommentForm";
 import PrioritySelector from "./components/PrioritySelector";
+import SubWorkItems from "./components/SubWorkItems";
 
 // Small helper to resolve board publicId from a card publicId using tRPC.
 // We encapsulate a local cast to bridge typegen lag between packages; at runtime this is safe.
@@ -537,6 +539,7 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
                     setActiveChecklistForm={setActiveChecklistForm}
                     viewOnly={!canEdit}
                   />
+                  <SubWorkItems cardPublicId={cardId} viewOnly={!canEdit} />
                   {!isTemplate && (
                     <>
                       {card?.attachments.length > 0 && (
@@ -650,6 +653,14 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
             isVisible={isOpen && modalContentType === "ADD_CHECKLIST"}
           >
             <NewChecklistForm cardPublicId={cardId} />
+          </Modal>
+
+          <Modal
+            modalSize="md"
+            positionFromTop="sm"
+            isVisible={isOpen && modalContentType === "LINK_CARD"}
+          >
+            <LinkCardForm cardPublicId={cardId} />
           </Modal>
 
           <Modal

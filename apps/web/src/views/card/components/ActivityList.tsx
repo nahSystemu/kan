@@ -146,6 +146,8 @@ const getActivityText = ({
     "card.unarchived": t`unarchived the card`,
     "card.deleted": t`deleted the card`,
     "card.restored": t`restored the card`,
+    "card.updated.link.added": t`linked another card`,
+    "card.updated.link.removed": t`removed a card link`,
   } as const;
 
   if (!(type in ACTIVITY_TYPE_MAP)) return null;
