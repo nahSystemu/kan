@@ -44,7 +44,7 @@ type InactiveCard = Awaited<
   ReturnType<typeof cardRepo.getArchivedByBoardId>
 >[number];
 
-const formatInactiveCard = (card: InactiveCard) => ({
+const formatInactiveCard = async (card: InactiveCard) => ({
   publicId: card.publicId,
   title: card.title,
   cardNumber: card.cardNumber,
@@ -56,7 +56,11 @@ const formatInactiveCard = (card: InactiveCard) => ({
     isDeleted: card.listDeletedAt !== null,
   },
   by: card.byEmail
-    ? { name: card.byName, email: card.byEmail, image: card.byImage }
+    ? {
+        name: card.byName,
+        email: card.byEmail,
+        image: await generateAvatarUrl(card.byImage),
+      }
     : null,
 });
 
@@ -1788,7 +1792,7 @@ export const cardRouter = createTRPCRouter({
 
       const result = await cardRepo.getArchivedByBoardId(ctx.db, board.id);
 
-      return result.map(formatInactiveCard);
+      return Promise.all(result.map(formatInactiveCard));
     }),
   getDeleted: protectedProcedure
     .meta({
@@ -1827,7 +1831,7 @@ export const cardRouter = createTRPCRouter({
 
       const result = await cardRepo.getDeletedByBoardId(ctx.db, board.id);
 
-      return result.map(formatInactiveCard);
+      return Promise.all(result.map(formatInactiveCard));
     }),
   inactiveById: protectedProcedure
     .meta({
