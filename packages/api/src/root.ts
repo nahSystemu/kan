@@ -7,6 +7,7 @@ import { integrationRouter } from "./routers/integration";
 import { labelRouter } from "./routers/label";
 import { listRouter } from "./routers/list";
 import { memberRouter } from "./routers/member";
+import { notificationRouter } from "./routers/notification";
 import { userRouter } from "./routers/user";
 import { workspaceRouter } from "./routers/workspace";
 import { createTRPCRouter } from "./trpc";
@@ -19,6 +20,7 @@ export const appRouter = createTRPCRouter({
   label: labelRouter,
   list: listRouter,
   member: memberRouter,
+  notification: notificationRouter,
   import: importRouter,
   user: userRouter,
   workspace: workspaceRouter,

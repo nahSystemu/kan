@@ -160,6 +160,15 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
     cardPublicId: cardId ?? "",
   });
 
+  // Mark any notifications for this card as read when viewing it
+  const markByCard = api.notification.markByCard.useMutation();
+  useEffect(() => {
+    if (cardId) {
+      markByCard.mutate({ cardPublicId: cardId });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cardId]);
+
   const refetchCard = async () => {
     if (cardId) await utils.card.byId.refetch({ cardPublicId: cardId });
   };

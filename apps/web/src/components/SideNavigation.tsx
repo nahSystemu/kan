@@ -23,6 +23,8 @@ import settingsIconDark from "~/assets/settings-dark.json";
 import settingsIconLight from "~/assets/settings-light.json";
 import templatesIconDark from "~/assets/templates-dark.json";
 import templatesIconLight from "~/assets/templates-light.json";
+import activityLogsIconDark from "~/assets/activity-logs-dark.json";
+import activityLogsIconLight from "~/assets/activity-logs-light.json";
 import ButtonComponent from "~/components/Button";
 import ReactiveButton from "~/components/ReactiveButton";
 import UserMenu from "~/components/UserMenu";
@@ -91,6 +93,11 @@ export default function SideNavigation({
       name: t`Boards`,
       href: "/boards",
       icon: isDarkMode ? boardsIconDark : boardsIconLight,
+    },
+    {
+      name: t`Inbox`,
+      href: "/inbox",
+      icon: isDarkMode ? activityLogsIconDark : activityLogsIconLight,
     },
     {
       name: t`Templates`,

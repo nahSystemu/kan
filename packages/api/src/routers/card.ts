@@ -7,6 +7,7 @@ import * as cardCommentRepo from "@kan/db/repository/cardComment.repo";
 import * as labelRepo from "@kan/db/repository/label.repo";
 import * as listRepo from "@kan/db/repository/list.repo";
 import * as workspaceRepo from "@kan/db/repository/workspace.repo";
+import * as notificationRepo from "@kan/db/repository/notification.repo";
 
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { assertUserInWorkspace } from "../utils/auth";
@@ -216,6 +217,38 @@ export const cardRouter = createTRPCRouter({
         toComment: newComment.comment,
         createdBy: userId,
       });
+
+      // Create notifications for assigned members (excluding author)
+      try {
+        const assignedMembers = await ctx.db.query.cardToWorkspaceMembers.findMany({
+          columns: { workspaceMemberId: true },
+          where: (fields, { and, eq }) => and(eq(fields.cardId, card.id)),
+        });
+
+        if (assignedMembers.length) {
+          const memberIds = assignedMembers.map((m) => m.workspaceMemberId);
+          const members = await ctx.db.query.workspaceMembers.findMany({
+            columns: { userId: true },
+            where: (fields, { inArray }) => inArray(fields.id, memberIds),
+          });
+          const targetUserIds = members
+            .map((m) => m.userId)
+            .filter((uid): uid is string => !!uid && uid !== userId);
+          if (targetUserIds.length) {
+            await notificationRepo.bulkCreate(
+              ctx.db,
+              targetUserIds.map((uid) => ({
+                userId: uid,
+                type: "card.comment.added",
+                cardId: card.id,
+                commentId: newComment.id,
+              })),
+            );
+          }
+        }
+      } catch (e) {
+        console.error("Failed to create comment notifications", e);
+      }
 
       return newComment;
     }),
@@ -558,6 +591,23 @@ export const cardRouter = createTRPCRouter({
         workspaceMemberId: member.id,
         createdBy: userId,
       });
+
+      // Notify the user associated with the added workspace member
+      try {
+        const memberRow = await ctx.db.query.workspaceMembers.findFirst({
+          columns: { userId: true },
+          where: (fields, { eq }) => eq(fields.id, member.id),
+        });
+        if (memberRow?.userId) {
+          await notificationRepo.create(ctx.db, {
+            userId: memberRow.userId,
+            type: "card.member.added",
+            cardId: card.id,
+          });
+        }
+      } catch (e) {
+        console.error("Failed to create member added notification", e);
+      }
 
       return { newMember: true };
     }),
