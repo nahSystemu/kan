@@ -6,6 +6,7 @@ import {
   eq,
   gt,
   inArray,
+  isNotNull,
   isNull,
   sql,
 } from "drizzle-orm";
@@ -22,6 +23,7 @@ import {
   checklists,
   labels,
   lists,
+  users,
   workspaceMembers,
   workspaces,
 } from "@kan/db/schema";
@@ -57,7 +59,11 @@ export const create = async (
         columns: {
           index: true,
         },
-        where: and(eq(cards.listId, cardInput.listId), isNull(cards.deletedAt)),
+        where: and(
+          eq(cards.listId, cardInput.listId),
+          isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
+        ),
         orderBy: desc(cards.index),
       });
 
@@ -73,6 +79,7 @@ export const create = async (
           eq(cards.listId, cardInput.listId),
           eq(cards.index, index),
           isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
         ),
       });
 
@@ -82,7 +89,7 @@ export const create = async (
       await tx.execute(sql`
         UPDATE card
         SET index = index + 1
-        WHERE "listId" = ${cardInput.listId} AND index >= ${index} AND "deletedAt" IS NULL;
+        WHERE "listId" = ${cardInput.listId} AND index >= ${index} AND "deletedAt" IS NULL AND "archivedAt" IS NULL;
       `);
     }
 
@@ -134,7 +141,11 @@ export const create = async (
         count: countExpr,
       })
       .from(cards)
-      .where(and(eq(cards.listId, result[0].listId), isNull(cards.deletedAt)))
+      .where(and(
+          eq(cards.listId, result[0].listId),
+          isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
+        ))
       .groupBy(cards.listId, cards.index)
       .having(gt(countExpr, 1));
 
@@ -144,7 +155,7 @@ export const create = async (
         WITH ordered AS (
           SELECT id, ROW_NUMBER() OVER (ORDER BY "index", id) - 1 AS new_index
           FROM "card"
-          WHERE "listId" = ${result[0].listId} AND "deletedAt" IS NULL
+          WHERE "listId" = ${result[0].listId} AND "deletedAt" IS NULL AND "archivedAt" IS NULL
         )
         UPDATE "card" c
         SET "index" = o.new_index
@@ -156,7 +167,11 @@ export const create = async (
       const postFixDupes = await tx
         .select({ index: cards.index, count: countExpr })
         .from(cards)
-        .where(and(eq(cards.listId, result[0].listId), isNull(cards.deletedAt)))
+        .where(and(
+          eq(cards.listId, result[0].listId),
+          isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
+        ))
         .groupBy(cards.listId, cards.index)
         .having(gt(countExpr, 1));
 
@@ -394,7 +409,11 @@ export const bulkCreate = async (
     for (const [listId, items] of byList.entries()) {
       const last = await tx.query.cards.findFirst({
         columns: { index: true },
-        where: and(eq(cards.listId, listId), isNull(cards.deletedAt)),
+        where: and(
+          eq(cards.listId, listId),
+          isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
+        ),
         orderBy: [desc(cards.index)],
       });
 
@@ -431,7 +450,11 @@ export const bulkCreate = async (
       const duplicateIndices = await tx
         .select({ index: cards.index, count: countExpr })
         .from(cards)
-        .where(and(eq(cards.listId, listId), isNull(cards.deletedAt)))
+        .where(and(
+          eq(cards.listId, listId),
+          isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
+        ))
         .groupBy(cards.listId, cards.index)
         .having(gt(countExpr, 1));
 
@@ -440,7 +463,7 @@ export const bulkCreate = async (
           WITH ordered AS (
             SELECT id, ROW_NUMBER() OVER (ORDER BY "index", id) - 1 AS new_index
             FROM "card"
-            WHERE "listId" = ${listId} AND "deletedAt" IS NULL
+            WHERE "listId" = ${listId} AND "deletedAt" IS NULL AND "archivedAt" IS NULL
           )
           UPDATE "card" c
           SET "index" = o.new_index
@@ -451,7 +474,11 @@ export const bulkCreate = async (
         const postFixDupes = await tx
           .select({ index: cards.index, count: countExpr })
           .from(cards)
-          .where(and(eq(cards.listId, listId), isNull(cards.deletedAt)))
+          .where(and(
+          eq(cards.listId, listId),
+          isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
+        ))
           .groupBy(cards.listId, cards.index)
           .having(gt(countExpr, 1));
 
@@ -536,6 +563,7 @@ export const getWithListAndMembersByPublicId = async (
       createdBy: true,
       cardNumber: true,
       index: true,
+      archivedAt: true,
     },
     with: {
       labels: {
@@ -825,25 +853,25 @@ export const reorder = async (
             WHEN ${currentIndex} > ${newIndex} AND index >= ${newIndex} AND index < ${currentIndex} THEN index + 1
             ELSE index
           END
-        WHERE "listId" = ${currentList.id} AND "deletedAt" IS NULL;
+        WHERE "listId" = ${currentList.id} AND "deletedAt" IS NULL AND "archivedAt" IS NULL;
       `);
     } else {
       await tx.execute(sql`
         UPDATE card
         SET index = index + 1
-        WHERE "listId" = ${newList?.id} AND index >= ${newIndex} AND "deletedAt" IS NULL;
+        WHERE "listId" = ${newList?.id} AND index >= ${newIndex} AND "deletedAt" IS NULL AND "archivedAt" IS NULL;
       `);
 
       await tx.execute(sql`
         UPDATE card
         SET index = index - 1
-        WHERE "listId" = ${currentList.id} AND index >= ${currentIndex} AND "deletedAt" IS NULL;
+        WHERE "listId" = ${currentList.id} AND index >= ${currentIndex} AND "deletedAt" IS NULL AND "archivedAt" IS NULL;
       `);
 
       await tx.execute(sql`
         UPDATE card
         SET "listId" = ${newList?.id}, index = ${newIndex}
-        WHERE id = ${card.id} AND "deletedAt" IS NULL;
+        WHERE id = ${card.id} AND "deletedAt" IS NULL AND "archivedAt" IS NULL;
       `);
     }
 
@@ -862,6 +890,7 @@ export const reorder = async (
             [currentList.id, newList?.id].filter((id) => id !== undefined),
           ),
           isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
         ),
       )
       .groupBy(cards.listId, cards.index)
@@ -878,7 +907,7 @@ export const reorder = async (
           WITH ordered AS (
             SELECT id, ROW_NUMBER() OVER (ORDER BY "index", id) - 1 AS new_index
             FROM "card"
-            WHERE "listId" = ${affectedListIds[0]} AND "deletedAt" IS NULL
+            WHERE "listId" = ${affectedListIds[0]} AND "deletedAt" IS NULL AND "archivedAt" IS NULL
           )
           UPDATE "card" c
           SET "index" = o.new_index
@@ -891,7 +920,7 @@ export const reorder = async (
             SELECT id,
                    ROW_NUMBER() OVER (PARTITION BY "listId" ORDER BY "index", id) - 1 AS new_index
             FROM "card"
-            WHERE "listId" IN (${sql.join(affectedListIds, sql`,`)}) AND "deletedAt" IS NULL
+            WHERE "listId" IN (${sql.join(affectedListIds, sql`,`)}) AND "deletedAt" IS NULL AND "archivedAt" IS NULL
           )
           UPDATE "card" c
           SET "index" = o.new_index
@@ -905,7 +934,11 @@ export const reorder = async (
         .select({ index: cards.index, count: countExpr })
         .from(cards)
         .where(
-          and(inArray(cards.listId, affectedListIds), isNull(cards.deletedAt)),
+          and(
+            inArray(cards.listId, affectedListIds),
+            isNull(cards.deletedAt),
+            isNull(cards.archivedAt),
+          ),
         )
         .groupBy(cards.listId, cards.index)
         .having(gt(countExpr, 1));
@@ -958,7 +991,7 @@ export const softDelete = async (
     await tx.execute(sql`
       UPDATE card
       SET index = index - 1
-      WHERE "listId" = ${result.listId} AND index > ${result.index} AND "deletedAt" IS NULL;
+      WHERE "listId" = ${result.listId} AND index > ${result.index} AND "deletedAt" IS NULL AND "archivedAt" IS NULL;
     `);
 
     const countExpr = sql<number>`COUNT(*)`.mapWith(Number);
@@ -969,7 +1002,11 @@ export const softDelete = async (
         count: countExpr,
       })
       .from(cards)
-      .where(and(eq(cards.listId, result.listId), isNull(cards.deletedAt)))
+      .where(and(
+          eq(cards.listId, result.listId),
+          isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
+        ))
       .groupBy(cards.listId, cards.index)
       .having(gt(countExpr, 1));
 
@@ -1051,10 +1088,14 @@ export const hardDeleteAllCardLabelRelationships = async (
 export const getWorkspaceAndCardIdByCardPublicId = async (
   db: dbClient,
   cardPublicId: string,
+  options?: { includeDeleted?: boolean },
 ) => {
   const result = await db.query.cards.findFirst({
-    columns: { id: true, createdBy: true },
-    where: and(eq(cards.publicId, cardPublicId), isNull(cards.deletedAt)),
+    columns: { id: true, createdBy: true, listId: true },
+    where: and(
+      eq(cards.publicId, cardPublicId),
+      options?.includeDeleted ? undefined : isNull(cards.deletedAt),
+    ),
     with: {
       list: {
         columns: { name: true, publicId: true },
@@ -1076,6 +1117,7 @@ export const getWorkspaceAndCardIdByCardPublicId = async (
     ? {
         id: result.id,
         createdBy: result.createdBy,
+        listId: result.listId,
         workspaceId: result.list.board.workspaceId,
         workspaceVisibility: result.list.board.visibility,
         listPublicId: result.list.publicId,
@@ -1085,3 +1127,141 @@ export const getWorkspaceAndCardIdByCardPublicId = async (
       }
     : null;
 };
+
+export const archive = async (
+  db: dbClient,
+  args: {
+    cardId: number;
+    archivedAt: Date;
+    archivedBy: string;
+  },
+) => {
+  return db.transaction(async (tx) => {
+    const [result] = await tx
+      .update(cards)
+      .set({ archivedAt: args.archivedAt, archivedBy: args.archivedBy })
+      .where(
+        and(
+          eq(cards.id, args.cardId),
+          isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
+        ),
+      )
+      .returning({
+        id: cards.id,
+        listId: cards.listId,
+        index: cards.index,
+      });
+
+    if (!result) throw new Error(`Unable to archive card ID ${args.cardId}`);
+
+    // An archived card no longer occupies a slot on the board, so close the gap.
+    await tx.execute(sql`
+      UPDATE card
+      SET index = index - 1
+      WHERE "listId" = ${result.listId} AND index > ${result.index} AND "deletedAt" IS NULL AND "archivedAt" IS NULL;
+    `);
+
+    return result;
+  });
+};
+
+const reinstate = async (
+  db: dbClient,
+  args: {
+    cardId: number;
+    listId: number;
+    patch: {
+      archivedAt?: null;
+      archivedBy?: null;
+      deletedAt?: null;
+      deletedBy?: null;
+    };
+  },
+) => {
+  return db.transaction(async (tx) => {
+    const lastCard = await tx.query.cards.findFirst({
+      columns: { index: true },
+      where: and(
+        eq(cards.listId, args.listId),
+        isNull(cards.deletedAt),
+        isNull(cards.archivedAt),
+      ),
+      orderBy: desc(cards.index),
+    });
+
+    const [result] = await tx
+      .update(cards)
+      .set({ ...args.patch, listId: args.listId, index: lastCard ? lastCard.index + 1 : 0 })
+      .where(eq(cards.id, args.cardId))
+      .returning({
+        id: cards.id,
+        publicId: cards.publicId,
+        listId: cards.listId,
+        index: cards.index,
+      });
+
+    if (!result) throw new Error(`Unable to reinstate card ID ${args.cardId}`);
+
+    return result;
+  });
+};
+
+export const unarchive = async (
+  db: dbClient,
+  args: { cardId: number; listId: number },
+) =>
+  reinstate(db, {
+    ...args,
+    patch: { archivedAt: null, archivedBy: null },
+  });
+
+export const restore = async (
+  db: dbClient,
+  args: { cardId: number; listId: number },
+) =>
+  reinstate(db, {
+    ...args,
+    patch: { deletedAt: null, deletedBy: null, archivedAt: null, archivedBy: null },
+  });
+
+const inactiveCardsByBoardId = (
+  db: dbClient,
+  boardId: number,
+  state: "archived" | "deleted",
+) => {
+  const stateAt = state === "archived" ? cards.archivedAt : cards.deletedAt;
+  const stateBy = state === "archived" ? cards.archivedBy : cards.deletedBy;
+
+  return db
+    .select({
+      publicId: cards.publicId,
+      title: cards.title,
+      cardNumber: cards.cardNumber,
+      priority: cards.priority,
+      stateAt,
+      listPublicId: lists.publicId,
+      listName: lists.name,
+      listDeletedAt: lists.deletedAt,
+      byName: users.name,
+      byEmail: users.email,
+      byImage: users.image,
+    })
+    .from(cards)
+    .innerJoin(lists, eq(cards.listId, lists.id))
+    .leftJoin(users, eq(stateBy, users.id))
+    .where(
+      and(
+        eq(lists.boardId, boardId),
+        isNotNull(stateAt),
+        state === "archived" ? isNull(cards.deletedAt) : undefined,
+      ),
+    )
+    .orderBy(desc(stateAt));
+};
+
+export const getArchivedByBoardId = (db: dbClient, boardId: number) =>
+  inactiveCardsByBoardId(db, boardId, "archived");
+
+export const getDeletedByBoardId = (db: dbClient, boardId: number) =>
+  inactiveCardsByBoardId(db, boardId, "deleted");

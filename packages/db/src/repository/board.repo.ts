@@ -178,6 +178,7 @@ export const getByPublicId = async (
       .where(
         and(
           isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
           or(
             filters.labels.length > 0
               ? inArray(labels.publicId, filters.labels)
@@ -332,6 +333,7 @@ export const getByPublicId = async (
             where: and(
               cardIds.length > 0 ? inArray(cards.publicId, cardIds) : undefined,
               isNull(cards.deletedAt),
+              isNull(cards.archivedAt),
               buildDueDateWhere(filters.dueDate),
               filters.priority.length > 0
                 ? inArray(cards.priority, filters.priority)
@@ -410,6 +412,7 @@ export const getBySlug = async (
       .where(
         and(
           isNull(cards.deletedAt),
+          isNull(cards.archivedAt),
           filters.labels.length > 0
             ? inArray(labels.publicId, filters.labels)
             : undefined,
@@ -513,6 +516,7 @@ export const getBySlug = async (
             where: and(
               cardIds.length > 0 ? inArray(cards.publicId, cardIds) : undefined,
               isNull(cards.deletedAt),
+              isNull(cards.archivedAt),
               buildDueDateWhere(filters.dueDate),
               filters.priority.length > 0
                 ? inArray(cards.priority, filters.priority)

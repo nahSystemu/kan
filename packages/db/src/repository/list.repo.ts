@@ -1,4 +1,4 @@
-import { and, count, desc, eq, gt, isNull, sql } from "drizzle-orm";
+import { and, asc, count, desc, eq, gt, isNull, sql } from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
 import { lists } from "@kan/db/schema";
@@ -443,4 +443,32 @@ export const getWorkspaceAndListIdByListPublicId = async (
         boardName: result.board.name,
       }
     : null;
+};
+
+export const getById = async (db: dbClient, listId: number) => {
+  return db.query.lists.findFirst({
+    columns: {
+      id: true,
+      publicId: true,
+      name: true,
+      boardId: true,
+      deletedAt: true,
+    },
+    where: eq(lists.id, listId),
+  });
+};
+
+export const getFirstActiveByBoardId = async (
+  db: dbClient,
+  boardId: number,
+) => {
+  return db.query.lists.findFirst({
+    columns: {
+      id: true,
+      publicId: true,
+      name: true,
+    },
+    where: and(eq(lists.boardId, boardId), isNull(lists.deletedAt)),
+    orderBy: [asc(lists.index)],
+  });
 };
