@@ -3,6 +3,7 @@ import { tracked, TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import type { CardPriority } from "@kan/db/schema";
+import * as boardRepo from "@kan/db/repository/board.repo";
 import * as cardRepo from "@kan/db/repository/card.repo";
 import * as cardActivityRepo from "@kan/db/repository/cardActivity.repo";
 import * as cardCommentRepo from "@kan/db/repository/cardComment.repo";
@@ -21,6 +22,7 @@ import {
   cardUpdateResponseSchema,
   commentDeleteResponseSchema,
   commentResponseSchema,
+  inactiveCardSchema,
 } from "../schemas";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { assertUserInWorkspace } from "../utils/auth";
@@ -35,6 +37,47 @@ import {
   createCardWebhookPayload,
   sendWebhooksForWorkspace,
 } from "../utils/webhook";
+
+type InactiveCard = Awaited<
+  ReturnType<typeof cardRepo.getArchivedByBoardId>
+>[number];
+
+const formatInactiveCard = (card: InactiveCard) => ({
+  publicId: card.publicId,
+  title: card.title,
+  cardNumber: card.cardNumber,
+  priority: card.priority,
+  stateAt: card.stateAt,
+  list: {
+    publicId: card.listPublicId,
+    name: card.listName,
+    isDeleted: card.listDeletedAt !== null,
+  },
+  by: card.byEmail
+    ? { name: card.byName, email: card.byEmail, image: card.byImage }
+    : null,
+});
+
+/**
+ * A card is restored into the list it came from, unless that list has since been
+ * deleted, in which case it falls back to the first remaining list on the board.
+ */
+const resolveTargetList = async (
+  db: Parameters<typeof listRepo.getById>[0],
+  listId: number,
+) => {
+  const originalList = await listRepo.getById(db, listId);
+
+  if (!originalList) return null;
+  if (!originalList.deletedAt) return originalList;
+
+  const fallback = await listRepo.getFirstActiveByBoardId(
+    db,
+    originalList.boardId,
+  );
+
+  return fallback ? { ...fallback, boardId: originalList.boardId } : null;
+};
 
 export const cardRouter = createTRPCRouter({
   boardIdByCardPublicId: publicProcedure
@@ -1429,7 +1472,7 @@ export const cardRouter = createTRPCRouter({
       });
 
       await cardActivityRepo.create(ctx.db, {
-        type: "card.archived",
+        type: "card.deleted",
         cardId: card.id,
         createdBy: userId,
       });
@@ -1482,6 +1525,308 @@ export const cardRouter = createTRPCRouter({
       }
 
       return { success: true };
+    }),
+  archive: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Archive a card",
+        method: "POST",
+        path: "/cards/{cardPublicId}/archive",
+        description:
+          "Archives a card, removing it from the board while keeping it active",
+        tags: ["Cards"],
+        protect: true,
+      },
+    })
+    .input(z.object({ cardPublicId: z.string().min(12) }))
+    .output(z.object({ success: z.boolean() }))
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
+        ctx.db,
+        input.cardPublicId,
+      );
+
+      if (!card)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      if (card.archivedAt)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} is already archived`,
+          code: "BAD_REQUEST",
+        });
+
+      await assertCanEdit(
+        ctx.db,
+        userId,
+        card.workspaceId,
+        "card:edit",
+        card.createdBy,
+      );
+
+      const list = await listRepo.getById(ctx.db, card.listId);
+
+      await cardRepo.archive(ctx.db, {
+        cardId: card.id,
+        archivedAt: new Date(),
+        archivedBy: userId,
+      });
+
+      await cardActivityRepo.create(ctx.db, {
+        type: "card.archived",
+        cardId: card.id,
+        createdBy: userId,
+      });
+
+      if (list) {
+        emitBoardEvent(list.boardId, {
+          scope: "board",
+          type: "card.updated",
+          boardId: list.boardId,
+          cardPublicId: input.cardPublicId,
+        });
+      }
+
+      return { success: true };
+    }),
+  unarchive: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Unarchive a card",
+        method: "POST",
+        path: "/cards/{cardPublicId}/unarchive",
+        description: "Returns an archived card to the board",
+        tags: ["Cards"],
+        protect: true,
+      },
+    })
+    .input(z.object({ cardPublicId: z.string().min(12) }))
+    .output(z.object({ success: z.boolean() }))
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
+        ctx.db,
+        input.cardPublicId,
+      );
+
+      if (!card)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      if (!card.archivedAt)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} is not archived`,
+          code: "BAD_REQUEST",
+        });
+
+      await assertCanEdit(
+        ctx.db,
+        userId,
+        card.workspaceId,
+        "card:edit",
+        card.createdBy,
+      );
+
+      const targetList = await resolveTargetList(ctx.db, card.listId);
+
+      if (!targetList)
+        throw new TRPCError({
+          message: `No list available to unarchive card ${input.cardPublicId} into`,
+          code: "PRECONDITION_FAILED",
+        });
+
+      await cardRepo.unarchive(ctx.db, {
+        cardId: card.id,
+        listId: targetList.id,
+      });
+
+      await cardActivityRepo.create(ctx.db, {
+        type: "card.unarchived",
+        cardId: card.id,
+        createdBy: userId,
+      });
+
+      emitBoardEvent(targetList.boardId, {
+        scope: "board",
+        type: "card.updated",
+        boardId: targetList.boardId,
+        cardPublicId: input.cardPublicId,
+      });
+
+      return { success: true };
+    }),
+  restore: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Restore a deleted card",
+        method: "POST",
+        path: "/cards/{cardPublicId}/restore",
+        description: "Restores a previously deleted card back onto the board",
+        tags: ["Cards"],
+        protect: true,
+      },
+    })
+    .input(z.object({ cardPublicId: z.string().min(12) }))
+    .output(z.object({ success: z.boolean() }))
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
+        ctx.db,
+        input.cardPublicId,
+        { includeDeleted: true },
+      );
+
+      if (!card)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      if (!card.deletedAt)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} is not deleted`,
+          code: "BAD_REQUEST",
+        });
+
+      await assertCanDelete(
+        ctx.db,
+        userId,
+        card.workspaceId,
+        "card:delete",
+        card.createdBy,
+      );
+
+      const targetList = await resolveTargetList(ctx.db, card.listId);
+
+      if (!targetList)
+        throw new TRPCError({
+          message: `No list available to restore card ${input.cardPublicId} into`,
+          code: "PRECONDITION_FAILED",
+        });
+
+      await cardRepo.restore(ctx.db, {
+        cardId: card.id,
+        listId: targetList.id,
+      });
+
+      await cardActivityRepo.create(ctx.db, {
+        type: "card.restored",
+        cardId: card.id,
+        createdBy: userId,
+      });
+
+      emitBoardEvent(targetList.boardId, {
+        scope: "board",
+        type: "card.created",
+        boardId: targetList.boardId,
+        cardPublicId: input.cardPublicId,
+      });
+
+      return { success: true };
+    }),
+  getArchived: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Get archived cards for a board",
+        method: "GET",
+        path: "/boards/{boardPublicId}/archived-cards",
+        description: "Retrieves every archived card on a board",
+        tags: ["Cards"],
+        protect: true,
+      },
+    })
+    .input(z.object({ boardPublicId: z.string().min(12) }))
+    .output(z.array(inactiveCardSchema))
+    .query(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      const board = await boardRepo.getWorkspaceAndBoardIdByBoardPublicId(
+        ctx.db,
+        input.boardPublicId,
+      );
+
+      if (!board)
+        throw new TRPCError({
+          message: `Board with public ID ${input.boardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      await assertPermission(ctx.db, userId, board.workspaceId, "card:view");
+
+      const result = await cardRepo.getArchivedByBoardId(ctx.db, board.id);
+
+      return result.map(formatInactiveCard);
+    }),
+  getDeleted: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Get deleted cards for a board",
+        method: "GET",
+        path: "/boards/{boardPublicId}/deleted-cards",
+        description: "Retrieves every deleted card on a board",
+        tags: ["Cards"],
+        protect: true,
+      },
+    })
+    .input(z.object({ boardPublicId: z.string().min(12) }))
+    .output(z.array(inactiveCardSchema))
+    .query(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      const board = await boardRepo.getWorkspaceAndBoardIdByBoardPublicId(
+        ctx.db,
+        input.boardPublicId,
+      );
+
+      if (!board)
+        throw new TRPCError({
+          message: `Board with public ID ${input.boardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      await assertPermission(ctx.db, userId, board.workspaceId, "card:view");
+
+      const result = await cardRepo.getDeletedByBoardId(ctx.db, board.id);
+
+      return result.map(formatInactiveCard);
     }),
   duplicate: protectedProcedure
     .meta({

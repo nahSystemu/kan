@@ -1091,7 +1091,13 @@ export const getWorkspaceAndCardIdByCardPublicId = async (
   options?: { includeDeleted?: boolean },
 ) => {
   const result = await db.query.cards.findFirst({
-    columns: { id: true, createdBy: true, listId: true },
+    columns: {
+      id: true,
+      createdBy: true,
+      listId: true,
+      archivedAt: true,
+      deletedAt: true,
+    },
     where: and(
       eq(cards.publicId, cardPublicId),
       options?.includeDeleted ? undefined : isNull(cards.deletedAt),
@@ -1118,6 +1124,8 @@ export const getWorkspaceAndCardIdByCardPublicId = async (
         id: result.id,
         createdBy: result.createdBy,
         listId: result.listId,
+        archivedAt: result.archivedAt,
+        deletedAt: result.deletedAt,
         workspaceId: result.list.board.workspaceId,
         workspaceVisibility: result.list.board.visibility,
         listPublicId: result.list.publicId,

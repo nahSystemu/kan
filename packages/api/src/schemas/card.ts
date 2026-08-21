@@ -53,6 +53,7 @@ export const cardDetailSchema = z.object({
   index: z.number(),
   dueDate: z.date().nullable(),
   priority: z.enum(cardPriorities).nullable(),
+  archivedAt: z.date().nullable(),
   createdBy: z.string().nullable(),
   labels: z.array(labelSchema),
   attachments: z.array(
@@ -218,6 +219,27 @@ export const activityItemSchema = z.object({
       publicId: z.string(),
       filename: z.string(),
       originalFilename: z.string().nullable(),
+    })
+    .nullable(),
+});
+
+// ─── card.getArchived / card.getDeleted ──────────────────────
+export const inactiveCardSchema = z.object({
+  publicId: z.string(),
+  title: z.string(),
+  cardNumber: z.number().nullable(),
+  priority: z.enum(cardPriorities).nullable(),
+  stateAt: z.date().nullable(),
+  list: z.object({
+    publicId: z.string(),
+    name: z.string(),
+    isDeleted: z.boolean(),
+  }),
+  by: z
+    .object({
+      name: z.string().nullable(),
+      email: z.string(),
+      image: z.string().nullable(),
     })
     .nullable(),
 });

@@ -13,6 +13,7 @@ export {
   commentResponseSchema,
   commentDeleteResponseSchema,
   activityItemSchema,
+  inactiveCardSchema,
 } from "./card";
 
 export {
