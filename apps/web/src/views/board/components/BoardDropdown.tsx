@@ -133,14 +133,14 @@ export default function BoardDropdown({
       ? [
           {
             label: t`Archived cards`,
-            action: () => openModal("ARCHIVED_CARDS"),
+            action: () => void router.push(`/boards/archive/${boardPublicId}`),
             icon: (
               <HiOutlineArchiveBox className="h-[16px] w-[16px] text-dark-900" />
             ),
           },
           {
             label: t`Deleted cards`,
-            action: () => openModal("DELETED_CARDS"),
+            action: () => void router.push(`/boards/deleted/${boardPublicId}`),
             icon: (
               <HiOutlineTrash className="h-[16px] w-[16px] text-dark-900" />
             ),

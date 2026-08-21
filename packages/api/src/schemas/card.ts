@@ -54,6 +54,7 @@ export const cardDetailSchema = z.object({
   dueDate: z.date().nullable(),
   priority: z.enum(cardPriorities).nullable(),
   archivedAt: z.date().nullable(),
+  deletedAt: z.date().nullable(),
   createdBy: z.string().nullable(),
   labels: z.array(labelSchema),
   attachments: z.array(

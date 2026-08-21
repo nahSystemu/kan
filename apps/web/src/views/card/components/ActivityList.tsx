@@ -379,11 +379,13 @@ const ActivityList = ({
   isLoading: cardIsLoading,
   isAdmin,
   isViewOnly,
+  includeDeleted = false,
 }: {
   cardPublicId: string;
   isLoading: boolean;
   isAdmin?: boolean;
   isViewOnly?: boolean;
+  includeDeleted?: boolean;
 }) => {
   const { dateLocale } = useLocalisation();
   const { data: sessionData } = authClient.useSession();
@@ -405,6 +407,7 @@ const ActivityList = ({
     {
       cardPublicId,
       limit: ACTIVITIES_PAGE_SIZE,
+      includeDeleted,
     },
     {
       enabled: !!cardPublicId && cardPublicId.length >= 12,

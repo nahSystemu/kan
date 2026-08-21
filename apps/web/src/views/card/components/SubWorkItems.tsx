@@ -182,16 +182,18 @@ function LinkRow({
 export default function SubWorkItems({
   cardPublicId,
   viewOnly = false,
+  includeDeleted = false,
 }: {
   cardPublicId: string;
   viewOnly?: boolean;
+  includeDeleted?: boolean;
 }) {
   const { openModal } = useModal();
   const { canEditCard } = usePermissions();
   const [isExpanded, setIsExpanded] = useState(true);
 
   const { data: links } = api.card.getLinks.useQuery(
-    { cardPublicId },
+    { cardPublicId, includeDeleted },
     { enabled: cardPublicId.length >= 12 },
   );
 

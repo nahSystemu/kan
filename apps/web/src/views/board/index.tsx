@@ -52,7 +52,6 @@ import { CardContextPriorityModal } from "./components/CardContextPriorityModal"
 import { DeleteBoardConfirmation } from "./components/DeleteBoardConfirmation";
 import { DeleteListConfirmation } from "./components/DeleteListConfirmation";
 import Filters from "./components/Filters";
-import { InactiveCardsModal } from "./components/InactiveCardsModal";
 import List from "./components/List";
 import { MoveBoardForm } from "./components/MoveBoardForm";
 import { NewCardForm } from "./components/NewCardForm";
@@ -578,23 +577,6 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
             cardPublicId={entityId}
             boardPublicId={boardId ?? ""}
           />
-        </Modal>
-        <Modal
-          modalSize="lg"
-          positionFromTop="sm"
-          isVisible={isOpen && modalContentType === "ARCHIVED_CARDS"}
-        >
-          <InactiveCardsModal
-            variant="archived"
-            boardPublicId={boardId ?? ""}
-          />
-        </Modal>
-        <Modal
-          modalSize="lg"
-          positionFromTop="sm"
-          isVisible={isOpen && modalContentType === "DELETED_CARDS"}
-        >
-          <InactiveCardsModal variant="deleted" boardPublicId={boardId ?? ""} />
         </Modal>
       </>
     );

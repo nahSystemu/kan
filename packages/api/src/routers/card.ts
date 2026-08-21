@@ -60,6 +60,51 @@ const formatInactiveCard = (card: InactiveCard) => ({
     : null,
 });
 
+type CardDetail = NonNullable<
+  Awaited<ReturnType<typeof cardRepo.getWithListAndMembersByPublicId>>
+>;
+
+const formatCardDetail = async (card: CardDetail) => {
+  const attachments = await Promise.all(
+    card.attachments.map(async (attachment) => ({
+      publicId: attachment.publicId,
+      contentType: attachment.contentType,
+      s3Key: attachment.s3Key,
+      originalFilename: attachment.originalFilename,
+      size: attachment.size,
+      url: await generateAttachmentUrl(attachment.s3Key),
+    })),
+  );
+
+  const workspace = card.list.board.workspace
+    ? {
+        ...card.list.board.workspace,
+        members: await Promise.all(
+          card.list.board.workspace.members.map(async (member) => {
+            if (!member.user?.image) return member;
+
+            return {
+              ...member,
+              user: {
+                ...member.user,
+                image: await generateAvatarUrl(member.user.image),
+              },
+            };
+          }),
+        ),
+      }
+    : card.list.board.workspace;
+
+  return {
+    ...card,
+    attachments,
+    list: {
+      ...card.list,
+      board: { ...card.list.board, workspace },
+    },
+  };
+};
+
 /**
  * A card is restored into the list it came from, unless that list has since been
  * deleted, in which case it falls back to the first remaining list on the board.
@@ -946,55 +991,7 @@ export const cardRouter = createTRPCRouter({
           code: "NOT_FOUND",
         });
 
-      // Generate URLs for all attachments
-      const attachmentsWithUrls = await Promise.all(
-        result.attachments.map(async (attachment) => {
-          const url = await generateAttachmentUrl(attachment.s3Key);
-          return {
-            publicId: attachment.publicId,
-            contentType: attachment.contentType,
-            s3Key: attachment.s3Key,
-            originalFilename: attachment.originalFilename,
-            size: attachment.size,
-            url,
-          };
-        }),
-      );
-
-      // Generate presigned URLs for workspace member avatars
-      const workspaceWithAvatarUrls = result.list.board.workspace
-        ? {
-            ...result.list.board.workspace,
-            members: await Promise.all(
-              result.list.board.workspace.members.map(async (member) => {
-                if (!member.user?.image) {
-                  return member;
-                }
-
-                const avatarUrl = await generateAvatarUrl(member.user.image);
-                return {
-                  ...member,
-                  user: {
-                    ...member.user,
-                    image: avatarUrl,
-                  },
-                };
-              }),
-            ),
-          }
-        : result.list.board.workspace;
-
-      return {
-        ...result,
-        attachments: attachmentsWithUrls,
-        list: {
-          ...result.list,
-          board: {
-            ...result.list.board,
-            workspace: workspaceWithAvatarUrls,
-          },
-        },
-      };
+      return formatCardDetail(result);
     }),
   getActivities: publicProcedure
     .meta({
@@ -1012,6 +1009,7 @@ export const cardRouter = createTRPCRouter({
         cardPublicId: z.string().min(12),
         limit: z.number().min(1).max(100).optional().default(10),
         cursor: z.string().datetime().optional(), // ISO datetime string
+        includeDeleted: z.boolean().optional().default(false),
       }),
     )
     .output(
@@ -1025,6 +1023,7 @@ export const cardRouter = createTRPCRouter({
       const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
         ctx.db,
         input.cardPublicId,
+        { includeDeleted: input.includeDeleted },
       );
 
       if (!card)
@@ -1033,7 +1032,7 @@ export const cardRouter = createTRPCRouter({
           code: "NOT_FOUND",
         });
 
-      if (card.workspaceVisibility === "private") {
+      if (card.workspaceVisibility === "private" || input.includeDeleted) {
         const userId = ctx.user?.id;
 
         if (!userId)
@@ -1830,6 +1829,57 @@ export const cardRouter = createTRPCRouter({
 
       return result.map(formatInactiveCard);
     }),
+  inactiveById: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Get an archived or deleted card by public ID",
+        method: "GET",
+        path: "/cards/{cardPublicId}/inactive",
+        description:
+          "Retrieves a card by its public ID, including cards that have been archived or deleted",
+        tags: ["Cards"],
+        protect: true,
+      },
+    })
+    .input(z.object({ cardPublicId: z.string().min(12) }))
+    .output(cardDetailSchema)
+    .query(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
+        ctx.db,
+        input.cardPublicId,
+        { includeDeleted: true },
+      );
+
+      if (!card)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      await assertPermission(ctx.db, userId, card.workspaceId, "card:view");
+
+      const result = await cardRepo.getWithListAndMembersByPublicId(
+        ctx.db,
+        input.cardPublicId,
+        { includeDeleted: true },
+      );
+
+      if (!result)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      return formatCardDetail(result);
+    }),
   getLinks: protectedProcedure
     .meta({
       openapi: {
@@ -1842,7 +1892,12 @@ export const cardRouter = createTRPCRouter({
         protect: true,
       },
     })
-    .input(z.object({ cardPublicId: z.string().min(12) }))
+    .input(
+      z.object({
+        cardPublicId: z.string().min(12),
+        includeDeleted: z.boolean().optional().default(false),
+      }),
+    )
     .output(z.array(cardLinkSchema))
     .query(async ({ ctx, input }) => {
       const userId = ctx.user?.id;
@@ -1856,6 +1911,7 @@ export const cardRouter = createTRPCRouter({
       const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
         ctx.db,
         input.cardPublicId,
+        { includeDeleted: input.includeDeleted },
       );
 
       if (!card)

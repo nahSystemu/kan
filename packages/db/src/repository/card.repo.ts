@@ -559,6 +559,7 @@ export const createCardMemberRelationship = async (
 export const getWithListAndMembersByPublicId = async (
   db: dbClient,
   cardPublicId: string,
+  options?: { includeDeleted?: boolean },
 ) => {
   const card = await db.query.cards.findFirst({
     columns: {
@@ -572,6 +573,7 @@ export const getWithListAndMembersByPublicId = async (
       cardNumber: true,
       index: true,
       archivedAt: true,
+      deletedAt: true,
     },
     with: {
       labels: {
@@ -767,7 +769,10 @@ export const getWithListAndMembersByPublicId = async (
         },
       },
     },
-    where: and(eq(cards.publicId, cardPublicId), isNull(cards.deletedAt)),
+    where: and(
+      eq(cards.publicId, cardPublicId),
+      options?.includeDeleted ? undefined : isNull(cards.deletedAt),
+    ),
   });
 
   if (!card) return null;
