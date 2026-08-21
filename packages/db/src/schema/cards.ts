@@ -9,6 +9,7 @@ import {
   primaryKey,
   text,
   timestamp,
+  uniqueIndex,
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -52,6 +53,8 @@ export const activityTypes = [
   "card.unarchived",
   "card.deleted",
   "card.restored",
+  "card.updated.link.added",
+  "card.updated.link.removed",
 ] as const;
 
 export type ActivityType = (typeof activityTypes)[number];
@@ -129,6 +132,8 @@ export const cardsRelations = relations(cards, ({ one, many }) => ({
   }),
   comments: many(comments),
   activities: many(cardActivities),
+  linksFrom: many(cardLinks, { relationName: "cardLinksSource" }),
+  linksTo: many(cardLinks, { relationName: "cardLinksTarget" }),
   checklists: many(checklists),
   attachments: many(cardAttachments),
 }));
@@ -179,6 +184,7 @@ export const cardActivities = pgTable("card_activity", {
     () => cardAttachments.id,
     { onDelete: "cascade" },
   ),
+  linkedCardId: bigint("linkedCardId", { mode: "number" }),
 }).enableRLS();
 
 export const cardActivitiesRelations = relations(cardActivities, ({ one }) => ({
@@ -353,3 +359,57 @@ export const cardAttachmentsRelations = relations(
     }),
   }),
 );
+
+// Fixed, non-editable set. "subtask" is directed: the source card is the parent.
+export const cardLinkTypes = ["subtask", "blocks", "relates"] as const;
+
+export type CardLinkType = (typeof cardLinkTypes)[number];
+
+export const cardLinkTypeEnum = pgEnum("card_link_type", cardLinkTypes);
+
+// Links carry no history, so unlinking hard deletes and the unique index stays
+// usable for re-linking the same pair later.
+export const cardLinks = pgTable(
+  "card_link",
+  {
+    id: bigserial("id", { mode: "number" }).primaryKey(),
+    publicId: varchar("publicId", { length: 12 }).notNull().unique(),
+    type: cardLinkTypeEnum("type").notNull(),
+    sourceCardId: bigint("sourceCardId", { mode: "number" })
+      .notNull()
+      .references(() => cards.id, { onDelete: "cascade" }),
+    targetCardId: bigint("targetCardId", { mode: "number" })
+      .notNull()
+      .references(() => cards.id, { onDelete: "cascade" }),
+    createdBy: uuid("createdBy").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex("card_link_pair_idx").on(
+      table.sourceCardId,
+      table.targetCardId,
+      table.type,
+    ),
+    index("card_link_target_idx").on(table.targetCardId),
+  ],
+).enableRLS();
+
+export const cardLinksRelations = relations(cardLinks, ({ one }) => ({
+  source: one(cards, {
+    fields: [cardLinks.sourceCardId],
+    references: [cards.id],
+    relationName: "cardLinksSource",
+  }),
+  target: one(cards, {
+    fields: [cardLinks.targetCardId],
+    references: [cards.id],
+    relationName: "cardLinksTarget",
+  }),
+  createdBy: one(users, {
+    fields: [cardLinks.createdBy],
+    references: [users.id],
+    relationName: "cardLinksCreatedByUser",
+  }),
+}));
