@@ -13,7 +13,11 @@ import Avatar from "~/components/Avatar";
 import Badge from "~/components/Badge";
 import CircularProgress from "~/components/CircularProgress";
 import LabelIcon from "~/components/LabelIcon";
-import { getPriorityLabel, PriorityIcon } from "~/components/Priority";
+import {
+  getPriorityLabel,
+  getPriorityTextClassName,
+  PriorityIcon,
+} from "~/components/Priority";
 import { useLocalisation } from "~/hooks/useLocalisation";
 import { getAvatarUrl } from "~/utils/helpers";
 
@@ -136,11 +140,17 @@ const Card = ({
             </div>
             <div className="flex items-center justify-end gap-1">
               {priority && (
-                <PriorityIcon
-                  priority={priority}
-                  className="h-4 w-4"
-                  title={getPriorityLabel(priority)}
-                />
+                <div className="flex items-center gap-1 rounded-full border-[1px] border-light-300 px-2 py-1 dark:border-dark-600">
+                  <PriorityIcon priority={priority} className="h-4 w-4" />
+                  <span
+                    className={twMerge(
+                      "text-[10px]",
+                      getPriorityTextClassName(priority),
+                    )}
+                  >
+                    {getPriorityLabel(priority)}
+                  </span>
+                </div>
               )}
               {checklists.length > 0 && (
                 <div className="flex items-center gap-1 rounded-full border-[1px] border-light-300 px-2 py-1 dark:border-dark-600">

@@ -56,6 +56,9 @@ export const getPriorityLabel = (priority: CardPriority): string => {
 export const getPriorityBadgeClassName = (priority: CardPriority): string =>
   priorityStyles[priority].badge;
 
+export const getPriorityTextClassName = (priority: CardPriority): string =>
+  priorityStyles[priority].icon;
+
 export const PriorityIcon = ({
   priority,
   className,
