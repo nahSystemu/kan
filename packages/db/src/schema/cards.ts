@@ -49,6 +49,9 @@ export const activityTypes = [
   "card.updated.dueDate.updated",
   "card.updated.dueDate.removed",
   "card.archived",
+  "card.unarchived",
+  "card.deleted",
+  "card.restored",
 ] as const;
 
 export type ActivityType = (typeof activityTypes)[number];
@@ -80,6 +83,10 @@ export const cards = pgTable(
     deletedBy: uuid("deletedBy").references(() => users.id, {
       onDelete: "set null",
     }),
+    archivedAt: timestamp("archivedAt"),
+    archivedBy: uuid("archivedBy").references(() => users.id, {
+      onDelete: "set null",
+    }),
     listId: bigint("listId", { mode: "number" })
       .notNull()
       .references(() => lists.id, { onDelete: "cascade" }),
@@ -109,6 +116,11 @@ export const cardsRelations = relations(cards, ({ one, many }) => ({
     fields: [cards.deletedBy],
     references: [users.id],
     relationName: "cardsDeletedByUser",
+  }),
+  archivedBy: one(users, {
+    fields: [cards.archivedBy],
+    references: [users.id],
+    relationName: "cardsArchivedByUser",
   }),
   labels: many(cardsToLabels),
   members: many(cardToWorkspaceMembers),

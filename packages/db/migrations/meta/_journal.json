@@ -260,6 +260,13 @@
       "when": 1787243763432,
       "tag": "20260820163603_AddCardPriority",
       "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "7",
+      "when": 1787313600000,
+      "tag": "20260821120000_AddCardArchive",
+      "breakpoints": true
     }
   ]
 }
