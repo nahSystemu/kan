@@ -141,11 +141,13 @@ export const create = async (
         count: countExpr,
       })
       .from(cards)
-      .where(and(
+      .where(
+        and(
           eq(cards.listId, result[0].listId),
           isNull(cards.deletedAt),
           isNull(cards.archivedAt),
-        ))
+        ),
+      )
       .groupBy(cards.listId, cards.index)
       .having(gt(countExpr, 1));
 
@@ -167,11 +169,13 @@ export const create = async (
       const postFixDupes = await tx
         .select({ index: cards.index, count: countExpr })
         .from(cards)
-        .where(and(
-          eq(cards.listId, result[0].listId),
-          isNull(cards.deletedAt),
-          isNull(cards.archivedAt),
-        ))
+        .where(
+          and(
+            eq(cards.listId, result[0].listId),
+            isNull(cards.deletedAt),
+            isNull(cards.archivedAt),
+          ),
+        )
         .groupBy(cards.listId, cards.index)
         .having(gt(countExpr, 1));
 
@@ -450,11 +454,13 @@ export const bulkCreate = async (
       const duplicateIndices = await tx
         .select({ index: cards.index, count: countExpr })
         .from(cards)
-        .where(and(
-          eq(cards.listId, listId),
-          isNull(cards.deletedAt),
-          isNull(cards.archivedAt),
-        ))
+        .where(
+          and(
+            eq(cards.listId, listId),
+            isNull(cards.deletedAt),
+            isNull(cards.archivedAt),
+          ),
+        )
         .groupBy(cards.listId, cards.index)
         .having(gt(countExpr, 1));
 
@@ -474,11 +480,13 @@ export const bulkCreate = async (
         const postFixDupes = await tx
           .select({ index: cards.index, count: countExpr })
           .from(cards)
-          .where(and(
-          eq(cards.listId, listId),
-          isNull(cards.deletedAt),
-          isNull(cards.archivedAt),
-        ))
+          .where(
+            and(
+              eq(cards.listId, listId),
+              isNull(cards.deletedAt),
+              isNull(cards.archivedAt),
+            ),
+          )
           .groupBy(cards.listId, cards.index)
           .having(gt(countExpr, 1));
 
@@ -1002,11 +1010,13 @@ export const softDelete = async (
         count: countExpr,
       })
       .from(cards)
-      .where(and(
+      .where(
+        and(
           eq(cards.listId, result.listId),
           isNull(cards.deletedAt),
           isNull(cards.archivedAt),
-        ))
+        ),
+      )
       .groupBy(cards.listId, cards.index)
       .having(gt(countExpr, 1));
 
@@ -1200,7 +1210,11 @@ const reinstate = async (
 
     const [result] = await tx
       .update(cards)
-      .set({ ...args.patch, listId: args.listId, index: lastCard ? lastCard.index + 1 : 0 })
+      .set({
+        ...args.patch,
+        listId: args.listId,
+        index: lastCard ? lastCard.index + 1 : 0,
+      })
       .where(eq(cards.id, args.cardId))
       .returning({
         id: cards.id,
@@ -1230,7 +1244,12 @@ export const restore = async (
 ) =>
   reinstate(db, {
     ...args,
-    patch: { deletedAt: null, deletedBy: null, archivedAt: null, archivedBy: null },
+    patch: {
+      deletedAt: null,
+      deletedBy: null,
+      archivedAt: null,
+      archivedBy: null,
+    },
   });
 
 const inactiveCardsByBoardId = (

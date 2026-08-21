@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { t } from "@lingui/core/macro";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { HiXMark } from "react-icons/hi2";
+import { HiOutlineArchiveBox, HiXMark } from "react-icons/hi2";
 import { IoChevronForwardSharp } from "react-icons/io5";
 
 import { authClient } from "@kan/auth/client";
@@ -449,6 +449,7 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
                   }
                   listPublicId={card?.list.publicId}
                   cardIndex={card?.index}
+                  isArchived={card.archivedAt !== null}
                 />
                 <Link
                   href={`/${isTemplate ? "templates" : "boards"}/${boardId}`}
@@ -466,6 +467,12 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
             </p>
           )}
         </div>
+        {card?.archivedAt && (
+          <div className="flex w-full items-center gap-2 border-b-[1px] border-amber-300 bg-amber-50 px-8 py-2 text-sm text-amber-800 dark:border-amber-900/80 dark:bg-amber-950/40 dark:text-amber-300">
+            <HiOutlineArchiveBox className="h-4 w-4 shrink-0" />
+            <span>{t`This card is archived and does not appear on the board.`}</span>
+          </div>
+        )}
         <div className="scrollbar-thumb-rounded-[4px] scrollbar-track-rounded-[4px] w-full flex-1 overflow-y-auto scrollbar scrollbar-track-light-200 scrollbar-thumb-light-400 hover:scrollbar-thumb-light-400 dark:scrollbar-track-dark-100 dark:scrollbar-thumb-dark-300 dark:hover:scrollbar-thumb-dark-300">
           <div className="p-auto mx-auto flex h-full w-full max-w-[800px] flex-col">
             <div className="p-6 md:p-8">

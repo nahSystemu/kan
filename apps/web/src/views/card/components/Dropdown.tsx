@@ -1,8 +1,10 @@
 import { t } from "@lingui/core/macro";
 import {
+  HiArrowUturnLeft,
   HiEllipsisHorizontal,
   HiHashtag,
   HiLink,
+  HiOutlineArchiveBox,
   HiOutlineCheckCircle,
   HiOutlineDocumentDuplicate,
   HiOutlineTrash,
@@ -24,6 +26,7 @@ export default function CardDropdown({
   ticketNumber,
   listPublicId,
   cardIndex,
+  isArchived,
 }: {
   cardPublicId: string;
   isTemplate?: boolean;
@@ -32,6 +35,7 @@ export default function CardDropdown({
   ticketNumber?: string | null;
   listPublicId?: string;
   cardIndex?: number;
+  isArchived?: boolean;
 }) {
   const { openModal } = useModal();
   const { showPopup } = usePopup();
@@ -58,6 +62,50 @@ export default function CardDropdown({
     onSettled: async () => {
       await utils.board.byId.invalidate();
     },
+  });
+
+  const invalidateArchiveState = async () => {
+    await Promise.all([
+      utils.card.byId.invalidate({ cardPublicId }),
+      utils.board.byId.invalidate(),
+      utils.card.getArchived.invalidate(),
+    ]);
+  };
+
+  const archiveCard = api.card.archive.useMutation({
+    onSuccess: () => {
+      showPopup({
+        header: t`Card archived`,
+        icon: "success",
+        message: t`The card has been moved to the archive.`,
+      });
+    },
+    onError: () => {
+      showPopup({
+        header: t`Unable to archive card`,
+        icon: "error",
+        message: t`Please try again.`,
+      });
+    },
+    onSettled: invalidateArchiveState,
+  });
+
+  const unarchiveCard = api.card.unarchive.useMutation({
+    onSuccess: () => {
+      showPopup({
+        header: t`Card unarchived`,
+        icon: "success",
+        message: t`The card is back on the board.`,
+      });
+    },
+    onError: () => {
+      showPopup({
+        header: t`Unable to unarchive card`,
+        icon: "error",
+        message: t`Please try again.`,
+      });
+    },
+    onSettled: invalidateArchiveState,
   });
 
   const handleCopyCardLink = async () => {
@@ -143,6 +191,19 @@ export default function CardDropdown({
               <HiOutlineDocumentDuplicate className="h-[16px] w-[16px] text-dark-900" />
             ),
             disabled: duplicateCard.isPending || !listPublicId,
+          },
+          {
+            label: isArchived ? t`Unarchive card` : t`Archive card`,
+            action: () => {
+              if (isArchived) unarchiveCard.mutate({ cardPublicId });
+              else archiveCard.mutate({ cardPublicId });
+            },
+            icon: isArchived ? (
+              <HiArrowUturnLeft className="h-[16px] w-[16px] text-dark-900" />
+            ) : (
+              <HiOutlineArchiveBox className="h-[16px] w-[16px] text-dark-900" />
+            ),
+            disabled: archiveCard.isPending || unarchiveCard.isPending,
           },
         ]
       : []),

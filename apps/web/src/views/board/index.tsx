@@ -51,6 +51,7 @@ import { CardContextPriorityModal } from "./components/CardContextPriorityModal"
 import { DeleteBoardConfirmation } from "./components/DeleteBoardConfirmation";
 import { DeleteListConfirmation } from "./components/DeleteListConfirmation";
 import Filters from "./components/Filters";
+import { InactiveCardsModal } from "./components/InactiveCardsModal";
 import List from "./components/List";
 import { MoveBoardForm } from "./components/MoveBoardForm";
 import { NewCardForm } from "./components/NewCardForm";
@@ -297,6 +298,27 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
     },
   });
 
+  const archiveCardMutation = api.card.archive.useMutation({
+    onError: () => {
+      showPopup({
+        header: t`Unable to archive card`,
+        message: t`Please try again later, or contact customer support.`,
+        icon: "error",
+      });
+    },
+    onSuccess: async () => {
+      showPopup({
+        header: t`Card archived`,
+        message: t`The card has been moved to the archive.`,
+        icon: "success",
+      });
+      await Promise.all([
+        utils.board.byId.invalidate(queryParams),
+        utils.card.getArchived.invalidate({ boardPublicId: boardId ?? "" }),
+      ]);
+    },
+  });
+
   useEffect(() => {
     if (isSuccess && boardData) {
       setValue("name", boardData.name || "");
@@ -341,6 +363,10 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
         isTemplate: !!isTemplate,
       });
       openModal("CARD_CONTEXT_DUPLICATE", cardPublicId);
+      return;
+    }
+    if (action === "archive") {
+      archiveCardMutation.mutate({ cardPublicId });
       return;
     }
     if (action === "delete") {
@@ -551,6 +577,23 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
             cardPublicId={entityId}
             boardPublicId={boardId ?? ""}
           />
+        </Modal>
+        <Modal
+          modalSize="lg"
+          positionFromTop="sm"
+          isVisible={isOpen && modalContentType === "ARCHIVED_CARDS"}
+        >
+          <InactiveCardsModal
+            variant="archived"
+            boardPublicId={boardId ?? ""}
+          />
+        </Modal>
+        <Modal
+          modalSize="lg"
+          positionFromTop="sm"
+          isVisible={isOpen && modalContentType === "DELETED_CARDS"}
+        >
+          <InactiveCardsModal variant="deleted" boardPublicId={boardId ?? ""} />
         </Modal>
       </>
     );

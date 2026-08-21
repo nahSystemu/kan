@@ -96,9 +96,7 @@ export const cards = pgTable(
     dueDate: timestamp("dueDate"),
     priority: cardPriorityEnum("priority"),
   },
-  (table) => [
-    index("card_list_number_idx").on(table.listId, table.cardNumber),
-  ],
+  (table) => [index("card_list_number_idx").on(table.listId, table.cardNumber)],
 ).enableRLS();
 
 export const cardsRelations = relations(cards, ({ one, many }) => ({

@@ -2,13 +2,14 @@ import { t } from "@lingui/core/macro";
 import { useEffect, useRef } from "react";
 import {
   HiLink,
+  HiOutlineArchiveBox,
+  HiOutlineArrowRightCircle,
   HiOutlineCalendar,
   HiOutlineDocumentDuplicate,
   HiOutlineFlag,
   HiOutlineTag,
   HiOutlineTrash,
   HiOutlineUserGroup,
-  HiOutlineArrowRightCircle,
 } from "react-icons/hi2";
 
 export type CardContextMenuAction =
@@ -19,6 +20,7 @@ export type CardContextMenuAction =
   | "dueDate"
   | "copyLink"
   | "duplicate"
+  | "archive"
   | "delete";
 
 interface CardContextMenuProps {
@@ -75,6 +77,12 @@ const MENU_ITEMS: {
     action: "duplicate",
     label: t`Duplicate card`,
     icon: <HiOutlineDocumentDuplicate className="h-4 w-4 shrink-0" />,
+    requiresEdit: true,
+  },
+  {
+    action: "archive",
+    label: t`Archive card`,
+    icon: <HiOutlineArchiveBox className="h-4 w-4 shrink-0" />,
     requiresEdit: true,
   },
   {

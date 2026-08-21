@@ -25,8 +25,8 @@ import {
   inactiveCardSchema,
 } from "../schemas";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
-import { assertUserInWorkspace } from "../utils/auth";
 import { mergeActivities } from "../utils/activities";
+import { assertUserInWorkspace } from "../utils/auth";
 import { sendMentionEmails } from "../utils/notifications";
 import {
   assertCanDelete,
