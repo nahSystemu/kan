@@ -7,11 +7,12 @@ import * as boardRepo from "@kan/db/repository/board.repo";
 import * as cardRepo from "@kan/db/repository/card.repo";
 import * as cardActivityRepo from "@kan/db/repository/cardActivity.repo";
 import * as cardCommentRepo from "@kan/db/repository/cardComment.repo";
+import * as cardLinkRepo from "@kan/db/repository/cardLink.repo";
 import * as checklistRepo from "@kan/db/repository/checklist.repo";
 import * as labelRepo from "@kan/db/repository/label.repo";
 import * as listRepo from "@kan/db/repository/list.repo";
 import * as workspaceRepo from "@kan/db/repository/workspace.repo";
-import { cardPriorities } from "@kan/db/schema";
+import { cardLinkTypes, cardPriorities } from "@kan/db/schema";
 import { generateAttachmentUrl, generateAvatarUrl } from "@kan/shared/utils";
 
 import { cardTopic, emitBoardEvent, emitCardEvent, eventBus } from "../events";
@@ -19,6 +20,7 @@ import {
   activityItemSchema,
   cardCreateResponseSchema,
   cardDetailSchema,
+  cardLinkSchema,
   cardUpdateResponseSchema,
   commentDeleteResponseSchema,
   commentResponseSchema,
@@ -1827,6 +1829,265 @@ export const cardRouter = createTRPCRouter({
       const result = await cardRepo.getDeletedByBoardId(ctx.db, board.id);
 
       return result.map(formatInactiveCard);
+    }),
+  getLinks: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Get linked cards",
+        method: "GET",
+        path: "/cards/{cardPublicId}/links",
+        description:
+          "Retrieves every card linked to this card, in both directions",
+        tags: ["Cards"],
+        protect: true,
+      },
+    })
+    .input(z.object({ cardPublicId: z.string().min(12) }))
+    .output(z.array(cardLinkSchema))
+    .query(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
+        ctx.db,
+        input.cardPublicId,
+      );
+
+      if (!card)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      await assertPermission(ctx.db, userId, card.workspaceId, "card:view");
+
+      const links = await cardLinkRepo.getByCardId(ctx.db, card.id);
+
+      return links.map((link) => ({
+        publicId: link.publicId,
+        type: link.type,
+        direction: link.direction,
+        isCompleted: link.isCompleted,
+        card: {
+          publicId: link.card.publicId,
+          title: link.card.title,
+          cardNumber: link.card.cardNumber,
+          ticketNumber:
+            link.card.cardNumber != null && link.card.cardPrefix
+              ? `${link.card.cardPrefix}-${link.card.cardNumber}`
+              : null,
+          dueDate: link.card.dueDate,
+          priority: link.card.priority,
+          isArchived: link.card.isArchived,
+          list: link.card.list,
+          board: link.card.board,
+          members: link.card.members,
+        },
+      }));
+    }),
+  addLink: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Link a card to another card",
+        method: "POST",
+        path: "/cards/{cardPublicId}/links",
+        description:
+          "Links another card to this card. For subtask links this card is the parent.",
+        tags: ["Cards"],
+        protect: true,
+      },
+    })
+    .input(
+      z.object({
+        cardPublicId: z.string().min(12),
+        linkedCardPublicId: z.string().min(12),
+        type: z.enum(cardLinkTypes),
+      }),
+    )
+    .output(z.object({ publicId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      if (input.cardPublicId === input.linkedCardPublicId)
+        throw new TRPCError({
+          message: `A card cannot be linked to itself`,
+          code: "BAD_REQUEST",
+        });
+
+      const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
+        ctx.db,
+        input.cardPublicId,
+      );
+
+      if (!card)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      await assertCanEdit(
+        ctx.db,
+        userId,
+        card.workspaceId,
+        "card:edit",
+        card.createdBy,
+      );
+
+      const linkedCard = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
+        ctx.db,
+        input.linkedCardPublicId,
+      );
+
+      if (!linkedCard)
+        throw new TRPCError({
+          message: `Card with public ID ${input.linkedCardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      // Links stay inside one workspace so both ends share a permission boundary.
+      if (linkedCard.workspaceId !== card.workspaceId)
+        throw new TRPCError({
+          message: `Cards can only be linked within the same workspace`,
+          code: "BAD_REQUEST",
+        });
+
+      const alreadyLinked = await cardLinkRepo.exists(ctx.db, {
+        sourceCardId: card.id,
+        targetCardId: linkedCard.id,
+        type: input.type,
+      });
+
+      if (alreadyLinked)
+        throw new TRPCError({
+          message: `These cards are already linked`,
+          code: "BAD_REQUEST",
+        });
+
+      if (input.type === "subtask") {
+        const wouldLoop = await cardLinkRepo.wouldCreateSubtaskCycle(ctx.db, {
+          parentCardId: card.id,
+          childCardId: linkedCard.id,
+        });
+
+        if (wouldLoop)
+          throw new TRPCError({
+            message: `That card is already a parent of this card`,
+            code: "BAD_REQUEST",
+          });
+      }
+
+      const link = await cardLinkRepo.create(ctx.db, {
+        type: input.type,
+        sourceCardId: card.id,
+        targetCardId: linkedCard.id,
+        createdBy: userId,
+      });
+
+      await cardActivityRepo.create(ctx.db, {
+        type: "card.updated.link.added",
+        cardId: card.id,
+        linkedCardId: linkedCard.id,
+        createdBy: userId,
+      });
+
+      emitCardEvent(card.id, {
+        scope: "card",
+        type: "updated",
+        cardId: card.id,
+        cardPublicId: input.cardPublicId,
+      });
+
+      return { publicId: link.publicId };
+    }),
+  removeLink: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Remove a card link",
+        method: "DELETE",
+        path: "/cards/{cardPublicId}/links/{linkPublicId}",
+        description: "Removes a link between two cards",
+        tags: ["Cards"],
+        protect: true,
+      },
+    })
+    .input(
+      z.object({
+        cardPublicId: z.string().min(12),
+        linkPublicId: z.string().min(12),
+      }),
+    )
+    .output(z.object({ success: z.boolean() }))
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+
+      if (!userId)
+        throw new TRPCError({
+          message: `User not authenticated`,
+          code: "UNAUTHORIZED",
+        });
+
+      const card = await cardRepo.getWorkspaceAndCardIdByCardPublicId(
+        ctx.db,
+        input.cardPublicId,
+      );
+
+      if (!card)
+        throw new TRPCError({
+          message: `Card with public ID ${input.cardPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      await assertCanEdit(
+        ctx.db,
+        userId,
+        card.workspaceId,
+        "card:edit",
+        card.createdBy,
+      );
+
+      const link = await cardLinkRepo.getByPublicId(ctx.db, input.linkPublicId);
+
+      if (!link)
+        throw new TRPCError({
+          message: `Link with public ID ${input.linkPublicId} not found`,
+          code: "NOT_FOUND",
+        });
+
+      if (link.sourceCardId !== card.id && link.targetCardId !== card.id)
+        throw new TRPCError({
+          message: `Link with public ID ${input.linkPublicId} does not belong to this card`,
+          code: "BAD_REQUEST",
+        });
+
+      await cardLinkRepo.hardDelete(ctx.db, link.id);
+
+      await cardActivityRepo.create(ctx.db, {
+        type: "card.updated.link.removed",
+        cardId: card.id,
+        linkedCardId:
+          link.sourceCardId === card.id ? link.targetCardId : link.sourceCardId,
+        createdBy: userId,
+      });
+
+      emitCardEvent(card.id, {
+        scope: "card",
+        type: "updated",
+        cardId: card.id,
+        cardPublicId: input.cardPublicId,
+      });
+
+      return { success: true };
     }),
   duplicate: protectedProcedure
     .meta({

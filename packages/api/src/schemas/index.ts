@@ -14,6 +14,7 @@ export {
   commentDeleteResponseSchema,
   activityItemSchema,
   inactiveCardSchema,
+  cardLinkSchema,
 } from "./card";
 
 export {

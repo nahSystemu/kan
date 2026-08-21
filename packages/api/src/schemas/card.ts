@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { cardPriorities } from "@kan/db/schema";
+import { cardLinkTypes, cardPriorities } from "@kan/db/schema";
 
 import {
   checklistResponseSchema,
@@ -242,4 +242,36 @@ export const inactiveCardSchema = z.object({
       image: z.string().nullable(),
     })
     .nullable(),
+});
+
+// ─── card.getLinks ───────────────────────────────────────────
+export const cardLinkSchema = z.object({
+  publicId: z.string(),
+  type: z.enum(cardLinkTypes),
+  direction: z.enum(["outgoing", "incoming"]),
+  isCompleted: z.boolean(),
+  card: z.object({
+    publicId: z.string(),
+    title: z.string(),
+    cardNumber: z.number().nullable(),
+    ticketNumber: z.string().nullable(),
+    dueDate: z.date().nullable(),
+    priority: z.enum(cardPriorities).nullable(),
+    isArchived: z.boolean(),
+    list: z.object({ publicId: z.string(), name: z.string() }),
+    board: z.object({ publicId: z.string(), name: z.string() }),
+    members: z.array(
+      z.object({
+        publicId: z.string(),
+        email: z.string(),
+        user: z
+          .object({
+            name: z.string().nullable(),
+            email: z.string(),
+            image: z.string().nullable(),
+          })
+          .nullable(),
+      }),
+    ),
+  }),
 });

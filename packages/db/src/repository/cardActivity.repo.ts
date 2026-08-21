@@ -34,6 +34,7 @@ export const create = async (
     toDueDate?: Date;
     sourceBoardId?: number;
     attachmentId?: number;
+    linkedCardId?: number;
   },
 ) => {
   const [result] = await db
@@ -60,6 +61,7 @@ export const create = async (
       toDueDate: activityInput.toDueDate,
       sourceBoardId: activityInput.sourceBoardId,
       attachmentId: activityInput.attachmentId,
+      linkedCardId: activityInput.linkedCardId,
     })
     .returning({ id: cardActivities.id });
 
