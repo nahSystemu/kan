@@ -36,6 +36,7 @@ import { common, createLowlight } from "lowlight";
 import {
   forwardRef,
   useEffect,
+  useId,
   useImperativeHandle,
   useRef,
   useState,
@@ -63,8 +64,11 @@ import { twMerge } from "tailwind-merge";
 import tippy from "tippy.js";
 import { Markdown } from "tiptap-markdown";
 
+import { useModal } from "~/providers/modal";
 import { getAvatarUrl } from "~/utils/helpers";
 import Avatar from "./Avatar";
+import { EditorImageModal } from "./EditorImageModal";
+import Modal from "./modal";
 import { YouTubeNode } from "./YouTubeEmbed/YouTubeNode";
 
 const lowlight = createLowlight(common);
@@ -408,7 +412,10 @@ export interface SlashNodeAttrs {
   label?: string | null;
 }
 
-const getCommandItems = (disableHeadings: boolean): SlashCommandItem[] => {
+const getCommandItems = (
+  disableHeadings: boolean,
+  onInsertImage: () => void,
+): SlashCommandItem[] => {
   const headingCommands: SlashCommandItem[] = disableHeadings
     ? []
     : [
@@ -471,18 +478,12 @@ const getCommandItems = (disableHeadings: boolean): SlashCommandItem[] => {
     {
       title: "Horizontal Rule",
       icon: <HiOutlineMinus />,
-      command: ({ editor }) =>
-        editor.chain().focus().setHorizontalRule().run(),
+      command: ({ editor }) => editor.chain().focus().setHorizontalRule().run(),
     },
     {
       title: "Image",
       icon: <HiOutlinePhoto />,
-      command: ({ editor }) => {
-        const url = window.prompt("Image URL");
-        if (url) {
-          (editor.chain().focus() as any).setImage({ src: url }).run();
-        }
-      },
+      command: () => onInsertImage(),
     },
   ];
 };
@@ -497,6 +498,7 @@ export default function Editor({
   enableYouTubeEmbed = true,
   placeholder,
   disableHeadings = false,
+  workspacePublicId,
 }: {
   content: string | null;
   onChange?: (value: string) => void;
@@ -507,8 +509,21 @@ export default function Editor({
   enableYouTubeEmbed?: boolean;
   placeholder?: string;
   disableHeadings?: boolean;
+  /** Enables uploading images from the insert-image modal. */
+  workspacePublicId?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { isOpen, openModal, closeModal, modalContentType, entityId } =
+    useModal();
+
+  // Scopes the shared "insert image" modal to the editor that opened it, so
+  // sibling editors (comments, new comment form) don't all render it.
+  const editorId = useId();
+
+  const openImageModalRef = useRef(() => openModal("EDITOR_IMAGE", editorId));
+  useEffect(() => {
+    openImageModalRef.current = () => openModal("EDITOR_IMAGE", editorId);
+  }, [openModal, editorId]);
 
   // useEditor is created once (empty deps below), so keep the latest callbacks
   // in refs to avoid the editor capturing stale closures on re-render.
@@ -579,10 +594,17 @@ export default function Editor({
         }),
         CodeBlockLowlight.configure({ lowlight }),
         SlashCommands.configure({
-          commandItems: getCommandItems(disableHeadings),
+          commandItems: getCommandItems(disableHeadings, () =>
+            openImageModalRef.current(),
+          ),
           suggestion: {
             items: ({ query }: { query: string }) =>
-              filterSlashCommandItems(getCommandItems(disableHeadings), query),
+              filterSlashCommandItems(
+                getCommandItems(disableHeadings, () =>
+                  openImageModalRef.current(),
+                ),
+                query,
+              ),
             startOfLine: true,
             char: "/",
           },
@@ -737,6 +759,21 @@ export default function Editor({
         .tiptap code {
           font-size: 0.875rem;
         }
+        /* @tailwindcss/typography wraps inline code in literal backticks via
+           pseudo elements, which end up looking like typed characters. */
+        .tiptap code::before,
+        .tiptap code::after {
+          content: none;
+        }
+        .tiptap :not(pre) > code {
+          background-color: rgba(0, 0, 0, 0.06);
+          border-radius: 0.25rem;
+          padding: 0.1rem 0.3rem;
+          font-weight: 500;
+        }
+        .dark .tiptap :not(pre) > code {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
         .tiptap .mention {
           background-color: rgba(59, 130, 246, 0.1);
           border-radius: 0.25rem;
@@ -869,6 +906,24 @@ export default function Editor({
         }
       `}</style>
       {!readOnly && editor && <EditorBubbleMenu editor={editor} />}
+      {!readOnly && (
+        <Modal
+          modalSize="sm"
+          isVisible={
+            isOpen &&
+            modalContentType === "EDITOR_IMAGE" &&
+            entityId === editorId
+          }
+        >
+          <EditorImageModal
+            workspacePublicId={workspacePublicId}
+            onInsert={(url) => {
+              (editor?.chain().focus() as any)?.setImage({ src: url }).run();
+            }}
+            onClose={closeModal}
+          />
+        </Modal>
+      )}
       <EditorContent
         editor={editor}
         className="tiptap prose dark:prose-invert prose-sm max-w-none overflow-y-auto [&_blockquote]:!text-xs [&_h1]:!text-lg [&_h2]:!text-base [&_h3]:!text-sm [&_ol]:!text-xs [&_p.is-empty::before]:text-light-900 [&_p.is-empty::before]:dark:text-dark-800 [&_p]:!text-sm [&_p]:text-light-950 [&_p]:dark:text-dark-950 [&_pre]:!overflow-x-hidden [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_ul]:!text-xs"
@@ -899,8 +954,7 @@ function EditorBubbleMenu({ editor }: { editor: TiptapEditor | null }) {
       title: "Underline",
       icon: <HiOutlineUnderline />,
       keys: ["meta", "u"],
-      onClick: () =>
-        (editor?.chain().focus() as any)?.toggleUnderline().run(),
+      onClick: () => (editor?.chain().focus() as any)?.toggleUnderline().run(),
       active: editor?.isActive("underline"),
     },
     {
@@ -914,8 +968,7 @@ function EditorBubbleMenu({ editor }: { editor: TiptapEditor | null }) {
       title: "Highlight",
       icon: <HiOutlinePaintBrush />,
       keys: ["meta", "shift", "h"],
-      onClick: () =>
-        (editor?.chain().focus() as any)?.toggleHighlight().run(),
+      onClick: () => (editor?.chain().focus() as any)?.toggleHighlight().run(),
       active: editor?.isActive("highlight"),
     },
     {

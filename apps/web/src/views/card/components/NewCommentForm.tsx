@@ -18,9 +18,11 @@ interface FormValues {
 const NewCommentForm = ({
   cardPublicId,
   workspaceMembers,
+  workspacePublicId,
 }: {
   cardPublicId: string;
   workspaceMembers: WorkspaceMember[];
+  workspacePublicId?: string;
 }) => {
   const utils = api.useUtils();
   const { showPopup } = usePopup();
@@ -81,6 +83,7 @@ const NewCommentForm = ({
         onChange={(value) => setValue("comment", value)}
         onSubmit={handleSubmit(onSubmit)}
         workspaceMembers={workspaceMembers}
+        workspacePublicId={workspacePublicId}
         enableYouTubeEmbed={false}
         placeholder={t`Add comment... (type '/' to open commands or '@' to mention)`}
         disableHeadings={true}

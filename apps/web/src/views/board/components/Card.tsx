@@ -13,11 +13,7 @@ import Avatar from "~/components/Avatar";
 import Badge from "~/components/Badge";
 import CircularProgress from "~/components/CircularProgress";
 import LabelIcon from "~/components/LabelIcon";
-import {
-  getPriorityBadgeClassName,
-  getPriorityLabel,
-  PriorityIcon,
-} from "~/components/Priority";
+import { getPriorityLabel, PriorityIcon } from "~/components/Priority";
 import { useLocalisation } from "~/hooks/useLocalisation";
 import { getAvatarUrl } from "~/utils/helpers";
 
@@ -93,21 +89,16 @@ const Card = ({
       hasDueDate ||
       hasAttachments ? (
         <div className="mt-2 flex flex-col justify-end">
-          <div className="space-x-0.5">
-            {priority && (
-              <Badge
-                value={getPriorityLabel(priority)}
-                iconLeft={<PriorityIcon priority={priority} />}
-                className={getPriorityBadgeClassName(priority)}
-              />
-            )}
-            {labels.map((label) => (
-              <Badge
-                value={label.name}
-                iconLeft={<LabelIcon colourCode={label.colourCode} />}
-              />
-            ))}
-          </div>
+          {labels.length > 0 && (
+            <div className="space-x-0.5">
+              {labels.map((label) => (
+                <Badge
+                  value={label.name}
+                  iconLeft={<LabelIcon colourCode={label.colourCode} />}
+                />
+              ))}
+            </div>
+          )}
           <div className="mt-2 flex items-center justify-between gap-1">
             <div className="flex items-center gap-2">
               {hasDescription && (
@@ -144,6 +135,13 @@ const Card = ({
               )}
             </div>
             <div className="flex items-center justify-end gap-1">
+              {priority && (
+                <PriorityIcon
+                  priority={priority}
+                  className="h-4 w-4"
+                  title={getPriorityLabel(priority)}
+                />
+              )}
               {checklists.length > 0 && (
                 <div className="flex items-center gap-1 rounded-full border-[1px] border-light-300 px-2 py-1 dark:border-dark-600">
                   <CircularProgress

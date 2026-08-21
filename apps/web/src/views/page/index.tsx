@@ -535,6 +535,10 @@ export default function PageView({
                       onChange={(e) => setValue("description", e)}
                       onBlur={() => handleSubmit(onSubmit)()}
                       workspaceMembers={page.workspace?.members ?? []}
+                      workspacePublicId={
+                        (page.workspace as unknown as { publicId?: string })
+                          .publicId ?? ""
+                      }
                     />
                   </div>
                 </form>

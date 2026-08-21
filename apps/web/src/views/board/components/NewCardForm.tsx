@@ -361,6 +361,7 @@ export function NewCardForm({
                 setValue("description", value);
                 saveFormState({ ...formState, description: value });
               }}
+              workspacePublicId={workspace.publicId}
               workspaceMembers={
                 boardData?.workspace.members.map(
                   (member): WorkspaceMember => ({

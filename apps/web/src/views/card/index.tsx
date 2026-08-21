@@ -517,6 +517,7 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
                             canEdit ? () => handleSubmit(onSubmit)() : undefined
                           }
                           workspaceMembers={workspaceMembers ?? []}
+                          workspacePublicId={workspace.publicId}
                           readOnly={!canEdit}
                         />
                       </div>
@@ -563,6 +564,7 @@ export default function CardPage({ isTemplate }: { isTemplate?: boolean }) {
                         <NewCommentForm
                           cardPublicId={cardId}
                           workspaceMembers={editorWorkspaceMembers}
+                          workspacePublicId={workspace.publicId}
                         />
                       </div>
                     )}

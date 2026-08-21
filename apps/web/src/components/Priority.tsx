@@ -1,8 +1,21 @@
+import type { IconType } from "react-icons";
 import { t } from "@lingui/core/macro";
-import { HiFlag } from "react-icons/hi2";
+import {
+  LuSignal,
+  LuSignalHigh,
+  LuSignalLow,
+  LuSignalMedium,
+} from "react-icons/lu";
 import { twMerge } from "tailwind-merge";
 
 import type { CardPriority } from "@kan/db/schema";
+
+const priorityIcons: Record<CardPriority, IconType> = {
+  urgent: LuSignal,
+  high: LuSignalHigh,
+  medium: LuSignalMedium,
+  low: LuSignalLow,
+};
 
 const priorityStyles: Record<CardPriority, { icon: string; badge: string }> = {
   urgent: {
@@ -46,16 +59,23 @@ export const getPriorityBadgeClassName = (priority: CardPriority): string =>
 export const PriorityIcon = ({
   priority,
   className,
+  title,
 }: {
   priority: CardPriority;
   className?: string;
-}) => (
-  <HiFlag
-    className={twMerge(
-      "h-3 w-3 shrink-0",
-      priorityStyles[priority].icon,
-      className,
-    )}
-    aria-hidden="true"
-  />
-);
+  title?: string;
+}) => {
+  const Icon = priorityIcons[priority];
+
+  return (
+    <Icon
+      className={twMerge(
+        "h-3 w-3 shrink-0",
+        priorityStyles[priority].icon,
+        className,
+      )}
+      title={title}
+      aria-hidden={title ? undefined : "true"}
+    />
+  );
+};
