@@ -29,6 +29,13 @@ export default async function handler(
       contentType: string;
     };
 
+    // If local storage driver is enabled, do not issue S3 URL
+    if (process.env.STORAGE_DRIVER === "local") {
+      return res
+        .status(400)
+        .json({ error: "Use /api/uploads/avatar for local uploads" });
+    }
+
     // Specific to avatar uploads for now
     const filenameRegex = /^[a-f0-9\-]+\/[a-zA-Z0-9_\-]+(\.jpg|\.jpeg|\.png)$/;
 

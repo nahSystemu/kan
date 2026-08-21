@@ -52,5 +52,12 @@ export const getAvatarUrl = (imageOrKey: string | null) => {
     return imageOrKey;
   }
 
+  const uploadsBase = env("NEXT_PUBLIC_UPLOADS_BASE");
+  if (uploadsBase && uploadsBase.length > 0) {
+    // Local driver: serve from same-origin uploads path; keys are relative to 'avatars/'
+    return `${uploadsBase}/avatars/${imageOrKey}`;
+  }
+
+  // S3-compatible path
   return `${env("NEXT_PUBLIC_STORAGE_URL")}/${env("NEXT_PUBLIC_AVATAR_BUCKET_NAME")}/${imageOrKey}`;
 };

@@ -184,32 +184,47 @@ export default function Avatar({
       setUploading(true);
       const blob = await getCroppedBlob();
 
-      const originalExt = selectedFile.name.split(".").pop() ?? "jpg";
-      const fileName = `${userId}/avatar-${generateUID()}.${originalExt}`;
+      const uploadsBase = env("NEXT_PUBLIC_UPLOADS_BASE");
+      if (uploadsBase && uploadsBase.length > 0) {
+        // Local storage flow: send multipart directly to API, receive { key }
+        const form = new FormData();
+        const originalExt = selectedFile.name.split(".").pop() ?? "jpg";
+        const fileName = `avatar-${generateUID()}.${originalExt}`;
+        form.append("file", new File([blob], fileName, { type: blob.type }));
 
-      const response = await fetch(
-        env("NEXT_PUBLIC_BASE_URL") + "/api/upload/image",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const res = await fetch("/api/uploads/avatar", { method: "POST", body: form });
+        if (!res.ok) throw new Error("Failed to upload profile image");
+        const data = (await res.json()) as { key: string };
+        updateUser.mutate({ image: data.key });
+      } else {
+        // S3 flow: request a presigned URL then PUT the file
+        const originalExt = selectedFile.name.split(".").pop() ?? "jpg";
+        const fileName = `${userId}/avatar-${generateUID()}.${originalExt}`;
+
+        const response = await fetch(
+          env("NEXT_PUBLIC_BASE_URL") + "/api/upload/image",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ filename: fileName, contentType: blob.type }),
           },
-          body: JSON.stringify({ filename: fileName, contentType: blob.type }),
-        },
-      );
+        );
 
-      if (!response.ok) throw new Error("Failed to get pre-signed URL");
+        if (!response.ok) throw new Error("Failed to get pre-signed URL");
 
-      const { url } = (await response.json()) as { url: string };
+        const { url } = (await response.json()) as { url: string };
 
-      const uploadResponse = await fetch(url, {
-        method: "PUT",
-        body: blob,
-      });
+        const uploadResponse = await fetch(url, {
+          method: "PUT",
+          body: blob,
+        });
 
-      if (!uploadResponse.ok) throw new Error("Failed to upload profile image");
+        if (!uploadResponse.ok) throw new Error("Failed to upload profile image");
 
-      updateUser.mutate({ image: fileName });
+        updateUser.mutate({ image: fileName });
+      }
       setCropDialogOpen(false);
       resetCropState();
     } catch (error) {

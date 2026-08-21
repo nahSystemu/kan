@@ -74,6 +74,9 @@ export const env = createEnv({
     S3_REGION: z.string().optional(),
     S3_ENDPOINT: z.string().optional(),
     S3_FORCE_PATH_STYLE: z.string().optional(),
+    // Storage driver selection and local storage config
+    STORAGE_DRIVER: z.enum(["s3", "local"]).optional(),
+    LOCAL_UPLOADS_DIR: z.string().optional(),
     EMAIL_FROM: z.string().optional(),
   },
 
@@ -91,6 +94,8 @@ export const env = createEnv({
     NEXT_PUBLIC_STORAGE_URL: z.string().url().optional(),
     NEXT_PUBLIC_AVATAR_BUCKET_NAME: z.string().optional(),
     NEXT_PUBLIC_STORAGE_DOMAIN: z.string().optional(),
+    // Base public path for local uploads streaming (e.g., "/uploads")
+    NEXT_PUBLIC_UPLOADS_BASE: z.string().optional(),
     NEXT_PUBLIC_ALLOW_CREDENTIALS: z
       .string()
       .transform((s) => (s === "" ? undefined : s))
@@ -126,6 +131,7 @@ export const env = createEnv({
     NEXT_PUBLIC_STORAGE_URL: process.env.NEXT_PUBLIC_STORAGE_URL,
     NEXT_PUBLIC_AVATAR_BUCKET_NAME: process.env.NEXT_PUBLIC_AVATAR_BUCKET_NAME,
     NEXT_PUBLIC_STORAGE_DOMAIN: process.env.NEXT_PUBLIC_STORAGE_DOMAIN,
+    NEXT_PUBLIC_UPLOADS_BASE: process.env.NEXT_PUBLIC_UPLOADS_BASE,
     NEXT_PUBLIC_ALLOW_CREDENTIALS: process.env.NEXT_PUBLIC_ALLOW_CREDENTIALS,
     NEXT_PUBLIC_DISABLE_SIGN_UP: process.env.NEXT_PUBLIC_DISABLE_SIGN_UP,
     NEXT_PUBLIC_USE_STANDALONE_OUTPUT:

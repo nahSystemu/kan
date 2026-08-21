@@ -66,6 +66,11 @@ const config = {
         source: "/settings",
         destination: "/settings/account",
       },
+      // Public uploads (local driver): stream via API
+      {
+        source: "/uploads/:type/:path*",
+        destination: "/api/uploads/:path*",
+      },
     ];
   },
 };

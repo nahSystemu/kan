@@ -15,6 +15,7 @@ import * as userRepo from "@kan/db/repository/user.repo";
 import * as workspaceRepo from "@kan/db/repository/workspace.repo";
 import * as schema from "@kan/db/schema";
 import { cloudMailerClient, sendEmail } from "@kan/email";
+import { inferContentType, LocalStorageDriver } from "@kan/shared";
 import { createStripeClient } from "@kan/stripe";
 
 export const configuredProviders = socialProviderList.reduce<
@@ -354,7 +355,30 @@ export const initAuth = (db: dbClient) => {
               });
             }
 
-            if (
+            if (user.image && process.env.STORAGE_DRIVER === "local") {
+              try {
+                const allowedFileExtensions = ["jpg", "jpeg", "png", "webp"];
+                const fileExtension =
+                  user.image.split(".").pop()?.split("?")[0] || "jpg";
+                const ext = allowedFileExtensions.includes(fileExtension)
+                  ? fileExtension
+                  : "jpg";
+
+                // Download the external OAuth avatar and store locally (public)
+                const imageBuffer = await downloadImage(user.image);
+                const driver = LocalStorageDriver();
+                const { key } = await driver.put({
+                  type: "avatars",
+                  userId: user.id,
+                  buffer: imageBuffer,
+                  ext,
+                  contentType: inferContentType(ext),
+                });
+                await userRepo.update(db, user.id, { image: key });
+              } catch (error) {
+                console.error(error);
+              }
+            } else if (
               user.image &&
               !user.image.includes(process.env.NEXT_PUBLIC_STORAGE_DOMAIN!)
             ) {
@@ -369,10 +393,6 @@ export const initAuth = (db: dbClient) => {
                   },
                 });
 
-                const allowedFileExtensions = ["jpg", "jpeg", "png", "webp"];
-
-                const fileExtension =
-                  user.image.split(".").pop()?.split("?")[0] || "jpg";
                 const key = `${user.id}/avatar.${!allowedFileExtensions.includes(fileExtension) ? "jpg" : fileExtension}`;
 
                 const imageBuffer = await downloadImage(user.image);

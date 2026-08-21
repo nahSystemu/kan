@@ -38,6 +38,11 @@ services:
       - NEXT_PUBLIC_AVATAR_BUCKET_NAME=${NEXT_PUBLIC_AVATAR_BUCKET_NAME}
       - NEXT_PUBLIC_STORAGE_DOMAIN=${NEXT_PUBLIC_STORAGE_DOMAIN}
 
+      # Local storage driver (optional)
+      - STORAGE_DRIVER=${STORAGE_DRIVER}
+      - LOCAL_UPLOADS_DIR=${LOCAL_UPLOADS_DIR}
+      - NEXT_PUBLIC_UPLOADS_BASE=${NEXT_PUBLIC_UPLOADS_BASE}
+
       # White label
       - NEXT_PUBLIC_WHITE_LABEL_HIDE_POWERED_BY=${NEXT_PUBLIC_WHITE_LABEL_HIDE_POWERED_BY}
 
@@ -96,6 +101,8 @@ services:
     depends_on:
       - postgres
     restart: unless-stopped
+    volumes:
+      - ./data/uploads:${LOCAL_UPLOADS_DIR:-/app/uploads}
 
   postgres:
     image: postgres:15
