@@ -23,6 +23,18 @@
     ],
     "translation": ", или смотрите нашу"
   },
+  "idPx1+": {
+    "message": "(list deleted)",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/index.tsx",
+        227
+      ]
+    ],
+    "translation": "(список удалён)"
+  },
   "J/hVSQ": {
     "message": "{0}",
     "placeholders": {
@@ -59,7 +71,7 @@
       ],
       [
         "src/views/card/index.tsx",
-        392
+        404
       ]
     ],
     "translation": "{0} | {1}"
@@ -75,7 +87,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        60
+        69
       ]
     ],
     "translation": "{0} добавлен в избранное."
@@ -91,7 +103,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        61
+        70
       ]
     ],
     "translation": "{0} удалён из избранного."
@@ -107,7 +119,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        465
+        481
       ]
     ],
     "translation": "{0} метки"
@@ -123,7 +135,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        574
+        615
       ]
     ],
     "translation": "{0} не найдено"
@@ -395,7 +407,11 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        542
+        563
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        312
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -435,7 +451,7 @@
     "origin": [
       [
         "src/views/board/components/CardContextMenu.tsx",
-        50
+        54
       ]
     ],
     "translation": "Добавить / изменить метку"
@@ -483,7 +499,7 @@
     "origin": [
       [
         "src/views/card/components/Dropdown.tsx",
-        123
+        171
       ]
     ],
     "translation": "Добавить чек-лист"
@@ -495,11 +511,11 @@
     "origin": [
       [
         "src/views/card/components/Comment.tsx",
-        185
+        186
       ],
       [
         "src/views/card/components/NewCommentForm.tsx",
-        85
+        88
       ]
     ],
     "translation": "Добавить комментарий... (введите '/' для открытия команд или '@' для упоминания)"
@@ -511,7 +527,7 @@
     "origin": [
       [
         "src/components/Editor.tsx",
-        578
+        593
       ]
     ],
     "translation": "Добавить описание... (введите '/' для открытия команд или '@' для упоминания)"
@@ -560,6 +576,30 @@
     ],
     "translation": "Добавить участника"
   },
+  "ifJ02Q": {
+    "message": "Add priority",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/PrioritySelector.tsx",
+        103
+      ]
+    ],
+    "translation": "Добавить приоритет"
+  },
+  "Num1+m": {
+    "message": "Add sub-work item",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        254
+      ]
+    ],
+    "translation": "Добавить подзадачу"
+  },
   "M5mfAe": {
     "message": "Add tag",
     "placeholders": {},
@@ -583,7 +623,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        137
+        162
       ]
     ],
     "translation": "Добавить в избранное"
@@ -690,7 +730,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        278
+        284
       ]
     ],
     "translation": "добавлено вложение <0>{0}</0>"
@@ -706,7 +746,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        208
+        214
       ]
     ],
     "translation": "добавлен чек-лист <0>{0}</0>"
@@ -722,7 +762,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        232
+        238
       ]
     ],
     "translation": "добавлен элемент чек-листа <0>{0}</0>"
@@ -738,7 +778,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        192
+        198
       ]
     ],
     "translation": "добавлена метка <0>{0}</0>"
@@ -750,7 +790,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        57
+        66
       ]
     ],
     "translation": "Добавлено в избранное"
@@ -1135,6 +1175,18 @@
     ],
     "translation": "Одобрение"
   },
+  "B495Gs": {
+    "message": "Archive",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/components/CardItem.tsx",
+        88
+      ]
+    ],
+    "translation": "Архивировать"
+  },
   "aKJHG+": {
     "message": "Archive board",
     "placeholders": {},
@@ -1142,10 +1194,26 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        115
+        124
       ]
     ],
     "translation": "Архивировать доску"
+  },
+  "E5Y3nW": {
+    "message": "Archive card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextMenu.tsx",
+        84
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        196
+      ]
+    ],
+    "translation": "Архивировать карточку"
   },
   "TdfEV7": {
     "message": "Archived",
@@ -1155,9 +1223,57 @@
       [
         "src/views/boards/index.tsx",
         31
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        149
+      ],
+      [
+        "src/views/my-cards/components/CardItem.tsx",
+        239
       ]
     ],
     "translation": "В архиве"
+  },
+  "gWlA7i": {
+    "message": "Archived cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/BoardDropdown.tsx",
+        135
+      ],
+      [
+        "src/views/inactive-cards/index.tsx",
+        86
+      ]
+    ],
+    "translation": "Архивные карточки"
+  },
+  "qOBjBT": {
+    "message": "Archived cards stay active and can still be opened, but they no longer appear on the board.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/index.tsx",
+        126
+      ]
+    ],
+    "translation": "Архивные карточки остаются активными, их по-прежнему можно открыть, но они больше не отображаются на доске."
+  },
+  "vx/87p": {
+    "message": "archived the card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/ActivityList.tsx",
+        145
+      ]
+    ],
+    "translation": "архивировал(а) карточку"
   },
   "lo8xBK": {
     "message": "Are you sure want to remove {entityLabel}?",
@@ -1294,7 +1410,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        172
+        178
       ]
     ],
     "translation": "назначено <0>{0}</0> на карточку"
@@ -1515,6 +1631,34 @@
     ],
     "translation": "Портал выставления счетов"
   },
+  "++lIxB": {
+    "message": "Blocked by",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        38
+      ]
+    ],
+    "translation": "Блокируется"
+  },
+  "7s3WlU": {
+    "message": "Blocks",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        15
+      ],
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        38
+      ]
+    ],
+    "translation": "Блокирует"
+  },
   "4RoY9J": {
     "message": "Blog Post",
     "placeholders": {},
@@ -1534,15 +1678,27 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        547
+        588
       ],
       [
         "src/views/card/index.tsx",
-        392
+        404
+      ],
+      [
+        "src/views/inactive-cards/index.tsx",
+        90
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        79
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        228
       ],
       [
         "src/views/public/board/index.tsx",
-        125
+        132
       ]
     ],
     "translation": "Доска"
@@ -1566,7 +1722,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        47
+        55
       ]
     ],
     "translation": "Доска архивирована"
@@ -1614,7 +1770,7 @@
     "origin": [
       [
         "src/views/public/board/index.tsx",
-        181
+        188
       ]
     ],
     "translation": "Доска не найдена"
@@ -1638,7 +1794,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        47
+        56
       ]
     ],
     "translation": "Доска восстановлена из архива"
@@ -1678,7 +1834,7 @@
       ],
       [
         "src/views/public/board/index.tsx",
-        79
+        86
       ]
     ],
     "translation": "URL доски скопирован в буфер обмена"
@@ -2581,6 +2737,10 @@
         49
       ],
       [
+        "src/components/EditorImageModal.tsx",
+        185
+      ],
+      [
         "src/components/YouTubeEmbed/EditYouTubeModal.tsx",
         176
       ],
@@ -2598,7 +2758,7 @@
       ],
       [
         "src/views/card/components/Comment.tsx",
-        195
+        196
       ],
       [
         "src/views/card/components/DeleteCardConfirmation.tsx",
@@ -2611,6 +2771,10 @@
       [
         "src/views/card/components/DeleteCommentConfirmation.tsx",
         77
+      ],
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        134
       ],
       [
         "src/views/members/components/DeleteMemberConfirmation.tsx",
@@ -2659,6 +2823,18 @@
     ],
     "translation": "Отмена"
   },
+  "FyJPFh": {
+    "message": "card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        97
+      ]
+    ],
+    "translation": "карточка"
+  },
   "kryGs+": {
     "message": "Card",
     "placeholders": {},
@@ -2666,10 +2842,26 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        392
+        404
       ]
     ],
     "translation": "Карточка"
+  },
+  "iQzw74": {
+    "message": "Card archived",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/index.tsx",
+        311
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        78
+      ]
+    ],
+    "translation": "Карточка архивирована"
   },
   "sU2uWc": {
     "message": "Card duplicated",
@@ -2682,7 +2874,7 @@
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        46
+        50
       ]
     ],
     "translation": "Карточка продублирована"
@@ -2694,7 +2886,7 @@
     "origin": [
       [
         "src/views/card/components/Dropdown.tsx",
-        48
+        52
       ]
     ],
     "translation": "Карточка успешно продублирована."
@@ -2718,10 +2910,22 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        455
+        468
       ]
     ],
     "translation": "Карточка не найдена"
+  },
+  "0zzh5k": {
+    "message": "Card restored",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        93
+      ]
+    ],
+    "translation": "Карточка восстановлена"
   },
   "ZH7TVS": {
     "message": "Card title",
@@ -2730,10 +2934,26 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        331
+        346
       ]
     ],
     "translation": "Название карточки"
+  },
+  "XHTtSu": {
+    "message": "Card unarchived",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/Dropdown.tsx",
+        96
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        81
+      ]
+    ],
+    "translation": "Карточка разархивирована"
   },
   "rQXTmd": {
     "message": "Card URL copied to clipboard",
@@ -2742,11 +2962,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        318
+        347
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        74
+        122
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -2754,6 +2974,18 @@
       ]
     ],
     "translation": "URL карточки скопирован в буфер обмена"
+  },
+  "sCzmvQ": {
+    "message": "cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        97
+      ]
+    ],
+    "translation": "карточек"
   },
   "VhMDMg": {
     "message": "Change Password",
@@ -2814,11 +3046,11 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        303
+        309
       ],
       [
         "src/views/card/components/ActivityList.tsx",
-        317
+        323
       ]
     ],
     "translation": "изменил(а) срок выполнения на <0>{formattedDate}</0>"
@@ -2958,7 +3190,11 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        227
+        246
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        193
       ]
     ],
     "translation": "Сбросить фильтры"
@@ -2994,7 +3230,11 @@
       ],
       [
         "src/views/card/index.tsx",
-        446
+        459
+      ],
+      [
+        "src/views/inactive-cards/index.tsx",
+        115
       ],
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
@@ -3131,6 +3371,22 @@
     ],
     "translation": "Полный контроль и владение:"
   },
+  "qqWcBV": {
+    "message": "Completed",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/components/CardItem.tsx",
+        116
+      ],
+      [
+        "src/views/my-cards/index.tsx",
+        222
+      ]
+    ],
+    "translation": "Завершено"
+  },
   "Lt+ZP3": {
     "message": "completed a checklist item",
     "placeholders": {},
@@ -3154,7 +3410,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        249
+        255
       ]
     ],
     "translation": "завершён пункт контрольного списка <0>{0}</0>"
@@ -3439,7 +3695,7 @@
     "origin": [
       [
         "src/views/card/components/Dropdown.tsx",
-        107
+        155
       ]
     ],
     "translation": "Скопировать ссылку на карточку"
@@ -3475,7 +3731,7 @@
     "origin": [
       [
         "src/views/board/components/CardContextMenu.tsx",
-        62
+        72
       ]
     ],
     "translation": "Копировать ссылку на карточку"
@@ -3515,7 +3771,7 @@
     "origin": [
       [
         "src/views/card/components/Dropdown.tsx",
-        114
+        162
       ]
     ],
     "translation": "Скопировать ID задачи"
@@ -3571,7 +3827,7 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        530
+        565
       ],
       [
         "src/views/board/components/NewListForm.tsx",
@@ -3599,7 +3855,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        540
+        575
       ]
     ],
     "translation": "Создать карточку"
@@ -3691,7 +3947,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        427
+        443
       ],
       [
         "src/views/card/components/LabelSelector.tsx",
@@ -3707,11 +3963,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        100
+        103
       ],
       [
         "src/views/board/index.tsx",
-        688
+        725
       ]
     ],
     "translation": "Создать новый список"
@@ -4176,7 +4432,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        148
+        173
       ]
     ],
     "translation": "Удалить доску"
@@ -4188,11 +4444,11 @@
     "origin": [
       [
         "src/views/board/components/CardContextMenu.tsx",
-        74
+        90
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        152
+        213
       ]
     ],
     "translation": "Удалить карточку"
@@ -4256,7 +4512,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        148
+        173
       ]
     ],
     "translation": "Удалить шаблон"
@@ -4293,6 +4549,18 @@
     ],
     "translation": "Удалить рабочее пространство"
   },
+  "vGjmyl": {
+    "message": "Deleted",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        149
+      ]
+    ],
+    "translation": "Удалена"
+  },
   "mTGd3+": {
     "message": "deleted a checklist",
     "placeholders": {},
@@ -4317,6 +4585,34 @@
     ],
     "translation": "удалил(а) элемент чек-листа"
   },
+  "Nzswnx": {
+    "message": "Deleted cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/BoardDropdown.tsx",
+        142
+      ],
+      [
+        "src/views/inactive-cards/index.tsx",
+        86
+      ]
+    ],
+    "translation": "Удалённые карточки"
+  },
+  "193BL4": {
+    "message": "Deleted cards are kept here so they can be put back on the board.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/index.tsx",
+        127
+      ]
+    ],
+    "translation": "Удалённые карточки хранятся здесь, чтобы их можно было вернуть на доску."
+  },
   "BMkVQ3": {
     "message": "deleted checklist <0>{0}</0>",
     "placeholders": {
@@ -4328,7 +4624,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        224
+        230
       ]
     ],
     "translation": "удалил(а) чек-лист <0>{0}</0>"
@@ -4344,10 +4640,22 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        267
+        273
       ]
     ],
     "translation": "удалил(а) элемент чек-листа <0>{0}</0>"
+  },
+  "2ZnVVY": {
+    "message": "deleted the card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/ActivityList.tsx",
+        147
+      ]
+    ],
+    "translation": "удалил(а) карточку"
   },
   "Nu4oKW": {
     "message": "Description",
@@ -4592,6 +4900,10 @@
         68
       ],
       [
+        "src/views/board/components/CardContextPriorityModal.tsx",
+        37
+      ],
+      [
         "src/views/boards/components/TemplateBoards.tsx",
         17
       ],
@@ -4614,6 +4926,14 @@
       [
         "src/views/boards/components/TemplateBoards.tsx",
         61
+      ],
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        79
+      ],
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        246
       ]
     ],
     "translation": "Готово"
@@ -4630,6 +4950,18 @@
     ],
     "translation": "Не удалось загрузить"
   },
+  "O8dlOh": {
+    "message": "Drop an image here, or click to browse",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        143
+      ]
+    ],
+    "translation": "Перетащите изображение сюда или нажмите, чтобы выбрать"
+  },
   "XicmhT": {
     "message": "Due date",
     "placeholders": {},
@@ -4637,18 +4969,50 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        171
+        189
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        482
+        517
       ],
       [
         "src/views/card/index.tsx",
-        181
+        193
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        269
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        97
       ]
     ],
     "translation": "Срок выполнения"
+  },
+  "YOowcq": {
+    "message": "Due Date",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        218
+      ]
+    ],
+    "translation": "Срок выполнения"
+  },
+  "mm6X3P": {
+    "message": "Due Later",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        220
+      ]
+    ],
+    "translation": "Позже"
   },
   "ri1hHe": {
     "message": "Due next month",
@@ -4657,7 +5021,11 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        132
+        144
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        29
       ]
     ],
     "translation": "Срок — в следующем месяце"
@@ -4669,10 +5037,26 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        127
+        139
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        28
       ]
     ],
     "translation": "Срок — на следующей неделе"
+  },
+  "lEj94j": {
+    "message": "Due This Week",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        219
+      ]
+    ],
+    "translation": "На этой неделе"
   },
   "1iShX0": {
     "message": "Due today",
@@ -4681,10 +5065,26 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        117
+        129
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        26
       ]
     ],
     "translation": "Срок — сегодня"
+  },
+  "HXg5WD": {
+    "message": "Due Today",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        217
+      ]
+    ],
+    "translation": "Сегодня"
   },
   "zxKs+y": {
     "message": "Due tomorrow",
@@ -4693,10 +5093,26 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        122
+        134
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        27
       ]
     ],
     "translation": "Срок — завтра"
+  },
+  "WNUOG9": {
+    "message": "Due Tomorrow",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        218
+      ]
+    ],
+    "translation": "Завтра"
   },
   "euc6Ns": {
     "message": "Duplicate",
@@ -4721,11 +5137,11 @@
       ],
       [
         "src/views/board/components/CardContextMenu.tsx",
-        68
+        78
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        130
+        178
       ]
     ],
     "translation": "Дублировать карточку"
@@ -4765,7 +5181,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        106
+        115
       ],
       [
         "src/views/board/components/UpdateBoardSlugForm.tsx",
@@ -5579,6 +5995,18 @@
     ],
     "translation": "Не удалось загрузить вложение. Пожалуйста, попробуйте ещё раз."
   },
+  "nkNfWu": {
+    "message": "Failed to upload image. Please try again.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        66
+      ]
+    ],
+    "translation": "Не удалось загрузить изображение. Пожалуйста, попробуйте ещё раз."
+  },
   "/lDBHm": {
     "message": "FAQ",
     "placeholders": {},
@@ -5710,7 +6138,11 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        221
+        240
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        183
       ]
     ],
     "translation": "Фильтр"
@@ -5962,7 +6394,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        673
+        710
       ]
     ],
     "translation": "Начните с создания нового списка"
@@ -6288,6 +6720,18 @@
     ],
     "translation": "Уровень иерархии"
   },
+  "yx/fMc": {
+    "message": "High",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Priority.tsx",
+        48
+      ]
+    ],
+    "translation": "Высокий"
+  },
   "CB/NpV": {
     "message": "High Priority",
     "placeholders": {},
@@ -6416,6 +6860,18 @@
     ],
     "translation": "Как финансируется проект?"
   },
+  "riqEYH": {
+    "message": "https://example.com/image.png",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        164
+      ]
+    ],
+    "translation": "https://example.com/image.png"
+  },
   "6S8zjx": {
     "message": "https://www.youtube.com/watch?v=...",
     "placeholders": {},
@@ -6459,7 +6915,7 @@
     "origin": [
       [
         "src/views/card/components/Dropdown.tsx",
-        91
+        139
       ]
     ],
     "translation": "ID скопирован"
@@ -6487,6 +6943,30 @@
       ]
     ],
     "translation": "Идеи по улучшению этой страницы..."
+  },
+  "ZO84oZ": {
+    "message": "Image must be smaller than 10MB.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        36
+      ]
+    ],
+    "translation": "Изображение должно быть меньше 10 МБ."
+  },
+  "VyUuZb": {
+    "message": "Image URL",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        160
+      ]
+    ],
+    "translation": "URL изображения"
   },
   "l3s5ri": {
     "message": "Import",
@@ -6655,6 +7135,30 @@
       ]
     ],
     "translation": "Индивидуальные участники"
+  },
+  "S8Yqbl": {
+    "message": "Insert",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        192
+      ]
+    ],
+    "translation": "Вставить"
+  },
+  "mia08l": {
+    "message": "Insert image",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        89
+      ]
+    ],
+    "translation": "Вставить изображение"
   },
   "nbfdhU": {
     "message": "Integrations",
@@ -6940,15 +7444,23 @@
       ],
       [
         "src/views/board/components/Filters.tsx",
-        155
+        167
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        431
+        447
       ],
       [
         "src/views/card/index.tsx",
-        161
+        164
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        209
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        89
       ]
     ],
     "translation": "Метки"
@@ -7166,6 +7678,22 @@
     ],
     "translation": "Ограниченный доступ к API"
   },
+  "D2KNek": {
+    "message": "Link a card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        62
+      ],
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        297
+      ]
+    ],
+    "translation": "Связать карточку"
+  },
   "edWbV6": {
     "message": "Link copied",
     "placeholders": {},
@@ -7177,11 +7705,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        316
+        345
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        72
+        120
       ],
       [
         "src/views/page/index.tsx",
@@ -7193,7 +7721,7 @@
       ],
       [
         "src/views/public/board/index.tsx",
-        77
+        84
       ],
       [
         "src/views/public/page/index.tsx",
@@ -7201,6 +7729,30 @@
       ]
     ],
     "translation": "Ссылка скопирована"
+  },
+  "J8tH6J": {
+    "message": "linked another card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/ActivityList.tsx",
+        149
+      ]
+    ],
+    "translation": "связал(а) другую карточку"
+  },
+  "Yu5Lg8": {
+    "message": "Linked items",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        288
+      ]
+    ],
+    "translation": "Связанные элементы"
   },
   "2BBAbc": {
     "message": "List",
@@ -7213,7 +7765,11 @@
       ],
       [
         "src/views/card/index.tsx",
-        152
+        155
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        204
       ]
     ],
     "translation": "Список"
@@ -7237,10 +7793,22 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        163
+        175
       ]
     ],
     "translation": "Списки"
+  },
+  "yQ2kGp": {
+    "message": "Load more",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        138
+      ]
+    ],
+    "translation": "Загрузить ещё"
   },
   "1rVAfU": {
     "message": "Load more activities",
@@ -7249,7 +7817,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        579
+        590
       ]
     ],
     "translation": "Загрузить ещё действия"
@@ -7277,7 +7845,11 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        579
+        590
+      ],
+      [
+        "src/views/my-cards/index.tsx",
+        138
       ]
     ],
     "translation": "Загрузка..."
@@ -7330,6 +7902,18 @@
     ],
     "translation": "Любим командами по всему миру"
   },
+  "nTWWCZ": {
+    "message": "Low",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/Priority.tsx",
+        52
+      ]
+    ],
+    "translation": "Низкий"
+  },
   "O9jVbx": {
     "message": "Low Priority",
     "placeholders": {},
@@ -7381,7 +7965,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        95
+        104
       ]
     ],
     "translation": "Создать шаблон"
@@ -7397,7 +7981,7 @@
       ],
       [
         "src/views/board/components/CardContextMenu.tsx",
-        38
+        42
       ]
     ],
     "translation": "Управление участниками"
@@ -7413,6 +7997,22 @@
       ]
     ],
     "translation": "Управление ролями для этого рабочего пространства. Системные роли нельзя удалить, но их разрешения можно изменить на странице Разрешений."
+  },
+  "LJg5e3": {
+    "message": "Mark as complete",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/components/CardItem.tsx",
+        81
+      ],
+      [
+        "src/views/my-cards/components/CardItem.tsx",
+        116
+      ]
+    ],
+    "translation": "Отметить как выполненную"
   },
   "IDvohQ": {
     "message": "marked a checklist item as incomplete",
@@ -7437,7 +8037,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        258
+        264
       ]
     ],
     "translation": "отметил элемент контрольного списка <0>{0}</0> как невыполненный"
@@ -7462,6 +8062,10 @@
       [
         "src/components/FontSizeSelector.tsx",
         8
+      ],
+      [
+        "src/components/Priority.tsx",
+        50
       ]
     ],
     "translation": "Средний"
@@ -7541,15 +8145,19 @@
       ],
       [
         "src/views/board/components/Filters.tsx",
-        147
+        159
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        389
+        405
       ],
       [
         "src/views/card/index.tsx",
-        171
+        174
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        226
       ],
       [
         "src/views/members/index.tsx",
@@ -7669,7 +8277,7 @@
     "origin": [
       [
         "src/views/board/components/CardContextMenu.tsx",
-        44
+        48
       ]
     ],
     "translation": "Переместить в другой список"
@@ -7693,7 +8301,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        126
+        153
       ]
     ],
     "translation": "Переместить в рабочее пространство"
@@ -7712,7 +8320,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        160
+        166
       ]
     ],
     "translation": "переместил(а) карточку из <0>{0}</0> в<1>{1}</1>"
@@ -7728,6 +8336,34 @@
       ]
     ],
     "translation": "переместил(а) карточку в другой список"
+  },
+  "oFLZ3C": {
+    "message": "My Cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        93
+      ]
+    ],
+    "translation": "Мои карточки"
+  },
+  "ZWS6QI": {
+    "message": "My Cards | {0}",
+    "placeholders": {
+      "0": [
+        "workspace.name || t`Workspace`"
+      ]
+    },
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        86
+      ]
+    ],
+    "translation": "Мои карточки | {0}"
   },
   "uEGGDs": {
     "message": "My webhook",
@@ -7860,7 +8496,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        314
+        329
       ]
     ],
     "translation": "Новая карточка"
@@ -7912,7 +8548,7 @@
       ],
       [
         "src/views/board/index.tsx",
-        637
+        678
       ]
     ],
     "translation": "Новый список"
@@ -8065,6 +8701,18 @@
     ],
     "translation": "Нет архивированных досок"
   },
+  "5aI7Zw": {
+    "message": "No archived cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/index.tsx",
+        144
+      ]
+    ],
+    "translation": "Нет архивных карточек"
+  },
   "Eg99Sc": {
     "message": "No authentication methods are currently available",
     "placeholders": {},
@@ -8089,6 +8737,30 @@
     ],
     "translation": "Доски не найдены"
   },
+  "vav+OA": {
+    "message": "No cards assigned to you",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        250
+      ]
+    ],
+    "translation": "Вам не назначено ни одной карточки"
+  },
+  "uIOBsa": {
+    "message": "No cards found.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        99
+      ]
+    ],
+    "translation": "Карточки не найдены."
+  },
   "OpNhRn": {
     "message": "No credit card required",
     "placeholders": {},
@@ -8108,10 +8780,26 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        137
+        149
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        30
       ]
     ],
     "translation": "Нет дат"
+  },
+  "eWAM9D": {
+    "message": "No deleted cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/index.tsx",
+        144
+      ]
+    ],
+    "translation": "Нет удалённых карточек"
   },
   "sY2lzr": {
     "message": "No download URL available for this attachment.",
@@ -8124,6 +8812,18 @@
       ]
     ],
     "translation": "Для этого вложения нет доступной ссылки для скачивания."
+  },
+  "GRAvE/": {
+    "message": "No Due Date",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/index.tsx",
+        221
+      ]
+    ],
+    "translation": "Без срока"
   },
   "TXO5TM": {
     "message": "No keyboard shortcuts registered.",
@@ -8156,7 +8856,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        669
+        706
       ]
     ],
     "translation": "Нет списков"
@@ -8168,7 +8868,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        674
+        711
       ]
     ],
     "translation": "Списки ещё не созданы"
@@ -8237,6 +8937,18 @@
     ],
     "translation": "Роли не найдены."
   },
+  "Qr+79p": {
+    "message": "No sub-work items yet.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        268
+      ]
+    ],
+    "translation": "Подзадач пока нет."
+  },
   "TX0bT7": {
     "message": "No webhooks configured. Add a webhook to receive notifications.",
     "placeholders": {},
@@ -8255,11 +8967,39 @@
     "comments": [],
     "origin": [
       [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        212
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        229
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        265
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        274
+      ],
+      [
         "src/views/public/page/index.tsx",
         270
       ]
     ],
     "translation": "Нет"
+  },
+  "F1iaHg": {
+    "message": "Not done",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        84
+      ]
+    ],
+    "translation": "Не выполнено"
   },
   "9h7RDh": {
     "message": "Offer",
@@ -8332,6 +9072,34 @@
       ]
     ],
     "translation": "После удаления рабочего пространства возврата не будет. Это действие необратимо."
+  },
+  "7xOyYO": {
+    "message": "Only image files can be uploaded.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        31
+      ]
+    ],
+    "translation": "Загружать можно только изображения."
+  },
+  "Rm0v1r": {
+    "message": "Open card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        149
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        184
+      ]
+    ],
+    "translation": "Открыть карточку"
   },
   "69b7aE": {
     "message": "Open command menu",
@@ -8409,6 +9177,10 @@
       [
         "src/components/AuthForm.tsx",
         385
+      ],
+      [
+        "src/components/EditorImageModal.tsx",
+        149
       ]
     ],
     "translation": "или"
@@ -8448,7 +9220,15 @@
     "origin": [
       [
         "src/views/board/components/Filters.tsx",
-        112
+        124
+      ],
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        25
+      ],
+      [
+        "src/views/my-cards/index.tsx",
+        216
       ]
     ],
     "translation": "Просрочено"
@@ -8596,6 +9376,18 @@
       ]
     ],
     "translation": "Страницы"
+  },
+  "sujToP": {
+    "message": "Parent",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        36
+      ]
+    ],
+    "translation": "Родитель"
   },
   "Uworke": {
     "message": "Part-time",
@@ -8945,6 +9737,18 @@
     ],
     "translation": "Пожалуйста, введите корректный адрес электронной почты"
   },
+  "NgXTKK": {
+    "message": "Please enter a valid image URL.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        77
+      ]
+    ],
+    "translation": "Пожалуйста, введите корректный URL изображения."
+  },
   "CJ3zUq": {
     "message": "Please enter a valid name",
     "placeholders": {},
@@ -9028,11 +9832,11 @@
       ],
       [
         "src/views/board/components/BoardDropdown.tsx",
-        69
+        78
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        196
+        197
       ],
       [
         "src/views/board/components/NewListForm.tsx",
@@ -9056,11 +9860,15 @@
       ],
       [
         "src/views/board/index.tsx",
-        228
+        236
       ],
       [
         "src/views/board/index.tsx",
-        284
+        292
+      ],
+      [
+        "src/views/board/index.tsx",
+        305
       ],
       [
         "src/views/boards/components/ImportBoardsForm.tsx",
@@ -9132,15 +9940,23 @@
       ],
       [
         "src/views/card/components/NewCommentForm.tsx",
-        38
+        40
+      ],
+      [
+        "src/views/card/components/PrioritySelector.tsx",
+        52
       ],
       [
         "src/views/card/index.tsx",
-        307
+        319
       ],
       [
         "src/views/card/index.tsx",
-        320
+        332
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        72
       ],
       [
         "src/views/members/components/DeleteMemberConfirmation.tsx",
@@ -9280,19 +10096,31 @@
       ],
       [
         "src/views/board/index.tsx",
-        325
+        354
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        55
+        59
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        81
+        87
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        100
+        105
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        129
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        148
+      ],
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        61
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -9300,7 +10128,7 @@
       ],
       [
         "src/views/public/board/index.tsx",
-        86
+        93
       ]
     ],
     "translation": "Пожалуйста, попробуйте ещё раз."
@@ -9348,6 +10176,30 @@
       ]
     ],
     "translation": "Цены"
+  },
+  "1hKEom": {
+    "message": "Priority",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/Filters.tsx",
+        183
+      ],
+      [
+        "src/views/board/components/NewCardForm.tsx",
+        503
+      ],
+      [
+        "src/views/card/index.tsx",
+        184
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        255
+      ]
+    ],
+    "translation": "Приоритет"
   },
   "ESClHO": {
     "message": "Priority email support",
@@ -9573,6 +10425,30 @@
     ],
     "translation": "Отклонено"
   },
+  "8Ug9jB": {
+    "message": "Related",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        39
+      ]
+    ],
+    "translation": "Связано"
+  },
+  "5m2odY": {
+    "message": "Related to",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        16
+      ]
+    ],
+    "translation": "Связано с"
+  },
   "qlAIQ1": {
     "message": "Remote",
     "placeholders": {},
@@ -9604,10 +10480,22 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        136
+        162
       ]
     ],
     "translation": "Удалить из избранного"
+  },
+  "484LKL": {
+    "message": "Remove link",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        160
+      ]
+    ],
+    "translation": "Удалить связь"
   },
   "99VIgC": {
     "message": "Remove member",
@@ -9639,6 +10527,18 @@
       ]
     ],
     "translation": "удалено {0} меток: <0>{labelList}</0>"
+  },
+  "06h0Pa": {
+    "message": "removed a card link",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/ActivityList.tsx",
+        150
+      ]
+    ],
+    "translation": "удалил(а) связь карточки"
   },
   "kQwvU8": {
     "message": "removed a label from the card",
@@ -9687,7 +10587,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        288
+        294
       ]
     ],
     "translation": "удалено вложение <0>{0}</0>"
@@ -9699,7 +10599,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        58
+        67
       ]
     ],
     "translation": "Удалено из избранного"
@@ -9715,7 +10615,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        200
+        206
       ]
     ],
     "translation": "удалена метка <0>{0}</0>"
@@ -9731,7 +10631,7 @@
       ],
       [
         "src/views/card/components/ActivityList.tsx",
-        324
+        330
       ]
     ],
     "translation": "удалена дата выполнения"
@@ -9759,7 +10659,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        216
+        222
       ]
     ],
     "translation": "переименован чек-лист <0>{0}</0>"
@@ -9775,7 +10675,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        240
+        246
       ]
     ],
     "translation": "переименован пункт чек-листа в <0>{0}</0>"
@@ -9843,6 +10743,30 @@
       ]
     ],
     "translation": "Ресурсы"
+  },
+  "yKu/3Y": {
+    "message": "Restore",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        194
+      ]
+    ],
+    "translation": "Восстановить"
+  },
+  "NTE3cf": {
+    "message": "restored the card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/ActivityList.tsx",
+        148
+      ]
+    ],
+    "translation": "восстановил(а) карточку"
   },
   "5k0NLb": {
     "message": "Review",
@@ -10047,7 +10971,7 @@
       ],
       [
         "src/views/card/components/Comment.tsx",
-        202
+        203
       ],
       [
         "src/views/page/components/TagSelector.tsx",
@@ -10115,6 +11039,42 @@
       ]
     ],
     "translation": "Поиск досок и карточек..."
+  },
+  "HqAZiA": {
+    "message": "Search cards by title or ticket ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        83
+      ]
+    ],
+    "translation": "Поиск карточек по заголовку или ID тикета"
+  },
+  "NE0czk": {
+    "message": "Search cards...",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        168
+      ]
+    ],
+    "translation": "Поиск карточек..."
+  },
+  "Du+zn+": {
+    "message": "Searching...",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        95
+      ]
+    ],
+    "translation": "Поиск..."
   },
   "66Jmqh": {
     "message": "Seat limit reached",
@@ -10192,6 +11152,18 @@
     ],
     "translation": "Посмотрите, что наши пользователи говорят о Kan"
   },
+  "EXD8yp": {
+    "message": "Select a deleted card to view its details.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/index.tsx",
+        178
+      ]
+    ],
+    "translation": "Выберите удалённую карточку, чтобы посмотреть подробности."
+  },
   "zYRVNp": {
     "message": "Select a list",
     "placeholders": {},
@@ -10231,6 +11203,18 @@
       ]
     ],
     "translation": "Выбрать всё"
+  },
+  "7mcO6S": {
+    "message": "Select an archived card to view its details.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/index.tsx",
+        177
+      ]
+    ],
+    "translation": "Выберите архивную карточку, чтобы посмотреть подробности."
   },
   "o4e/70": {
     "message": "Select at least one event",
@@ -10287,7 +11271,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        169
+        175
       ]
     ],
     "translation": "самостоятельно назначил(а) карточку"
@@ -10351,7 +11335,7 @@
       ],
       [
         "src/views/board/components/CardContextMenu.tsx",
-        56
+        66
       ],
       [
         "src/views/card/components/DueDateSelector.tsx",
@@ -10383,6 +11367,22 @@
       ]
     ],
     "translation": "Установить пароль"
+  },
+  "hNmOZ7": {
+    "message": "Set priority",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/CardContextMenu.tsx",
+        60
+      ],
+      [
+        "src/views/board/components/CardContextPriorityModal.tsx",
+        20
+      ]
+    ],
+    "translation": "Установить приоритет"
   },
   "Eit43O": {
     "message": "set the due date",
@@ -10531,6 +11531,30 @@
       ]
     ],
     "translation": "Горячие клавиши"
+  },
+  "wvcMAX": {
+    "message": "Show archived",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        242
+      ]
+    ],
+    "translation": "Показать архивные"
+  },
+  "TsyuK4": {
+    "message": "Show completed",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/my-cards/components/Filters.tsx",
+        234
+      ]
+    ],
+    "translation": "Показать завершённые"
   },
   "S6K1Ig": {
     "message": "Show info",
@@ -10856,6 +11880,18 @@
     ],
     "translation": "Начните бесплатно. Переходите на новый тариф по мере роста команды. Без скрытых платежей и контрактов."
   },
+  "fRu1oa": {
+    "message": "Start typing to find a card.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        91
+      ]
+    ],
+    "translation": "Начните вводить, чтобы найти карточку."
+  },
   "uAQUqI": {
     "message": "Status",
     "placeholders": {},
@@ -10868,6 +11904,30 @@
     ],
     "translation": "Статус"
   },
+  "TMrTEX": {
+    "message": "Sub-work item",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        14
+      ]
+    ],
+    "translation": "Подзадача"
+  },
+  "2lSAVA": {
+    "message": "Sub-work items",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        231
+      ]
+    ],
+    "translation": "Подзадачи"
+  },
   "hQRttt": {
     "message": "Submit",
     "placeholders": {},
@@ -10875,7 +11935,7 @@
     "origin": [
       [
         "src/views/card/components/NewCommentForm.tsx",
-        60
+        62
       ]
     ],
     "translation": "Отправить"
@@ -11103,11 +12163,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        547
+        588
       ],
       [
         "src/views/board/index.tsx",
-        583
+        624
       ]
     ],
     "translation": "Шаблон"
@@ -11291,7 +12351,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        49
+        58
       ]
     ],
     "translation": "Доска была архивирована."
@@ -11319,7 +12379,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        50
+        59
       ]
     ],
     "translation": "Доска была восстановлена из архива."
@@ -11335,6 +12395,42 @@
       ]
     ],
     "translation": "Карточка была продублирована."
+  },
+  "pLccmq": {
+    "message": "The card has been moved to the archive.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/index.tsx",
+        312
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        80
+      ]
+    ],
+    "translation": "Карточка перемещена в архив."
+  },
+  "ywSdOH": {
+    "message": "The card is back on the board.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/Dropdown.tsx",
+        98
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        82
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        94
+      ]
+    ],
+    "translation": "Карточка снова на доске."
   },
   "jlB2RY": {
     "message": "The current password you entered is incorrect.",
@@ -11559,7 +12655,7 @@
     "origin": [
       [
         "src/views/public/board/index.tsx",
-        184
+        191
       ]
     ],
     "translation": "Эта доска приватная или не существует"
@@ -11575,6 +12671,18 @@
       ]
     ],
     "translation": "Этот URL доски уже занят"
+  },
+  "cJ4Yx7": {
+    "message": "This card is archived and does not appear on the board.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/index.tsx",
+        475
+      ]
+    ],
+    "translation": "Эта карточка находится в архиве и не отображается на доске."
   },
   "mTwGOf": {
     "message": "This invitation link is invalid or has expired.",
@@ -11779,7 +12887,7 @@
     "origin": [
       [
         "src/views/card/components/Dropdown.tsx",
-        93
+        141
       ]
     ],
     "translation": "ID задачи скопирован в буфер обмена"
@@ -11947,7 +13055,7 @@
     "origin": [
       [
         "src/views/card/components/NewCommentForm.tsx",
-        37
+        39
       ]
     ],
     "translation": "Не удалось добавить комментарий"
@@ -11959,7 +13067,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        319
+        331
       ]
     ],
     "translation": "Не удалось добавить метку"
@@ -11975,6 +13083,22 @@
       ]
     ],
     "translation": "Не удалось добавить тег"
+  },
+  "+xPEjx": {
+    "message": "Unable to archive card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/index.tsx",
+        304
+      ],
+      [
+        "src/views/card/components/Dropdown.tsx",
+        85
+      ]
+    ],
+    "translation": "Не удалось архивировать карточку"
   },
   "LeM5RY": {
     "message": "Unable to clear overrides",
@@ -11995,7 +13119,7 @@
     "origin": [
       [
         "src/views/card/components/Dropdown.tsx",
-        98
+        146
       ]
     ],
     "translation": "Не удалось скопировать ID"
@@ -12007,11 +13131,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        323
+        352
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        79
+        127
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -12019,7 +13143,7 @@
       ],
       [
         "src/views/public/board/index.tsx",
-        84
+        91
       ]
     ],
     "translation": "Не удалось скопировать ссылку"
@@ -12031,7 +13155,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        193
+        194
       ]
     ],
     "translation": "Не удалось создать карточку"
@@ -12251,10 +13375,22 @@
       ],
       [
         "src/views/card/components/Dropdown.tsx",
-        53
+        57
       ]
     ],
     "translation": "Невозможно дублировать карточку"
+  },
+  "gV1kb2": {
+    "message": "Unable to link card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/LinkCardForm.tsx",
+        48
+      ]
+    ],
+    "translation": "Не удалось связать карточку"
   },
   "d196/6": {
     "message": "Unable to move board",
@@ -12279,6 +13415,18 @@
       ]
     ],
     "translation": "Невозможно переместить карточку"
+  },
+  "TP6KDu": {
+    "message": "Unable to remove link",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/SubWorkItems.tsx",
+        60
+      ]
+    ],
+    "translation": "Не удалось удалить связь"
   },
   "8yFGGF": {
     "message": "Unable to remove member",
@@ -12328,6 +13476,18 @@
     ],
     "translation": "Не удалось сбросить разрешения"
   },
+  "8tfe4t": {
+    "message": "Unable to restore card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        71
+      ]
+    ],
+    "translation": "Не удалось восстановить карточку"
+  },
   "A8jqN7": {
     "message": "Unable to send feedback",
     "placeholders": {},
@@ -12368,6 +13528,22 @@
     ],
     "translation": "Не удалось протестировать вебхук"
   },
+  "g/G3dm": {
+    "message": "Unable to unarchive card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/Dropdown.tsx",
+        103
+      ],
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        70
+      ]
+    ],
+    "translation": "Не удалось разархивировать карточку"
+  },
   "C/XupJ": {
     "message": "Unable to update authors",
     "placeholders": {},
@@ -12387,7 +13563,7 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        68
+        77
       ]
     ],
     "translation": "Не удалось обновить доску"
@@ -12423,11 +13599,11 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        283
+        291
       ],
       [
         "src/views/card/index.tsx",
-        306
+        318
       ]
     ],
     "translation": "Не удалось обновить карточку"
@@ -12499,7 +13675,7 @@
     "origin": [
       [
         "src/views/board/index.tsx",
-        227
+        235
       ],
       [
         "src/views/card/components/ListSelector.tsx",
@@ -12560,6 +13736,18 @@
     ],
     "translation": "Не удалось обновить разрешения"
   },
+  "uPW/GB": {
+    "message": "Unable to update priority",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/PrioritySelector.tsx",
+        51
+      ]
+    ],
+    "translation": "Не удалось обновить приоритет"
+  },
   "TFv5tM": {
     "message": "Unable to update role",
     "placeholders": {},
@@ -12604,6 +13792,22 @@
     ],
     "translation": "Не удалось обновить вебхук"
   },
+  "5JOLV9": {
+    "message": "Unarchive",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/inactive-cards/components/InactiveCardDetail.tsx",
+        194
+      ],
+      [
+        "src/views/my-cards/components/CardItem.tsx",
+        88
+      ]
+    ],
+    "translation": "Разархивировать"
+  },
   "It4/FS": {
     "message": "Unarchive board",
     "placeholders": {},
@@ -12611,10 +13815,34 @@
     "origin": [
       [
         "src/views/board/components/BoardDropdown.tsx",
-        115
+        124
       ]
     ],
     "translation": "Восстановить доску из архива"
+  },
+  "bVeASS": {
+    "message": "Unarchive card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/Dropdown.tsx",
+        196
+      ]
+    ],
+    "translation": "Разархивировать карточку"
+  },
+  "h6YW4A": {
+    "message": "unarchived the card",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/components/ActivityList.tsx",
+        146
+      ]
+    ],
+    "translation": "разархивировал(а) карточку"
   },
   "E8zYtd": {
     "message": "unassigned <0>{0}</0> from the card",
@@ -12627,7 +13855,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        183
+        189
       ]
     ],
     "translation": "<0>{0}</0> был(а) удалён(а) из карточки"
@@ -12639,7 +13867,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        180
+        186
       ]
     ],
     "translation": "Пользователь удалил себя из карточки"
@@ -12992,7 +14220,7 @@
     "origin": [
       [
         "src/views/card/components/ActivityList.tsx",
-        152
+        158
       ]
     ],
     "translation": "обновил(а) заголовок на <0>{0}</0>"
@@ -13049,11 +14277,27 @@
     ],
     "translation": "Ошибка загрузки"
   },
+  "GxkJXS": {
+    "message": "Uploading...",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/EditorImageModal.tsx",
+        142
+      ]
+    ],
+    "translation": "Загрузка..."
+  },
   "BBUDfW": {
     "message": "Urgent",
     "placeholders": {},
     "comments": [],
     "origin": [
+      [
+        "src/components/Priority.tsx",
+        46
+      ],
       [
         "src/views/boards/components/TemplateBoards.tsx",
         50
@@ -13244,7 +14488,7 @@
     "origin": [
       [
         "src/views/public/board/index.tsx",
-        153
+        160
       ],
       [
         "src/views/public/page/index.tsx",
@@ -13272,7 +14516,7 @@
     "origin": [
       [
         "src/views/public/board/index.tsx",
-        187
+        194
       ]
     ],
     "translation": "Просмотреть рабочее пространство"
@@ -13569,7 +14813,7 @@
       ],
       [
         "src/views/board/index.tsx",
-        547
+        588
       ],
       [
         "src/views/boards/index.tsx",
@@ -13580,8 +14824,12 @@
         306
       ],
       [
+        "src/views/my-cards/index.tsx",
+        86
+      ],
+      [
         "src/views/public/board/index.tsx",
-        125
+        132
       ],
       [
         "src/views/public/boards/index.tsx",
@@ -13962,11 +15210,11 @@
       ],
       [
         "src/views/board/index.tsx",
-        621
+        662
       ],
       [
         "src/views/board/index.tsx",
-        679
+        716
       ],
       [
         "src/views/boards/components/BoardsList.tsx",
